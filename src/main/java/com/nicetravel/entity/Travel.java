@@ -1,14 +1,20 @@
 package com.nicetravel.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-@Table(name = "travel", indexes = {
-        @Index(name = "typeId", columnList = "typeId")
-})
+@Table(name = "travel")
 @Entity
-public class Travel {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Travel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -45,7 +51,7 @@ public class Travel {
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
-    @Column(name = "hour", nullable = false)
+    @Column(name = "\"hour\"", nullable = false)
     private Integer hour;
 
     @Column(name = "slug", nullable = false)
@@ -54,115 +60,4 @@ public class Travel {
     @Column(name = "isDeleted", nullable = false)
     private Boolean isDeleted = false;
 
-    public Boolean getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
-
-    public Integer getHour() {
-        return hour;
-    }
-
-    public void setHour(Integer hour) {
-        this.hour = hour;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Instant getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Instant endDate) {
-        this.endDate = endDate;
-    }
-
-    public Instant getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Instant startDate) {
-        this.startDate = startDate;
-    }
-
-    public Instant getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Instant createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public String getDeparturePlace() {
-        return departurePlace;
-    }
-
-    public void setDeparturePlace(String departurePlace) {
-        this.departurePlace = departurePlace;
-    }
-
-    public TravelType getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(TravelType typeId) {
-        this.typeId = typeId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

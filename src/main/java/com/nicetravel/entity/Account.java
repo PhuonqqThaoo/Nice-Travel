@@ -1,14 +1,21 @@
 package com.nicetravel.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Table(name = "account", indexes = {
-        @Index(name = "roleId", columnList = "roleId"),
-        @Index(name = "email", columnList = "email", unique = true),
-        @Index(name = "username", columnList = "username", unique = true)
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Table(name = "Account", indexes = {
+        @Index(name = "UQ__Account__AB6E6164B485A157", columnList = "email", unique = true),
+        @Index(name = "UQ__Account__F3DBC57267F2E915", columnList = "username", unique = true)
 })
 @Entity
-public class Account {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -30,51 +37,4 @@ public class Account {
     @Column(name = "isDeleted", nullable = false)
     private Boolean isDeleted = false;
 
-    public Boolean getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    public Role getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Role roleId) {
-        this.roleId = roleId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

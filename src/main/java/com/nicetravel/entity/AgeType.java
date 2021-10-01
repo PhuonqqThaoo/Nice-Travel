@@ -1,20 +1,26 @@
 package com.nicetravel.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Table(name = "agetype")
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Table(name = "ageType")
 @Entity
-public class AgeType {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AgeType implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    public Integer getId() {
-        return id;
-    }
+    @Column(name = "description", nullable = false, length = 225)
+    private String description;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Column(name = "isDeleted", nullable = false)
+    private Boolean isDeleted = false;
 }

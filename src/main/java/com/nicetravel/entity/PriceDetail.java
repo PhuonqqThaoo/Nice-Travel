@@ -1,23 +1,37 @@
 package com.nicetravel.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Table(name = "pricedetail", indexes = {
-        @Index(name = "travelId", columnList = "travelId"),
-        @Index(name = "ageId", columnList = "ageId")
-})
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+@Table(name = "priceDetail")
 @Entity
-public class PriceDetail {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class PriceDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    public Integer getId() {
-        return id;
-    }
+    @Column(name = "price", nullable = false, precision = 12, scale = 3)
+    private BigDecimal price;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "travelId")
+    private Travel travelId;
+
+    @ManyToOne
+    @JoinColumn(name = "ageId")
+    private AgeType ageId;
+
+    @Column(name = "isDeleted", nullable = false)
+    private Boolean isDeleted = false;
+
+
 }
