@@ -3,10 +3,13 @@ package com.nicetravel.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
 
@@ -39,6 +42,6 @@ public class AccountDetail implements Serializable {
     private String idCard;
 
     @Column(name = "createdDate", nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createdDate;
+    @CreationTimestamp // defaut getDate()
+    private Timestamp createdDate;
 }

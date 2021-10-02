@@ -13,12 +13,17 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TravelDetail implements Serializable {
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "\"time\"", nullable = false, length = 50)
+    @Column(name = "time", nullable = false, length = 50)
     private String time;
 
     @Column(name = "description", length = 225)

@@ -5,8 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.Instant;
 
 @Table(name = "travel")
@@ -15,7 +19,12 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Travel implements Serializable {
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
@@ -40,7 +49,8 @@ public class Travel implements Serializable {
     private String img;
 
     @Column(name = "createdDate", nullable = false)
-    private Instant createdDate;
+    @CreationTimestamp // defaut getDate()
+    private Timestamp createdDate;
 
     @Column(name = "startDate", nullable = false)
     private Instant startDate;

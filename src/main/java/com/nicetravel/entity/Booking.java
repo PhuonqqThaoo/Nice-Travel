@@ -3,11 +3,14 @@ package com.nicetravel.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
 
@@ -27,8 +30,8 @@ public class Booking implements Serializable {
     private Account accountId;
 
     @Column(name = "createdDate", nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createdDate;
+    @CreationTimestamp // defaut getDate()
+    private Timestamp createdDate;
 
     @Column(name = "address", length = 225)
     private String address;
