@@ -1,0 +1,208 @@
+/* CSS Document */
+
+/* 
+*
+*
+[Table of intro]
+*
+*
+*
+
+    font-intro / @import url
+	preloader  / .preloader
+	overlay  / .overlay-main
+	background img / .mainbg
+	button intro / #buttons-intro
+	
+*
+*
+*/
+
+/* font-intro */
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,500,600,700');
+
+/* general */
+body{ color:#fff;}
+
+/* preloader */
+.preloader
+    {
+        position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 999999;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-flow: row nowrap;
+              -ms-flex-flow: row nowrap;
+                  flex-flow: row nowrap;
+          -webkit-box-pack: center;
+          -webkit-justify-content: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+                  background:#fff;
+    }
+.mainpreloader {
+  position: relative;
+  animation: rotate 1s infinite linear;
+  border: 3px solid rgba(0, 0, 0, .01);
+  width: 40px;
+  height: 40px;
+  margin-right: -24px;
+  border-radius: 999px;
+}
+
+.mainpreloader img{  display:block; margin:0 auto; z-index:999; }
+.mainpreloader span {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 3px solid transparent;
+  border-top: 3px solid;
+  top: -3px;
+  left: -3px;
+  border-radius: 999px;
+  border-top-color:#999;
+}
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.bg-preloader{ 
+position:fixed; 
+width:100%; 
+height:100%; 
+top:0px;
+left:0px; 
+background:#fff; 
+z-index:99999;
+}
+/* end preloader */
+
+/* overlay */
+.overlay-main{
+  position:absolute;
+  width: 100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  z-index:99;
+}
+/* background img */
+.mainbg {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* button intro */
+#buttons-intro {
+  position: fixed;
+  top: 0px;
+  right: 6px;
+  width:auto;
+  height:auto;
+  text-align:right;
+  opacity:0.8;
+  z-index:99999;
+}
+#buttons-intro:hover { opacity:1; 
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.btn-intro{
+  width: 45px;
+  height: 38px;
+  text-align: center;
+  background:rgba(0,0,0,.9);
+  display: inline-block;
+  cursor:pointer;
+  margin-left: 0px;
+  margin-right: -6px;
+  border-right:0px solid #efefef;
+  color: #426895;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+  
+.left-intro {
+  border-radius: 0 0 0 0;
+}
+
+.right-intro {
+  border-radius: 0 0 0 0;
+}
+
+.btn-intro:hover {
+  background:#fc9f1c;
+  color: #fff;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;}
+
+.btn-intro i {
+  display:inherit;
+  padding-top: 0px;
+  font-size: 18px;
+  color:#fff;
+}
+
+.skippintro{  position:relative;}  
+.skippintro:before {
+    content: "\f051";  
+    font-family: FontAwesome;
+	font-style:normal;
+	position:absolute;
+	left:-5px;
+	top:-10px;
+ }  
+ 
+.soundOffintro, .soundOnintro{  position:relative;}  
+.soundOnintro:before {
+    content: "\f028";  
+    font-family: FontAwesome;
+    font-style:normal;
+	position:absolute;
+	left:-8px;
+	top:-10px;
+ }  
+.soundOffintro:before {
+    content: "\f026";  
+    font-family: FontAwesome;
+    font-style:normal;
+	position:absolute;
+	left:-5px;
+	top:-10px;
+ }
+ 

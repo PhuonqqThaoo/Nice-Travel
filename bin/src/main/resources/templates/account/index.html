@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>RoleId</th>
+        <th>IsDel</th>
+    </tr>
+    <tr th:each="account : ${accounts}">
+        <td th:text="${account.id}"></td>
+        <td th:text="${account.username}"></td>
+        <td th:text="${account.password}"></td>
+        <td th:text="${account.email}"></td>
+        <td th:text="${account.roleId}"></td>
+        <td th:text="${account.isDeleted}"></td>
+    </tr>
+</table>
+</body>
+</html>
