@@ -502,7 +502,6 @@ section {
     top: 0px;
     left: 0px;
     background: #fbfbfb
-    z-index: 99999;
 }
 /* end preloader */
 
@@ -1988,7 +1987,7 @@ ul#services-list {
     line-height:24pt;
 }
 .service-hotel i{ 
-    color:#fc9f1c; 
+    color:#10ac84; 
     margin-right:5px;
 }
 .service-hotel .price{
@@ -1997,7 +1996,7 @@ ul#services-list {
     font-size:44pt;
     text-align:left;
     font-weight:600;
-    color:#fc9f1c;
+    color:#ee5253;
     margin-top:10px;
     margin-bottom:30px;
 }
@@ -2025,7 +2024,7 @@ ul#services-list {
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0);
   border-radius: 2px;
-  background: #fc9f1c; 
+  background: #10ac84; 
   margin-top: 30px;
   outline: none;
   text-shadow: none;
@@ -2037,7 +2036,7 @@ ul#services-list {
 }
 a.btn-book { color:#fff; }
 .btn-book:hover {   
-  background: #999;
+  background: #ee5253;
   border: 1px solid rgba(255, 255, 255, 0);
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
@@ -2712,7 +2711,7 @@ address.cont-1 span a {
     line-height: 35px;
     color: #fff;
     border: 2px solid rgba(0, 0, 0, 0);
-    background: #fc9f1c;
+    background: #10ac84;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 2px;
@@ -2731,7 +2730,7 @@ address.cont-1 span a {
     border: 2px solid rgba(0, 0, 0, 0);
     width: auto;
     color: #fff;
-    background: #999;
+    background: #ee5253;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
