@@ -776,7 +776,7 @@ li>a:only-child:after {
     color: #fefefe;
     padding: 310px 0 80px 0;
     background: #222;
-    background: url(../img/bg-subheader.jpg)top fixed;
+    background: url('http://on3-step.com/tf/plesire/img/bg-subheader.jpg')top fixed;
     background-size:cover;
 }
 #subheader-commerce {
@@ -952,11 +952,11 @@ li>a:only-child:after {
     height: 100%;
 }
 #about-us-1 .image-container {
-    background: url(../img/bg-about.jpg);
+    background: url('http://on3-step.com/tf/plesire/img/bg-about.jpg');
     background-size: cover;
 }
 #about-us-2 .image-container {
-    background: url(../img/bg-about-1.jpg);
+    background: url('http://on3-step.com/tf/plesire/img/bg-about-1.jpg');
     background-size: cover;
 }
 .count-about {
@@ -1066,7 +1066,7 @@ li>a:only-child:after {
 .features .bg-img {
     width: 100%;
     padding: 60px;
-    background: url(../img/bg-serv-1.jpg);
+    background: url('http://on3-step.com/tf/plesire/img/bg-serv-1.jpg');
     overflow-x: hidden;
     background-size: cover;
     background-position: center;
@@ -1074,7 +1074,7 @@ li>a:only-child:after {
 .features .bg-img-1 {
     width: 100%;
     padding: 60px;
-    background: url(../img/bg-serv-2.jpg);
+    background: url('http://on3-step.com/tf/plesire/img/bg-serv-2.jpg');
     overflow-x: hidden;
     background-size: cover;
     background-position: center;
@@ -1082,7 +1082,7 @@ li>a:only-child:after {
 .features .bg-img-2 {
     width: 100%;
     padding: 60px;
-    background: url(../img/bg-serv-3.jpg);
+    background: url('http://on3-step.com/tf/plesire/img/bg-serv-3.jpg');
     overflow-x: hidden;
     background-size: cover;
     background-position: center;
@@ -1175,7 +1175,7 @@ sup.subtour{
 .frm-search {
     width: 100%;
 	color: #fff;
-    background: url(../img/bg-search.jpg);
+    background: url('http://on3-step.com/tf/plesire/img/bg-search.jpg');
     overflow-x: hidden;
     background-size: cover;
     background-position: center;
@@ -1390,7 +1390,7 @@ select.cust-select::-ms-expand {
     margin-top: 30px;
 }
 #testimony .image-container {
-    background: url(../img/bg-testi.jpg);
+    background: url('http://on3-step.com/tf/plesire/img/bg-testi.jpg');
     overflow-x: hidden;
     background-size: cover;
     background-position: top right;
