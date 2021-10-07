@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)" lang="zxx">
+
+<head>
+	<meta charset="utf-8">
+	<title>Nice Travel</title>
+	<meta content="" name="description">
+	<meta content="" name="author">
+	<meta content="" name="keywords">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+	<!-- icon thanh địa chỉ -->
+		<link rel="shortcut icon" href="/assets/img/logoNiceIco.ico">
+	<!-- Bootstrap CSS -->
+		<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+	<!-- font themify CSS -->
+		<link rel="stylesheet" href="/assets/css/themify-icons.css">
+	<!-- font awesome CSS -->
+		<link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<!-- date picker CSS -->
+		<link href="/assets/css/datepicker.min.css" rel="stylesheet">
+	<!-- revolution slider css -->
+		<link rel="stylesheet" type="text/css" href="/assets/css/fullwidth.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/assets/rs-plugin/css/settings.css" media="screen" />
+		<link rel="stylesheet" href="/assets/css/rev-settings.css" type="text/css">
+	<!-- on3step CSS -->
+		<link href="/assets/css/animated-on3step.css" rel="stylesheet">
+		<link href="/assets/css/owl.carousel.css" rel="stylesheet">
+		<link href="/assets/css/owl.theme.css" rel="stylesheet">
+		<link href="/assets/css/on3step-style.css" rel="stylesheet">
+		<link href="/assets/css/queries-on3step.css" media="all" rel="stylesheet">
+</head>
+
+<body>
+	<!-- preloader -->
+	<div class="bg-preloader-white"></div>
+	<div class="preloader-white">
+		<div class="mainpreloader">
+			<span></span>
+		</div>
+	</div>
+	<!-- preloader end -->
+	<div class="content-wrapper">
+		<nav>
+			<div th:replace="/layout/_header.html"></div>
+		</nav>
+		<div>
+			<article>
+				<div th:replace="${main}"></div>
+			</article>
+		</div>
+		<!-- Footer Section Begin -->
+		<div th:replace="/layout/_footer.html"></div>
+		<!-- Footer Section End -->
+
+		<!-- ScrolltoTop -->
+		<div id="totop" class="init">
+			<span class="ti-angle-up"></span>
+		</div>
+
+		<!-- modal login -->
+		<div id="fLogin" class="modal fade">
+			<div class="modal-dialog modal-login">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Member Log In</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<form action="#" method="post">
+							<div class="form-group">
+								<label>User Name</label>
+								<input type="text" class="form-control" required="required">
+							</div>
+							<div class="form-group">
+								<label>Password</label>
+								<input type="password" class="form-control" required="required">
+							</div>
+							<div class="form-group">
+								<input type="submit" class="btn btn-primary btn-block btn-lg" value="Log In">
+							</div>
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<a href="#">or Sign Up</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- modal login end -->
+
+		<!-- modal registration -->
+		<div id="fsignUp" class="modal fade">
+			<div class="modal-dialog modal-login">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Member Registration</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								<label>First Name</label>
+								<input type="text" name="firstname" class="form-control" required="required">
+							</div>
+							<div class="form-group">
+								<label>Last Name</label>
+								<input type="text" name="lastname" class="form-control" required="required">
+							</div>
+							<div class="form-group">
+								<label>Email Address</label>
+								<input type="email" name="email" class="form-control" required="required">
+							</div>
+							<div class="form-group">
+								<label>Username</label>
+								<input type="text" name="username" class="form-control" required="required">
+							</div>
+							<div class="form-group">
+								<label>Password</label>
+								<input type="password" name="password" class="form-control" required="required">
+							</div>
+							<div class="form-group">
+								<label><input type="checkbox" name="terms"> I agree with the <a href="#">Terms and
+										Conditions</a>.</label>
+							</div>
+							<div class="form-group"><input type="submit" value="Sign up"
+									class="btn btn-primary btn-block btn-lg">
+							</div>
+							<div class="clearfix"></div>
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<a href="#">or Log In</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- modal registration end -->
+
+	</div>
+
+	<!-- plugin JS -->
+	<script src="/assets/plugin/pluginson3step.js"></script>
+	<script src="/assets/plugin/bootstrap.min.js"></script>
+	<script src='/assets/plugin/bootstrap-datepicker.min.js'></script>
+	<script src="/assets/plugin/sticky.js"></script>
+	<!-- slider revolution  -->
+	<script src="/assets/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+	<script src="/assets/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	<!-- on3step JS -->
+	<script src="/assets/js/on3step.js"></script>
+	<script src="/assets/js/plugin-set.js"></script>
+</body>
+
+</html>
