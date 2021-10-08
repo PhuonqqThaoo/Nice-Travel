@@ -16,4 +16,6 @@ public interface AccountService {
     Account updateAccount(Account account);
 
     void deleteAccount(Integer id);
+
+    Account findAccountsByUsername(String username);
 }

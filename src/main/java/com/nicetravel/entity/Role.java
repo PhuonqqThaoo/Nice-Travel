@@ -1,15 +1,20 @@
 package com.nicetravel.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
 
 @Table(name = "roles")
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+//@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 public class Role implements Serializable {
@@ -25,4 +30,9 @@ public class Role implements Serializable {
 
     @Column(name = "role", nullable = false, length = 20)
     private String role;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "role_Id")
+    List<Account> authorities;
+
 }

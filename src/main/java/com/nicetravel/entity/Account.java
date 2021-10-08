@@ -1,11 +1,13 @@
 package com.nicetravel.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Table(name = "Account", indexes = {
         @Index(name = "UQ__Account__AB6E6164B485A157", columnList = "email", unique = true),
@@ -37,9 +39,12 @@ public class Account implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "roleId")
-    private Role roleId;
+    private Role role_Id;
 
     @Column(name = "isDeleted", nullable = false)
-    private Boolean isDeleted = false;
+    private Boolean is_deleted = false;
 
+    @JsonIgnore
+    @OneToMany
+    List<Role> authorities;
 }

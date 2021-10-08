@@ -11,4 +11,5 @@ import java.util.List;
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 //    @Query("select DISTINCT ar.username from Account ar WHERE ar.roleId.id IN ('ADMIN','STAFF')")
 //    List<Account> getAdministrators();
+    Account findAccountsByUsername(String username);
 }
