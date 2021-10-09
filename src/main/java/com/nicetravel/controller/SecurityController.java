@@ -11,14 +11,15 @@ public class SecurityController {
 
     @RequestMapping("/login/form")
     public String loginForm(Model model) {
-        model.addAttribute("message", "Vui lòng đăng nhập");
+//        model.addAttribute("message","Please login");
         return "security/login";
     }
 
     @RequestMapping("/login/success")
     public String loginSuccess(Model model) {
-        model.addAttribute("message", "Đăng nhập thành công");
-        return "travel/list";
+        model.addAttribute("message", "Login success");
+//        return "/travel/list";
+        return "forward:/security/login/form";
     }
 
 //    @RequestMapping("/registration/form")
@@ -29,20 +30,20 @@ public class SecurityController {
 
     @RequestMapping("/login/error")
     public String loginError(Model model) {
-        model.addAttribute("message", "Sai thông tin đăng nhập");
-        return "security/login";
+        model.addAttribute("message", "Login fail");
+        return "forward:/security/login/form";
     }
 
-    @RequestMapping("/unauthoried")
+    @RequestMapping("/unauthorized")
     public String unauthoried(Model model) {
-        model.addAttribute("message", "Không có quyền truy xuất");
-        return "security/login";
+        model.addAttribute("message", "You're unauthorized");
+        return "forward:/security/login/form";
     }
 
     @RequestMapping("/logoff/success")
     public String logoffSuccess(Model model) {
-        model.addAttribute("message", "Bạn đã đăng xuất");
-        return "security/login";
+        model.addAttribute("message", "Logout success");
+        return "forward:/security/login/form";
     }
 
 

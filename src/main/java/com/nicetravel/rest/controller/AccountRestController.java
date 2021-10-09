@@ -35,7 +35,7 @@ public class AccountRestController {
 
     @GetMapping("{id}")
     public Account getOne(@PathVariable("id") Integer id) {
-        return accountService.findById(id);
+        return accountService.getAccountById(id);
     }
 
     @PostMapping()

@@ -44,7 +44,4 @@ public class Account implements Serializable {
     @Column(name = "isDeleted", nullable = false)
     private Boolean is_deleted = false;
 
-    @JsonIgnore
-    @OneToMany
-    List<Role> authorities;
 }

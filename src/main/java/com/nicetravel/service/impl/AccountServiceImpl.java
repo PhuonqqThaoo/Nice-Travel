@@ -6,6 +6,7 @@ import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account findById(Integer id) {
+    public Account getAccountById(Integer id) {
         return accountRepository.findById(id).get();
     }
 
@@ -37,17 +38,17 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account createAccount(Account account) {
-        return null;
+        return accountRepository.save(account);
     }
 
     @Override
     public Account updateAccount(Account account) {
-        return null;
+        return accountRepository.save(account);
     }
 
     @Override
     public void deleteAccount(Integer id) {
-
+        accountRepository.deleteById(id);
     }
 
     @Override
