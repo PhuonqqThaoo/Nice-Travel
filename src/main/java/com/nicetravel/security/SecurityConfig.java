@@ -35,10 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/account/**").hasRole("ADMIN")
-                .antMatchers("/travel/**").hasRole("ADMIN")
-                .antMatchers("/api/v1/**").hasRole("ADMIN")
-                .antMatchers("/blog/**").hasRole("ADMIN")
+//                .antMatchers("/account/**").hasRole("ADMIN")
+//                .antMatchers("/travel/**").hasRole("ADMIN")
+//                .antMatchers("/api/v1/**").hasRole("ADMIN")
+//                .antMatchers("/blog/**").hasRole("ADMIN")
                 .anyRequest().permitAll();
 
         http.formLogin()
