@@ -35,11 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-//                .antMatchers("/order/**").authenticated()
-//                .antMatchers("/admin/**").hasAnyRole("STAF", "DIRE")
-//                .antMatchers("/rest/authorities").hasRole("DIRE")
+                .antMatchers("/account/**").hasRole("ADMIN")
                 .antMatchers("/travel/**").hasRole("ADMIN")
                 .antMatchers("/api/v1/**").hasRole("ADMIN")
+                .antMatchers("/blog/**").hasRole("ADMIN")
                 .anyRequest().permitAll();
 
         http.formLogin()
@@ -51,20 +50,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.rememberMe()
 //                .tokenValiditySeconds(86400);
 
-//        http.exceptionHandling()
-//                .accessDeniedPage("/security/anauthoried");
-
         http.logout()
                 .logoutUrl("/security/logoff")
                 .logoutSuccessUrl("/security/logoff/success");
 
-//        //      OAuth2 - ĐĂNG NHẬP TỪ MẠNG XÃ HỘI
-//        http.oauth2Login()
-//                .loginPage("/security/login/form")
-//                .defaultSuccessUrl("/oauth2/login/success", true)
-//                .failureUrl("/security/login/error")
-//                .authorizationEndpoint()
-//                .baseUri("/oauth2/authorization");
+//        http.exceptionHandling()
+//                .accessDeniedPage("/security/anauthoried");
     }
 
     @Override
@@ -75,8 +66,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 String password = account.getPassword();
                 String [] roles = {account.getRole_Id().getRole()};
                 String role = Arrays.toString(roles);
+                System.out.println("user: " + account.getUsername());
+                System.out.println("pass: " + account.getPassword());
                 System.out.println(role);
-                return User.withUsername(username).password(getPasswordEncoder().encode(password)).roles(role).build();
+                return User.withUsername(username).password(getPasswordEncoder().encode(password)).roles("ADMIN").build();
             } catch (NoSuchElementException e) {
                 throw new UsernameNotFoundException(username + "Not Found !");
             }

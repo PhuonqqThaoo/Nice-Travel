@@ -20,8 +20,6 @@ public class TravelController {
 	
 	@GetMapping
 	public String list(Model model) {
-//		List<Travel> travels = travelService.getAllTravel();
-//		model.addAttribute("travels", travels);
 		return "travel/list";
 	}
 }
