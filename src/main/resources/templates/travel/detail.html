@@ -48,16 +48,13 @@
                                     <div class="grid-item">
                                         <!-- text detail -->
                                         <h3 class="big-heading" th:text="*{name}"></h3>
-                                        <p class="intro">Sed do eiusmod tempor incididunt ut labore et dolore
-                                            magnaaliqua. Ut enim ad minim veniam, quis nstrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodoconsequat. eiusmod tempor incididunt ut
-                                            labore et dolore magnaaliqua. Ut enim ad minim veniam, quis nstrud
-                                            exercitation ullamco laboris nisi ut.
+                                        <p class="intro" th:text="*{typeId.description}">
                                         </p>
-                                        <p class="content">incididunt ut labore et dolore magnaaliqua. Ut enim ad minim
+                                        <!-- <p class="content">incididunt ut labore et dolore magnaaliqua. Ut enim ad minim
                                             veniam, quis nstrud exercitation ullamco laboris nisi ut aliquip ex ea
                                             commodoconsequat. eiusmod tempor incididunt ut labore et dolore magnaaliqua.
                                             Ut enim ad minim veniam, quis nstrud exercitation ullamco laboris nisi ut.
+                                         -->
                                         </p>
                                         <!-- text detail end -->
                                     </div>
@@ -67,7 +64,7 @@
                                         th:src="@{|/assets/img/*{img}|}">
                                         <!-- text detail -->
                                         <h3 class="big-heading">Blue Ocean Australia</h3>
-                                        <p class="content">Sed do eiusmod tempor incididunt ut labore et dolore
+                                        <p class="content" >Sed do eiusmod tempor incididunt ut labore et dolore
                                             magnaaliqua. Ut enim ad minim veniam, quis nstrud exercitation ullamco
                                             laboris nisi ut aliquip ex ea commodoconsequat.
                                         </p>
@@ -85,7 +82,7 @@
                                         <div class="widget">
                                             <div class="service-hotel onStep animated fadeInUp"
                                                 data-animation="fadeInUp" data-time="1200">
-                                                <div class="price">th:text="*{price}"<sub>/ person</sub></div>
+                                                <div class="price" th:text="*{price}"><sub>/ person</sub></div>
                                                 <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan
                                                     american apparel, butcher voluptate nisi qui.</p>
 

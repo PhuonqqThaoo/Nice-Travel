@@ -414,7 +414,9 @@
             <div class="onStep" data-animation="fadeInUp" data-time="0">
                 <div id="owl-gal" class="owl-carousel">
 
-                    <div th:each="p: ${items}" class="item">
+                   
+
+                    <div  th:each="p: ${items}" class="item">
                         <div class="gal-home">
                             <a th:href="@{|/travel/detail/${p.id}|}">
                                 <div class="hovereffect">
@@ -424,7 +426,7 @@
                                     <div class="row">
                                         <div class="col-md-9">
                                             <h4 th:utext="${p.name}"></h4>
-                                            <p>$[[${p.startDate}]]</p>
+                                            <p>[[${p.startDate}]]</p>
                                             <div class="star-content">
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -444,155 +446,8 @@
                         </div>
                     </div>
 
-                    <!-- <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="/assets/img/gallery-home/i2.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>Luxury Asia Travel</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="/assets/img/gallery-home/i3.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>Wild Tour Africa</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="/assets/img/gallery-home/i4.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>Amazing Diversity Place</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="/assets/img/gallery-home/i5.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>The Kingdom of West</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="/assets/img/gallery-home/i6.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>An Asian Temple</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div> -->
+                   
+                  
 
                 </div>
             </div>

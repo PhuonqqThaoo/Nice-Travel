@@ -22,16 +22,16 @@ public class TravelController {
 	@RequestMapping("/travel/list")
 	public String list(Model model) {
 		
-		/*
-		 * List<Travel> list = travelService.getAllTravel();
-		 * model.addAttribute("items",list);
-		 */
+		
+		 List<Travel> list = travelService.getAllTravel();
+		 model.addAttribute("items",list);
+		 
 		return "travel/list";
 	}
 	 
 	@RequestMapping("/travel/detail/{id}")
 	public String detail(Model model,@PathVariable("id") Integer id) {
-		  Travel item = travelService.findById(id);
+		 Travel item = travelService.findById(id);
 		  model.addAttribute("item", item);
 		 
 		return "travel/detail";
