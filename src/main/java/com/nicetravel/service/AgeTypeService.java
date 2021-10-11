@@ -1,6 +1,6 @@
 package com.nicetravel.service;
 
-import com.nicetravel.entity.AccountDetail;
+
 import com.nicetravel.entity.AgeType;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.nicetravel.service;
 
 import com.nicetravel.entity.Travel;
-import com.nicetravel.entity.TravelDetail;
+
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.nicetravel.service;
 
-import com.nicetravel.entity.Payment;
+
 import com.nicetravel.entity.PriceDetail;
 
 import java.util.List;
