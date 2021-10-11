@@ -1,67 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nice Travel</title>
-    <meta content="" name="description">
-    <meta content="" name="author">
-    <meta content="" name="keywords">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-    <!-- icon thanh địa chỉ -->
-    <link rel="shortcut icon" href="img/logoNiceIco.ico">
-    <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- font themify CSS -->
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <!-- font awesome CSS -->
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <!-- date picker CSS -->
-    <link href="css/datepicker.min.css" rel="stylesheet">
-    <!-- revolution slider css -->
-    <link rel="stylesheet" type="text/css" href="css/fullwidth.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="rs-plugin/css/settings.css" media="screen" />
-    <link rel="stylesheet" href="css/rev-settings.css" type="text/css">
-    <!-- on3step CSS -->
-    <link href="css/animated-on3step.css" rel="stylesheet">
-    <link href="css/owl.carousel.css" rel="stylesheet">
-    <link href="css/owl.theme.css" rel="stylesheet">
-    <link href="css/on3step-style.css" rel="stylesheet">
-    <link href="css/queries-on3step.css" media="all" rel="stylesheet">
-</head>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::body})}" lang="en">
 
 <body>
-    <div id="fLogin" class="modal fade">
-        <div class="modal-dialog modal-login">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Member Log In</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form action="#" method="post">
-                        <div class="form-group">
-                            <label>User Name</label>
-                            <input type="text" class="form-control" name="username" required="required">
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password" required="required">
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-block btn-lg" value="Log In">
-                        </div>
-                    </form>
+    <main>
+        <div id="fLogin" class="">
+            <div class="modal-dialog modal-login">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Member Log In</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{/security/login}" method="post">
+                            <div class="form-group">
+                                <label>User Name</label>
+                                <input type="text" class="form-control" name="username" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password" required="required">
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" name="remember" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Remember me ?</label>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg"
+                                    value="Log In">Login</button>
+                            </div>
+                            <span class="message" th:text="${message}"></span>
+                        </form>
 
-                </div>
-                <div class="modal-footer">
-                    <a href="#">or Sign Up</a>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#">or Sign Up</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </body>
 
 </html>

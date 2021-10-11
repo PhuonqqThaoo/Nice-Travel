@@ -7,7 +7,7 @@ import java.util.List;
 public interface AccountService {
     List<Account> getAllAccount();
 
-    Account findById(Integer id);
+    Account getAccountById(Integer id);
 
 //    List<Account> getAdministrators();
 

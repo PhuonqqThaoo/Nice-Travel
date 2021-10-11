@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)" lang="zxx">
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)" lang="en">
 
 <head>
 	<meta charset="utf-8">
@@ -9,25 +9,27 @@
 	<meta content="" name="keywords">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 	<!-- icon thanh địa chỉ -->
-		<link rel="shortcut icon" href="/assets/img/logoNiceIco.ico">
+	<link rel="shortcut icon" th:href="@{/assets/img/logoNiceIco.ico}">
 	<!-- Bootstrap CSS -->
-		<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet">
 	<!-- font themify CSS -->
-		<link rel="stylesheet" href="/assets/css/themify-icons.css">
+	<link rel="stylesheet" th:href="@{/assets/css/themify-icons.css}">
 	<!-- font awesome CSS -->
-		<link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link th:href="@{/assets/font-awesome/css/font-awesome.css}" rel="stylesheet">
 	<!-- date picker CSS -->
-		<link href="/assets/css/datepicker.min.css" rel="stylesheet">
+	<link th:href="@{/assets/css/datepicker.min.css}" rel="stylesheet">
 	<!-- revolution slider css -->
-		<link rel="stylesheet" type="text/css" href="/assets/css/fullwidth.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="/assets/rs-plugin/css/settings.css" media="screen" />
-		<link rel="stylesheet" href="/assets/css/rev-settings.css" type="text/css">
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/fullwidth.css}" media="screen" />
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/rs-plugin/css/settings.css}" media="screen" />
+	<link rel="stylesheet" th:href="@{/assets/css/rev-settings.css}" type="text/css">
 	<!-- on3step CSS -->
-		<link href="/assets/css/animated-on3step.css" rel="stylesheet">
-		<link href="/assets/css/owl.carousel.css" rel="stylesheet">
-		<link href="/assets/css/owl.theme.css" rel="stylesheet">
-		<link href="/assets/css/on3step-style.css" rel="stylesheet">
-		<link href="/assets/css/queries-on3step.css" media="all" rel="stylesheet">
+	<link th:href="@{/assets/css/animated-on3step.css}" rel="stylesheet">
+	<link th:href="@{/assets/css/owl.carousel.css}" rel="stylesheet">
+	<link th:href="@{/assets/css/owl.theme.css}" rel="stylesheet">
+	<link th:href="@{/assets/css/on3step-style.css}" rel="stylesheet">
+	<link th:href="@{/assets/css/queries-on3step.css}" media="all" rel="stylesheet">
+	<!-- css -->
+	<link rel="stylesheet" th:href="@{/assets/css/main.css}">
 </head>
 
 <body>
@@ -44,9 +46,9 @@
 			<div th:replace="/layout/_header.html"></div>
 		</nav>
 		<div>
-			<article>
-				<div th:replace="${main}"></div>
-			</article>
+			<!-- <article> -->
+			<div th:replace="${main}"></div>
+			<!-- </article> -->
 		</div>
 		<!-- Footer Section Begin -->
 		<div th:replace="/layout/_footer.html"></div>
@@ -66,14 +68,14 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<form action="#" method="post">
+						<form th:action="@{/security/login}" method="post">
 							<div class="form-group">
 								<label>User Name</label>
-								<input type="text" class="form-control" required="required">
+								<input type="text" name="username" class="form-control" required="required">
 							</div>
 							<div class="form-group">
 								<label>Password</label>
-								<input type="password" class="form-control" required="required">
+								<input type="password" name="password" class="form-control" required="required">
 							</div>
 							<div class="form-group">
 								<input type="submit" class="btn btn-primary btn-block btn-lg" value="Log In">
