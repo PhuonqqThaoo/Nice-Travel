@@ -13,24 +13,27 @@ import com.nicetravel.entity.Travel;
 import com.nicetravel.service.TravelService;
 
 
-
-
 @Controller
-@RequestMapping("/travel")
 public class TravelController {
 
 	@Autowired
 	TravelService travelService;
 	
-	@GetMapping
+	@RequestMapping("/travel/list")
 	public String list(Model model) {
+		
+		/*
+		 * List<Travel> list = travelService.getAllTravel();
+		 * model.addAttribute("items",list);
+		 */
 		return "travel/list";
 	}
-	
+	 
 	@RequestMapping("/travel/detail/{id}")
-	public String detail(Model model, @PathVariable("id") Integer id) {
-		Travel item = travelService.findById(id);
-		model.addAttribute("item", item);
+	public String detail(Model model,@PathVariable("id") Integer id) {
+		  Travel item = travelService.findById(id);
+		  model.addAttribute("item", item);
+		 
 		return "travel/detail";
 	} 
 }

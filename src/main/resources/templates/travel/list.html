@@ -414,17 +414,17 @@
             <div class="onStep" data-animation="fadeInUp" data-time="0">
                 <div id="owl-gal" class="owl-carousel">
 
-                    <div class="item">
+                    <div th:each="p: ${items}" class="item">
                         <div class="gal-home">
-                            <a href="projects-detail.html">
+                            <a th:href="@{|/travel/detail/${p.id}|}">
                                 <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="/assets/img/gallery-home/i1.jpg">
+                                    <img alt="imageportofolio" class="img-responsive" th:src="@{|/assets/img/${p.img}|}">
                                 </div>
                                 <div class="gal-home-content">
                                     <div class="row">
                                         <div class="col-md-9">
-                                            <h4>Blue Ocean Island</h4>
-                                            <p>Duration 5 days</p>
+                                            <h4 th:utext="${p.name}"></h4>
+                                            <p>$[[${p.startDate}]]</p>
                                             <div class="star-content">
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -436,7 +436,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
+                                            <div class="price big-heading">$[[${p.price}]]</div>
                                         </div>
                                     </div>
                                 </div>
@@ -444,7 +444,7 @@
                         </div>
                     </div>
 
-                    <div class="item">
+                    <!-- <div class="item">
                         <div class="gal-home">
                             <a href="projects-detail.html">
                                 <div class="hovereffect">
@@ -592,7 +592,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

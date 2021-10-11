@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
     <body>
-        <main>
+        <main th:object="${item}">
              <!-- subheader -->
         <section id="subheader">
             <div class="container-fluid m-5-hor">
@@ -33,21 +33,21 @@
                                     <!-- detail img -->
                                     <div id="projectsBig" class="owl-carousel">
                                         <div class="item"><img alt="#"
-                                                src="http://on3-step.com/tf/plesire/img/projects-w/projects-detail/fullimage1.jpg"></div>
+                                            th:src="@{|/assets/img/*{img}|}"></div>
                                         <div class="item"><img alt="#"
-                                                src="http://on3-step.com/tf/plesire/img/projects-w/projects-detail/fullimage2.jpg"></div>
+                                            th:src="@{|/assets/img/*{img}|}"></div>
                                         <div class="item"><img alt="#"
-                                                src="http://on3-step.com/tf/plesire/img/projects-w/projects-detail/fullimage3.jpg"></div>
+                                            th:src="@{|/assets/img/*{img}|}"></div>
                                         <div class="item"><img alt="#"
-                                                src="http://on3-step.com/tf/plesire/img/projects-w/projects-detail/fullimage1.jpg"></div>
+                                            th:src="@{|/assets/img/*{img}|}"></div>
                                         <div class="item"><img alt="#"
-                                                src="http://on3-step.com/tf/plesire/img/projects-w/projects-detail/fullimage2.jpg"></div>
+                                            th:src="@{|/assets/img/*{img}|}"></div>
                                     </div>
                                     <!-- detail img end -->
 
                                     <div class="grid-item">
                                         <!-- text detail -->
-                                        <h3 class="big-heading">The Landscape Gallery</h3>
+                                        <h3 class="big-heading" th:text="*{name}"></h3>
                                         <p class="intro">Sed do eiusmod tempor incididunt ut labore et dolore
                                             magnaaliqua. Ut enim ad minim veniam, quis nstrud exercitation ullamco
                                             laboris nisi ut aliquip ex ea commodoconsequat. eiusmod tempor incididunt ut
@@ -64,7 +64,7 @@
 
                                     <div class="grid-item">
                                         <img alt="#" class="img-responsive"
-                                            src="img/projects-w/projects-detail/fullimage2.jpg">
+                                        th:src="@{|/assets/img/*{img}|}">
                                         <!-- text detail -->
                                         <h3 class="big-heading">Blue Ocean Australia</h3>
                                         <p class="content">Sed do eiusmod tempor incididunt ut labore et dolore
@@ -85,7 +85,7 @@
                                         <div class="widget">
                                             <div class="service-hotel onStep animated fadeInUp"
                                                 data-animation="fadeInUp" data-time="1200">
-                                                <div class="price">$900<sub>/ night</sub></div>
+                                                <div class="price">th:text="*{price}"<sub>/ person</sub></div>
                                                 <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan
                                                     american apparel, butcher voluptate nisi qui.</p>
 
