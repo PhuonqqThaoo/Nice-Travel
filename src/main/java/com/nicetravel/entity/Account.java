@@ -41,7 +41,14 @@ public class Account implements Serializable {
     @JoinColumn(name = "roleId")
     private Role role_Id;
 
-    @Column(name = "isDeleted", nullable = false)
-    private Boolean is_deleted = false;
+    @Column(name = "verification_code", length = 64)
+    private String verificationCode;
+
+    @Column(name = "is_enable", nullable = false)
+    private Boolean isEnable = false;
+
+    public <T> Account(String dBuserName, String password, List<T> asList) {
+    }
+
 
 }

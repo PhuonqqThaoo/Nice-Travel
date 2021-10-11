@@ -21,7 +21,7 @@
         <td th:text="${account.password}"></td>
         <td th:text="${account.email}"></td>
         <td th:text="${account.role_Id.role}"></td>
-        <td th:text="${account.is_deleted}"></td>
+        <td th:text="${account.isEnable}"></td>
         <td>
             <a th:href="@{|/account/edit/${account.id}|}">Edit</a>
             <a th:href="@{|/account/delete/${account.id}|}">Delete</a>
