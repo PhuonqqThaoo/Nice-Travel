@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "travelDetail")
+@Table(name = "travel_detail")
 @Entity
 @Data
 @AllArgsConstructor
