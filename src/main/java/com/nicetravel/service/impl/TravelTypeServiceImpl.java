@@ -1,6 +1,6 @@
 package com.nicetravel.service.impl;
 
-import com.nicetravel.entity.TravelType;
+import com.nicetravel.entity.TravelTypes;
 import com.nicetravel.repository.TravelTypeRepository;
 import com.nicetravel.service.TravelTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +19,23 @@ public class TravelTypeServiceImpl implements TravelTypeService {
     }
 
     @Override
-    public List<TravelType> getAllTravelType() {
+    public List<TravelTypes> getAllTravelType() {
         return travelTypeRepository.findAll();
     }
 
     @Override
-    public TravelType findById(Integer id) {
+    public TravelTypes findById(Integer id) {
         return travelTypeRepository.findById(id).get();
     }
 
     @Override
-    public TravelType createTravelType(TravelType travelType) {
-        return travelTypeRepository.save(travelType);
+    public TravelTypes createTravelType(TravelTypes travelTypes) {
+        return travelTypeRepository.save(travelTypes);
     }
 
     @Override
-    public TravelType updateTravelType(TravelType travelType) {
-        return travelTypeRepository.save(travelType);
+    public TravelTypes updateTravelType(TravelTypes travelTypes) {
+        return travelTypeRepository.save(travelTypes);
     }
 
     @Override

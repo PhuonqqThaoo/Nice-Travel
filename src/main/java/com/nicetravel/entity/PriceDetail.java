@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@Table(name = "priceDetail")
+@Table(name = "price_detail")
 @Entity
 @Data
 @AllArgsConstructor

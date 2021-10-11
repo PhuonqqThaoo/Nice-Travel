@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
 
+@Table(name = "account_detail")
 @Entity
 @Data
 @AllArgsConstructor
