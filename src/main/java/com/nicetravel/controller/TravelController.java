@@ -32,6 +32,7 @@ public class TravelController {
 	@RequestMapping("/travel/detail/{id}")
 	public String detail(Model model,@PathVariable("id") Integer id) {
 		  Travel item = travelService.findById(id);
+		  System.out.println(id);
 		  model.addAttribute("item", item);
 		 
 		return "travel/detail";

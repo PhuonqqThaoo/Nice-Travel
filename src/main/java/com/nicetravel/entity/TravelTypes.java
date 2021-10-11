@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "travelTypes")
+
 @Entity
+@Table(name = "travel_types")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TravelType implements Serializable {
+public class TravelTypes implements Serializable {
     /**
 	 * 
 	 */

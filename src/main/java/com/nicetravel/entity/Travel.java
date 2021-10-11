@@ -8,6 +8,8 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -32,9 +34,10 @@ public class Travel implements Serializable {
     @Column(name = "name", nullable = false, length = 225)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "typeId")
-    private TravelType typeId;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "typeId", referencedColumnName = "id")
+    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
+    private TravelTypes typeId;
 
     @Column(name = "departurePlace", nullable = false, length = 225)
     private String departurePlace;
@@ -53,15 +56,15 @@ public class Travel implements Serializable {
     private Timestamp createdDate;
 
     @Column(name = "startDate", nullable = false)
-    private Instant startDate;
+    private Timestamp startDate;
 
     @Column(name = "endDate", nullable = false)
-    private Instant endDate;
+    private Timestamp endDate;
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
-    @Column(name = "\"hour\"", nullable = false)
+    @Column(name = "hour", nullable = false)
     private Integer hour;
 
     @Column(name = "slug", nullable = false)

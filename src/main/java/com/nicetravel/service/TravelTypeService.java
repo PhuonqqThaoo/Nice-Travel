@@ -1,18 +1,18 @@
 package com.nicetravel.service;
 
 
-import com.nicetravel.entity.TravelType;
+import com.nicetravel.entity.TravelTypes;
 
 import java.util.List;
 
 public interface TravelTypeService {
-    List<TravelType> getAllTravelType();
+    List<TravelTypes> getAllTravelType();
 
-    TravelType findById(Integer id);
+    TravelTypes findById(Integer id);
 
-    TravelType createTravelType(TravelType travelType);
+    TravelTypes createTravelType(TravelTypes travelTypes);
 
-    TravelType updateTravelType(TravelType travelType);
+    TravelTypes updateTravelType(TravelTypes travelTypes);
 
     void deleteTravelType(Integer id);
 }
