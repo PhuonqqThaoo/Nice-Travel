@@ -38,4 +38,10 @@ public class TravelController {
 		 
 		return "travel/detail";
 	} 
+	@RequestMapping("travel/tour")
+	public String tour(Model model) {
+		List<Travel> list = travelService.getAllTravel();
+		model.addAttribute("items", list);
+		return "travel/tour";
+	}
 }
