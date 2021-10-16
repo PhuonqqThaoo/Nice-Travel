@@ -1,14 +1,19 @@
 package com.nicetravel.controller;
 
+import com.nicetravel.custom.UserServices;
 import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Role;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Controller
@@ -53,7 +58,7 @@ public class AccountController {
         model.addAttribute("account", account);
         List<Account> accounts =accountService.getAllAccount();
         model.addAttribute("accounts", accounts);
-        return "/account/form";
+        return "/account/account-detail/info";
     }
 
 //    Update
@@ -80,5 +85,39 @@ public class AccountController {
         accountService.deleteAccount(id);
         return "redirect:/account";
     }
+
+
+    //  REGISTER
+
+    @Autowired
+    private UserServices service;
+
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("account", new Account());
+        return "/account/register/signup_form";
+    }
+
+    @PostMapping("/process-register")
+    public String processRegister(Account account, HttpServletRequest request)
+            throws UnsupportedEncodingException, MessagingException {
+        service.register(account, getSiteURL(request));
+        return "/account/register/register_success";
+    }
+
+    private String getSiteURL(HttpServletRequest request) {
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
+    }
+
+    @GetMapping("/verify")
+    public String verifyUser(@Param("code") String code) {
+        if (service.verify(code)) {
+            return "/account/register/verify_success";
+        } else {
+            return "/account/register/verify_fail";
+        }
+    }
+
 
 }

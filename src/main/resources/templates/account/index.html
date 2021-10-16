@@ -15,7 +15,7 @@
         <th>IsDel</th>
         <th>Action</th>
     </tr>
-    <tr th:each="account : ${accounts}">
+    <tr th:each="account : ${accountDetails}">
         <td th:text="${account.id}"></td>
         <td th:text="${account.username}"></td>
         <td th:text="${account.password}"></td>

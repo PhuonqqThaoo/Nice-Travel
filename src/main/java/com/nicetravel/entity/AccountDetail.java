@@ -40,9 +40,6 @@ public class AccountDetail implements Serializable {
     private String img;
 
     @Column(name = "idCard", nullable = false, length = 50)
-    private String idCard;
+    private String id_Card;
 
-    @Column(name = "createdDate", nullable = false)
-    @CreationTimestamp // defaut getDate()
-    private Timestamp createdDate;
 }
