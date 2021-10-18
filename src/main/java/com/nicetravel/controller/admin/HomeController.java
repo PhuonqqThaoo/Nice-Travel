@@ -24,4 +24,15 @@ public class HomeController {
 		model.addAttribute("chartData",chartData);
 		return "admin/index";
 	}
+	
+	@GetMapping("/danh-sach-tour")
+	public String danhSachTour() {
+		return "admin/DanhSachTour";
+	}
+	
+	@GetMapping("/chinh-sua-tour")
+	public String chinhSuaTour() {
+		return "admin/ChinhSuaTour";
+	}
+	
 }
