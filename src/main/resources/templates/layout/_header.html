@@ -26,17 +26,17 @@
 
                         <th:block th:unless="${#request.remoteUser}">
                             <div class="social-icons-subnav">
-                                <a data-toggle="modal" data-target="#fLogin"><span class="ti-lock"></span> Ä�Äƒng nháº­p</a>
+                                <a data-toggle="modal" data-target="#fLogin"><span class="ti-lock"></span> Đăng nhập</a>
                             </div>
                             <div class="social-icons-subnav hidden-sm hidden-xs">
-                                <a data-toggle="modal" data-target="#fsignUp"><span class="ti-user"></span> Ä�Äƒng kÃ½</a>
+                                <a data-toggle="modal" data-target="#fsignUp"><span class="ti-user"></span> Đăng ký</a>
                             </div>
                         </th:block>
                         <th:block th:if="${#request.remoteUser}">
                             <!-- <img src="" alt="" class="header__navbar-user-img"> -->
                             <div class="social-icons-subnav">
                                 <a><span class="ti-user"></span>[[${#request.remoteUser}]]</a>
-                                <a th:href="@{/security/logoff}">Logoff</a>
+                                <a th:href="@{/logoff}">Logoff</a>
                             </div>
 
                             <!-- <ul class="header__navbar-user-menu">
@@ -88,14 +88,14 @@
                     <nav id="menu-center">
                         <ul>
                             <li>
-                                <a class="actived" href="index-2.html">Trang chá»§ <i
+                                <a class="actived" href="index-2.html">Trang chủ <i
                                         class="fa fa-angle-down"></i></a>
                                 <ul>
-                                    <li><a href="intro/index.html">Giá»›i thiá»‡u</a></li>
+                                    <li><a href="intro/index.html">Giới thiệu</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="about.html">ThÃ´ng tin</a>
+                                <a href="about.html">Thông tin</a>
                             </li>
                             <li><a href="#">Gallery <i class="fa fa-angle-down"></i></a>
                                 <ul>
@@ -117,7 +117,7 @@
                                     <li><a href="blog.html">Blog Single</a></li>
                                 </ul>
                             </li>
-                            <li><a href="contact.html">LiÃªn há»‡</a></li>
+                            <li><a href="contact.html">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>

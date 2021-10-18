@@ -36,9 +36,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AccountService accountService;
 
-//    @Autowired
-//    BCryptPasswordEncoder pe;
-
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
@@ -68,10 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll();
 
         http.formLogin()
-                .loginPage("/security/login/form")
-                .loginProcessingUrl("/security/login")
-                .defaultSuccessUrl("/security/login/success", false)
-                .failureUrl("/security/login/error")
+                .loginPage("/login")
+                .loginProcessingUrl("/account/login")
+                .defaultSuccessUrl("/login/success", false)
+                .failureUrl("/login/error")
                 .usernameParameter("username")
                 .passwordParameter("password");
 
@@ -80,8 +77,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(86400);
 
         http.logout()
-                .logoutUrl("/security/logoff")
-                .logoutSuccessUrl("/security/logoff/success")
+                .logoutUrl("/logoff")
+                .logoutSuccessUrl("/logoff/success")
                 .deleteCookies("JSESSIONID");
 
         http.exceptionHandling()

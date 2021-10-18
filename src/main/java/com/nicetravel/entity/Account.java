@@ -4,9 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Table(name = "Account", indexes = {
@@ -47,8 +50,9 @@ public class Account implements Serializable {
     @Column(name = "is_enable", nullable = false)
     private Boolean isEnable = false;
 
-    public <T> Account(String dBuserName, String password, List<T> asList) {
-    }
+    @Column(name = "created_date", nullable = false)
+    @CreationTimestamp
+    private LocalDateTime createdDate;
 
 
 }

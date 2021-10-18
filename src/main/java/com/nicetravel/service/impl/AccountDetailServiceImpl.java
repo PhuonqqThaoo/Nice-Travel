@@ -25,7 +25,7 @@ public class AccountDetailServiceImpl implements AccountDetailService {
     }
 
     @Override
-    public AccountDetail findById(Integer id) {
+    public AccountDetail findAccountDetailById(Integer id) {
         return accountDetailRepository.findById(id).get();
     }
 
@@ -43,4 +43,9 @@ public class AccountDetailServiceImpl implements AccountDetailService {
     public void deleteAccountDetail(Integer id) {
         accountDetailRepository.deleteById(id);
     }
+
+//    @Override
+//    public AccountDetail findAccountDetailByUsername(String username) {
+//        return accountDetailRepository.findAccountDetailByUsername(username);
+//    }
 }
