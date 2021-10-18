@@ -9,13 +9,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link th:href="@{/admin/img/logo/logoNiceIco.ico}" rel="icon">
-    <title>Quản lý | Nice Travel</title>
+    <title>Quản lý | Chỉnh sửa tour du lịch | Nice Travel</title>
     <link th:href="@{/admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/css/ruang-admin.min.css}" rel="stylesheet">
 
     <!-- boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- bootstrap -->
+
+    <!-- css customize -->
+    <link th:href="@{/admin/css/admin.style.css}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -41,7 +46,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
                     aria-expanded="true" aria-controls="collapseBootstrap">
-                    <i class='bx bxs-dollar-circle' ></i>
+                    <i class='bx bxs-dollar-circle'></i>
                     <span>Doanh thu</span>
                 </a>
                 <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap"
@@ -60,7 +65,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
                     aria-expanded="true" aria-controls="collapseForm">
-                    <i class='bx bxs-plane-alt' ></i>
+                    <i class='bx bxs-plane-alt'></i>
                     <span>Tour du lịch</span>
                 </a>
                 <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
@@ -74,7 +79,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable"
                     aria-expanded="true" aria-controls="collapseTable">
-                    <i class='bx bxs-customize' ></i>
+                    <i class='bx bxs-customize'></i>
                     <span>Khách hàng</span>
                 </a>
                 <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
@@ -92,7 +97,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage"
                     aria-expanded="true" aria-controls="collapsePage">
-                    <i class='bx bxs-plane-alt' ></i>
+                    <i class='bx bxs-plane-alt'></i>
                     <span>Tour du lịch</span>
                 </a>
                 <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
@@ -108,7 +113,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
                     aria-expanded="true" aria-controls="collapseUser">
-                    <i class='bx bxs-user-rectangle' ></i>
+                    <i class='bx bxs-user-rectangle'></i>
                     <span>Nhân viên</span>
                 </a>
                 <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
@@ -325,328 +330,99 @@
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Chỉnh sửa tour du lịch</h1>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="./">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa tour du lịch</li>
                         </ol>
                     </div>
 
                     <div class="row mb-3">
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>
-                                                    3.48%</span>
-                                                <span>Since last month</span>
-                                            </div>
+                        <div class="chinh-sua-tour w-90 card">
+                            <form action="" class="row col-12">
+                                <div class="col-6 left">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputName">Name</label>
+                                            <input type="text" class="form-control" id="inputName">
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-primary"></i>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputType">Type travel</label>
+                                            <input type="text" class="form-control" id="inputType">
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Earnings (Annual) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i>
-                                                    12%</span>
-                                                <span>Since last years</span>
-                                            </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputDeparture">Departure place</label>
+                                            <input type="text" class="form-control" id="inputDeparture">
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-shopping-cart fa-2x text-success"></i>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputPlace">Place</label>
+                                            <input type="text" class="form-control" id="inputPlace">
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- New User Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i>
-                                                    20.4%</span>
-                                                <span>Since last month</span>
-                                            </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputCreateDate">Create date</label>
+                                            <input type="datetime-local" class="form-control" id="inputEndDate">
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-info"></i>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputStartDate">Start date</label>
+                                            <input type="datetime-local" class="form-control" id="inputStartDate">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputEndDate">End date</label>
+                                            <input type="datetime-local" class="form-control" id="inputEndDate">
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i>
-                                                    1.10%</span>
-                                                <span>Since yesterday</span>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputQuantity">Quantity</label>
+                                            <input type="number" class="form-control" id="inputQuantity">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputHour">Hour</label>
+                                            <input type="number" class="form-control" id="inputHour">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputIsDeleted">Is Deleted</label>
+                                            <div class="form-control">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                    <label class="form-check-label" for="inlineRadio1">True</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                    <label class="form-check-label" for="inlineRadio2">False</label>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-warning"></i>
-                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleSlug">Slug</label>
+                                        <textarea class="form-control" id="exampleSlug" rows="3"></textarea>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Thống kê doanh Thu 6 tháng gần
-                                        nhất<br>(Revenue report for the last 6 months)<br></h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                <div class="col-6 right">
+                                    <div class="right-image">
+                                        <img th:src="@{/admin/img/logo/logoNiceTravel.png}">
+                                        <div class="form-group">
+                                            <input type="file" id="inputQuantity">
                                         </div>
+                                    </div>
+                                    <div class="right-button">
+                                        <button type="button" class="btn btn-success">Thêm</button>
+                                        <button type="button" class="btn btn-primary">Chỉnh sửa</button>
+                                        <button type="button" class="btn btn-danger">Xóa</button>
+                                        <button type="button" class="btn btn-secondary">Làm mới</button>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Products Sold</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button"
-                                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            Month <i class="fas fa-chevron-down"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Select Periode</div>
-                                            <a class="dropdown-item" href="#">Today</a>
-                                            <a class="dropdown-item" href="#">Week</a>
-                                            <a class="dropdown-item active" href="#">Month</a>
-                                            <a class="dropdown-item" href="#">This Year</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Oblong T-Shirt
-                                            <div class="small float-right"><b>600 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 80%"
-                                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Gundam 90'Editions
-                                            <div class="small float-right"><b>500 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 70%"
-                                                aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Rounded Hat
-                                            <div class="small float-right"><b>455 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 55%"
-                                                aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Indomie Goreng
-                                            <div class="small float-right"><b>400 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Remote Control Car Racing
-                                            <div class="small float-right"><b>200 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 30%"
-                                                aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <a class="m-0 small text-primary card-link" href="#">View More <i
-                                            class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Invoice Example -->
-                        <div class="col-xl-8 col-lg-7 mb-4">
-                            <div class="card">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
-                                    <a class="m-0 float-right btn btn-danger btn-sm" href="#">View More <i
-                                            class="fas fa-chevron-right"></i></a>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>Order ID</th>
-                                                <th>Customer</th>
-                                                <th>Item</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><a href="#">RA0449</a></td>
-                                                <td>Udin Wayang</td>
-                                                <td>Nasi Padang</td>
-                                                <td><span class="badge badge-success">Delivered</span></td>
-                                                <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">RA5324</a></td>
-                                                <td>Jaenab Bajigur</td>
-                                                <td>Gundam 90' Edition</td>
-                                                <td><span class="badge badge-warning">Shipping</span></td>
-                                                <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">RA8568</a></td>
-                                                <td>Rivat Mahesa</td>
-                                                <td>Oblong T-Shirt</td>
-                                                <td><span class="badge badge-danger">Pending</span></td>
-                                                <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">RA1453</a></td>
-                                                <td>Indri Junanda</td>
-                                                <td>Hat Rounded</td>
-                                                <td><span class="badge badge-info">Processing</span></td>
-                                                <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">RA1998</a></td>
-                                                <td>Udin Cilok</td>
-                                                <td>Baby Powder</td>
-                                                <td><span class="badge badge-success">Delivered</span></td>
-                                                <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="card-footer"></div>
-                            </div>
-                        </div>
-                        <!-- Message From Customer-->
-                        <div class="col-xl-4 col-lg-5 ">
-                            <div class="card">
-                                <div
-                                    class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-light">Message From Customer</h6>
-                                </div>
-                                <div>
-                                    <div class="customer-message align-items-center">
-                                        <a class="font-weight-bold" href="#">
-                                            <div class="text-truncate message-title">Hi there! I am wondering if you can
-                                                help me with a
-                                                problem I've been having.</div>
-                                            <div class="small text-gray-500 message-time font-weight-bold">Udin Cilok ·
-                                                58m</div>
-                                        </a>
-                                    </div>
-                                    <div class="customer-message align-items-center">
-                                        <a href="#">
-                                            <div class="text-truncate message-title">But I must explain to you how all
-                                                this mistaken idea
-                                            </div>
-                                            <div class="small text-gray-500 message-time">Nana Haminah · 58m</div>
-                                        </a>
-                                    </div>
-                                    <div class="customer-message align-items-center">
-                                        <a class="font-weight-bold" href="#">
-                                            <div class="text-truncate message-title">Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit
-                                            </div>
-                                            <div class="small text-gray-500 message-time font-weight-bold">Jajang Cincau
-                                                · 25m</div>
-                                        </a>
-                                    </div>
-                                    <div class="customer-message align-items-center">
-                                        <a class="font-weight-bold" href="#">
-                                            <div class="text-truncate message-title">At vero eos et accusamus et iusto
-                                                odio dignissimos
-                                                ducimus qui blanditiis
-                                            </div>
-                                            <div class="small text-gray-500 message-time font-weight-bold">Udin Wayang ·
-                                                54m</div>
-                                        </a>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <a class="m-0 small text-primary card-link" href="#">View More <i
-                                                class="fas fa-chevron-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                    <!--Row-->
 
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <p>Do you like this template ? you can download from <a
-                                    href="https://github.com/indrijunanda/RuangAdmin" class="btn btn-primary btn-sm"
-                                    target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
-                        </div>
-                    </div>
 
                     <!-- Modal Logout -->
                     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
@@ -828,6 +604,13 @@
                     }
                 }
             }
+        });
+    </script>
+
+    <!-- date time -->
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
         });
     </script>
 </body>
