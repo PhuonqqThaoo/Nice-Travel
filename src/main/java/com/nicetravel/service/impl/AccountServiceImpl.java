@@ -1,7 +1,7 @@
 package com.nicetravel.service.impl;
 
 import com.nicetravel.entity.Account;
-import com.nicetravel.repository.AccountDetailRepository;
+
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;

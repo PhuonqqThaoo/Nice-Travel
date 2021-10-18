@@ -2,9 +2,9 @@ package com.nicetravel.controller;
 
 import com.nicetravel.custom.CustomUserDetails;
 import com.nicetravel.entity.Account;
-import com.nicetravel.entity.AccountDetail;
+//import com.nicetravel.entity.AccountDetail;
 import com.nicetravel.repository.AccountRepository;
-import com.nicetravel.service.AccountDetailService;
+//import com.nicetravel.service.AccountDetailService;
 import com.nicetravel.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -18,18 +18,18 @@ import java.util.List;
 @RequestMapping("/account-detail")
 public class AccountDetailController {
 
-    @Autowired
-    AccountService accountService;
-
-    @Autowired
-    AccountRepository accountRepository;
-
-    AccountDetailService accountDetailService;
-
-    @Autowired
-    public AccountDetailController(AccountDetailService accountDetailService) {
-        this.accountDetailService = accountDetailService;
-    }
+//    @Autowired
+//    AccountService accountService;
+//
+//    @Autowired
+//    AccountRepository accountRepository;
+//
+//    AccountDetailService accountDetailService;
+//
+//    @Autowired
+//    public AccountDetailController(AccountDetailService accountDetailService) {
+//        this.accountDetailService = accountDetailService;
+//    }
 
 //    @GetMapping
 //    public String getAllAccountDetail(Model model){
@@ -57,10 +57,10 @@ public class AccountDetailController {
 //    }
 
     //    Update
-    @PostMapping("/update")
-    public String updateAccount(@ModelAttribute("account-detail") AccountDetail accountDetail){
-        accountDetailService.updateAccountDetail(accountDetail);
-        return "redirect:/account-detail";
-    }
+//    @PostMapping("/update")
+//    public String updateAccount(@ModelAttribute("account-detail") AccountDetail accountDetail){
+//        accountDetailService.updateAccountDetail(accountDetail);
+//        return "redirect:/account-detail";
+//    }
 
 }

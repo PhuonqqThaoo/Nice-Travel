@@ -1,6 +1,6 @@
 package com.nicetravel.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +8,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Instant;
+
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 @Table(name = "Account", indexes = {
         @Index(name = "UQ__Account__AB6E6164B485A157", columnList = "email", unique = true),
@@ -33,13 +33,31 @@ public class Account implements Serializable {
 
     @Column(name = "username", nullable = false, length = 20)
     private String username;
-
+    
+    @Column(name = "fullname", length = 225)
+    private String fullname;
+    
     @Column(name = "password", nullable = false)
     private String password;
-
+    
     @Column(name = "email", nullable = false, length = 100)
     private String email;
 
+    @Column(name = "gender", nullable = false)
+    private Boolean gender = false;
+
+    @Column(name = "address", length = 225)
+    private String address;
+
+    @Column(name = "phone", nullable = false, length = 20)
+    private String phone;
+
+    @Column(name = "img", length = 225)
+    private String img;
+
+    @Column(name = "idCard", nullable = false, length = 50)
+    private String id_Card;
+    
     @ManyToOne
     @JoinColumn(name = "roleId")
     private Role role_Id;
@@ -54,5 +72,5 @@ public class Account implements Serializable {
     @CreationTimestamp
     private LocalDateTime createdDate;
 
-
+    
 }
