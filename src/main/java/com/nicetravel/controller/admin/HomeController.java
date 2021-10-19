@@ -35,4 +35,13 @@ public class HomeController {
 		return "admin/ChinhSuaTour";
 	}
 	
+	@GetMapping("/thong-tin-khach-hang")
+	public String thongTinKhachHang() {
+		return "admin/khach-hang/ThongTinKhachHang";
+	}
+	
+	@GetMapping("/thong-tin-nhan-vien")
+	public String thongTinNhanVien() {
+		return "admin/nhan-vien/ThongTinNhanVien";
+	}
 }
