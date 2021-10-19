@@ -13,14 +13,19 @@
         <th>Email</th>
         <th>RoleId</th>
         <th>IsDel</th>
+        <th>Action</th>
     </tr>
-    <tr th:each="account : ${accounts}">
+    <tr th:each="account : ${accountDetails}">
         <td th:text="${account.id}"></td>
         <td th:text="${account.username}"></td>
         <td th:text="${account.password}"></td>
         <td th:text="${account.email}"></td>
-        <td th:text="${account.roleId}"></td>
-        <td th:text="${account.isDeleted}"></td>
+        <td th:text="${account.role_Id.role}"></td>
+        <td th:text="${account.isEnable}"></td>
+        <td>
+            <a th:href="@{|/account/edit/${account.id}|}">Edit</a>
+            <a th:href="@{|/account/delete/${account.id}|}">Delete</a>
+        </td>
     </tr>
 </table>
 </body>

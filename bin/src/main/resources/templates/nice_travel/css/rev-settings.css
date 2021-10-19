@@ -1,0 +1,84 @@
+.slide-big-heading{
+	font-size: 34pt;
+	line-height:normal;
+	font-weight: 600;
+	text-align: center;
+}
+.slide-sub-heading{
+	font-size: 18pt;
+	line-height:normal;
+	font-weight: 400;
+	text-align: center;
+}
+.btn-slider { 
+	display: block;
+	position:relative;
+	float:left;
+	width: 100%;
+	max-width: 174px;
+	height: auto;
+	padding: 8px 35px;
+	font-size: 11pt;
+	font-weight: 500;
+	text-align: center;
+	letter-spacing:1px;
+	color: #fff !important;
+	background: rgba(255,255,255,0);
+	border: 3px solid #10ac84;
+	border-radius: 2px;
+	outline: none;
+	text-shadow: none;
+	margin: 15px auto;
+	cursor: pointer;
+	overflow: hidden;
+	-ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+	-moz-transition: all 0.6s ease;
+	-ms-transition: all 0.6s ease;
+	-o-transition: all 0.6s ease;
+	transition: all 0.6s ease;
+}
+.btn-slider a{
+	color: #fff;
+}
+.btn-slider:hover { 
+	color: #fff;
+	background: #10ac84;
+	border: 3px solid rgba(255, 255, 255, 0);
+	-moz-transition: all .6s ease;
+	-ms-transition: all .6s ease;
+	-o-transition: all .6s ease;
+	transition: all .6s ease; 
+}
+.btn-slider:hover .shine{
+	-webkit-animation: sheen .6s alternate;
+	animation: sheen .6s alternate;
+} 
+.btn-slider:hover a{ 
+	color:#fff;
+}
+@media only screen and (max-width: 1024px) {
+	.slide-big-heading{
+	 font-size: 31pt;
+	}
+	.slide-sub-heading{
+	 font-size: 17pt;
+	}
+	.btn-slider { 
+	font-size: 12px;
+	border: 2px solid #10ac84;
+	-ms-transform: scale(.8, .8);
+    transform: scale(.8, .8);
+    }
+    .btn-slider:hover { 
+	border: 2px solid rgba(255, 255, 255, 0);
+    }
+}
+@media only screen and (max-width: 800px) {
+	.slide-big-heading{
+	 font-size: 38pt;
+	}
+	.slide-sub-heading{
+	 font-size: 26pt;
+	}
+}

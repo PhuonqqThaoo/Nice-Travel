@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+
+	 <!-- home -->
+        <div id="home">
+            <!-- revolution slider -->
+            <section class="no-top no-bottom" aria-label="section-slider">
+                <div class="fullwidthbanner-container">
+                    <div id="revolution-slider-half">
+                        <ul>
+
+                            <li data-transition="parallaxtobottom" data-slotamount="10" data-masterspeed="1200"
+                                data-delay="5000">
+                                <!--  BACKGROUND IMAGE -->
+                                <img src="/assets/images-slider/img-slide-1.jpg" alt="" data-start="0"
+                                    data-bgposition="center center" data-kenburns="on" data-duration="10000"
+                                    data-ease="Linear.easeNone" data-bgfit="120" data-bgfitend="100"
+                                    data-bgpositionend="center center" />
+                                <div class="tp-caption slide-big-heading sft" data-x="center" data-y="300"
+                                    data-speed="800" data-start="400" data-easing="easeInOutExpo" data-endspeed="450">
+                                    Amazing Diversity on Travel
+                                </div>
+
+                                <div class="tp-caption slide-sub-heading sft" data-x="center" data-y="370"
+                                    data-speed="1000" data-start="800" data-easing="easeOutExpo" data-endspeed="400">
+                                    For your vacations
+                                </div>
+
+                                <div class="tp-caption sfb" data-x="center" data-y="410" data-speed="400"
+                                    data-start="800" data-easing="easeInOutExpo">
+                                    <div class="btn-slider"><span class="shine"></span><a href="#">More Detail</a></div>
+                                </div>
+
+                            </li>
+
+                            <li data-transition="parallaxtobottom" data-slotamount="10" data-masterspeed="1200"
+                                data-delay="5000">
+                                <!--  BACKGROUND IMAGE -->
+                                <img src="/assets/images-slider/img-slide-2.jpg" alt="" data-start="0"
+                                    data-bgposition="center center" data-kenburns="on" data-duration="10000"
+                                    data-ease="Linear.easeNone" data-bgfit="120" data-bgfitend="100"
+                                    data-bgpositionend="center center" />
+                                <div class="tp-caption slide-big-heading sft" data-x="center" data-y="300"
+                                    data-speed="800" data-start="400" data-easing="easeInOutExpo" data-endspeed="450">
+                                    Perfect Place on Vacation
+                                </div>
+
+                                <div class="tp-caption slide-sub-heading sft" data-x="center" data-y="370"
+                                    data-speed="1000" data-start="800" data-easing="easeOutExpo" data-endspeed="400">
+                                    Asia, Africa, Australia
+                                </div>
+
+                                <div class="tp-caption sfb" data-x="center" data-y="410" data-speed="400"
+                                    data-start="800" data-easing="easeInOutExpo">
+                                    <div class="btn-slider"><span class="shine"></span><a href="#">More Detail</a></div>
+                                </div>
+
+                            </li>
+
+                            <li data-transition="parallaxtobottom" data-slotamount="10" data-masterspeed="1200"
+                                data-delay="5000">
+                                <!--  BACKGROUND IMAGE -->
+                                <img src="/assets/images-slider/img-slide-3.jpg" alt="" data-start="0"
+                                    data-bgposition="center center" data-kenburns="on" data-duration="10000"
+                                    data-ease="Linear.easeNone" data-bgfit="120" data-bgfitend="100"
+                                    data-bgpositionend="center center" />
+                                <div class="tp-caption slide-big-heading sft" data-x="center" data-y="300"
+                                    data-speed="800" data-start="400" data-easing="easeInOutExpo" data-endspeed="450">
+                                    The New Adventure Travel
+                                </div>
+
+                                <div class="tp-caption slide-sub-heading sft" data-x="center" data-y="370"
+                                    data-speed="1000" data-start="800" data-easing="easeOutExpo" data-endspeed="400">
+                                    Discover hidden places in the world
+                                </div>
+
+                                <div class="tp-caption sfb" data-x="center" data-y="410" data-speed="400"
+                                    data-start="800" data-easing="easeInOutExpo">
+                                    <div class="btn-slider"><span class="shine"></span><a href="#">More Detail</a></div>
+                                </div>
+
+                            </li>
+
+                        </ul>
+                        <div class="tp-bannertimer hide"></div>
+                    </div>
+                </div>
+            </section>
+            <!-- revolution slider end -->
+
+        </div>
+        <!-- home end -->
+
+        <!-- section search -->
+        <section class="frm-clean ">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <form id="sform" class="form-inline clean">
+                        <div class="col-md-2 search-icn">
+                            <label for="key"><span class="ti-world color"></span> Keyword</label>
+                            <input type="text" class="form-control" required="" id="key">
+                        </div>
+                        <div class="col-md-2">
+                            <label><span class="ti-menu-alt color"></span> Select your trip</label>
+                            <select class="cust-select" name="select-trip" required="">
+                                <option value="">Any</option>
+                                <option value="#">City Travel</option>
+                                <option value="#">Cultural Travel</option>
+                                <option value="#">Family Travel</option>
+                                <option value="#">Holiday Travel</option>
+                                <option value="#">Luxury Travel</option>
+                                <option value="#">Wild &amp; Adventure Travel</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label><span class="ti-map-alt color"></span> Destination</label>
+                            <select class="cust-select" name="destination" required="">
+                                <option value="">Any</option>
+                                <option value="#">Asia</option>
+                                <option value="#">Africa</option>
+                                <option value="#">America</option>
+                                <option value="#">Australia</option>
+                                <option value="#">Europe</option>
+                                <option value="#">Rusia</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label><span class="ti-time color"></span> Duration</label>
+                            <select class="cust-select" name="duraion" required="">
+                                <option value="">Any</option>
+                                <option value="#">1 Day Travel</option>
+                                <option value="#">2 Days Travel</option>
+                                <option value="#">3 Days Travel</option>
+                                <option value="#">4 Days Travel</option>
+                                <option value="#">5 Days Travel</option>
+                                <option value="#">1 week Travel</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label><span class="ti-calendar color"></span> Date</label>
+                            <div id="filterDate2">
+                                <!-- Datepicker as text field -->
+                                <div class="input-group date" data-date-format="dd/mm/yyyy">
+                                    <input type="text" class="form-control" placeholder="dd/mm/yyyy" required="">
+                                    <div class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="btn-frm-search" value="FIND NOW" type="submit">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+        <!-- section search end -->
+
+        <!--  top rated -->
+        <!--  top rated end -->
+
+        <!-- section features -->
+        <section class="whitepage no-bottom no-top no-padding">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="no-gutter">
+
+                        <div class="col-md-4">
+                            <div class="features no-margin">
+                                <div class="bg-img">
+                                    <h3 class="big-heading">ASIA <sup class="subtour">7 Tours</sup></h3>
+                                    <p class="content">Qui ut ceteros comprehensam. Cu eos sale
+                                        sanctus eligendi, id ius elitr saperet,ocurreret
+                                        pertinacia pri an. No mei nibh consectetuer</p>
+                                    <a href="#"><span class="shine"></span>View More</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="features no-margin">
+                                <div class="bg-img-1">
+                                    <h3 class="big-heading">EUROPE <sup class="subtour">9 Tours</sup></h3>
+                                    <p class="content">Qui ut ceteros comprehensam. Cu eos sale
+                                        sanctus eligendi, id ius elitr saperet,ocurreret
+                                        pertinacia pri an. No mei nibh consectetuer</p>
+                                    <a href="#"><span class="shine"></span>View More</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="features no-margin">
+                                <div class="bg-img-2">
+                                    <h3 class="big-heading">AFRICA <sup class="subtour">12 Tours</sup></h3>
+                                    <p class="content">Qui ut ceteros comprehensam. Cu eos sale
+                                        sanctus eligendi, id ius elitr saperet,ocurreret
+                                        pertinacia pri an. No mei nibh consectetuer</p>
+                                    <a href="#"><span class="shine"></span>View More</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- section features end -->
+
+        <!-- section list -->
+        <section class="whitepage">
+            <div class="container-fluid m-5-hor">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <h3 class="big-heading">Popular destinations</h3>
+                        <span class="sub-heading-content">An optional subtitle</span>
+                        <span class="devider-left"></span>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="feature-1">
+                            <div class="cont-img">
+                                <img alt="img-cont" class="img-responsive" src="/assets/img/asia.jpg">
+                            </div>
+                            <div class="cont-detail">
+                                <h3 class="big-heading"><span class="color">ASIA</span> <sup class="subtour">7
+                                        Tours</sup></h3>
+                                <p class="max-char">Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius
+                                    elitr
+                                    saperet,ocurreret pertinacia pri an. No mei nibh consectetuer</p>
+                                <div class="star-content color">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
+                                <a href="#" class="btn-content">
+                                    Read More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="feature-1">
+                            <div class="cont-img">
+                                <img alt="img-cont" class="img-responsive" src="/assets/img/Africa-tour.jpg">
+                            </div>
+                            <div class="cont-detail">
+                                <h3 class="big-heading"><span class="color">AFRICA</span> <sup class="subtour">22
+                                        Tours</sup></h3>
+                                <p class="max-char">Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius
+                                    elitr
+                                    saperet,ocurreret pertinacia pri an. No mei nibh consectetuer</p>
+                                <div class="star-content color">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
+                                <a href="#" class="btn-content">
+                                    Read More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="feature-1">
+                            <div class="cont-img">
+                                <img alt="img-cont" class="img-responsive" src="/assets/img/australia-tour.jpg">
+                            </div>
+                            <div class="cont-detail">
+                                <h3 class="big-heading"><span class="color">AUSTRALIA</span> <sup class="subtour">20
+                                        Tours</sup></h3>
+                                <p class="max-char">Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius
+                                    elitr
+                                    saperet,ocurreret pertinacia pri an. No mei nibh consectetuer</p>
+                                <div class="star-content color">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
+                                <a href="#" class="btn-content">
+                                    Read More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="feature-1">
+                            <div class="cont-img">
+                                <img alt="img-cont" class="img-responsive" src="/assets/img/eroupe-tour.jpg">
+                            </div>
+                            <div class="cont-detail">
+                                <h3 class="big-heading"><span class="color">EROUPE</span> <sup class="subtour">12
+                                        Tours</sup></h3>
+                                <p class="max-char">Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius
+                                    elitr
+                                    saperet,ocurreret pertinacia pri an. No mei nibh consectetuer</p>
+                                <div class="star-content color">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
+                                <a href="#" class="btn-content">
+                                    Read More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- section list end -->
+
+
+        <!-- testimony -->
+        <section id="testimony" class="color-page no-padding">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="image-container autoheight col-lg-6 pull-right hidden-md hidden-sm hidden-xs onStep"
+                        data-animation="fadeInRight" data-time="300"></div>
+
+                    <div class="col-lg-6 col-md-12 autoheight">
+
+                        <div class="p-90">
+                            <div id="owl-testimonial" class="owl-carousel owl-theme">
+
+                                <div class="item">
+                                    <blockquote>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                            tempor incididunt ut
+                                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                            exercitation ullamco laboris
+                                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                            reprehenderit in voluptate velit
+                                            esse cillum dolore eu fugiat nulla pariatur.</p>
+                                        <small>Someone famous in <cite title="Source Title" class="color">Source
+                                                Title</cite></small>
+                                    </blockquote>
+                                    <img alt="imagetesti" class="tal" src="/assets/img/img-testi-1.png">
+                                    <h3>Emma Watson</h3>
+                                </div>
+
+                                <div class="item">
+                                    <blockquote>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                            tempor incididunt ut
+                                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                            exercitation ullamco laboris
+                                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                            reprehenderit in voluptate velit
+                                            esse cillum dolore eu fugiat nulla pariatur.</p>
+                                        <small>Someone famous in <cite title="Source Title" class="color">Source
+                                                Title</cite></small>
+                                    </blockquote>
+                                    <img alt="imagetesti" class="tal" src="/assets/img/img-testi-1.png">
+                                    <h3>Emma Watson</h3>
+                                </div>
+
+                                <div class="item">
+                                    <blockquote>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                            tempor incididunt ut
+                                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                            exercitation ullamco laboris
+                                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                            reprehenderit in voluptate velit
+                                            esse cillum dolore eu fugiat nulla pariatur.</p>
+                                        <small>Someone famous in <cite title="Source Title" class="color">Source
+                                                Title</cite></small>
+                                    </blockquote>
+                                    <img alt="imagetesti" class="tal" src="/assets/img/img-testi-1.png">
+                                    <h3>Emma Watson</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>
+        <!-- testimony end -->
+
+        <!--  gallery home -->
+        <section aria-label="gallery">
+            <div class="container-fluid m-5-hor">
+                <div class="row">
+
+                </div>
+            </div>
+
+            <div class="onStep" data-animation="fadeInUp" data-time="0">
+                <div id="owl-gal" class="owl-carousel">
+
+                   
+
+                    <div  th:each="p: ${items}" class="item">
+                        <div class="gal-home">
+                            <a th:href="@{|/travel/detail/${p.id}|}">
+                                <div class="hovereffect">
+                                    <img alt="imageportofolio" class="img-responsive" th:src="@{|/assets/img/${p.img}|}">
+                                </div>
+                                <div class="gal-home-content">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <h4 th:utext="${p.name}"></h4>
+                                            <p>[[${p.startDate}]]</p>
+                                            <div class="star-content">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="review-cont big-heading">1 Reviews</div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="heading-price">From</div>
+                                            <div class="price big-heading">$[[${p.price}]]</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--  gallery home end -->
+	</main>
+</body>
+</html>
