@@ -8,12 +8,14 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 @Table(name = "travel")
 @Entity
@@ -38,7 +40,11 @@ public class Travel implements Serializable {
     @JoinColumn(name = "typeId", referencedColumnName = "id")
     @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
     private TravelTypes typeId;
-
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "travelId")
+    List<TravelDetail> travelDetails;
+    
     @Column(name = "departurePlace", nullable = false, length = 225)
     private String departurePlace;
 

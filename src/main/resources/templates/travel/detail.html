@@ -117,7 +117,20 @@
             </div>
         </section>
         <!-- section end -->
+        
+		<!-- section lịch trình -->
+        <section class="travel-detail-lich-trinh">
+            <h2 style="text-align: center; top: -50px;">Lịch trình</h2>
+            <div class="container">
+                <div class="travel-detail-lich-trinh-time" th:each="detail : *{travelDetails}" th:object="${detail}">
+                    <h4><i class='bx bxs-timer' ></i>[[*{time}]]</h4>
+                    <p>[[*{description}]]</p>
+                </div>
 
+            </div>
+        </section>
+        <!-- edn section lịch trình -->
+        
         <!--  gallery home -->
         <section aria-label="gallery">
             <div class="container-fluid m-5-hor">
