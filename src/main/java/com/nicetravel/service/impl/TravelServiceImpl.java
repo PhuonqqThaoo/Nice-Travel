@@ -24,7 +24,7 @@ public class TravelServiceImpl implements TravelService {
     }
 
     @Override
-    public Travel findById(Integer id) {
+    public Travel findTravelById(Integer id) {
         return travelRepository.findById(id).get();
     }
 
@@ -41,5 +41,10 @@ public class TravelServiceImpl implements TravelService {
     @Override
     public void deleteTravel(Integer id) {
         travelRepository.deleteById(id);
+    }
+
+    @Override
+    public Travel findTravelBySlug(String slug) {
+        return travelRepository.findTravelBySlug(slug);
     }
 }

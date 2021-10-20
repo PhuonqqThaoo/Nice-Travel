@@ -11,9 +11,10 @@ import org.springframework.stereotype.Repository;
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 //    @Query("select DISTINCT ar.username from Account ar WHERE ar.roleId.id IN ('ADMIN','STAFF')")
 //    List<Account> getAdministrators();
+
+//    getAccountByUsername
+    @Query("SELECT u FROM Account u WHERE u.username =?1")
     Account findAccountsByUsername(String username);
-
-
 
     @Query("SELECT u FROM Account u WHERE u.email = ?1")
     public Account findByEmail(String email);

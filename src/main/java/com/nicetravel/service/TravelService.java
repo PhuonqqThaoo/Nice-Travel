@@ -8,11 +8,13 @@ import java.util.List;
 public interface TravelService {
     List<Travel> getAllTravel();
 
-    Travel findById(Integer id);
+    Travel findTravelById(Integer id);
 
     Travel createTravel(Travel travel);
 
     Travel updateTravel(Travel travel);
 
     void deleteTravel(Integer id);
+
+    Travel findTravelBySlug(String slug);
 }

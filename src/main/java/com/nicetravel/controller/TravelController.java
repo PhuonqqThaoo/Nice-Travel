@@ -16,12 +16,13 @@ import com.nicetravel.service.TravelService;
 
 
 @Controller
+@RequestMapping("/travel")
 public class TravelController {
 
 	@Autowired
 	TravelService travelService;
 	
-	@RequestMapping("/travel/list")
+	@RequestMapping("/list")
 	public String list(Model model) {
 		
 		
@@ -31,17 +32,17 @@ public class TravelController {
 		return "travel/list";
 	}
 	 
-	@RequestMapping("/travel/detail/{id}")
+	@RequestMapping("/detail/{id}")
 	public String detail(Model model,@PathVariable("id") Integer id) {
 
-		  Travel item = travelService.findById(id);
+		  Travel item = travelService.findTravelById(id);
 		  System.out.println(id);
 	  
 		  model.addAttribute("item", item);
 		 
 		return "travel/detail";
 	} 
-	@RequestMapping("travel/tour")
+	@RequestMapping("/tour")
 	public String tour(Model model) {
 		List<Travel> list = travelService.getAllTravel();
 		model.addAttribute("items", list);
