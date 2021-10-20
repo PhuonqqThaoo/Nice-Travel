@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nicetravel.entity.Travel;
+import com.nicetravel.entity.TravelDetail;
+import com.nicetravel.service.TravelDetailService;
 import com.nicetravel.service.TravelService;
 
 
@@ -34,6 +36,7 @@ public class TravelController {
 
 		  Travel item = travelService.findById(id);
 		  System.out.println(id);
+	  
 		  model.addAttribute("item", item);
 		 
 		return "travel/detail";
@@ -44,4 +47,5 @@ public class TravelController {
 		model.addAttribute("items", list);
 		return "travel/tour";
 	}
+
 }
