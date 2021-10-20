@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -9,49 +9,47 @@
 </head>
 
 <body>
-    <form th:action="@{/account-detail/update}" th:object="${account-detail}" method="POST">
+    <form th:action="@{/account/update}" th:object="${account}" method="POST">
         <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputUsername">Username</label>
+                <input type="text" class="form-control" th:field="*{username}" id="inputUsername"
+                       placeholder="Username">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" th:field="*{password}" id="inputPassword"
+                       placeholder="Password">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="inputFullname4">Fullname</label>
+                <input type="text" class="form-control" th:field="*{fullname}" id="inputFullname4"
+                    placeholder="Fullname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" th:field="*{address}" id="inputAddress" placeholder="Address...">
+        </div>
+        <div class="form-group">
+            <label for="inputPhone2">Phone</label>
+            <input type="text" class="form-control" th:field="*{phone}" id="inputPhone2" placeholder="Phone number">
+            <label for="inputEmail2">Phone</label>
+            <input type="email" class="form-control" th:field="*{email}" id="inputEmail2" placeholder="Email Address">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputIdCard">ID Card</label>
+                <input type="text" class="form-control" th:field="*{id_Card}" id="inputIdCard">
+            </div>
             <div class="form-group col-md-6">
                 <div class="form-check">
                     <label for="blankRadio1">Male</label>
-                    <input class="form-check-input position-static" type="radio" name="blankRadio" id="blankRadio1" value="true" aria-label="...">
+                    <input class="form-check-input position-static" type="radio" name="blankRadio" th:field="*{gender}" id="blankRadio1" value="false" aria-label="...">
                     <label for="blankRadio2">FeMale</label>
-                    <input class="form-check-input position-static" type="radio" name="blankRadio" id="blankRadio2" value="false" aria-label="...">
+                    <input class="form-check-input position-static" type="radio" name="blankRadio" th:field="*{gender}" id="blankRadio2" value="true" aria-label="...">
                 </div>
             </div>
-
-<!--            <div class="form-group col-md-6">-->
-<!--                <label for="inputFullname4">Fullname</label>-->
-<!--                <input type="text" class="form-control" th:field="*{fullname}" id="inputFullname4"-->
-<!--                    placeholder="Fullname">-->
-<!--            </div>-->
         </div>
-<!--        <div class="form-group">-->
-<!--            <label for="inputAddress">Address</label>-->
-<!--            <input type="text" class="form-control" th:field="*{address}" id="inputAddress" placeholder="Address...">-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="inputPhone2">Phone</label>-->
-<!--            <input type="text" class="form-control" th:field="*{phone}" id="inputPhone2" placeholder="Phone number">-->
-<!--        </div>-->
-<!--        <div class="form-row">-->
-<!--            <div class="form-group col-md-6">-->
-<!--                <label for="inputIdCard">ID Card</label>-->
-<!--                <input type="text" class="form-control" th:field="*{id_Card}" id="inputIdCard">-->
-<!--            </div>-->
-<!--            <div class="form-group col-md-6">-->
-<!--                <label for="inputCreateDate">Create Date</label>-->
-<!--                <input type="text" class="form-control" id="inputCreateDate">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <div class="form-check">-->
-<!--                <input class="form-check-input" type="checkbox" id="gridCheck">-->
-<!--                <label class="form-check-label" for="gridCheck">-->
-<!--                    Check me out-->
-<!--                </label>-->
-<!--            </div>-->
-<!--        </div>-->
         <button type="submit" class="btn btn-primary">Sign in</button>
     </form>
 </body>

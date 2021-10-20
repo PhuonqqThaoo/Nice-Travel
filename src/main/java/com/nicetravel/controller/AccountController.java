@@ -63,9 +63,9 @@ public class AccountController {
 
 //    Update
     @PostMapping("/update")
-    public String updateAccount(Account account){
+    public String updateAccount(@ModelAttribute("account") Account account){
         accountService.updateAccount(account);
-        return "redirect:/form";
+        return "redirect:/account";
     }
 
 //    Create
@@ -118,6 +118,5 @@ public class AccountController {
             return "/account/register/verify_fail";
         }
     }
-
 
 }

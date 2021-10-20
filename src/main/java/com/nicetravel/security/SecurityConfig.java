@@ -82,7 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID");
 
         http.exceptionHandling()
-                .accessDeniedPage("/security/unauthorized");
+                .accessDeniedPage("/unauthorized");
     }
 
     @Override

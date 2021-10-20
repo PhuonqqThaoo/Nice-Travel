@@ -16,17 +16,10 @@ import java.util.Optional;
 public class AccountRestController {
     AccountService accountService;
 
+    @Autowired
     public AccountRestController(AccountService accountService) {
         this.accountService = accountService;
     }
-
-//    @GetMapping
-//    public List<Account> getAccounts(@RequestParam("admin") Optional<Boolean> admin){
-//        if(admin.orElse(false)) {
-//            return accountService.getAdministrators();
-//        }
-//        return accountService.getAllAccount();
-//    }
 
     @GetMapping()
     public List<Account> getAllAccount(){
@@ -36,6 +29,11 @@ public class AccountRestController {
     @GetMapping("{id}")
     public Account getOne(@PathVariable("id") Integer id) {
         return accountService.getAccountById(id);
+    }
+
+    @GetMapping("/get/{username}")
+    public Account getAccountByUsername(@PathVariable("username") String username) {
+        return accountService.findAccountsByUsername(username);
     }
 
     @PostMapping()
