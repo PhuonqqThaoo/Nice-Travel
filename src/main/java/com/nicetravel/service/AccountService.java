@@ -18,4 +18,8 @@ public interface AccountService {
     void deleteAccount(Integer id);
 
     Account findAccountsByUsername(String username);
+    
+    List<Account> findAll();
+    
+    List<Account> findAllByStaff();
 }
