@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::body})}" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="crane-container">
+            <img src="https://i.postimg.cc/JhYnB3hd/crane.png" alt="" class="crane-img">
+        </div>
+
+        <div class="container-404">
+            <span class="text-404">4</span>
+            <img src="https://i.postimg.cc/6Qpq3bBv/plaint.png" alt="" class="plaint-img">
+            <span class="text-404">4</span>
+
+            <img src="https://i.postimg.cc/8PLjnryj/bird.png" alt="" class="bird-img">
+
+            <span class="box box-1"></span>
+            <span class="box box-2"></span>
+            <span class="box box-3"></span>
+
+        </div>
+    </div>
+
+    <div class="text-container">
+        <h1>Opp! Sorry...</h1>
+        <p>Page not found</p>
+        <button class="btn">
+            <a th:href="@{/}">Back home</a>
+        </button>
+    </div>
+
+</body>
+
+</html>

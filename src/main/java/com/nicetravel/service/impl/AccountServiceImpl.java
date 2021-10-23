@@ -56,9 +56,18 @@ public class AccountServiceImpl implements AccountService {
         return accountRepository.findAccountsByUsername(username);
     }
 
-	
+    @Override
+    public Account findByVerificationCode(String code) {
+        return accountRepository.findByVerificationCode(code);
+    }
 
-	@Override
+    @Override
+    public Account findByEmail(String email) {
+        return accountRepository.findByEmail(email);
+    }
+
+
+    @Override
 	public List<Account> findAll() {
 		return accountRepository.findAllAvailable();
 	}
