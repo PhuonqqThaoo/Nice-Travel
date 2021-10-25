@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Chi tiết chuyến đi | Nice Travel</title>
+    <title>Thanh toán | Nice Travel</title>
     <meta content="" name="description">
     <meta content="" name="author">
     <meta content="" name="keywords">
@@ -48,10 +48,8 @@
     <!-- preloader end -->
 
     <!-- content wraper -->
-    <div style="background-color: #f9f9f9;" class="content-wrapper">
-
+    <div class="content-wrapper">
         <header class="init">
-
             <!-- subnav -->
             <div class="container-fluid m-5-hor">
                 <div class="row">
@@ -83,8 +81,7 @@
                                         ký</a>
                                 </div>
                                 <div class="social-icons-subnav">
-                                    <a data-toggle="modal" data-target="#fLogin"><span class="ti-user"></span> Phuoc
-                                        Dan</a>
+                                    <a><span class="ti-user"></span> Phuoc Dan</a>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +114,8 @@
                             <nav id="menu-center">
                                 <ul>
                                     <li>
-                                        <a href="home.html">Trang chủ <i class="fa fa-angle-down"></i></a>
+                                        <a class="actived" href="home.html">Trang chủ <i
+                                                class="fa fa-angle-down"></i></a>
                                         <ul>
                                             <li><a href="intro/index.html">Giới thiệu</a></li>
                                         </ul>
@@ -146,103 +144,204 @@
             <!-- nav end -->
         </header>
 
-        <!-- subheader -->
-        <section id="subheader">
-            <div class="container-fluid m-5-hor">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="big-heading">
-                            Tour du lịch
-                        </h1>
-                        <p>Nơi khởi đầu cho những chuyến đi</p>
-                    </div>
+        <!-- box200 -->
+        <div class="box-200"></div>
+
+        <!-- pay -->
+        <div class="pay pay-container">
+            <ol class="breadcrumb">
+                <li><a href="#">Đặt tour</a></li>
+                <li><a href="#">Nhập thông tin</a></li>
+            </ol>
+
+            <!-- left -->
+            <div class="col-65-left">
+                <div class="title">
+                    <h2>Nhập thông tin</h2>
                 </div>
-            </div>
-        </section>
-        <!-- subheader end -->
-
-
-        <!-- section -->
-        <section aria-label="section-blog" id="content" class="travel-detail">
-            <div class="container-fluid container">
-                <p style="font-size: 1.5rem; color: rgba(10, 189, 227,1.0);"><i class='bx bx-dice-2'></i> Tour du lịch
-                    giành cho gia đình</p>
-                <p style="font-size: 2.5rem; margin-bottom: 17px;">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</p>
-                <p>
-                    <h3 style="display: inline-block; color: rgba(238, 82, 83,1.0);">5.000.000 vnđ</h3> / người
-                    <a href="pay.html" class="travel-btn" style="margin-left: 100px;"><i class='bx bxs-cart-alt'></i> Đặt
-                        ngay</a>
-                </p>
-                <div class="travel-detail-row">
-                    <div class="travel-detail-col-6">
-                        <img alt="imageportofolio" class="img-responsive"
-                                                src="http://on3-step.com/tf/plesire/img/gallery-home/img1.jpg">
-                    </div>
-                    <div class="travel-detail-col-6">
-                        <div class="travel-detail-section1">
-                            <p>Khởi hành: <span>01/01/2022 10:00:00</span></p>
-                            <p>Số lượng: <span>20 người</span></p>
-                            <p>Số Ngày: <span>5</span></p>
-                            <p>Số chỗ còn nhận: <span>10</span></p>
-                            <p>Nơi khởi hành: <span>Tp.Hồ Chí Minh</span></p>
+                <!-- thông tin liên lạc -->
+                <div class="thong-tin-lien-lac">
+                    <h4>Thông tin liên lạc</h4>
+                    <p>Đây là thông tin của khách hàng dùng để liên lạc khi đặt chỗ thành công</p>
+                </div>
+                <!-- box thông tin -->
+                <div class="box-thong-tin">
+                    <div class="col-12">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Họ và tên</label>
+                                <input type="text" class="form-control" placeholder="Họ và tên" disabled>
+                            </div>
                         </div>
-                        <a href="" class="travel-detail-btn-tu-van">Liên hệ tư vấn ngay</a>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Địa chỉ email</label>
+                                <input type="text" class="form-control" placeholder="Email" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Số điện thoại</label>
+                                <input type="text" class="form-control" placeholder="Phone" disabled>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Địa chỉ</label>
+                                <input type="text" class="form-control" placeholder="Address" disabled>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p style="margin-top: 280px;">Một ngày hòa minh giữa thiên nhiên xanh mát ở khu dự trữ sinh quyển thế giới, khám phá “ lá phổi xanh” của thành phố bằng các hoạt động tham quan tại Chiến Khu Rừng Sác, thưởng ngoạn cảnh quan sông nước hữu tình trên những chiếc ca nô khi len lỏi giữa khu rừng ngập mặn của KDL Dần Xây. Đặc biệt trong hành trình, quý khách còn được thưởng thức những món ăn đặc trưng chỉ có tại Vàm Sát – Cần Giờ như : vịt nước mặn, rau lìm kìm, cua hấp, tôm nướng, cá đối chiên xù cuốn bánh tráng, canh cá bui, chè dừa nước… Quay lại ký ức của Chiến khu xưa, nghe kể về dấu ấn lịch sử oai hùng một thời của lực lượng bộ đội đặc công rừng Sác; Trải nghiệm đi xuồng máy len lỏi vào rừng nguyên sinh ngập mặn; Hòa mình vào bức tranh thiên nhiên xanh mát ở Khu du lịch sinh thái Vàm Sát. Trải nghiệm ẩm thực đặc sắc, hấp dẫn và đặc trưng của Cần Giờ</p>
+
+                <!-- pay customer -->
+                <div class="customer">
+                    <h3>Hành khách</h3>
+                    <div class="col-12">
+                        <div class="col-6">
+                            <div class="change">
+                                <div class="change-title">
+                                    <h4>Người lớn</h4>
+                                    <p>&gt; 12 tuổi</p>
+                                </div>
+                                <div class="change-number">
+                                    <span class="minus btn-click"><i class="bx bx-minus-circle" id="adultMinus"></i></span>
+                                    <span class="number" id="adult">1</span>
+                                    <span class="plus btn-click"><i class="bx bx-plus-circle" id="adultPlus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="change">
+                                <div class="change-title">
+                                    <h4>Trẻ em</h4>
+                                    <p>Từ 5 - 11 tuổi</p>
+                                </div>
+                                <div class="change-number">
+                                    <span class="minus btn-click"><i class="bx bx-minus-circle"
+                                            id="childrenMinus"></i></span>
+                                    <span class="number" id="children">0</span>
+                                    <span class="plus btn-click"><i class="bx bx-plus-circle"
+                                            id="childrenPlus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-6">
+                            <div class="change">
+                                <div class="change-title">
+                                    <h4>Trẻ nhỏ</h4>
+                                    <p>Từ 2 - 4 tuổi</p>
+                                </div>
+                                <div class="change-number">
+                                    <span class="minus btn-click"><i class="bx bx-minus-circle"
+                                            id="smallchildrenMinus"></i></span>
+                                    <span class="number" id="smallchildren">0</span>
+                                    <span class="plus btn-click"><i class="bx bx-plus-circle"
+                                            id="smallchildrenPlus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="change">
+                                <div class="change-title">
+                                    <h4>Em bé</h4>
+                                    <p>Từ 0 - 2 tuổi</p>
+                                </div>
+                                <div class="change-number">
+                                    <span class="minus btn-click"><i class="bx bx-minus-circle"
+                                            id="babyMinus"></i></span>
+                                    <span class="number" id="baby">0</span>
+                                    <span class="plus btn-click"><i class="bx bx-plus-circle" id="babyPlus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-        <!-- section end -->
 
-        <!-- section lịch trình -->
-        <section class="travel-detail-lich-trinh">
-            <h2 style="text-align: center; top: -50px;">Lịch trình</h2>
-            <div class="container">
-                <div class="travel-detail-lich-trinh-time">
-                    <h4><i class='bx bxs-timer' ></i> 01/01/2022 10:00:00 - Khởi hành từ Tp.Hồ Chí Minh</h4>
-                    <p>Mô tả chi tiết về hành trình ở thời gian này (....................................................................................................................
-                        ..............................................
-                        .........................................................
-                        ..................................................
-                        .............................................................................................................)
-                    </p>
+            <!-- right -->
+            <div class="col-35-right">
+                <div class="title">
+                    <h4>Tóm tắt đặt chỗ</h4>
                 </div>
-
                 <div class="travel-detail-lich-trinh-time">
-                    <h4><i class='bx bxs-timer' ></i> 01/01/2022 10:00:00 - Khởi hành từ Tp.Hồ Chí Minh</h4>
-                    <p>Mô tả chi tiết về hành trình ở thời gian này (....................................................................................................................
-                        ..............................................
-                        .........................................................
-                        ..................................................
-                        .............................................................................................................)
-                    </p>
+                    <h5><i class='bx bxs-timer'></i> Ngày khởi hành</h5>
+                    <p>01/01/2022 10:00:00</p>
                 </div>
-
                 <div class="travel-detail-lich-trinh-time">
-                    <h4><i class='bx bxs-timer' ></i> 01/01/2022 10:00:00 - Khởi hành từ Tp.Hồ Chí Minh</h4>
-                    <p>Mô tả chi tiết về hành trình ở thời gian này (....................................................................................................................
-                        ..............................................
-                        .........................................................
-                        ..................................................
-                        .............................................................................................................)
-                    </p>
+                    <h5><i class='bx bxs-timer'></i> Ngày kết thúc</h5>
+                    <p>04/01/2022 10:00:00</p>
                 </div>
-
-                <div class="travel-detail-lich-trinh-time">
-                    <h4><i class='bx bxs-timer' ></i> 01/01/2022 10:00:00 - Khởi hành từ Tp.Hồ Chí Minh</h4>
-                    <p>Mô tả chi tiết về hành trình ở thời gian này (....................................................................................................................
-                        ..............................................
-                        .........................................................
-                        ..................................................
-                        .............................................................................................................)
-                    </p>
+                <div class="strikethrough"></div>
+                <h5 style="font-weight: 700;">Nơi đến</h5>
+                <div class="noi-den">
+                    <img src="http://on3-step.com/tf/plesire/img/gallery-home/img1.jpg" alt="">
+                    <div>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                    </div>
+                    <h5>
+                        Hành trình xanh Cần Giờ - Vàm Sát
+                    </h5>
+                </div>
+                <div class="detail">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th class="l1">Hành khách</th>
+                                <th class="l2 text-right">
+                                    <p class="add-more">
+                                        <p>1 người lớn<br>0 trẻ em<br>0 trẻ nhỏ<br>0 em bé</p>
+                                    </p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>Người lớn</td>
+                                <td class="t-price text-right" id="AdultPrice">1 x 5,390,000₫</td>
+                            </tr>
+                            <tr>
+                                <td>Trẻ em</td>
+                                <td class="t-price text-right" id="ChildrenPrice">0₫</td>
+                            </tr>
+                            <tr>
+                                <td>Trẻ nhỏ</td>
+                                <td class="t-price text-right" id="SmallChildrenPrice">0₫</td>
+                            </tr>
+                            <tr>
+                                <td>Em bé</td>
+                                <td class="t-price text-right" id="BabyPrice">0₫</td>
+                            </tr>
+                            <tr class="total">
+                                <td>Tổng cộng</td>
+                                <td class="t-price text-right" id="TotalPrice">7,390,000₫</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-primary btn-order" style="width:100% ">
+                            ĐẶT NGAY
+                        </button>
+                    </div>
                 </div>
             </div>
-        </section>
-        <!-- edn section lịch trình -->
+        </div>
+        <!-- end pay -->
 
         <!--  gallery home -->
         <section aria-label="gallery">
+            <div class="container-fluid m-5-hor">
+                <div class="row">
+
+                </div>
+            </div>
+
             <div class="onStep" data-animation="fadeInUp" data-time="0">
                 <div id="owl-gal" class="owl-carousel">
 
@@ -455,6 +554,8 @@
                             <span>Phone: (+84) 999 999 999</span>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </footer>
@@ -533,7 +634,8 @@
                                         Conditions</a>.</label>
                             </div>
                             <div class="form-group"><input type="submit" value="Sign up"
-                                    class="btn btn-primary btn-block btn-lg"></div>
+                                    class="btn btn-primary btn-block btn-lg">
+                            </div>
                             <div class="clearfix"></div>
                         </form>
 
