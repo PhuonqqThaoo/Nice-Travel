@@ -339,6 +339,15 @@
 
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
+                	
+                	<div id="thongBao" style="display:none;" role="alert" align="center">
+                		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                			<span arian-hidden="true">&time;</span>
+                		</button>
+                		<span id="errorMessage" th:text="${errorMessage}"></span>
+                		<span id="successMessage" th:text="${successMessage}"></span>
+                	</div>
+                	
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Thông tin khách hàng</h1>
                         <ol class="breadcrumb">
@@ -350,47 +359,56 @@
                     <div class="row mb-3">
                         <div class="chinh-sua-tour w-90 card">
                             <div class="row">
-                                <div class="col-3">
-                                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                                        aria-orientation="vertical">
-                                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill"
-                                            href="#v-pills-home" role="tab" aria-controls="v-pills-home"
-                                            aria-selected="true">Khách hàng</a>
-                                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
-                                            href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
-                                            aria-selected="false">Chi tiết</a>
-                                    </div>
-                                </div>
-                                <div class="col-9">
+<!--                                 <div class="col-3"> -->
+<!--                                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" -->
+<!--                                         aria-orientation="vertical"> -->
+<!--                                         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" -->
+<!--                                             href="#v-pills-home" role="tab" aria-controls="v-pills-home" -->
+<!--                                             aria-selected="true">Khách hàng</a> -->
+<!--                                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" -->
+<!--                                             href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" -->
+<!--                                             aria-selected="false">Chi tiết</a> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+                                <div class="col-12">
                                     <div class="tab-content" id="v-pills-tabContent">
-                                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                                            aria-labelledby="v-pills-home-tab">
+<!--                                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" -->
+<!--                                             aria-labelledby="v-pills-home-tab"> -->
                                             <table class="table">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">STT</th>
+                                                        <th scope="col" style="width: 30px;">Avatar</th>
                                                         <th scope="col">username</th>
                                                         <th scope="col">Fullname</th>
                                                         <th scope="col">Email</th>
-                                                        <th scope="col" style="width: 30px;">Avatar</th>
                                                         <th scope="col">Gender</th>
                                                         <th scope="col">Phone</th>
                                                         <th scope="col">Address</th>
-                                                        <th scope="col">Is Enable</th>
+                                                        <th scope="col"></th>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr th:each="user,i : ${listUser}" >
                                                         <td th:text = "${i.index+1}"></th>
-                                                        <td th:text = "${user.username}"></td>
-                                                        <td th:text = "${user.fullname}"></td>
-                                                        <td th:text = "${user.email}"></td>
                                                         <td>
                                                         	<img width="30px" th:alt="${user.username}" th:src="${'/admin/img/'+user.img}" >
                                                         </td>
+                                                        <td th:text = "${user.username}"></td>
+                                                        <td th:text = "${user.fullname}"></td>
+                                                        <td th:text = "${user.email}"></td>
                                                         <td th:text = "${user.gender}"></td>
                                                         <td th:text = "${user.phone}"></td>
                                                         <td th:text = "${user.address}"></td>
+                                                        <td align="center">
+                                                        	<button th:attr="onclick='editUser(\''+${user.username}+'\')'" class="btn btn-success" style="width: 40px">
+																<i class="fa fa-edit" aria-hidden="true"></i>                                                        	
+                                                        	</button>
+                                                        	<a class="btn btn-danger" th:href="@{'/admin/thong-tin-khach-hang/delete?username=' +${user.username}}">
+                                                        		<i class="fa fa-trash" aria-hidden="true"></i>  
+                                                        	</a>
+                                                        </td>
                                                     </tr>
                                                     
                                                     
@@ -415,14 +433,14 @@
                                                     </li>
                                                 </ul>
                                             </nav>
-                                        </div>
-                                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                            aria-labelledby="v-pills-profile-tab">
-                                            <form>
+<!--                                         </div> -->
+<!--                                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" -->
+<!--                                             aria-labelledby="v-pills-profile-tab"> -->
+                                            <form th:object= "${userRequest}" id="form" method="Post">
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <label for="inputUsername">Username</label>
-                                                        <input type="text" class="form-control" id="inputUsername">
+                                                        <input th:field="*{username}" id = "username" readonly="true" type="text" class="form-control" >
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="inputFullname">Password</label>
@@ -431,32 +449,32 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="inputAddress">Address</label>
-                                                    <input type="text" class="form-control" id="inputAddress"
+                                                    <input type="text" th:field="*{address}" id = "address" readonly="true" class="form-control"
                                                         placeholder="1234 Main St">
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-4">
                                                         <label for="inputEmail">Email</label>
-                                                        <input type="email" class="form-control" id="inputEmail">
+                                                        <input type="email" th:field="*{email}" id = "email" readonly="true" class="form-control" >
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label for="inputPhone">Phone</label>
-                                                        <input type="email" class="form-control" id="inputPhone">
+                                                        <input type="text" th:field="*{phone}" id = "phone" readonly="true" class="form-control" >
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label for="inputGender">Gender</label>
                                                         <div class="form-control">
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="inlineRadioOptions" id="inlineRadio1"
-                                                                    value="option1">
+                                                                    name="inlineRadioOptions" th:field="*{gender}" id = "gender" readonly="true"
+                                                                    value="false">
                                                                 <label class="form-check-label"
                                                                     for="inlineRadio1">Male</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="inlineRadioOptions" id="inlineRadio2"
-                                                                    value="option2">
+                                                                    name="inlineRadioOptions" th:field="*{gender}" id = "gender" readonly="true"
+                                                                    value="true">
                                                                 <label class="form-check-label"
                                                                     for="inlineRadio2">Female</label>
                                                             </div>
@@ -466,31 +484,31 @@
                                                 <div class="form-row">
                                                     <div class="form-group col-md-4">
                                                         <label for="inputIdCard">ID card</label>
-                                                        <input type="text" class="form-control" id="inputIdCard">
+                                                        <input type="text" th:field="*{id_Card}" id = "id_Card" readonly="true" class="form-control" >
                                                     </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputCreateDate">Create date</label>
-                                                        <input type="datetime-local" class="form-control" id="inputCreateDate">
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputIsEnable">Is enable</label>
-                                                        <div class="form-control">
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio"
-                                                                    name="inlineRadioOptions" id="inlineRadio1"
-                                                                    value="option1">
-                                                                <label class="form-check-label"
-                                                                    for="inlineRadio1">True</label>
-                                                            </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio"
-                                                                    name="inlineRadioOptions" id="inlineRadio2"
-                                                                    value="option2">
-                                                                <label class="form-check-label"
-                                                                    for="inlineRadio2">False</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+<!--                                                     <div class="form-group col-md-4"> -->
+<!--                                                         <label for="inputCreateDate">Create date</label> -->
+<!--                                                         <input type="datetime-local" class="form-control" id="inputCreateDate"> -->
+<!--                                                     </div> -->
+<!--                                                     <div class="form-group col-md-4"> -->
+<!--                                                         <label for="inputIsEnable">Is enable</label> -->
+<!--                                                         <div class="form-control"> -->
+<!--                                                             <div class="form-check form-check-inline"> -->
+<!--                                                                 <input class="form-check-input" type="radio" -->
+<!--                                                                     name="inlineRadioOptions" id="inlineRadio1" -->
+<!--                                                                     value="option1"> -->
+<!--                                                                 <label class="form-check-label" -->
+<!--                                                                     for="inlineRadio1">True</label> -->
+<!--                                                             </div> -->
+<!--                                                             <div class="form-check form-check-inline"> -->
+<!--                                                                 <input class="form-check-input" type="radio" -->
+<!--                                                                     name="inlineRadioOptions" id="inlineRadio2" -->
+<!--                                                                     value="option2"> -->
+<!--                                                                 <label class="form-check-label" -->
+<!--                                                                     for="inlineRadio2">False</label> -->
+<!--                                                             </div> -->
+<!--                                                         </div> -->
+<!--                                                     </div> -->
                                                 </div>
                                                 <div class="right-button">
                                                     <button type="button" class="btn btn-success">Thêm</button>
@@ -499,7 +517,7 @@
                                                     <button type="button" class="btn btn-secondary">Làm mới</button>
                                                 </div>
                                             </form>
-                                        </div>
+<!--                                         </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -696,6 +714,90 @@
             $('#datetimepicker1').datetimepicker();
         });
     </script>
+    
+    
+    <script th:inline="javascript">
+    	function editUser(username) {
+    		var url ='/admin/thong-tin-khach-hang/edit/username=' +username;
+        	$get(url).done(function (fragment) {
+    			$("#form").replaceWith(fragment);
+    			$("#form").prop('action','/admin/thong-tin-khach-hang/edit');
+    			var imgUrl = $('#hiddenImgUrl').val();
+    			$('#userImgUpload').prop('src','/admin/img/'+imgUrl);
+    			$('html,body').animate({
+    				scrollTop: $("#form").offset().top
+    			},1000);
+    			$("#form :input").prop('readonly',false); // cho phép sửa
+    			$("input#username").prop('readonly',true); // tô xám
+    			$("#submitUpdate").prop('disabled',false);
+    		})
+		};
+    	
+    	$("#createBtn").click(function() {
+			$('html,body').animate({
+				scrollTop: $("#form").offset().top
+    		},1000);
+			$("#form:input").prop('readonly',false);
+			$("#form").prop('action','/admin/thong-tin-khach-hang/create');
+			$("#submitCreate").prop('disabled',false);
+		});
+    	
+    	function cacelBtn() {
+			$('#username').val('');
+			$('#email').val('');
+			$('#fullname').val('');
+			$('#password').val('');
+			$('#confirmPass').val('');
+			$('#form:input').prop('readonly',true);
+			$('#submitUpdate').prop('disabled',true);
+			$('#submitCreate').prop('disabled',true);
+		};
+    	
+    	
+    	function updateUser() {
+			var pass = $("#password").val(); // lấy pass
+			var confirmPass = $("#confirmPass").val();
+			if(pass.lenght >0 && confirmPass.lenght() == 0){
+				alert('Please confirm new password!');
+				$('#confirmPass').focus();
+				return;
+			}else if(pass != confirmPass){
+				alert('Password is not equal, please check again!');
+				$('#confirmPass').focus();
+				return;
+			}else {
+				$('#form').submit();
+			}
+		}
+    	
+    
+    </script>
+    
+    <script >
+    	$(document).ready(function () {
+			var err = $('errorMessage').text();
+			var success = $('successMessage').text();
+			if (err.lenght > 0) {
+				$('#thongBao').addClass("alert alert-danger");
+				$('#thongBao').css("display","block");
+				setTimeout(function(){
+					$('#thongBao').fadeOut("slow");
+				},2000);
+				return;
+			}
+			if (success.lenght > 0) {
+				$('#thongBao').addClass("alert alert-success");
+				$('#thongBao').css("display","block");
+				setTimeout(function(){
+					$('#thongBao').fadeOut("slow");
+				},2000);
+				return;	
+			}
+			});
+		
+    </script>
+    
+    
 </body>
 
 </html>

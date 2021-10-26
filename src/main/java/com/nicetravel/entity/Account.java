@@ -6,7 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 import java.io.Serializable;
 
 import java.time.LocalDateTime;
@@ -30,11 +35,14 @@ public class Account implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-
+	
+	@NotEmpty
+	@NotNull
     @Column(name = "username", nullable = false, length = 20)
     private String username;
     
-    @Column(name = "fullname", length = 225)
+    @Column(name = "fullname")
+    @Size(max = 30)
     private String fullname;
     
     @Column(name = "password", nullable = false)

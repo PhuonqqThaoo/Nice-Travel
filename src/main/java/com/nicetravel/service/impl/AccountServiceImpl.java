@@ -5,17 +5,22 @@ import com.nicetravel.entity.Account;
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 @Service
 public class AccountServiceImpl implements AccountService {
 
     AccountRepository accountRepository;
-
+    private BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
     @Autowired
     public AccountServiceImpl(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
@@ -75,6 +80,31 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public List<Account> findAllByStaff() {
 		return accountRepository.findAllByStaff();
+	}
+
+	@Override
+	@Transactional 
+	public void update(Account account) throws Exception {
+		if (ObjectUtils.isEmpty(account)) {
+			throw new Exception("user cannot be empty");
+		}
+		//check update non password or update full
+		if (ObjectUtils.isEmpty(account.getPassword())) {
+			accountRepository.updateNonPass(account.getFullname(), account.getEmail(), account.getPhone(), account.getId_Card(), account.getGender(), account.getUsername());
+		}else {
+			account.setPassword(bcrypt.encode(account.getPassword()));
+			accountRepository.update(account.getFullname(), account.getEmail(),account.getPassword(), account.getPhone(), account.getId_Card(), account.getGender(), account.getUsername());
+		}
+	}
+
+	@Override
+	@Transactional
+	public void delete(String username) throws Exception {
+		if (ObjectUtils.isEmpty(username)) {
+			throw new Exception("user cannot be empty");
+		}
+		accountRepository.deletedUser(username);;
+		
 	}
 
 	
