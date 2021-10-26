@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap');
 
+* {
+    font-family: 'Mulish', sans-serif;
+    letter-spacing: 0;
+}
+
 .col-6 {
     width: 50%;
     padding: 0 20px;
@@ -7,6 +12,10 @@
 }
 
 .col-12 {
+    width: 100%;
+}
+
+.w-100 {
     width: 100%;
 }
 
@@ -299,3 +308,36 @@ a.travel-btn:hover {
 }
 
 /* end pay */
+
+
+
+/* footer */
+footer {
+    background: #f9f9f9;
+    padding-top: 45px;
+    width: 100%;
+    min-height: 500px;
+}
+.footer {
+    width: 70%;
+    margin: 0 auto;
+}
+.footer-title h5 {
+    font-weight: 700;
+}
+.footer .col-xs-5 a, .footer .col-xs-12 a {
+    font-size: 16px;
+}
+.footer .row .col-xs-6 .row .col-xs-5, .footer .col-xs-12 {
+    height: 30px;
+}
+.footer .col-xs-12 i {
+    font-size: 35px;
+    padding-right: 7px;
+    padding-top: 5px;
+    color: #10ac84;
+}
+.footer .col-xs-12 i:hover {
+    color: #fd2d34;
+}
+/* end footer */
