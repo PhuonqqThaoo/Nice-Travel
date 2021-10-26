@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html  xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:th="http://thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::body})}" lang="en">
+       xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::body})}" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -41,7 +41,7 @@
 
             </div>
             <div class="modal-footer">
-                <a href="#">or Log In</a>
+                <a th:href="@{/login}">or Log In</a>
             </div>
         </div>
     </div>

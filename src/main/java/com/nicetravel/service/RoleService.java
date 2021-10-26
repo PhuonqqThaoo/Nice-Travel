@@ -15,4 +15,6 @@ public interface RoleService {
     Role updateRole(Role role);
 
     void deleteRole(Integer id);
+
+    Role findByRoleName(String roleName);
 }
