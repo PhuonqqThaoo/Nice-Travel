@@ -101,7 +101,7 @@ a.travel-btn:hover {
 }
 
 .travel-detail-lich-trinh-time {
-    width: 80%;
+    width: 100%;
     margin-top: 20px;
 }
 
@@ -109,6 +109,11 @@ a.travel-btn:hover {
     margin-left: 70px;
     border-left: 5px dotted rgba(16, 172, 132, 1.0);
     padding-left: 25px;
+}
+
+.h-img-309 {
+    height: auto;
+    max-height: 309px;
 }
 
 /* end travel detail */
