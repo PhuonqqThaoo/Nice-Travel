@@ -483,37 +483,34 @@
             <div class="onStep" data-animation="fadeInUp" data-time="0">
                 <div id="owl-gal" class="owl-carousel">
 
-                   
-
-                    <div  th:each="p: ${items}" class="item">
-                        <div class="gal-home">
+                    <div th:each="p: ${items}" class="item">
+                        <div class="gal-home travel-box">
                             <a th:href="@{|/travel/detail/${p.id}|}">
                                 <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" th:src="@{|/assets/img/${p.img}|}">
+                                    <img alt="imageportofolio" class="img-responsive"
+                                        th:src="@{|/assets/img/${p.img}|}">
                                 </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4 th:utext="${p.name}"></h4>
-                                            <p>Ngày đi: [[${#dates.format(p.startDate, 'dd-MM-yyyy')}]]</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 nhận xét</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">Giá từ</div>
-                                            <div class="price big-heading" style="font-size: 10.5pt">[[${#numbers.formatCurrency(p.price)}]]</div>
-                                        </div>
+                                <div class="gal-home-content travel-box-content">
+                                    <p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate, 'dd-MM-yyyy')}]] - [[${#dates.format(p.endDate, 'dd')} - ${#dates.format(p.startDate, 'dd')}]]  ngày  </p>
+                                    <h5><a th:utext="${p.name}">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a></h5>
+                                    <br>
+                                    <p>Số lượng: [[${p.quantity}]] người</p>
+                                    <p>Nơi khởi hành:  [[${p.departurePlace}]]</p>
+                                    <p>
+                                        <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">[[${#numbers.formatCurrency(p.price)}]]
+                                        </h5> / người
+                                    </p>
+                                    <div>
+                                        <a href="booking.html" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
+                                            ngay</a>
+                                        <a href="" style="float: right;">Xem chi tiết</a>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
+
+                 
                 </div>
             </div>
         </section>
