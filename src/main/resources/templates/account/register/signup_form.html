@@ -1,51 +1,58 @@
 <!DOCTYPE html>
-<html  xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::body})}" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/layout/index :: dynamic(~{::body})}" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<!-- modal registration -->
-<div id="fsignUp" class="">
-    <div class="modal-dialog modal-login">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Member Registration</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/account/process-register}" th:object="${account}"
-                      method="post">
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" name="email"  th:field="*{email}" class="form-control" required="required">
-                    </div>
-                    <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" name="username" th:field="*{username}" class="form-control" required="required">
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" th:field="*{password}" class="form-control" required="required">
-                    </div>
-                    <div class="form-group">
-                        <label><input type="checkbox" name="terms"> I agree with the <a href="#" style="color: #1a174d">Terms and
-                            Conditions</a>.</label>
-                    </div>
-                    <div class="form-group"><input type="submit" value="Sign up"
-                                                   class="btn btn-primary btn-block btn-lg">
-                    </div>
-                    <div class="clearfix"></div>
-                </form>
 
-            </div>
-            <div class="modal-footer">
-                <a th:href="@{/login}">or Log In</a>
+<body>
+    <!-- modal registration -->
+    <div id="fsignUp" class="">
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Member Registration</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/account/process-register}" th:object="${account}" method="post">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" name="email" th:field="*{email}" class="form-control"
+                                required="required">
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" name="username" th:field="*{username}" class="form-control"
+                                required="required">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" th:field="*{password}" class="form-control"
+                                required="required">
+                        </div>
+                        <div class="form-group">
+                            <label><input type="checkbox" id="check-agree" name="terms"> I agree with the <a href="#"
+                                    style="color: #1a174d">Terms and
+                                    Conditions</a>.</label>
+                        </div>
+                        <div class="form-group"><input type="submit" id="button__sign-up" value="Sign up" disabled
+                                title="Vui lòng đồng ý với các điều khoản và điều kiện."
+                                class="btn btn-primary btn-block btn-lg">
+                        </div>
+                        <div class="clearfix" id="clearfix"></div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <a th:href="@{/login}">or Log In</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- modal registration end -->
+    <!-- modal registration end -->
 </body>
+
 </html>

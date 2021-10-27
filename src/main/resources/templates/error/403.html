@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::body})}" lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Error 403</title>
+    <link rel="stylesheet" href="/static/assets/css/error403.css">
 </head>
-<body>
 
+<body style="background-color: #000121;">
+    <div class="maincontainer">
+        <div class="bat">
+            <img class="wing leftwing" src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+            <img class="body" src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-body.png" alt="bat">
+            <img class="wing rightwing" src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+        </div>
+        <div class="bat">
+            <img class="wing leftwing" src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+            <img class="body" src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-body.png" alt="bat">
+            <img class="wing rightwing" src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+        </div>
+        <div class="bat">
+            <img class="wing leftwing" src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+            <img class="body" src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-body.png" alt="bat">
+            <img class="wing rightwing" src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+        </div>
+        <img class="foregroundimg"
+            src="https://www.blissfullemon.com/wp-content/uploads/2018/09/HauntedHouseForeground.png"
+            alt="haunted house">
+
+    </div>
+    <h1 class="errorcode">ERROR 403</h1>
+    <div class="errortext">Bạn không có quyền truy cập. <a th:href="@{/}">Về trang chủ</a></div>
+    <div id="backHome" style="text-align: center; color: red;"></div>
+
+    <script>
+        function Redirect() {
+            window.location = "http://localhost:8081";
+        }
+        function timeOut(){
+            var i = 10
+            var backHome = document.getElementById("backHome");
+
+            setInterval(() =>{
+                i--;
+                backHome.innerHTML = "You will be redirected to main page in " + i + " sec.";
+            },1000);
+        }
+        timeOut();
+        setTimeout('Redirect()', 10000);
+    </script>
 </body>
+
 </html>
