@@ -30,7 +30,7 @@ public class TravelController {
 		 model.addAttribute("items",list);
 		 
 		return "travel/list";
-	}
+	} 
 	 
 	@RequestMapping("/detail/{id}")
 	public String detail(Model model,@PathVariable("id") Integer id) {
@@ -39,6 +39,9 @@ public class TravelController {
 		  System.out.println(id);
 	  
 		  model.addAttribute("item", item);
+		  
+		  List<Travel> list = travelService.getAllTravel();
+			 model.addAttribute("items",list);
 		 
 		return "travel/detail";
 	} 

@@ -426,7 +426,7 @@
                                     <div class="row">
                                         <div class="col-md-9">
                                             <h4 th:utext="${p.name}"></h4>
-                                            <p>[[${p.startDate}]]</p>
+                                            <p>Ngày đi: [[${#dates.format(p.startDate, 'dd-MM-yyyy')}]]</p>
                                             <div class="star-content">
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -434,11 +434,11 @@
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star-o" aria-hidden="true"></i>
                                             </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
+                                            <div class="review-cont big-heading">1 nhận xét</div>
                                         </div>
                                         <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$[[${p.price}]]</div>
+                                            <div class="heading-price">Giá từ</div>
+                                            <div class="price big-heading" style="font-size: 10.5pt">[[${#numbers.formatCurrency(p.price)}]]</div>
                                         </div>
                                     </div>
                                 </div>
