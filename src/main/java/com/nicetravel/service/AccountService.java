@@ -26,12 +26,8 @@ public interface AccountService {
     List<Account> findAll();
 
     List<Account> findAllByStaff();
-<<<<<<< HEAD
     
     void update(Account account) throws Exception;
      
     void delete(String username) throws Exception;
-=======
-
->>>>>>> ed0dfc4dd0265ca028919d1b6a0aab252773bc59
 }

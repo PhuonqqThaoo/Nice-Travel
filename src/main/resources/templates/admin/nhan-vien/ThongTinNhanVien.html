@@ -122,17 +122,36 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
-                    aria-expanded="true" aria-controls="collapseUser">
-                    <i class='bx bxs-user-rectangle'></i>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStaff"
+                    aria-expanded="true" aria-controls="collapseStaff">
+                    <i class='bx bxs-user-rectangle' ></i>
                     <span>Nhân viên</span>
                 </a>
-                <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
+                <div id="collapseStaff" class="collapse" aria-labelledby="headingStaff" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý nhân viên</h6>
                         <a class="collapse-item" href="/admin/thong-tin-nhan-vien">Thông tin nhân viên</a>
-                        <a class="collapse-item" href="">thông tin cá nhân</a>
-                        <a class="collapse-item" href="">Đổi mật khẩu</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- cá nhân -->
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Cá nhân
+            </div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
+                    aria-expanded="true" aria-controls="collapseUser">
+                    <i class='bx bxs-user-rectangle' ></i>
+                    <span>Thông tin</span>
+                </a>
+                <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Thông tin cá nhân</h6>
+                        <a class="collapse-item" href="/admin/information-admin">Thông tin cá nhân</a>
+                        <a class="collapse-item" href="/admin/edit-information-admin">Thay đổi thông tin</a>
+                        <a class="collapse-item" href="/admin/change-password">Đổi mật khẩu</a>
                     </div>
                 </div>
             </li>
