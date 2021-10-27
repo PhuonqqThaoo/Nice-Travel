@@ -37,8 +37,11 @@ public class TravelController {
 
 		  Travel item = travelService.findTravelById(id);
 		  System.out.println(id);
+		  List<Travel> list = travelService.getAllTravel();
+		  model.addAttribute("items",list);
 	  
 		  model.addAttribute("item", item);
+		  
 		 
 		return "travel/detail";
 	} 

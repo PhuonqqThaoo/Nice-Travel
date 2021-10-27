@@ -19,101 +19,31 @@
 
 
         <!-- section -->
-        <section aria-label="section-blog" id="content">
-            <div class="container-fluid">
-                <div class="row">
-
-                    <div class="v-align">
-                        <div class="col-md-11 col-xs-12">
-                            <div class="row">
-
-                                <!-- left content -->
-                                <div class="col-md-8">
-
-                                    <!-- detail img -->
-                                    <div id="projectsBig" class="owl-carousel">
-                                        <div class="item"><img alt="#"
-                                            th:src="@{|/assets/img/*{img}|}"></div>
-                                        <div class="item"><img alt="#"
-                                            th:src="@{|/assets/img/*{img}|}"></div>
-                                        <div class="item"><img alt="#"
-                                            th:src="@{|/assets/img/*{img}|}"></div>
-                                        <div class="item"><img alt="#"
-                                            th:src="@{|/assets/img/*{img}|}"></div>
-                                        <div class="item"><img alt="#"
-                                            th:src="@{|/assets/img/*{img}|}"></div>
-                                    </div>
-                                    <!-- detail img end -->
-
-                                    <div class="grid-item">
-                                        <!-- text detail -->
-                                        <h3 class="big-heading" th:text="*{name}"></h3>
-                                        <p class="intro" th:text="*{typeId.description}">
-                                        </p>
-                                        <!-- <p class="content">incididunt ut labore et dolore magnaaliqua. Ut enim ad minim
-                                            veniam, quis nstrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                            commodoconsequat. eiusmod tempor incididunt ut labore et dolore magnaaliqua.
-                                            Ut enim ad minim veniam, quis nstrud exercitation ullamco laboris nisi ut.
-                                         -->
-                                        </p>
-                                        <!-- text detail end -->
-                                    </div>
-
-                                    <div class="grid-item">
-                                        <img alt="#" class="img-responsive"
-                                        th:src="@{|/assets/img/*{img}|}">
-                                        <!-- text detail -->
-                                        <h3 class="big-heading">Blue Ocean Australia</h3>
-                                        <p class="content" >Sed do eiusmod tempor incididunt ut labore et dolore
-                                            magnaaliqua. Ut enim ad minim veniam, quis nstrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodoconsequat.
-                                        </p>
-                                        <!-- text detail end -->
-                                    </div>
-
-                                </div>
-                                <!-- left content end -->
-
-                                <!-- right content -->
-                                <div class="col-md-4">
-                                    <aside>
-
-                                        <!-- widget -->
-                                        <div class="widget">
-                                            <div class="service-hotel onStep animated fadeInUp"
-                                                data-animation="fadeInUp" data-time="1200">
-                                                <div class="price" th:text="*{price}"><sub>/ person</sub></div>
-                                                <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan
-                                                    american apparel, butcher voluptate nisi qui.</p>
-
-                                                <!-- spacer -->
-                                                <div class="space-half"></div>
-
-                                                <h3 class="big-heading">Facilities Services</h3>
-                                                <div class="devider-rooms-detail"></div>
-                                                <span><i class="ti-check-box"></i> Double Bed</span>
-                                                <span><i class="ti-check-box"></i> Privacy Beach</span>
-                                                <span><i class="ti-check-box"></i> Breakfast Include</span>
-                                                <span><i class="ti-check-box"></i> Private Balcony</span>
-                                                <span><i class="ti-check-box"></i> Free Wi-Fi</span>
-                                                <span><i class="ti-check-box"></i> 4 Persons</span>
-                                            </div>
-                                            <a class="btn-book" href="ecommerce-form.html">BOOK NOW</a>
-                                        </div>
-                                        <!-- widget end -->
-
-                                    </aside>
-                                </div>
-                                <!-- right content end -->
-
-                                <!-- spacer -->
-                                <div class="space-double"></div>
-
-                            </div>
-                        </div>
+        <section aria-label="section-blog" id="content" class="travel-detail">
+            <div class="container-fluid container">
+                <p style="font-size: 1.5rem; color: rgba(10, 189, 227,1.0);" th:text="*{typeId.description}"><i class='bx bx-dice-2'></i></p>
+                <p style="font-size: 2.5rem; margin-bottom: 17px;" th:text="*{name}"></p>
+                <p>
+                    <h3 style="display: inline-block; color: rgba(238, 82, 83,1.0);" th:text="*{price}"></h3> / người
+                    <a href="/booking/check" class="travel-btn" style="margin-left: 100px;"><i class='bx bxs-cart-alt'></i> Đặt
+                        ngay</a>
+                </p>
+                <div class="travel-detail-row">
+                    <div class="travel-detail-col-6">
+                        <img alt="imageportofolio" class="img-responsive" th:src="@{|/assets/img/*{img}|}">
                     </div>
-
+                    <div class="travel-detail-col-6">
+                        <div class="travel-detail-section1">
+                            <p>Khởi hành: <span th:text="*{startDate}"></span></p>
+                            <p>Số lượng: <span th:text="*{quantity}"></span></p>
+                            <p>Số Ngày: <span>5</span></p>
+                            <p>Số chỗ còn nhận: <span>10</span></p>
+                            <p>Nơi khởi hành: <span th:text="*{departurePlace}"></span></p>
+                        </div>
+                        <a href="" class="travel-detail-btn-tu-van">Liên hệ tư vấn ngay</a>
+                    </div>
                 </div>
+                <p style="margin-top: 280px;">Một ngày hòa minh giữa thiên nhiên xanh mát ở khu dự trữ sinh quyển thế giới, khám phá “ lá phổi xanh” của thành phố bằng các hoạt động tham quan tại Chiến Khu Rừng Sác, thưởng ngoạn cảnh quan sông nước hữu tình trên những chiếc ca nô khi len lỏi giữa khu rừng ngập mặn của KDL Dần Xây. Đặc biệt trong hành trình, quý khách còn được thưởng thức những món ăn đặc trưng chỉ có tại Vàm Sát – Cần Giờ như : vịt nước mặn, rau lìm kìm, cua hấp, tôm nướng, cá đối chiên xù cuốn bánh tráng, canh cá bui, chè dừa nước… Quay lại ký ức của Chiến khu xưa, nghe kể về dấu ấn lịch sử oai hùng một thời của lực lượng bộ đội đặc công rừng Sác; Trải nghiệm đi xuồng máy len lỏi vào rừng nguyên sinh ngập mặn; Hòa mình vào bức tranh thiên nhiên xanh mát ở Khu du lịch sinh thái Vàm Sát. Trải nghiệm ẩm thực đặc sắc, hấp dẫn và đặc trưng của Cần Giờ</p>
             </div>
         </section>
         <!-- section end -->
@@ -123,20 +53,17 @@
             <h2 style="text-align: center; top: -50px;">Lịch trình</h2>
             <div class="container">
                 <div class="travel-detail-lich-trinh-time" th:each="detail : *{travelDetails}" th:object="${detail}">
-                    <h4><i class='bx bxs-timer' ></i>[[*{time}]]</h4>
+                    <h4><i class='bx bxs-timer' ></i> [[*{time}]]</h4>
                     <p>[[*{description}]]</p>
                 </div>
-
             </div>
         </section>
-        <!-- edn section lịch trình -->
+        <!--section lịch trình end -->
         
         <!--  gallery home -->
         <section aria-label="gallery">
             <div class="container-fluid m-5-hor">
                 <div class="row">
-
-
 
                 </div>
             </div>
@@ -144,17 +71,19 @@
             <div class="onStep" data-animation="fadeInUp" data-time="0">
                 <div id="owl-gal" class="owl-carousel">
 
-                    <div class="item">
+                   
+
+                    <div  th:each="p: ${items}" class="item">
                         <div class="gal-home">
-                            <a href="projects-detail.html">
+                            <a th:href="@{|/travel/detail/${p.id}|}">
                                 <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img1.jpg">
+                                    <img alt="imageportofolio" class="img-responsive" th:src="@{|/assets/img/${p.img}|}">
                                 </div>
                                 <div class="gal-home-content">
                                     <div class="row">
                                         <div class="col-md-9">
-                                            <h4>Blue Ocean Island</h4>
-                                            <p>Duration 5 days</p>
+                                            <h4 th:utext="${p.name}"></h4>
+                                            <p>[[${p.startDate}]]</p>
                                             <div class="star-content">
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -166,164 +95,13 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
+                                            <div class="price big-heading">$[[${p.price}]]</div>
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img2.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>Luxury Asia Travel</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img3.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>Wild Tour Africa</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img4.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>Amazing Diversity Place</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img5.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>The Kingdom of West</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img6.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>An Asian Temple</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>

@@ -31,26 +31,30 @@
 	<!-- css -->
 	<link rel="stylesheet" th:href="@{/assets/css/main.css}">
 	<link rel="stylesheet" th:href="@{/assets/css/error404.css}">
+	
+	<!-- css customize -->
+    <link rel="stylesheet" th:href="@{/assets/css/nicetravel.style.css}">
 </head>
 
 <body>
 	<!-- preloader -->
-	<div class="bg-preloader-white"></div>
-	<div class="preloader-white">
-		<div class="mainpreloader">
-			<span></span>
-		</div>
-	</div>
-	<!-- preloader end -->
+    <div class="bg-preloader-white"></div>
+    <div class="preloader-white">
+        <div class="mainpreloader">
+            <span></span>
+        </div>
+    </div>
+    <!-- preloader end -->
+    
 	<div class="content-wrapper">
-		<nav>
-			<div th:replace="/layout/_header.html"></div>
-		</nav>
-		<div>
-			<!-- <article> -->
-			<div th:replace="${main}"></div>
-			<!-- </article> -->
-		</div>
+		<!-- header start -->
+		<div th:replace="/layout/_header.html"></div>
+		<!-- header end -->
+		
+		<!-- <main start> -->
+		<div th:replace="${main}"></div>
+		<!-- </main end> -->
+
 		<!-- Footer Section Begin -->
 		<div th:replace="/layout/_footer.html"></div>
 		<!-- Footer Section End -->
