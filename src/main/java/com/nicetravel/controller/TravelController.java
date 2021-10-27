@@ -30,7 +30,7 @@ public class TravelController {
 		 model.addAttribute("items",list);
 		 
 		return "travel/list";
-	}
+	} 
 	 
 	@RequestMapping("/detail/{id}")
 	public String detail(Model model,@PathVariable("id") Integer id) {
@@ -42,6 +42,11 @@ public class TravelController {
 	  
 		  model.addAttribute("item", item);
 		  
+<<<<<<< HEAD
+=======
+		  List<Travel> list = travelService.getAllTravel();
+			 model.addAttribute("items",list);
+>>>>>>> 5effaa25cdf168ba15970f8ba3584da01b6726cd
 		 
 		return "travel/detail";
 	} 

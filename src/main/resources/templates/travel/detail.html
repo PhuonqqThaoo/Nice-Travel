@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
     <body>
         <main th:object="${item}">
@@ -109,4 +110,194 @@
             
         </main>
     </body>
+=======
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+	<div th:object="${item}">
+		<!-- subheader -->
+		<section id="subheader">
+			<div class="container-fluid m-5-hor">
+				<div class="row">
+					<div class="col-md-12">
+						<h1 class="big-heading">Chi tiết chuyến đi</h1>
+						<p>Thông tin lịch trình và giá cả</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- subheader end -->
+
+
+		<!-- section -->
+		<section aria-label="section-blog" id="content">
+			<div class="container-fluid">
+				<div class="row">
+
+					<div class="v-align">
+						<div class="col-md-11 col-xs-12">
+							<div class="row">
+
+								<!-- left content -->
+								<div class="col-md-8">
+
+									<!-- detail img -->
+									<div id="projectsBig" class="owl-carousel">
+										<div class="item">
+											<img alt="#" th:src="@{|/assets/img/*{img}|}">
+										</div>
+										<div class="item">
+											<img alt="#" th:src="@{|/assets/img/*{img}|}">
+										</div>
+										<div class="item">
+											<img alt="#" th:src="@{|/assets/img/*{img}|}">
+										</div>
+										<div class="item">
+											<img alt="#" th:src="@{|/assets/img/*{img}|}">
+										</div>
+										<div class="item">
+											<img alt="#" th:src="@{|/assets/img/*{img}|}">
+										</div>
+									</div>
+									<!-- detail img end -->
+
+									<div class="grid-item">
+										<!-- text detail -->
+										<h3 class="big-heading" th:text="*{name}"></h3>
+										<p class="intro" th:text="*{typeId.description}"></p>
+										<!-- <p class="content">incididunt ut labore et dolore magnaaliqua. Ut enim ad minim
+                                            veniam, quis nstrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                            commodoconsequat. eiusmod tempor incididunt ut labore et dolore magnaaliqua.
+                                            Ut enim ad minim veniam, quis nstrud exercitation ullamco laboris nisi ut.
+                                         -->
+										</p>
+										<!-- text detail end -->
+									</div>
+
+									<!-- <div class="grid-item">
+                                        <img alt="#" class="img-responsive"
+                                        th:src="@{|/assets/img/*{img}|}">
+                                        text detail
+                                        <h3 class="big-heading">Blue Ocean Australia</h3>
+                                        <p class="content" >Sed do eiusmod tempor incididunt ut labore et dolore
+                                            magnaaliqua. Ut enim ad minim veniam, quis nstrud exercitation ullamco
+                                            laboris nisi ut aliquip ex ea commodoconsequat.
+                                        </p>
+                                        text detail end
+                                    </div> -->
+
+								</div>
+								<!-- left content end -->
+
+								<!-- right content -->
+								<div class="col-md-4">
+									<aside>
+
+										<!-- widget -->
+										<div class="widget">
+											<div class="service-hotel onStep animated fadeInUp"
+												data-animation="fadeInUp" data-time="1200">
+												<div class="price"
+													th:text="*{#numbers.formatCurrency(price)}">
+													<sub>/ person</sub>
+												</div>
+												<p>Đà Lạt tinh khôi, trong lành giữa rừng thông cùng
+													muôn hoa đua nở dưới nắng dịu dàng và những cảnh đẹp nao
+													lòng luôn hấp dẫn du khách thập phương. Đà Lạt luôn không
+													ngừng đổi mới và khiến người ta say đắm quên lối về với một
+													sắc thái, một nét đẹp riêng vốn có.</p>
+
+												<!-- spacer -->
+												<div class="space-half"></div>
+
+												<h3 class="big-heading">Facilities Services</h3>
+												<div class="devider-rooms-detail"></div>
+												<span><i class="ti-check-box"></i> Double Bed</span> <span><i
+													class="ti-check-box"></i> Privacy Beach</span> <span><i
+													class="ti-check-box"></i> Breakfast Include</span> <span><i
+													class="ti-check-box"></i> Private Balcony</span> <span><i
+													class="ti-check-box"></i> Free Wi-Fi</span> <span><i
+													class="ti-check-box"></i> 4 Persons</span>
+											</div>
+											<a class="btn-book" href="ecommerce-form.html">BOOK NOW</a>
+										</div>
+										<!-- widget end -->
+
+									</aside>
+								</div>
+								<!-- right content end -->
+
+								<!-- spacer -->
+								<div class="space-double"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section end -->
+
+		<!-- section lá»‹ch trÃ¬nh -->
+		<section class="travel-detail-lich-trinh">
+			<h2 style="text-align: center; top: -50px;">Lịch trình</h2>
+			<div class="container">
+				<div class="travel-detail-lich-trinh-time"
+					th:each="detail : *{travelDetails}" th:object="${detail}">
+					<h4>
+						<i class='bx bxs-timer'></i>[[*{time}]]
+					</h4>
+					<p>[[*{description}]]</p>
+				</div>
+
+			</div>
+		</section>
+		<!-- edn section lá»‹ch trÃ¬nh -->
+
+		<!--  gallery home -->
+		<section aria-label="gallery">
+			<div class="container-fluid m-5-hor">
+				<div class="row"></div>
+			</div>
+	</div>
+	<div class="onStep" data-animation="fadeInUp" data-time="0">
+		<div id="owl-gal" class="owl-carousel">
+
+			<div th:each="p: ${items}" class="item">
+				<div class="gal-home">
+					<a th:href="@{|/travel/detail/${p.id}|}">
+						<div class="hovereffect">
+							<img alt="imageportofolio" class="img-responsive"
+								th:src="@{|/assets/img/${p.img}|}">
+						</div>
+						<div class="gal-home-content">
+							<div class="row">
+								<div class="col-md-9">
+									<h4 th:utext="${p.name}"></h4>
+									<p>[[${p.startDate}]]</p>
+									<div class="star-content">
+										<i class="fa fa-star" aria-hidden="true"></i> <i
+											class="fa fa-star" aria-hidden="true"></i> <i
+											class="fa fa-star" aria-hidden="true"></i> <i
+											class="fa fa-star" aria-hidden="true"></i> <i
+											class="fa fa-star-o" aria-hidden="true"></i>
+									</div>
+									<div class="review-cont big-heading">1 Reviews</div>
+								</div>
+								<div class="col-md-3">
+									<div class="heading-price">From</div>
+									<div class="price big-heading">$[[${p.price}]]</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	</section>
+	<!--  gallery home end --> </main>
+</body>
+>>>>>>> 5effaa25cdf168ba15970f8ba3584da01b6726cd
 </html>
