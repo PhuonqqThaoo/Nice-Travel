@@ -41,12 +41,6 @@ public class TravelController {
 		  model.addAttribute("items",list);
 	  
 		  model.addAttribute("item", item);
-		  
-<<<<<<< HEAD
-=======
-		  List<Travel> list = travelService.getAllTravel();
-			 model.addAttribute("items",list);
->>>>>>> 5effaa25cdf168ba15970f8ba3584da01b6726cd
 		 
 		return "travel/detail";
 	} 
