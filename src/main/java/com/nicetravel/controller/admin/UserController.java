@@ -34,6 +34,7 @@ public class UserController {
 		return "/admin/khach-hang/ThongTinKhachHang";
 	}
 	
+	// localhost:8081/admin/thong-tin-khach-hang/edit?username={username}
 	@GetMapping("/edit")
 	public String doGetEdit(@RequestParam("username") String username, Model model) {
 		Account userRequest = accountService.findAccountsByUsername(username);
