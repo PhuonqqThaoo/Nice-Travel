@@ -9,11 +9,11 @@
 
         <!-- section -->
         <section aria-label="section-blog" id="content" class="travel-detail">
-            <div class="container-fluid container">
+            <div class="container-fluid container"> 
                 <p style="font-size: 1.5rem; color: rgba(10, 189, 227,1.0);" th:text="*{typeId.description}"><i class='bx bx-dice-2'></i></p>
                 <p style="font-size: 2.5rem; margin-bottom: 17px;" th:text="*{name}"></p>
                 <p>
-                    <h3 style="display: inline-block; color: rgba(238, 82, 83,1.0);" th:text="*{price}"></h3> / người
+                    <h3 style="display: inline-block; color: rgba(238, 82, 83,1.0);" th:text="*{#numbers.formatCurrency(price)}"></h3> / người
                     <a href="/booking/check" class="travel-btn" style="margin-left: 100px;"><i class='bx bxs-cart-alt'></i> Đặt
                         ngay</a>
                 </p>
