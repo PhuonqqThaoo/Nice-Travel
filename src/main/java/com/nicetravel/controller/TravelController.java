@@ -1,6 +1,7 @@
 package com.nicetravel.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,11 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nicetravel.entity.Travel;
 import com.nicetravel.entity.TravelDetail;
 import com.nicetravel.service.TravelDetailService;
 import com.nicetravel.service.TravelService;
+
 
 
 @Controller
@@ -23,11 +26,16 @@ public class TravelController {
 	TravelService travelService;
 	
 	@RequestMapping("/list")
-	public String list(Model model) {
+	public String list(Model model,@RequestParam("tid") Optional<Integer> tid) {
+		if(tid.isPresent()) {
+			List<Travel> list =  travelService.findByTypeId(tid.get());
+			model.addAttribute("items",list);
+		}
+		else {
+			 List<Travel> list = travelService.getAllTravel();
+			 model.addAttribute("items",list);
+		}
 		
-		
-		 List<Travel> list = travelService.getAllTravel();
-		 model.addAttribute("items",list);
 		 
 		return "travel/list";
 	} 

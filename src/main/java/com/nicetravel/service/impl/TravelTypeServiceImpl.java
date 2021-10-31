@@ -3,6 +3,8 @@ package com.nicetravel.service.impl;
 import com.nicetravel.entity.TravelTypes;
 import com.nicetravel.repository.TravelTypeRepository;
 import com.nicetravel.service.TravelTypeService;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,4 +44,10 @@ public class TravelTypeServiceImpl implements TravelTypeService {
     public void deleteTravelType(Integer id) {
         travelTypeRepository.deleteById(id);
     }
+
+	@Override
+	public List<TravelTypes> findAll() {
+			return travelTypeRepository.findAll();
+
+	}
 }
