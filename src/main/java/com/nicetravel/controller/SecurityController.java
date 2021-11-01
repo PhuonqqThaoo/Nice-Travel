@@ -127,7 +127,7 @@ public String showRegistrationForm(Model model) {
 
     @GetMapping("/reset_password")
     public String showResetPasswordForm(@Param(value = "token") String token, Model model) {
-        Account account = accountService.findByVerificationCode(token);
+        Account account = userServices.getByResetPasswordToken(token);
         model.addAttribute("token", token);
 
         if (account == null) {
@@ -143,7 +143,7 @@ public String showRegistrationForm(Model model) {
         String token = request.getParameter("token");
         String password = request.getParameter("password");
 
-        Account account = accountService.findByVerificationCode(token);
+        Account account = userServices.getByResetPasswordToken(token);
         model.addAttribute("title", "Reset your password");
 
         if (account == null) {

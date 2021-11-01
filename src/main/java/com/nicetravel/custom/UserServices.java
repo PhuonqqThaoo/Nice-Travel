@@ -109,6 +109,7 @@ public class UserServices {
 
     }
 
+//    -------------------------------------
 
     public void updateResetPasswordToken(String token, String email) throws UsernameNotFoundException {
         Account account = accountService.findByEmail(email);

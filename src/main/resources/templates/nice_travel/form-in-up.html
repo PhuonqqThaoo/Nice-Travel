@@ -31,7 +31,7 @@
                         </div>
                         <span class="message" th:text="${message}"></span>
                         <div class="forgot">
-                            <a class="forgot_password" th:href="@{/account/forgot_password}">Forgot your password?</a>
+                            <a class="forgot_password" th:href="@{/forgot_password}">Forgot your password?</a>
                         </div>
 
                         <input type="submit" value="Login" class="btn solid" />
@@ -53,7 +53,7 @@
                     </form>
 
                     <!-- register -->
-                    <form th:action="@{/account/process-register}" th:object="${account}" method="post"
+                    <form th:action="@{/process-register}" th:object="${account}" method="post"
                         class="sign-up-form">
                         <h2 class="title">Đăng ký</h2>
                         <div class="input-field">

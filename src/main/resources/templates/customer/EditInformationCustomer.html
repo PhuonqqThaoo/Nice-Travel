@@ -306,46 +306,48 @@
 
                         <!-- edit information -->
                         <div class="row box box-border">
-                            <div class="col-12">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Fullname</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label>CMND/CCCD</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputAddress">Địa chỉ</label>
-                                    <input type="text" class="form-control" id="inputAddress"
-                                        placeholder="1234 Main St">
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Giới tính</label>
-                                        <div class="form-control">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio1" value="option1">
-                                                <label class="form-check-label" for="inlineRadio1">Nam</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio2" value="option2">
-                                                <label class="form-check-label" for="inlineRadio2">Nữ</label>
-                                            </div>
+                            <form action="#" th:action="@{/customer/update}" th:object="${account}" method="POST">
+                                <div class="col-12">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Fullname</label>
+                                            <input type="text" th:field="*{fullname}" class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>CMND/CCCD</label>
+                                            <input type="text" th:field="*{id_Card}" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Số điện thoại</label>
-                                        <input type="text" class="form-control">
+                                    <div class="form-group">
+                                        <label for="inputAddress">Địa chỉ</label>
+                                        <input type="text" th:field="*{address}" class="form-control" id="inputAddress"
+                                               placeholder="1234 Main St">
                                     </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Giới tính</label>
+                                            <div class="form-control">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" th:field="*{gender}" th:value="true" type="radio" name="inlineRadioOptions"
+                                                           id="inlineRadio1" value="option1">
+                                                    <label class="form-check-label" for="inlineRadio1">Nam</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" th:field="*{gender}" th:value="false" type="radio" name="inlineRadioOptions"
+                                                           id="inlineRadio2" value="option2">
+                                                    <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Số điện thoại</label>
+                                            <input type="text" th:field="*{phone}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-w-100">Lưu</button>
+                                    <button class="btn btn-light btn-w-100">Reset</button>
                                 </div>
-                                <button class="btn btn-primary btn-w-100">Lưu</button>
-                                <button class="btn btn-light btn-w-100">Reset</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <!-- end row info -->
