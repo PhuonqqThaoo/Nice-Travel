@@ -96,6 +96,7 @@
                                         <div class="hovereffect">
                                             <img alt="imageportofolio" class="img-responsive"
                                                 th:src="@{|/assets/img/${p.img}|}">
+                                            <button class="like"><i class='bx bxs-heart'></i> Yêu thích</button>
                                         </div>
                                         <div class="gal-home-content travel-box-content">
                                             <p>$[[${p.startDate}]]</p>
@@ -115,7 +116,9 @@
                                     </a>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="xem-them">
+                            <button class="btn btn-primary btn-xem-them">Xem thêm</button>
                         </div>
                     </div>
                     <!-- right content end -->
