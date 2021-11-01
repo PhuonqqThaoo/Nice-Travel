@@ -773,10 +773,14 @@ li>a:only-child:after {
 /* subheader */
 
 #subheader {
-    color: #fefefe;
+    color: #10ac84;
     padding: 310px 0 80px 0;
     background: #222;
-    background: url(../img/bg-subheader.jpg)top fixed;
+<<<<<<< HEAD
+    background: url('https://media.travel.com.vn/SlideShow/sl_211018_du-lich-an-toan.jpg')top fixed;
+=======
+    background: url(../img/bg-subheader2.jpg)top fixed;
+>>>>>>> 5effaa25cdf168ba15970f8ba3584da01b6726cd
     background-size:cover;
 }
 #subheader-commerce {
@@ -952,11 +956,11 @@ li>a:only-child:after {
     height: 100%;
 }
 #about-us-1 .image-container {
-    background: url(../img/bg-about.jpg);
+    background: url('http://on3-step.com/tf/plesire/img/bg-about.jpg');
     background-size: cover;
 }
 #about-us-2 .image-container {
-    background: url(../img/bg-about-1jpgg);
+    background: url('http://on3-step.com/tf/plesire/img/bg-about-1.jpg');
     background-size: cover;
 }
 .count-about {
@@ -1065,24 +1069,27 @@ li>a:only-child:after {
 
 .features .bg-img {
     width: 100%;
+    height: 300px;
     padding: 60px;
-    background: url(../img/serv1.jpg);
+    background: url("./../images-slider/img-slide-1.jpg");
     overflow-x: hidden;
     background-size: cover;
     background-position: center;
 }
 .features .bg-img-1 {
     width: 100%;
+    height: 300px;
     padding: 60px;
-    background: url(../img/serv2.jpg);
+    background: url("./../images-slider/img-slide-2.jpg");
     overflow-x: hidden;
     background-size: cover;
     background-position: center;
 }
 .features .bg-img-2 {
     width: 100%;
+    height: 300px;
     padding: 60px;
-    background: url(../img/serv3.jpg);
+    background: url("./../images-slider/img-slide-3.jpg");
     overflow-x: hidden;
     background-size: cover;
     background-position: center;
@@ -1111,7 +1118,6 @@ sup.subtour{
 .feature-1{
     border-radius: 4px;
     margin-top: 30px;
-    margin-bottom: 30px;
     -webkit-transition: box-shadow .18s ease;
     transition: box-shadow .18s ease;
 }
@@ -1123,7 +1129,7 @@ sup.subtour{
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     width: 100%;
-    height: auto;
+    height: 240px;
 }
 .cont-detail{
     padding: 30px;
@@ -1175,7 +1181,7 @@ sup.subtour{
 .frm-search {
     width: 100%;
 	color: #fff;
-    background: url(../img/bg-search.jpg);
+    background: url('http://on3-step.com/tf/plesire/img/bg-search.jpg');
     overflow-x: hidden;
     background-size: cover;
     background-position: center;
@@ -1390,7 +1396,7 @@ select.cust-select::-ms-expand {
     margin-top: 30px;
 }
 #testimony .image-container {
-    background: url(../img/bg-ab.jpg);
+    background: url('https://media.travel.com.vn/destination/dg_200827_CAU RONG VE DEM_1.jpg');
     overflow-x: hidden;
     background-size: cover;
     background-position: top right;
@@ -1991,14 +1997,15 @@ ul#services-list {
     margin-right:5px;
 }
 .service-hotel .price{
-    font-family: 'Playfair Display', serif;
+    font-family: Florence', scursive;
     width:111%;
-    font-size:44pt;
+    font-size:35pt;
     text-align:left;
-    font-weight:600;
+    font-weight:400;
     color:#ee5253;
     margin-top:10px;
     margin-bottom:30px;
+    letter-spacing: -2px;
 }
 .service-hotel .price sub{ 
     font-size:12pt;
@@ -2843,7 +2850,7 @@ address.cont-1 span a {
     font-size:13pt;
 }
 #content-commerce .table-responsive table .price{
-    font-size:17pt;
+    font-size:13pt;
     font-weight: bold;
     color: #fc9f1c;
 }

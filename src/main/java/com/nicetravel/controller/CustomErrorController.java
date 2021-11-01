@@ -32,6 +32,8 @@ public class CustomErrorController implements ErrorController {
                 // handle HTTP 500 Internal Server error
                 errorPage = "error/500";
 
+            } else if (statusCode == HttpStatus.METHOD_NOT_ALLOWED.value()){
+                errorPage = "error/405";
             }
         }
 

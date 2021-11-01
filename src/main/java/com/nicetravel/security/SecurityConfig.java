@@ -19,6 +19,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.sql.DataSource;
 import java.util.Arrays;
@@ -62,27 +65,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/api/v1/**").hasRole("ADMIN")
                 .anyRequest().permitAll();
 
         http.formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/account/login")
-                .defaultSuccessUrl("/login/success", false)
+                .defaultSuccessUrl("/", false)
                 .failureUrl("/login/error")
                 .usernameParameter("username")
                 .passwordParameter("password");
 
-        http.rememberMe()
-                .rememberMeParameter("remember")
-                .tokenValiditySeconds(86400);
+        http.rememberMe();
 
         http.logout()
                 .logoutUrl("/logoff")
                 .logoutSuccessUrl("/logoff/success")
                 .deleteCookies("JSESSIONID");
 
-        http.exceptionHandling()
-                .accessDeniedPage("/unauthorized");
+//        http.exceptionHandling()
+//                .accessDeniedPage("/error");
+
     }
 
     @Override

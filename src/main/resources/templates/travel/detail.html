@@ -2,141 +2,57 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
     <body>
         <main th:object="${item}">
-             <!-- subheader -->
+         <!-- subheader -->
         <section id="subheader">
-            <div class="container-fluid m-5-hor">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="big-heading">
-                            Detail Gallery
-                        </h1>
-                        <p>Varius blandit sit amet</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </section> 
         <!-- subheader end -->
 
-
         <!-- section -->
-        <section aria-label="section-blog" id="content">
-            <div class="container-fluid">
-                <div class="row">
-
-                    <div class="v-align">
-                        <div class="col-md-11 col-xs-12">
-                            <div class="row">
-
-                                <!-- left content -->
-                                <div class="col-md-8">
-
-                                    <!-- detail img -->
-                                    <div id="projectsBig" class="owl-carousel">
-                                        <div class="item"><img alt="#"
-                                            th:src="@{|/assets/img/*{img}|}"></div>
-                                        <div class="item"><img alt="#"
-                                            th:src="@{|/assets/img/*{img}|}"></div>
-                                        <div class="item"><img alt="#"
-                                            th:src="@{|/assets/img/*{img}|}"></div>
-                                        <div class="item"><img alt="#"
-                                            th:src="@{|/assets/img/*{img}|}"></div>
-                                        <div class="item"><img alt="#"
-                                            th:src="@{|/assets/img/*{img}|}"></div>
-                                    </div>
-                                    <!-- detail img end -->
-
-                                    <div class="grid-item">
-                                        <!-- text detail -->
-                                        <h3 class="big-heading" th:text="*{name}"></h3>
-                                        <p class="intro" th:text="*{typeId.description}">
-                                        </p>
-                                        <!-- <p class="content">incididunt ut labore et dolore magnaaliqua. Ut enim ad minim
-                                            veniam, quis nstrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                            commodoconsequat. eiusmod tempor incididunt ut labore et dolore magnaaliqua.
-                                            Ut enim ad minim veniam, quis nstrud exercitation ullamco laboris nisi ut.
-                                         -->
-                                        </p>
-                                        <!-- text detail end -->
-                                    </div>
-
-                                    <div class="grid-item">
-                                        <img alt="#" class="img-responsive"
-                                        th:src="@{|/assets/img/*{img}|}">
-                                        <!-- text detail -->
-                                        <h3 class="big-heading">Blue Ocean Australia</h3>
-                                        <p class="content" >Sed do eiusmod tempor incididunt ut labore et dolore
-                                            magnaaliqua. Ut enim ad minim veniam, quis nstrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodoconsequat.
-                                        </p>
-                                        <!-- text detail end -->
-                                    </div>
-
-                                </div>
-                                <!-- left content end -->
-
-                                <!-- right content -->
-                                <div class="col-md-4">
-                                    <aside>
-
-                                        <!-- widget -->
-                                        <div class="widget">
-                                            <div class="service-hotel onStep animated fadeInUp"
-                                                data-animation="fadeInUp" data-time="1200">
-                                                <div class="price" th:text="*{price}"><sub>/ person</sub></div>
-                                                <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan
-                                                    american apparel, butcher voluptate nisi qui.</p>
-
-                                                <!-- spacer -->
-                                                <div class="space-half"></div>
-
-                                                <h3 class="big-heading">Facilities Services</h3>
-                                                <div class="devider-rooms-detail"></div>
-                                                <span><i class="ti-check-box"></i> Double Bed</span>
-                                                <span><i class="ti-check-box"></i> Privacy Beach</span>
-                                                <span><i class="ti-check-box"></i> Breakfast Include</span>
-                                                <span><i class="ti-check-box"></i> Private Balcony</span>
-                                                <span><i class="ti-check-box"></i> Free Wi-Fi</span>
-                                                <span><i class="ti-check-box"></i> 4 Persons</span>
-                                            </div>
-                                            <a class="btn-book" href="ecommerce-form.html">BOOK NOW</a>
-                                        </div>
-                                        <!-- widget end -->
-
-                                    </aside>
-                                </div>
-                                <!-- right content end -->
-
-                                <!-- spacer -->
-                                <div class="space-double"></div>
-
-                            </div>
-                        </div>
+        <section aria-label="section-blog" id="content" class="travel-detail">
+            <div class="container-fluid container"> 
+                <p style="font-size: 1.5rem; color: rgba(10, 189, 227,1.0);" th:text="*{typeId.description}"><i class='bx bx-dice-2'></i></p>
+                <p style="font-size: 2.5rem; margin-bottom: 17px;" th:text="*{name}"></p>
+                <p>
+                    <h3 style="display: inline-block; color: rgba(238, 82, 83,1.0);" th:text="*{#numbers.formatCurrency(price)}"></h3> / ngÆ°á»�i
+                    <a href="/booking/check" class="travel-btn" style="margin-left: 100px;"><i class='bx bxs-cart-alt'></i> Ä�áº·t
+                        ngay</a>
+                </p>
+                <div class="travel-detail-row">
+                    <div class="travel-detail-col-6">
+                        <img alt="imageportofolio" class="img-responsive h-img-309" th:src="@{|/assets/img/*{img}|}">
                     </div>
-
+                    <div class="travel-detail-col-6">
+                        <div class="travel-detail-section1">
+                            <p>Khá»Ÿi hÃ nh: <span th:text="*{startDate}"></span></p>
+                            <p>Sá»‘ lÆ°á»£ng: <span th:text="*{quantity}"></span></p>
+                            <p>Sá»‘ NgÃ y: <span>5</span></p>
+                            <p>Sá»‘ chá»— cÃ²n nháº­n: <span>10</span></p>
+                            <p>NÆ¡i khá»Ÿi hÃ nh: <span th:text="*{departurePlace}"></span></p>
+                        </div>
+                        <a href="" class="travel-detail-btn-tu-van">LiÃªn há»‡ tÆ° váº¥n ngay</a>
+                    </div>
                 </div>
+                <p style="margin-top: 280px;">Má»™t ngÃ y hÃ²a minh giá»¯a thiÃªn nhiÃªn xanh mÃ¡t á»Ÿ khu dá»± trá»¯ sinh quyá»ƒn tháº¿ giá»›i, khÃ¡m phÃ¡ â€œ lÃ¡ phá»•i xanhâ€� cá»§a thÃ nh phá»‘ báº±ng cÃ¡c hoáº¡t Ä‘á»™ng tham quan táº¡i Chiáº¿n Khu Rá»«ng SÃ¡c, thÆ°á»Ÿng ngoáº¡n cáº£nh quan sÃ´ng nÆ°á»›c há»¯u tÃ¬nh trÃªn nhá»¯ng chiáº¿c ca nÃ´ khi len lá»�i giá»¯a khu rá»«ng ngáº­p máº·n cá»§a KDL Dáº§n XÃ¢y. Ä�áº·c biá»‡t trong hÃ nh trÃ¬nh, quÃ½ khÃ¡ch cÃ²n Ä‘Æ°á»£c thÆ°á»Ÿng thá»©c nhá»¯ng mÃ³n Äƒn Ä‘áº·c trÆ°ng chá»‰ cÃ³ táº¡i VÃ m SÃ¡t â€“ Cáº§n Giá»� nhÆ° : vá»‹t nÆ°á»›c máº·n, rau lÃ¬m kÃ¬m, cua háº¥p, tÃ´m nÆ°á»›ng, cÃ¡ Ä‘á»‘i chiÃªn xÃ¹ cuá»‘n bÃ¡nh trÃ¡ng, canh cÃ¡ bui, chÃ¨ dá»«a nÆ°á»›câ€¦ Quay láº¡i kÃ½ á»©c cá»§a Chiáº¿n khu xÆ°a, nghe ká»ƒ vá»� dáº¥u áº¥n lá»‹ch sá»­ oai hÃ¹ng má»™t thá»�i cá»§a lá»±c lÆ°á»£ng bá»™ Ä‘á»™i Ä‘áº·c cÃ´ng rá»«ng SÃ¡c; Tráº£i nghiá»‡m Ä‘i xuá»“ng mÃ¡y len lá»�i vÃ o rá»«ng nguyÃªn sinh ngáº­p máº·n; HÃ²a mÃ¬nh vÃ o bá»©c tranh thiÃªn nhiÃªn xanh mÃ¡t á»Ÿ Khu du lá»‹ch sinh thÃ¡i VÃ m SÃ¡t. Tráº£i nghiá»‡m áº©m thá»±c Ä‘áº·c sáº¯c, háº¥p dáº«n vÃ  Ä‘áº·c trÆ°ng cá»§a Cáº§n Giá»�</p>
             </div>
         </section>
         <!-- section end -->
         
-		<!-- section lịch trình -->
+		<!-- section lá»‹ch trÃ¬nh -->
         <section class="travel-detail-lich-trinh">
-            <h2 style="text-align: center; top: -50px;">Lịch trình</h2>
+            <h2 style="text-align: center; top: -50px;">Lá»‹ch trÃ¬nh</h2>
             <div class="container">
                 <div class="travel-detail-lich-trinh-time" th:each="detail : *{travelDetails}" th:object="${detail}">
-                    <h4><i class='bx bxs-timer' ></i>[[*{time}]]</h4>
+                    <h4><i class='bx bxs-timer' ></i> [[*{time}]]</h4>
                     <p>[[*{description}]]</p>
                 </div>
-
             </div>
         </section>
-        <!-- edn section lịch trình -->
+        <!--section lá»‹ch trÃ¬nh end -->
         
         <!--  gallery home -->
         <section aria-label="gallery">
             <div class="container-fluid m-5-hor">
                 <div class="row">
-
-
 
                 </div>
             </div>
@@ -144,186 +60,35 @@
             <div class="onStep" data-animation="fadeInUp" data-time="0">
                 <div id="owl-gal" class="owl-carousel">
 
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
+                    <div th:each="p: ${items}" class="item">
+                        <div class="gal-home travel-box">
+                            <a th:href="@{|/travel/detail/${p.id}|}">
                                 <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img1.jpg">
+                                    <img alt="imageportofolio" class="img-responsive"
+                                        th:src="@{|/assets/img/${p.img}|}">
+                                    <button class="like"><i class='bx bxs-heart'></i> Yêu thích</button>
                                 </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>Blue Ocean Island</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
+                                <div class="gal-home-content travel-box-content">
+                                    <p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate, 'dd-MM-yyyy')}]] - [[${#dates.format(p.endDate, 'dd')} - ${#dates.format(p.startDate, 'dd')}]]  ngÃ y  </p>
+                                    <h5><a th:utext="${p.name}"></a></h5>
+                                    <br>
+                                    <p>Số lượng: [[${p.quantity}]] Người</p>
+                                    <p>Nơi khởi hành:  [[${p.departurePlace}]]</p>
+                                    <p>
+                                        <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">[[${#numbers.formatCurrency(p.price)}]]
+                                        </h5> / Người
+                                    </p>
+                                    <div>
+                                        <a href="/travel/booking" class="travel-btn"><i class='bx bxs-cart-alt'></i> Ä�áº·t
+                                            ngay</a>
+                                        <a th:href="@{|/travel/detail/${p.id}|}" style="float: right;">Xem chi tiáº¿t</a>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
 
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img2.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>Luxury Asia Travel</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img3.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>Wild Tour Africa</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img4.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>Amazing Diversity Place</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img5.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>The Kingdom of West</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="gal-home">
-                            <a href="projects-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive" src="http://on3-step.com/tf/plesire/img/gallery-home/img6.jpg">
-                                </div>
-                                <div class="gal-home-content">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <h4>An Asian Temple</h4>
-                                            <p>Duration 5 days</p>
-                                            <div class="star-content">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="review-cont big-heading">1 Reviews</div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="heading-price">From</div>
-                                            <div class="price big-heading">$ 1200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
+                 
                 </div>
             </div>
         </section>

@@ -21,7 +21,7 @@ import com.nicetravel.service.AccountService;
 
 @Controller
 @RequestMapping("/admin/thong-tin-nhan-vien")
-public class StaffController {
+public class StaffController { 
 	
 	@Autowired
 	private AccountService accountService;

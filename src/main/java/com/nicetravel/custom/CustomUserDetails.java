@@ -1,14 +1,14 @@
 package com.nicetravel.custom;
 
 import com.nicetravel.entity.Account;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
-    private Account account;
+    private final Account account;
 
     public CustomUserDetails(Account account) {
         this.account = account;
@@ -26,7 +26,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return account.getUsername();
+        return account.getEmail();
     }
 
     @Override

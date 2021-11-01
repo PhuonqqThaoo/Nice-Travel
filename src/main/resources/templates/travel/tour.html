@@ -5,26 +5,16 @@
 	<main th:object="${item}">
 		<!-- subheader -->
         <section id="subheader">
-            <div class="container-fluid m-5-hor">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="big-heading">
-                            Our Destination
-                        </h1>
-                        <p>Varius blandit sit amet</p>
-                    </div>
-                </div>
-            </div>
         </section>
         <!-- subheader end -->
-		 <!-- section -->
-        <section aria-label="section-blog" id="content">
+		<section aria-label="section-blog" id="content">
             <div class="container-fluid m-5-hor">
                 <div class="row">
 
                     <!-- left content -->
                     <div class="col-md-3">
-                        <div class="frm-search" style="background: url('http://on3-step.com/tf/plesire/img/bg-search-ver.jpg');">
+                        <div class="frm-search"
+                            style="background: url('http://on3-step.com/tf/plesire/img/bg-search-ver.jpg');">
                             <div class="container-fluid m-5-hor m-5-hor-dev">
                                 <div class="row">
 
@@ -101,43 +91,41 @@
                         <div class="row">
 
                             <div class="col-md-6 col-lg-4" th:each="p: ${items}">
-                                <div class="gal-home">
+                                <div class="gal-home travel-box">
                                     <a th:href="@{|/travel/detail/${p.id}|}">
                                         <div class="hovereffect">
                                             <img alt="imageportofolio" class="img-responsive"
                                                 th:src="@{|/assets/img/${p.img}|}">
+                                            <button class="like"><i class='bx bxs-heart'></i> Yêu thích</button>
                                         </div>
-                                        <div class="gal-home-content">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <h4 th:utext="${p.name}"></h4>
-                                                    <p>[[${p.startDate}]]</p>
-                                                    <div class="star-content">
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                    </div>
-                                                    <div class="review-cont big-heading">1 Reviews</div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="heading-price">From</div>
-                                                    <div class="price big-heading">$[[${p.price}]]</div>
-                                                </div>
+                                        <div class="gal-home-content travel-box-content">
+                                            <p>$[[${p.startDate}]]</p>
+                                            <h5><a th:href="@{|/travel/detail/${p.id}|}" th:utext="${p.name}"></a></h5>
+                                            <br>
+                                            <p>Số lượng: $[[${p.quantity}]]</p>
+                                            <p>Nơi khởi hành: $[[${p.departurePlace}]]</p>
+                                            <p>
+                                                <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">$[[${p.price}]]</h5> / người
+                                            </p>
+                                            <div>
+                                                <a href="booking.html" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
+                                                    ngay</a>
+                                                <a th:href="@{|/travel/detail/${p.id}|}" style="float: right;">Xem chi tiết</a>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
                             </div>
-       
+                        </div>
+                        <div class="xem-them">
+                            <button class="btn btn-primary btn-xem-them">Xem thêm</button>
                         </div>
                     </div>
                     <!-- right content end -->
+
                 </div>
             </div>
         </section>
-        <!-- section end -->
 	</main>
 </body>
 </html>
