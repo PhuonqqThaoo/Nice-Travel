@@ -9,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -42,12 +44,16 @@ public class Account implements Serializable {
     private String username;
     
     @Column(name = "fullname")
+    @NotEmpty
+	@NotNull
     @Size(max = 30)
     private String fullname;
     
     @Column(name = "password", nullable = false)
     private String password;
     
+    @NotBlank(message = "Không để trống email") // áp dụng cho chuỗi
+    @Email(message ="Không đúng định dạng email")
     @Column(name = "email", nullable = false, length = 100)
     private String email;
 
@@ -62,7 +68,8 @@ public class Account implements Serializable {
 
     @Column(name = "img", length = 225)
     private String img;
-
+    
+    @NotNull
     @Column(name = "idCard", nullable = false, length = 50)
     private String id_Card;
     

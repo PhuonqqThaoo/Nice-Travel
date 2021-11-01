@@ -38,7 +38,7 @@ public class StaffController {
 	public String doGetEdit(@RequestParam("username") String username, Model model) {
 		Account userRequest = accountService.findAccountsByUsername(username);
 		model.addAttribute("userRequest", userRequest);
-		return "/admin/nhan-vien/ThongTinNhanVien::#form";
+		return "/admin/nhan-vien/ThongTinNhanVien::#form"; 
 	}
 	
 	@PostMapping("/edit")

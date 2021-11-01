@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface TravelRepository extends JpaRepository<Travel, Integer> {
 
     @Query("SELECT u FROM Travel u WHERE u.slug LIKE %?1%")
-    Travel findTravelBySlug(String slug);
+    Travel findTravelBySlug(String slug); 
     
     
 }
