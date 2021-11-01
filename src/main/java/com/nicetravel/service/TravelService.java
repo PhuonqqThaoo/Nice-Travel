@@ -17,4 +17,6 @@ public interface TravelService {
     void deleteTravel(Integer id);
 
     Travel findTravelBySlug(String slug);
+    
+    List<Travel> findByTypeId(Integer tid);
 }

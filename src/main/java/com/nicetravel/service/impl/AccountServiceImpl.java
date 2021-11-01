@@ -1,9 +1,11 @@
 package com.nicetravel.service.impl;
 
 import com.nicetravel.entity.Account;
-
+import com.nicetravel.entity.Role;
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.service.AccountService;
+import com.nicetravel.service.RoleService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,12 +27,17 @@ public class AccountServiceImpl implements AccountService {
     public AccountServiceImpl(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
-
+    
+    @Autowired
+    private RoleService roleService;
+    
+    private static final String ROLE_USER ="user"; 
+    
     @Override
     public List<Account> getAllAccount() {
         return accountRepository.findAll();
     }
-
+    
     @Override
     public Account getAccountById(Integer id) {
         return accountRepository.findById(id).get();
@@ -90,10 +97,10 @@ public class AccountServiceImpl implements AccountService {
 		}
 		//check update non password or update full
 		if (ObjectUtils.isEmpty(account.getPassword())) {
-			accountRepository.updateNonPass(account.getFullname(), account.getEmail(), account.getPhone(), account.getId_Card(), account.getGender(), account.getUsername());
+			accountRepository.updateNonPass(account.getFullname(), account.getEmail(), account.getPhone(), account.getId_Card(), account.getGender(),account.getAddress(), account.getUsername());
 		}else {
 			account.setPassword(bcrypt.encode(account.getPassword()));
-			accountRepository.update(account.getFullname(), account.getEmail(),account.getPassword(), account.getPhone(), account.getId_Card(), account.getGender(), account.getUsername());
+			accountRepository.update(account.getFullname(), account.getEmail(),account.getPassword(), account.getPhone(), account.getId_Card(), account.getGender(),account.getAddress(), account.getUsername());
 		}
 	}
 
@@ -104,6 +111,19 @@ public class AccountServiceImpl implements AccountService {
 			throw new Exception("user cannot be empty");
 		}
 		accountRepository.deletedUser(username);;
+		
+	}
+
+	@Override
+	public Account save(Account account) {
+//		account.setPassword(bcrypt.encode(account.getPassword()));
+		
+		account.setPassword(bcrypt.encode("123"));
+		account.setIsEnable(false);
+		Role role = roleService.findByRole(ROLE_USER);
+		account.setRole_Id(role);
+		account.setImg("user.png");
+		return accountRepository.saveAndFlush(account);
 		
 	}
 

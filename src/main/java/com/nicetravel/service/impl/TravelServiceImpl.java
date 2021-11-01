@@ -47,4 +47,9 @@ public class TravelServiceImpl implements TravelService {
     public Travel findTravelBySlug(String slug) {
         return travelRepository.findTravelBySlug(slug);
     }
+
+	@Override
+	public List<Travel> findByTypeId(Integer tid) {
+		return travelRepository.findByTypeId(tid);
+	}
 }

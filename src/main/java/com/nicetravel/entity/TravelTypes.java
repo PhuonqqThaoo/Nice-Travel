@@ -5,7 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -36,4 +40,7 @@ public class TravelTypes implements Serializable {
     @Column(name = "isDeleted", nullable = false)
     private Boolean isDeleted = false;
 
+    @JsonIgnore
+	@OneToMany(mappedBy = "typeId")
+	List<Travel> travels;
 }

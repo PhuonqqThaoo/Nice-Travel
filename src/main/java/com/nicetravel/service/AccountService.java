@@ -4,6 +4,8 @@ import com.nicetravel.entity.Account;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 public interface AccountService {
     List<Account> getAllAccount();
 
@@ -30,4 +32,6 @@ public interface AccountService {
     void update(Account account) throws Exception;
      
     void delete(String username) throws Exception;
+
+	Account save(Account userRequest);
 }

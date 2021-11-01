@@ -26,36 +26,36 @@
 						<th:block th:unless="${#request.remoteUser}">
 							<div class="social-icons-subnav">
 								<a data-toggle="modal" data-target="#fLogin"><span
-									class="ti-lock"></span> Đăng nhập</a>
+									class="ti-lock"></span>Đăng nhập</a>
 							</div>
 							<div class="social-icons-subnav hidden-sm hidden-xs">
 								<a data-toggle="modal" data-target="#fsignUp"><span
-									class="ti-user"></span> Đăng ký</a>
+									class="ti-user"></span>Đăng ký</a>
 							</div>
 						</th:block>
 						<th:block th:if="${#request.remoteUser}">
 							<!-- <img src="" alt="" class="header__navbar-user-img"> -->
 							<div class="social-icons-subnav">
 								<a><span class="ti-user"></span>[[${#request.remoteUser}]]</a> <a
-									th:href="@{/logoff}">Logoff</a>
+									th:href="@{/logoff}">Đăng xuất</a>
 							</div>
 
 							<!-- <ul class="header__navbar-user-menu">
                                 <li class="header__navbar_user-item">
-                                    <a href="">TÃƒÂ i khoÃ¡ÂºÂ£n cÃ¡Â»Â§a tÃƒÂ´i</a>
+                                    <a href="">TÃƒÆ’Ã‚Â i khoÃƒÂ¡Ã‚ÂºÃ‚Â£n cÃƒÂ¡Ã‚Â»Ã‚Â§a tÃƒÆ’Ã‚Â´i</a>
                                 </li>
                                 <li class="header__navbar_user-item">
-                                    <a href="">Ã„ï¿½Ã¡Â»â€¹a chÃ¡Â»â€° cÃ¡Â»Â§a tÃƒÂ´i</a>
+                                    <a href="">Ãƒâ€žÃ¯Â¿Â½ÃƒÂ¡Ã‚Â»Ã¢â‚¬Â¹a chÃƒÂ¡Ã‚Â»Ã¢â‚¬Â° cÃƒÂ¡Ã‚Â»Ã‚Â§a tÃƒÆ’Ã‚Â´i</a>
                                 </li>
                                 <li class="header__navbar_user-item">
-                                    <a th:href="@{/order/list}">Ã„ï¿½Ã†Â¡n mua</a>
+                                    <a th:href="@{/order/list}">Ãƒâ€žÃ¯Â¿Â½Ãƒâ€ Ã‚Â¡n mua</a>
                                 </li>
                                 <li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}"
                                     class="header__navbar_user-item">
                                     <a th:href="@{/admin/home/index}">Admin</a>
                                 </li>
                                 <li class="header__navbar_user-item header__navbar_user-item--separate">
-                                    <a th:href="@{/security/logoff}">Ã„ï¿½Ã„Æ’ng xuÃ¡ÂºÂ¥t</a>
+                                    <a th:href="@{/security/logoff}">Ãƒâ€žÃ¯Â¿Â½Ãƒâ€žÃ†â€™ng xuÃƒÂ¡Ã‚ÂºÃ‚Â¥t</a>
                                 </li> -->
 						</th:block>
 					</div>
@@ -89,17 +89,17 @@
 				<div class="white menu-init" id="main-menu">
 					<nav id="menu-center">
 						<ul>
-							<li><a class="actived" href="/">Trang chủ <i
+							<li><a class="actived" href="/">Trang chủ<i
 									class="fa fa-angle-down"></i></a>
 								<ul>
 									<li><a href="">Giới thiệu</a></li>
 								</ul></li>
 							<li><a href="">Thông tin</a></li>
-							<li><a href="/travel/tour">Tour du lịch</a></li>
-							<li><a href="#">Blog <i class="fa fa-angle-down"></i></a>
+							<li><a href="/travel/tour">Tour du lịch <i class="fa fa-angle-down"></i></a>
 								<ul>
-									<li><a href="">Blog Single</a></li>
-								</ul></li>
+									 <li th:each="c:${types}"><a th:href="@{|/travel/tour?tid=${c.id}|}">[[${c.type}]]</a></li>
+								</ul>
+							</li>
 							<li><a href="">Liên hệ</a></li>
 						</ul>
 					</nav>

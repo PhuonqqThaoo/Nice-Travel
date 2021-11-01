@@ -23,6 +23,28 @@
     border-radius: 5px;
 }
 
+.xem-them {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+.btn-xem-them {
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.like {
+    border: none;
+    background-color: #ffffff;
+    color: #fd2d34;
+    font-weight: 700;
+    position: absolute;
+    top: 10px;
+    cursor: alias;
+}
+
 /* travel */
 .travel-box {
     transition: 1s;
