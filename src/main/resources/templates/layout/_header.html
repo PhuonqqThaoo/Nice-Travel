@@ -37,7 +37,7 @@
 							<!-- <img src="" alt="" class="header__navbar-user-img"> -->
 							<div class="social-icons-subnav">
 								<a><span class="ti-user"></span>[[${#request.remoteUser}]]</a> <a
-									th:href="@{/logoff}">Logoff</a>
+									th:href="@{/logoff}">Đăng xuất</a>
 							</div>
 
 							<!-- <ul class="header__navbar-user-menu">
@@ -96,10 +96,12 @@
 								</ul></li>
 							<li><a href="">Thông tin</a></li>
 							<li><a href="/travel/tour">Tour du lịch</a></li>
-							<li><a href="#">Blog <i class="fa fa-angle-down"></i></a>
+							<li><a href="#">Loại tour <i class="fa fa-angle-down"></i></a>
 								<ul>
-									<li><a href="">Blog Single</a></li>
-								</ul></li>
+									 <li th:each="c:${types}"><a th:href="@{|/travel/list?tid=${c.id}|}">[[${c.type}]]</a></li>
+									
+								</ul>
+							</li>
 							<li><a href="">Liên hệ</a></li>
 						</ul>
 					</nav>
