@@ -14,7 +14,7 @@
                 <p style="font-size: 2.5rem; margin-bottom: 17px;" th:text="*{name}"></p>
                 <p>
                     <h3 style="display: inline-block; color: rgba(238, 82, 83,1.0);" th:text="*{#numbers.formatCurrency(price)}"></h3> / ngÆ°á»�i
-                    <a href="/booking/check" class="travel-btn" style="margin-left: 100px;"><i class='bx bxs-cart-alt'></i> Ä�áº·t
+                    <a th:href="@{|/booking/check/*{id}|}" class="travel-btn" style="margin-left: 100px;"><i class='bx bxs-cart-alt'></i> Ä�áº·t
                         ngay</a>
                 </p>
                 <div class="travel-detail-row">
@@ -79,7 +79,7 @@
                                         </h5> / Người
                                     </p>
                                     <div>
-                                        <a href="/travel/booking" class="travel-btn"><i class='bx bxs-cart-alt'></i> Ä�áº·t
+                                        <a th:href="@{|/booking/check/${p.id}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Ä�áº·t
                                             ngay</a>
                                         <a th:href="@{|/travel/detail/${p.id}|}" style="float: right;">Xem chi tiáº¿t</a>
                                     </div>

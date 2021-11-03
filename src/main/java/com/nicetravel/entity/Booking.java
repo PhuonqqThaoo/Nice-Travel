@@ -7,12 +7,15 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "booking")
 @Entity
@@ -28,6 +31,10 @@ public class Booking implements Serializable {
     @ManyToOne
     @JoinColumn(name = "accountId")
     private Account accountId;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "bookingId")
+    List<BookingDetail> bookingDetails;
 
     @Column(name = "createdDate", nullable = false)
     @CreationTimestamp // defaut getDate()
@@ -47,5 +54,7 @@ public class Booking implements Serializable {
 
     @Column(name = "isDeleted", nullable = false)
     private Boolean isDeleted = false;
+    
+    
 
 }

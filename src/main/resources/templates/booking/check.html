@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+	<!-- box200 -->
+        <div class="box-200"></div>
+	<!-- pay -->
+        <div class="pay pay-container">
+        <form th:action="@{|/booking/thanhtoan?id=${travel.id}|}" method="post">
+            <ol class="breadcrumb">
+                <li><a href="#">Đặt tour</a></li>
+                <li><a href="#">Nhập thông tin</a></li>
+            </ol>
+
+            <!-- left -->
+            <div class="col-65-left">
+                <div class="title">
+                    <h2>Nhập thông tin</h2>
+                </div>
+                <!-- thông tin liên lạc -->
+                <div class="thong-tin-lien-lac">
+                    <h4>Thông tin liên lạc</h4>
+                    <p>Đây là thông tin của khách hàng dùng để liên lạc khi đặt chỗ thành công</p>
+                </div>
+                <!-- box thông tin -->
+                <div class="box-thong-tin">
+                    <div class="col-12">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Họ và tên</label>
+                                <input type="text" class="form-control" th:placeholder="${account.fullname}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Địa chỉ email</label>
+                                <input type="text" class="form-control" th:placeholder="${account.email}" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Số điện thoại</label>
+                                <input type="text" class="form-control" th:placeholder="${account.phone}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Địa chỉ</label>
+                                <input type="text" class="form-control" th:placeholder="${account.address}" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- pay customer -->
+                <div class="customer">
+                    <h3>Hành khách</h3>
+                    <div class="col-12">
+                        <div class="col-6">
+                            <div class="change">
+                                <div class="change-title">
+                                    <h4>Người lớn</h4>
+                                    <p>&gt; 12 tuổi</p>
+                                </div>
+                                <div class="change-number">
+                                    <span class="minus btn-click"><i class="bx bx-minus-circle" id="adultMinus"></i></span>
+                                    <span class="number" id="adult">1</span>
+                                    <span class="plus btn-click"><i class="bx bx-plus-circle" id="adultPlus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="change">
+                                <div class="change-title">
+                                    <h4>Trẻ em</h4>
+                                    <p>Từ 5 - 11 tuổi</p>
+                                </div>
+                                <div class="change-number">
+                                    <span class="minus btn-click"><i class="bx bx-minus-circle"
+                                            id="childrenMinus"></i></span>
+                                    <span class="number" id="children">0</span>
+                                    <span class="plus btn-click"><i class="bx bx-plus-circle"
+                                            id="childrenPlus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-6">
+                            <div class="change">
+                                <div class="change-title">
+                                    <h4>Trẻ nhỏ</h4>
+                                    <p>Từ 2 - 4 tuổi</p>
+                                </div>
+                                <div class="change-number">
+                                    <span class="minus btn-click"><i class="bx bx-minus-circle"
+                                            id="smallchildrenMinus"></i></span>
+                                    <span class="number" id="smallchildren">0</span>
+                                    <span class="plus btn-click"><i class="bx bx-plus-circle"
+                                            id="smallchildrenPlus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="change">
+                                <div class="change-title">
+                                    <h4>Em bé</h4>
+                                    <p>Từ 0 - 2 tuổi</p>
+                                </div>
+                                <div class="change-number">
+                                    <span class="minus btn-click"><i class="bx bx-minus-circle"
+                                            id="babyMinus"></i></span>
+                                    <span class="number" id="baby">0</span>
+                                    <span class="plus btn-click"><i class="bx bx-plus-circle" id="babyPlus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- right -->
+            <div class="col-35-right">
+                <div class="title">
+                    <h4>Tóm tắt đặt chỗ</h4>
+                </div>
+                <div class="travel-detail-lich-trinh-time">
+                    <h5><i class='bx bxs-timer'></i> Ngày khởi hành</h5>
+                    <p>[[${travel.hour}]]:00 - [[${#dates.format(travel.startDate, 'dd-MM-yyyy')}]]</p>
+                </div>
+                <div class="travel-detail-lich-trinh-time">
+                    <h5><i class='bx bxs-timer'></i> Ngày kết thúc</h5>
+                    <p>[[${travel.hour}]]:00 - [[${#dates.format(travel.endDate, 'dd-MM-yyyy')}]]</p>
+                </div>
+                <div class="strikethrough"></div>
+                <h5 style="font-weight: 700;">Nơi đến </h5>
+                <div class="noi-den">
+                    <img th:src="@{|/assets/img/${travel.img}|}" alt="">
+                    <div>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                    </div>
+                    <h5>[[${travel.name}]]</h5>
+                </div>
+                <div class="detail">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th class="l1">Hành khách</th>
+                                <th class="l2 text-right">
+                                    <p class="add-more">
+                                        <p>1 người lớn<br>0 trẻ em<br>0 trẻ nhỏ<br>0 em bé</p>
+                                    </p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>Người lớn</td>
+                                <td class="t-price text-right" id="AdultPrice">1 x [[${#numbers.formatDecimal(travel.price, 0, 'COMMA', 2, 'POINT')}]]₫</td>
+                            </tr>
+                            <tr>
+                                <td>Trẻ em</td>
+                                <td class="t-price text-right" id="ChildrenPrice">0₫</td>
+                            </tr>
+                            <tr>
+                                <td>Trẻ nhỏ</td>
+                                <td class="t-price text-right" id="SmallChildrenPrice">0₫</td>
+                            </tr>
+                            <tr>
+                                <td>Em bé</td>
+                                <td class="t-price text-right" id="BabyPrice">0₫</td>
+                            </tr>
+                            <tr class="total">
+                                <td>Tổng cộng</td>
+                                <td class="t-price text-right" id="TotalPrice">[[${#numbers.formatDecimal(travel.price, 0, 'COMMA', 2, 'POINT')}]]₫</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-primary btn-order" style="width:100% " >
+                            ĐẶT NGAY
+                        </button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+        <!-- end pay -->
+        <!--  gallery home -->
+        <section aria-label="gallery">
+            <div class="container-fluid m-5-hor">
+                <div class="row">
+
+                </div>
+            </div>
+
+            <div class="onStep" data-animation="fadeInUp" data-time="0">
+                <div id="owl-gal" class="owl-carousel">
+
+                   
+
+                    <div  th:each="p: ${items}" class="item">
+                        <div class="gal-home">
+                            <a th:href="@{|/travel/detail/${p.id}|}">
+                                <div class="hovereffect">
+                                    <img alt="imageportofolio" class="img-responsive" th:src="@{|/assets/img/${p.img}|}">
+                                </div>
+                                <div class="gal-home-content">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <h4 th:utext="${p.name}"></h4>
+                                            <p>[[${p.startDate}]]</p>
+                                            <div class="star-content">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="review-cont big-heading">1 Reviews</div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="heading-price">From</div>
+                                            <div class="price big-heading">$[[${p.price}]]</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--  gallery home end -->
+	</main>
+</body>
+</html>
