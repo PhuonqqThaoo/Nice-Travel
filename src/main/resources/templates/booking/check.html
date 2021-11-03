@@ -161,7 +161,7 @@
                             </tr>
                             <tr>
                                 <td>Người lớn</td>
-                                <td class="t-price text-right" id="AdultPrice">1 x [[${#numbers.formatDecimal(travel.price, 0, 'COMMA', 2, 'POINT')}]]₫</td>
+                                <td class="t-price text-right" id="AdultPrice">1 x [[${#numbers.formatCurrency(travel.price)}]]</td>
                             </tr>
                             <tr>
                                 <td>Trẻ em</td>
@@ -177,7 +177,7 @@
                             </tr>
                             <tr class="total">
                                 <td>Tổng cộng</td>
-                                <td class="t-price text-right" id="TotalPrice">[[${#numbers.formatDecimal(travel.price, 0, 'COMMA', 2, 'POINT')}]]₫</td>
+                                <td class="t-price text-right" id="TotalPrice">[[${#numbers.formatCurrency(travel.price)}]]</td>
                             </tr>
                         </tbody>
                     </table>

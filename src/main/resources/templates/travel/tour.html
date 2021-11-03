@@ -99,13 +99,13 @@
                                             <button class="like"><i class='bx bxs-heart'></i> Yêu thích</button>
                                         </div>
                                         <div class="gal-home-content travel-box-content">
-                                            <p>$[[${p.startDate}]]</p>
+                                            <p> [[${#dates.format(p.startDate, 'dd-MM-yyyy')}]]</p>
                                             <h5><a th:href="@{|/travel/detail/${p.id}|}" th:utext="${p.name}"></a></h5>
                                             <br>
-                                            <p>Số lượng: $[[${p.quantity}]]</p>
-                                            <p>Nơi khởi hành: $[[${p.departurePlace}]]</p>
+                                            <p>Số lượng: [[${p.quantity}]]</p>
+                                            <p>Nơi khởi hành: [[${p.departurePlace}]]</p>
                                             <p>
-                                                <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">$[[${p.price}]]</h5> / người
+                                                <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">[[${#numbers.formatCurrency(p.price)}]]</h5> / người
                                             </p>
                                             <div>
                                                 <a th:href="@{|/booking/check/${p.id}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
