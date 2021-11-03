@@ -45,6 +45,10 @@ public class Travel implements Serializable {
     @OneToMany(mappedBy = "travelId")
     List<TravelDetail> travelDetails;
     
+    @JsonIgnore
+    @OneToMany(mappedBy = "travelId")
+    List<TravelLike> travelLikes;
+    
     @Column(name = "departurePlace", nullable = false, length = 225)
     private String departurePlace;
 

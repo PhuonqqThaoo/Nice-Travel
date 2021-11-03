@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Table(name = "Account", indexes = {
@@ -86,6 +88,10 @@ public class Account implements Serializable {
     @Column(name = "created_date", nullable = false)
     @CreationTimestamp
     private LocalDateTime createdDate;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "accountId")
+    List<TravelLike> travelLikes;
 
     
 }
