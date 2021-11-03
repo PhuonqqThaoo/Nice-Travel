@@ -13,8 +13,8 @@
                 <p style="font-size: 1.5rem; color: rgba(10, 189, 227,1.0);" th:text="*{typeId.description}"><i class='bx bx-dice-2'></i></p>
                 <p style="font-size: 2.5rem; margin-bottom: 17px;" th:text="*{name}"></p>
                 <p>
-                    <h3 style="display: inline-block; color: rgba(238, 82, 83,1.0);" th:text="*{#numbers.formatCurrency(price)}"></h3> / ngÆ°á»�i
-                    <a th:href="@{|/booking/check/*{id}|}" class="travel-btn" style="margin-left: 100px;"><i class='bx bxs-cart-alt'></i> Ä�áº·t
+                    <h3 style="display: inline-block; color: rgba(238, 82, 83,1.0);" th:text="*{#numbers.formatCurrency(price)}"></h3> / người
+                    <a th:href="@{|/booking/check/*{id}|}" class="travel-btn" style="margin-left: 100px;"><i class='bx bxs-cart-alt'></i> Đặt
                         ngay</a>
                 </p>
                 <div class="travel-detail-row">
@@ -23,23 +23,23 @@
                     </div>
                     <div class="travel-detail-col-6">
                         <div class="travel-detail-section1">
-                            <p>Khá»Ÿi hÃ nh: <span th:text="*{startDate}"></span></p>
-                            <p>Sá»‘ lÆ°á»£ng: <span th:text="*{quantity}"></span></p>
-                            <p>Sá»‘ NgÃ y: <span>5</span></p>
-                            <p>Sá»‘ chá»— cÃ²n nháº­n: <span>10</span></p>
-                            <p>NÆ¡i khá»Ÿi hÃ nh: <span th:text="*{departurePlace}"></span></p>
+                            <p>Khởi hành: <span th:text="*{startDate}"></span></p>
+                            <p>Số lượng: <span th:text="*{quantity}"></span></p>
+                            <p>Số ngày: <span>5</span></p>
+                            <p>Số chỗ còn nhận: <span>10</span></p>
+                            <p>Nơi khởi hành: <span th:text="*{departurePlace}"></span></p>
                         </div>
-                        <a href="" class="travel-detail-btn-tu-van">LiÃªn há»‡ tÆ° váº¥n ngay</a>
+                        <a href="" class="travel-detail-btn-tu-van">Liên hệ tư vấn ngay</a>
                     </div>
                 </div>
-                <p style="margin-top: 280px;">Má»™t ngÃ y hÃ²a minh giá»¯a thiÃªn nhiÃªn xanh mÃ¡t á»Ÿ khu dá»± trá»¯ sinh quyá»ƒn tháº¿ giá»›i, khÃ¡m phÃ¡ â€œ lÃ¡ phá»•i xanhâ€� cá»§a thÃ nh phá»‘ báº±ng cÃ¡c hoáº¡t Ä‘á»™ng tham quan táº¡i Chiáº¿n Khu Rá»«ng SÃ¡c, thÆ°á»Ÿng ngoáº¡n cáº£nh quan sÃ´ng nÆ°á»›c há»¯u tÃ¬nh trÃªn nhá»¯ng chiáº¿c ca nÃ´ khi len lá»�i giá»¯a khu rá»«ng ngáº­p máº·n cá»§a KDL Dáº§n XÃ¢y. Ä�áº·c biá»‡t trong hÃ nh trÃ¬nh, quÃ½ khÃ¡ch cÃ²n Ä‘Æ°á»£c thÆ°á»Ÿng thá»©c nhá»¯ng mÃ³n Äƒn Ä‘áº·c trÆ°ng chá»‰ cÃ³ táº¡i VÃ m SÃ¡t â€“ Cáº§n Giá»� nhÆ° : vá»‹t nÆ°á»›c máº·n, rau lÃ¬m kÃ¬m, cua háº¥p, tÃ´m nÆ°á»›ng, cÃ¡ Ä‘á»‘i chiÃªn xÃ¹ cuá»‘n bÃ¡nh trÃ¡ng, canh cÃ¡ bui, chÃ¨ dá»«a nÆ°á»›câ€¦ Quay láº¡i kÃ½ á»©c cá»§a Chiáº¿n khu xÆ°a, nghe ká»ƒ vá»� dáº¥u áº¥n lá»‹ch sá»­ oai hÃ¹ng má»™t thá»�i cá»§a lá»±c lÆ°á»£ng bá»™ Ä‘á»™i Ä‘áº·c cÃ´ng rá»«ng SÃ¡c; Tráº£i nghiá»‡m Ä‘i xuá»“ng mÃ¡y len lá»�i vÃ o rá»«ng nguyÃªn sinh ngáº­p máº·n; HÃ²a mÃ¬nh vÃ o bá»©c tranh thiÃªn nhiÃªn xanh mÃ¡t á»Ÿ Khu du lá»‹ch sinh thÃ¡i VÃ m SÃ¡t. Tráº£i nghiá»‡m áº©m thá»±c Ä‘áº·c sáº¯c, háº¥p dáº«n vÃ  Ä‘áº·c trÆ°ng cá»§a Cáº§n Giá»�</p>
+                <p style="margin-top: 280px;">Một ngày hòa minh giữa thiên nhiên xanh mát ở khu dự trữ sinh quyển thế giới, khám phá “ lá phổi xanh” của thành phố bằng các hoạt động tham quan tại Chiến Khu Rừng Sác, thưởng ngoạn cảnh quan sông nước hữu tình trên những chiếc ca nô khi len lỏi giữa khu rừng ngập mặn của KDL Dần Xây. Đặc biệt trong hành trình, quý khách còn được thưởng thức những món ăn đặc trưng chỉ có tại Vàm Sát – Cần Giờ như : vịt nước mặn, rau lìm kìm, cua hấp, tôm nướng, cá đối chiên xù cuốn bánh tráng, canh cá bui, chè dừa nước… Quay lại ký ức của Chiến khu xưa, nghe kể về dấu ấn lịch sử oai hùng một thời của lực lượng bộ đội đặc công rừng Sác; Trải nghiệm đi xuồng máy len lỏi vào rừng nguyên sinh ngập mặn; Hòa mình vào bức tranh thiên nhiên xanh mát ở Khu du lịch sinh thái Vàm Sát. Trải nghiệm ẩm thực đặc sắc, hấp dẫn và đặc trưng của Cần Giờ</p>
             </div>
         </section>
         <!-- section end -->
         
 		<!-- section lá»‹ch trÃ¬nh -->
         <section class="travel-detail-lich-trinh">
-            <h2 style="text-align: center; top: -50px;">Lá»‹ch trÃ¬nh</h2>
+            <h2 style="text-align: center; top: -50px;">Lịch trình chuyến đi</h2>
             <div class="container">
                 <div class="travel-detail-lich-trinh-time" th:each="detail : *{travelDetails}" th:object="${detail}">
                     <h4><i class='bx bxs-timer' ></i> [[*{time}]]</h4>
@@ -79,9 +79,9 @@
                                         </h5> / Người
                                     </p>
                                     <div>
-                                        <a th:href="@{|/booking/check/${p.id}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Ä�áº·t
+                                        <a th:href="@{|/booking/check/${p.id}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
                                             ngay</a>
-                                        <a th:href="@{|/travel/detail/${p.id}|}" style="float: right;">Xem chi tiáº¿t</a>
+                                        <a th:href="@{|/travel/detail/${p.id}|}" style="float: right;">Xem chi tiết</a>
                                     </div>
                                 </div>
                             </a>

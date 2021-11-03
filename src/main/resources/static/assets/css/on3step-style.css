@@ -776,11 +776,7 @@ li>a:only-child:after {
     color: #10ac84;
     padding: 310px 0 80px 0;
     background: #222;
-<<<<<<< HEAD
     background: url('https://media.travel.com.vn/SlideShow/sl_211018_du-lich-an-toan.jpg')top fixed;
-=======
-    background: url(../img/bg-subheader2.jpg)top fixed;
->>>>>>> 5effaa25cdf168ba15970f8ba3584da01b6726cd
     background-size:cover;
 }
 #subheader-commerce {

@@ -45,7 +45,9 @@ public class InformationCustomerController {
 	}
 
 	@GetMapping("/change-password")
-	public String getChangePassword() {
+	public String getChangePassword(Model model, HttpServletRequest request) {
+		String username = request.getRemoteUser();
+		model.addAttribute("pass", accountService.findAccountsByUsername(username));
 		return "customer/ChangePassword";
 	}
 }
