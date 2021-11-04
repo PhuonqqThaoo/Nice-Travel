@@ -100,7 +100,7 @@
                                         </div>
                                         <div class="gal-home-content travel-box-content">
                                             <p> [[${#dates.format(p.startDate, 'dd-MM-yyyy')}]]</p>
-                                            <h5><a th:href="@{|/travel/detail/${p.id}|}" th:utext="${p.name}"></a></h5>
+                                            <h5 style="min-height: 42px;"><a th:href="@{|/travel/detail/${p.id}|}" th:utext="${p.name}"></a></h5>
                                             <br>
                                             <p>Số lượng: [[${p.quantity}]]</p>
                                             <p>Nơi khởi hành: [[${p.departurePlace}]]</p>

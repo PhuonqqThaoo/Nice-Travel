@@ -36,8 +36,7 @@
 						<th:block th:if="${#request.remoteUser}">
 							<!-- <img src="" alt="" class="header__navbar-user-img"> -->
 							<div class="social-icons-subnav">
-								<a><span class="ti-user"></span>[[${#request.remoteUser}]]</a> <a
-									th:href="@{/logoff}">Đăng xuất</a>
+								<a><span class="ti-user"></span>[[${#request.remoteUser}]]</a> / <a th:href="@{/logoff}">Đăng xuất</a>
 							</div>
 
 							<!-- <ul class="header__navbar-user-menu">
