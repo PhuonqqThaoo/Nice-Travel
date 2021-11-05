@@ -13,12 +13,16 @@ import com.nicetravel.service.TravelTypeService;
 
 @Component
 public class GlobalInterceptor implements HandlerInterceptor{
+	private final TravelTypeService typeService;
+
 	@Autowired
-	TravelTypeService typeService;
-	
+	public GlobalInterceptor(TravelTypeService typeService) {
+		this.typeService = typeService;
+	}
+
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		request.setAttribute("types", typeService.findAll());
+		request.setAttribute("types", typeService.getAllTravelType());
 	}
 }

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 
 <head>
@@ -58,7 +57,7 @@
                 Thông tin khách hàng
             </div>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/customer/information-customer">
+                <a class="nav-link collapsed" th:href="@{/customer/information-customer/}">
                     <i class='bx bxs-plane-alt' ></i>
                     <span>Thông tin cá nhân</span>
                 </a>
@@ -248,7 +247,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" th:src="@{admin/img/boy.png}"
                                     style="max-width: 60px">
-                                <span class="ml-2 d-none d-lg-inline text-white small">Huynh Phuoc Dan</span>
+                                <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">

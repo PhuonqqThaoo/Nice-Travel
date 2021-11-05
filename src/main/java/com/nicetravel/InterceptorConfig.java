@@ -8,8 +8,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.nicetravel.interceptor.GlobalInterceptor;
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer{
-	@Autowired GlobalInterceptor globallInterceptor;
-	
+	private final GlobalInterceptor globallInterceptor;
+
+	@Autowired
+	public InterceptorConfig(GlobalInterceptor globallInterceptor) {
+		this.globallInterceptor = globallInterceptor;
+	}
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(globallInterceptor)

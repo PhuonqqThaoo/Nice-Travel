@@ -25,19 +25,18 @@
 						</div>
 						<th:block th:unless="${#request.remoteUser}">
 							<div class="social-icons-subnav">
-								<a data-toggle="modal" data-target="#fLogin"><span
+								<a data-toggle="modal" href="/login" data-target=""><span
 									class="ti-lock"></span>Đăng nhập</a>
 							</div>
-							<div class="social-icons-subnav hidden-sm hidden-xs">
-								<a data-toggle="modal" data-target="#fsignUp"><span
-									class="ti-user"></span>Đăng ký</a>
-							</div>
+<!--							<div class="social-icons-subnav hidden-sm hidden-xs">-->
+<!--								<a data-toggle="modal" data-target=""><span-->
+<!--									class="ti-user"></span>Đăng ký</a>-->
+<!--							</div>-->
 						</th:block>
 						<th:block th:if="${#request.remoteUser}">
 							<!-- <img src="" alt="" class="header__navbar-user-img"> -->
 							<div class="social-icons-subnav">
-								<a><span class="ti-user"></span>[[${#request.remoteUser}]]</a> <a
-									th:href="@{/logoff}">Đăng xuất</a>
+								<a><span class="ti-user"></span>[[${#request.remoteUser}]]</a> / <a th:href="@{/logoff}">Đăng xuất</a>
 							</div>
 
 							<!-- <ul class="header__navbar-user-menu">
