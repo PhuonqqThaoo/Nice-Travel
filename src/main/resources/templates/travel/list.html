@@ -102,44 +102,24 @@
                 <div class="row">
 
                     <form id="sform" class="form-inline clean">
-                        <div class="col-md-2 search-icn">
-                            <label for="key"><span class="ti-world color"></span> Keyword</label>
-                            <input type="text" class="form-control" required="" id="key">
-                        </div>
-                        <div class="col-md-2">
-                            <label><span class="ti-menu-alt color"></span> Select your trip</label>
+                        <div class="col-md-3 search-icn">
+                            <label><span class="ti-menu-alt color"></span> Điểm đi</label>
                             <select class="cust-select" name="select-trip" required="">
-                                <option value="">Any</option>
-                                <option value="#">City Travel</option>
-                                <option value="#">Cultural Travel</option>
-                                <option value="#">Family Travel</option>
-                                <option value="#">Holiday Travel</option>
-                                <option value="#">Luxury Travel</option>
-                                <option value="#">Wild &amp; Adventure Travel</option>
+                                <option value="">Hồ Chí Minh</option>
+                                <option value="">Hà Nội</option>
+                                <option value="#">Đà Lạt</option>
+                                <option value="#">Vũng Tàu</option>
+                                <option value="#">Phú Quốc</option>
                             </select>
                         </div>
-                        <div class="col-md-2">
-                            <label><span class="ti-map-alt color"></span> Destination</label>
-                            <select class="cust-select" name="destination" required="">
-                                <option value="">Any</option>
-                                <option value="#">Asia</option>
-                                <option value="#">Africa</option>
-                                <option value="#">America</option>
-                                <option value="#">Australia</option>
-                                <option value="#">Europe</option>
-                                <option value="#">Rusia</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label><span class="ti-time color"></span> Duration</label>
-                            <select class="cust-select" name="duraion" required="">
-                                <option value="">Any</option>
-                                <option value="#">1 Day Travel</option>
-                                <option value="#">2 Days Travel</option>
-                                <option value="#">3 Days Travel</option>
-                                <option value="#">4 Days Travel</option>
-                                <option value="#">5 Days Travel</option>
-                                <option value="#">1 week Travel</option>
+                        <div class="col-md-3">
+                            <label><span class="ti-menu-alt color"></span> Điểm đến</label>
+                            <select class="cust-select" name="select-trip" required="">
+                                <option value="">Hồ Chí Minh</option>
+                                <option value="">Hà Nội</option>
+                                <option value="#">Đà Lạt</option>
+                                <option value="#">Vũng Tàu</option>
+                                <option value="#">Phú Quốc</option>
                             </select>
                         </div>
                         <div class="col-md-2">
@@ -155,7 +135,15 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <input class="btn-frm-search" value="FIND NOW" type="submit">
+                            <label><span class="ti-time color"></span> Số ngày</label>
+                            <select class="cust-select" name="duraion" required="">
+                                <option value="">1 - 3</option>
+                                <option value="#">4 - 7</option>
+                                <option value="#">8 - 10l</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn-frm-search">Tìm kiếm</button>
                         </div>
                     </form>
 
