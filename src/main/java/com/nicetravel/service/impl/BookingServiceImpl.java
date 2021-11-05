@@ -55,4 +55,9 @@ public class BookingServiceImpl implements BookingService {
 	public Double getRevenueInDay() {
 		return bookingRepository.getRevenueInDay();
 	}
+
+	@Override
+	public Double getRevenue() {
+		return bookingRepository.getRevenue();
+	}
 }

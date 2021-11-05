@@ -19,4 +19,6 @@ public interface BookingService {
     Integer getBookingInDay();
     
     Double getRevenueInDay();
+    
+    Double getRevenue();
 }

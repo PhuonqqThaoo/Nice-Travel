@@ -38,4 +38,7 @@ public interface AccountService {
 	Account saveStaff(Account userRequest);
 	
 	Integer getTotalUsers(); 
+	
+	// so với tháng trước
+	Double comparedLastMonth();
 }

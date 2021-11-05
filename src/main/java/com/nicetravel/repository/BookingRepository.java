@@ -15,4 +15,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 	
 	@Query(value = "{CALL sp_getRevenueInDay()}", nativeQuery = true)
 	Double getRevenueInDay();
+	
+	@Query(value = "{CALL sp_getRevenue()}", nativeQuery = true)
+	Double getRevenue();
 }

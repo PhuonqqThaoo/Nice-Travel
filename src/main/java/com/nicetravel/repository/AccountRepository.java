@@ -48,7 +48,12 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query(value="UPDATE Account SET  is_enable = 1 WHERE username =?1", nativeQuery = true)
     void deletedUser(String username);
     
-    @Query(value ="SELECT count(a.id) FROM Account a WHERE  a.role_Id = 3", nativeQuery = true)
+    // số lượng khách tháng hiện tại
+    @Query(value = "{CALL sp_getTotalUserCurrentMonth()}", nativeQuery = true)
     Integer getTotalUsers();
+    
+    // số lượng khách tháng trước
+    @Query(value = "{CALL sp_getTotalUserLastMonth()}", nativeQuery = true)
+	Integer getTotalUserLastMonth();
    
 } 

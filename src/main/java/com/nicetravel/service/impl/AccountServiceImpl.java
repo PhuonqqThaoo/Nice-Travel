@@ -23,6 +23,7 @@ public class AccountServiceImpl implements AccountService {
 
     AccountRepository accountRepository;
     private BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+    
     @Autowired
     public AccountServiceImpl(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
@@ -141,6 +142,20 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Integer getTotalUsers() {
 		return accountRepository.getTotalUsers();
+	}
+
+	@Override
+	public Double comparedLastMonth() {
+		double currentMonth = accountRepository.getTotalUsers();
+		double lastMonth = accountRepository.getTotalUserLastMonth();
+		double result = ((currentMonth / lastMonth) * 100) -100;
+//		if (currentMonth > lastMonth) {
+//			 result = ((currentMonth / lastMonth) * 100) -100 ;
+//		}else {
+//			 result = 100 - ((currentMonth / lastMonth) * 100) ;
+//		}
+			
+		return result;
 	}
 
 	
