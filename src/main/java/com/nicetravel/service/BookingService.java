@@ -16,6 +16,7 @@ public interface BookingService {
 
     void deleteBooking(Integer id);
     
-//    Integer getBookingInDay();
+    Integer getBookingInDay();
     
+    Double getRevenueInDay();
 }

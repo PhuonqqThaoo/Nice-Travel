@@ -19,15 +19,20 @@ public class HomeAdminRestController {
 	
 	@GetMapping("/admin/count/travel")
 	public Integer getCountTravel() {
-		System.out.println("So luong: "+ travelService.getCountTravel());
+	
 		return travelService.getCountTravel();
 	}
 	
 	
-//	@GetMapping("/admin/count/bookingInDay")
-//	public Integer getBookingInDay() {
-//		return bookingService.getBookingInDay();
-//	}
+	@GetMapping("/admin/count/bookingInDay")
+	public Integer getBookingInDay() {
+		return bookingService.getBookingInDay();
+	}
+	
+	@GetMapping("/admin/total/RevenueInDay")
+	public Double getRevenueInDay() {
+		return bookingService.getRevenueInDay();
+	}
 	
 	
 }

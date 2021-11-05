@@ -36,4 +36,6 @@ public interface AccountService {
 	Account save(Account userRequest);
 	
 	Account saveStaff(Account userRequest);
+	
+	Integer getTotalUsers(); 
 }

@@ -138,5 +138,10 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.saveAndFlush(userRequest);
 	}
 
+	@Override
+	public Integer getTotalUsers() {
+		return accountRepository.getTotalUsers();
+	}
+
 	
 }

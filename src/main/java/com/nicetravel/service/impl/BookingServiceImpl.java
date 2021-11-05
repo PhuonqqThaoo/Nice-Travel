@@ -6,6 +6,9 @@ import com.nicetravel.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.time.YearMonth;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -42,9 +45,14 @@ public class BookingServiceImpl implements BookingService {
     public void deleteBooking(Integer id) {
         bookingRepository.deleteById(id);
     }
-//
-//	@Override
-//	public Integer getBookingInDay() {
-//		return bookingRepository.getBookingInDay();
-//	}
+    
+	@Override
+	public Integer getBookingInDay() {
+		return bookingRepository.getOrderInDay();
+	}
+
+	@Override
+	public Double getRevenueInDay() {
+		return bookingRepository.getRevenueInDay();
+	}
 }
