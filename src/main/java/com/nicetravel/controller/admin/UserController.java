@@ -55,12 +55,12 @@ public class UserController {
 				redirect.addFlashAttribute("errorMessage", errorMessage);
 			}else {
 				accountService.update(userRequest);
-				String successMessage = "User " + userRequest.getUsername() + " was update";
+				String successMessage = "User " + userRequest.getFullname() + " was update";
 				redirect.addFlashAttribute("successMessage", successMessage);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			errorMessage = "Cannot update user " + userRequest.getUsername()+" , please try again!";
+			errorMessage = "Cannot update user " + userRequest.getFullname()+" , please try again!";
 		}
 		
 		if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
@@ -77,7 +77,7 @@ public class UserController {
 			redirect.addFlashAttribute("successMessage", successMessage);
 		} catch (Exception e) {
 			e.printStackTrace();
-			redirect.addFlashAttribute("errorMessage", "Cannot delete user, please try again!");
+			redirect.addFlashAttribute("errorMessage ", "Cannot delete user, please try again!");
 		}
 		return "redirect:/admin/thong-tin-khach-hang";
 	}
@@ -93,7 +93,7 @@ public class UserController {
 				errorMessage ="User is not valid";
 			}else {
 				accountService.save(userRequest);
-				String successMessage = "User " + userRequest.getUsername() + " was created!";
+				String successMessage = "User " + userRequest.getFullname() + " was created!";
 				redirect.addFlashAttribute("successMessage", successMessage);
 			}
 		} catch (Exception e) {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.nicetravel.entity.Account;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.StatsService;
+import com.nicetravel.service.TravelService;
 
 @Controller(value = "homeControllerOfAdmin")
 @RequestMapping("/admin")
@@ -19,6 +20,9 @@ public class HomeController {
 	private StatsService statsService;
 	@Autowired
 	private AccountService acc;
+	
+	@Autowired
+	private TravelService travel;
 	
 	@GetMapping("")
 	public String doGetIndex(Model model) {
@@ -53,4 +57,6 @@ public class HomeController {
 //	public String thongTinNhanVien() {
 //		return "admin/nhan-vien/ThongTinNhanVien";
 //	}
+	
+	
 }

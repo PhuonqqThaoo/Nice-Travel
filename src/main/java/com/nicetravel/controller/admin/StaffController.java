@@ -52,7 +52,7 @@ public class StaffController {
 				errorMessage ="User is not valid";
 			}else {
 				accountService.update(userRequest);
-				String successMessage = "User" + userRequest.getUsername() + "was update";
+				String successMessage = "User " + userRequest.getFullname() + " was update";
 				redirect.addFlashAttribute("successMessage", successMessage);
 			}
 		} catch (Exception e) {
@@ -63,7 +63,47 @@ public class StaffController {
 		if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
 			redirect.addFlashAttribute("errorMessage", errorMessage);
 		}
-		return "redirect:/admin/nhan-vien/ThongTinNhanVien";
+		return "redirect:/admin/thong-tin-nhan-vien";
+	}
+	
+	@GetMapping("/delete")
+	public String doGetDeleted(@RequestParam(name="username",required = true)String username,
+			RedirectAttributes redirect) {
+		try {
+			accountService.delete(username);
+			String successMessage = "User " +username + " was deleted!";
+			redirect.addFlashAttribute("successMessage", successMessage);
+		} catch (Exception e) {
+			e.printStackTrace();
+			redirect.addFlashAttribute("errorMessage", "Cannot delete user, please try again!");
+		}
+		return "redirect:/admin/thong-tin-nhan-vien";
+	}
+	
+	@PostMapping("/create")
+	public String doPostCreate(@Valid @ModelAttribute("userRequest") Account userRequest,
+			BindingResult result,
+			RedirectAttributes redirect) {
+		String errorMessage = null;
+		try {
+			// check if userRequest is not valid
+			if (result.hasErrors()) {
+				errorMessage ="User is not valid";
+			}else {
+				accountService.saveStaff(userRequest);
+				String successMessage = "User " + userRequest.getFullname() + " was created!";
+				redirect.addFlashAttribute("successMessage", successMessage);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			errorMessage = "Cannot create user, please try again!";
+		}
+		
+		if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
+			redirect.addFlashAttribute("errorMessage", errorMessage);
+		}
+		
+		return "redirect:/admin/thong-tin-nhan-vien";
 	}
 
 }

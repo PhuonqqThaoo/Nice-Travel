@@ -34,4 +34,6 @@ public interface AccountService {
     void delete(String username) throws Exception;
 
 	Account save(Account userRequest);
+	
+	Account saveStaff(Account userRequest);
 }

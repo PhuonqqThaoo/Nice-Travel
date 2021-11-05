@@ -328,7 +328,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" th:src="@{/admin/img/boy.png}"
                                     style="max-width: 60px">
-                                <span class="ml-2 d-none d-lg-inline text-white small">Huynh Phuoc Dan</span>
+                                <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -396,20 +396,20 @@
                                 <div class="col-12">
                                 	
                                     <div class="tab-content" id="v-pills-tabContent">
-                                    <button style="float: right" id="createBtn" type="button" class="btn btn-success">Create</button>
+<!--                                     <button style="float: right" id="createBtn" type="button" class="btn btn-success">Create</button> -->
 <!--                                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" -->
 <!--                                             aria-labelledby="v-pills-home-tab"> -->
                                             <table class="table">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">STT</th>
-                                                        <th scope="col" style="width: 30px;">Avatar</th>
-                                                        <th scope="col">username</th>
-                                                        <th scope="col">Fullname</th>
+                                                        <th scope="col" style="width: 30px;">Hình</th>
+                                                        <th scope="col">Tài khoản</th>
+                                                        <th scope="col">Họ và tên</th>
                                                         <th scope="col">Email</th>
-                                                        <th scope="col">Gender</th>
-                                                        <th scope="col">Phone</th>
-                                                        <th scope="col">Address</th>
+                                                        <th scope="col">Giới tính</th>
+                                                        <th scope="col">Điện thoại</th>
+                                                        <th scope="col">Địa chỉ</th>
                                                         <th scope="col"></th>
                                                         
                                                     </tr>
@@ -464,27 +464,33 @@
                                             <form th:object= "${userRequest}" id="form" method="POST">
                                                 <div class="form-row">
                                                     <div class="form-group col-md-4">
-                                                        <label for="inputUsername">Username</label>
+                                                        <label for="inputUsername">Tài khoản</label>
                                                         <input th:field="*{username}" id = "username" 
                                                          readonly="true" type="text" class="form-control" >
                                                     </div>
                                                     <div class="form-group col-md-4">
-                                                        <label for="inputFullname">Password</label>
+                                                        <label for="inputFullname">Mật khẩu</label>
                                                         <input type="password" class="form-control" th:field="*{password}"
                                                          id="password" readonly="true">
                                                     </div>
                                                     <div class="form-group col-md-4">
-                                                        <label for="inputFullname">Confirm password</label>
+                                                        <label for="inputFullname">Nhập lại mật khẩu</label>
                                                         <input type="password" class="form-control" 
                                                          id="confirmPass" readonly="true">
                                                     </div>
+                                                    
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputAddress">Address</label>
+                                                    <label for="inputAddress">Địa chỉ</label>
                                                     <input type="text" th:field="*{address}" id = "address" 
                                                     readonly="true" class="form-control"
               >
                                                 </div>
+                                                <div class="form-group">
+                                                        <label for="inputIdCard">Họ và tên</label>
+                                                        <input type="text" th:field="*{fullname}" 
+                                                         id = "fullname" readonly="true" class="form-control" >
+                                                 </div>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-4">
                                                         <label for="inputEmail">Email</label>
@@ -493,11 +499,11 @@
                                                         <i th:errors="*{email}"></i>
                                                     </div>
                                                     <div class="form-group col-md-4">
-                                                        <label for="inputPhone">Phone</label>
+                                                        <label for="inputPhone">Điện thoại</label>
                                                         <input type="text" th:field="*{phone}" id = "phone" readonly="true" class="form-control" >
                                                     </div>
                                                     <div class="form-group col-md-4">
-                                                        <label for="inputGender">Gender</label>
+                                                        <label for="inputGender">Giới tính</label>
                                                         <div class="form-control">
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
@@ -505,7 +511,7 @@
                                                                     id = "gender" readonly="true"
                                                                     value="false">
                                                                 <label class="form-check-label"
-                                                                    for="inlineRadio1">Male</label>
+                                                                    for="inlineRadio1">Nam</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
@@ -513,49 +519,21 @@
                                                                     id = "gender1" readonly="true"
                                                                     value="true">
                                                                 <label class="form-check-label"
-                                                                    for="inlineRadio2">Female</label>
+                                                                    for="inlineRadio2">Nữ</label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputIdCard">ID card</label>
+<!--                                                 <div class="form-row"> -->
+                                                 <div class="form-group ">
+                                                        <label for="inputIdCard">CMND/CCCD</label>
                                                         <input type="text" th:field="*{id_Card}" id ="id_Card" 
                                                          readonly="true" class="form-control" >
-                                                    </div>
+                                                  </div>
                                                     
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputIdCard">Full name</label>
-                                                        <input type="text" th:field="*{fullname}" 
-                                                         id = "fullname" readonly="true" class="form-control" >
-                                                    </div>
-<!--                                                     <div class="form-group col-md-4"> -->
-<!--                                                         <label for="inputCreateDate">Create date</label> -->
-<!--                                                         <input type="datetime-local" class="form-control" id="inputCreateDate"> -->
-<!--                                                     </div> -->
-<!--                                                     <div class="form-group col-md-4"> -->
-<!--                                                         <label for="inputIsEnable">Is enable</label> -->
-<!--                                                         <div class="form-control"> -->
-<!--                                                             <div class="form-check form-check-inline"> -->
-<!--                                                                 <input class="form-check-input" type="radio" -->
-<!--                                                                     name="inlineRadioOptions" id="inlineRadio1" -->
-<!--                                                                     value="option1"> -->
-<!--                                                                 <label class="form-check-label" -->
-<!--                                                                     for="inlineRadio1">True</label> -->
-<!--                                                             </div> -->
-<!--                                                             <div class="form-check form-check-inline"> -->
-<!--                                                                 <input class="form-check-input" type="radio" -->
-<!--                                                                     name="inlineRadioOptions" id="inlineRadio2" -->
-<!--                                                                     value="option2"> -->
-<!--                                                                 <label class="form-check-label" -->
-<!--                                                                     for="inlineRadio2">False</label> -->
-<!--                                                             </div> -->
-<!--                                                         </div> -->
-<!--                                                     </div> -->
-                                                </div>
+<!--                                                 </div> -->
                                                 <div class="right-button">
-                                                    <button type="button" id="submitCreate" class="btn btn-success" th:attr="onclick='createUser()'" disabled="true" >Thêm</button>
+<!--                                                     <button type="button" id="submitCreate" class="btn btn-success" th:attr="onclick='createUser()'" disabled="true" >Thêm</button> -->
                                                     <button type="button" id="submitUpdate" th:attr="onclick='updateUser()'" class="btn btn-primary" disabled="true">Chỉnh sửa</button>
                                                     <button type="button" id="submitCacel" th:attr="onclick='cacelBtn()'" class="btn btn-secondary" >Làm mới</button>
                                                 </div>
@@ -666,6 +644,7 @@
 			$('#confirmPass').val('');
 			$('#phone').val('');
 			$('#id_Card').val('');
+			$('#address').val('');
 			$('#form:input').prop('readonly',true);
 			$('#submitUpdate').prop('disabled',true);
 			$('#submitCreate').prop('disabled',true);

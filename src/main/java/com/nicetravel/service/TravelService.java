@@ -19,4 +19,6 @@ public interface TravelService {
     Travel findTravelBySlug(String slug);
     
     List<Travel> findByTypeId(Integer tid);
+    
+    Integer getCountTravel();
 }

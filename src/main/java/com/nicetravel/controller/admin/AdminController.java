@@ -21,4 +21,6 @@ public class AdminController {
 	public String getChangePassword() {
 		return "admin/ca-nhan/ChangePassword";
 	}
+	
+	
 }

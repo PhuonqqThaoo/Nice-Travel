@@ -32,6 +32,7 @@ public class AccountServiceImpl implements AccountService {
     private RoleService roleService;
     
     private static final String ROLE_USER ="user"; 
+    private static final String ROLE_STAFF ="staff"; 
     
     @Override
     public List<Account> getAllAccount() {
@@ -125,6 +126,16 @@ public class AccountServiceImpl implements AccountService {
 		account.setImg("user.png");
 		return accountRepository.saveAndFlush(account);
 		
+	}
+
+	@Override
+	public Account saveStaff(Account userRequest) {
+		userRequest.setPassword(bcrypt.encode("123"));
+		userRequest.setIsEnable(false);
+		Role role = roleService.findByRole(ROLE_STAFF);
+		userRequest.setRole_Id(role);
+		userRequest.setImg("user.png");
+		return accountRepository.saveAndFlush(userRequest);
 	}
 
 	

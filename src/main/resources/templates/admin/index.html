@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+
 
 <head>
     <meta charset="utf-8">
@@ -13,12 +13,13 @@
     <link th:href="@{/admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/css/ruang-admin.min.css}" rel="stylesheet">
-
+	<script src="https://code.angularjs.org/1.8.0/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <!-- boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<body id="page-top">
+<body id="page-top" ng-app="admin-app" ng-controller="admin-ctrl">
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
@@ -323,7 +324,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" th:src="@{admin/img/boy.png}"
                                     style="max-width: 60px">
-                                <span class="ml-2 d-none d-lg-inline text-white small">Huynh Phuoc Dan</span>
+                                <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -368,14 +369,14 @@
                                 <div class="card-body">
                                     <div class="row align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Travel
                                             </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>
-                                                    3.48%</span>
-                                                <span>Since last month</span>
-                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{totalTravel}}</div>
+<!--                                             <div class="mt-2 mb-0 text-muted text-xs"> -->
+<!--                                                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> -->
+<!--                                                     3.48%</span> -->
+<!--                                                 <span>Since last month</span> -->
+<!--                                             </div> -->
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-primary"></i>
@@ -390,13 +391,13 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i>
-                                                    12%</span>
-                                                <span>Since last years</span>
-                                            </div>
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Booking in day</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{bookingInDay}}</div>
+<!--                                             <div class="mt-2 mb-0 text-muted text-xs"> -->
+<!--                                                 <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> -->
+<!--                                                     12%</span> -->
+<!--                                                 <span>Since last years</span> -->
+<!--                                             </div> -->
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-shopping-cart fa-2x text-success"></i>
@@ -859,6 +860,32 @@
                 }
             }
         });
+    </script>
+    
+    <script>
+        var app = angular.module("admin-app", []);
+        app.controller("admin-ctrl",function($scope,$http){
+            $scope.initialize = function(){
+                // load count travel
+                $http.get("/admin/count/travel").then(resp => {
+                    $scope.totalTravel = resp.data;
+                    console.log($scope.totalTravel )
+                })
+                // }).catch(err => {
+                //     console.log("erro",err)
+                // })
+//                 $http.get("/admin/count/bookingInDay").then(resp => {
+//                     $scope.bookingInDay = resp.data;
+//                     console.log($scope.bookingInDay )
+//                 })
+
+            }
+            $scope.initialize();
+
+                
+        });
+    
+    
     </script>
 </body>
 

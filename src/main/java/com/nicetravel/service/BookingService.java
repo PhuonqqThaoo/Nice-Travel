@@ -15,4 +15,7 @@ public interface BookingService {
     Booking updateBooking(Booking booking);
 
     void deleteBooking(Integer id);
+    
+//    Integer getBookingInDay();
+    
 }

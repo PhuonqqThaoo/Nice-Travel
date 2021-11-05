@@ -48,4 +48,6 @@ public class TravelRestController {
     public void delete(@PathVariable("id") Integer id) {
         travelService.deleteTravel(id);
     }
+    
+    
 }

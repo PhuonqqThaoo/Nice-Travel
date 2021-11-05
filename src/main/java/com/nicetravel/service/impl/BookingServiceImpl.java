@@ -42,4 +42,9 @@ public class BookingServiceImpl implements BookingService {
     public void deleteBooking(Integer id) {
         bookingRepository.deleteById(id);
     }
+//
+//	@Override
+//	public Integer getBookingInDay() {
+//		return bookingRepository.getBookingInDay();
+//	}
 }

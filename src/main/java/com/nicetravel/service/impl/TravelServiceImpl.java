@@ -52,4 +52,9 @@ public class TravelServiceImpl implements TravelService {
 	public List<Travel> findByTypeId(Integer tid) {
 		return travelRepository.findByTypeId(tid);
 	}
+
+	@Override
+	public Integer getCountTravel() {
+		return travelRepository.getcountTravel();
+	}
 }

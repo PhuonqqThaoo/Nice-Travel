@@ -11,7 +11,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TravelRepository extends JpaRepository<Travel, Integer> {
-
+	
+	@Query("SELECT count(u.id) FROM Travel u ")
+	Integer getcountTravel();
 
     @Query("SELECT u FROM Travel u WHERE u.slug LIKE %?1%")
     Travel findTravelBySlug(String slug); 
