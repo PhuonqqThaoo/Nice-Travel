@@ -148,7 +148,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Thông tin cá nhân</h6>
                         <a class="collapse-item" href="/admin/information-admin">Thông tin cá nhân</a>
-                        <a class="collapse-item" href="/admin/edit-information-admin">Thay đổi thông tin</a>
+                        <a class="collapse-item" href="/admin/edit-information-admin" th:attr="onclick='editUser(\''+ ${#request.remoteUser} +'\')'">Thay đổi thông tin</a>
                         <a class="collapse-item" href="/admin/change-password">Đổi mật khẩu</a>
                     </div>
                 </div>
@@ -381,46 +381,73 @@
 
                         <!-- edit information -->
                         <div class="row box box-border">
-                            <div class="col-12">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Fullname</label>
-                                        <input type="text" class="form-control">
+                            <form th:object= "${userRequest}" id="form" method="POST">
+                                <div class="form-row" style="display: none">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputUsername">Tài khoản</label>
+                                        <input th:field="*{username}" id = "username"
+                                               readonly="true" type="text" class="form-control" >
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label>CMND/CCCD</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputAddress">Địa chỉ</label>
-                                    <input type="text" class="form-control" id="inputAddress"
-                                        placeholder="1234 Main St">
+
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Giới tính</label>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail">Email</label>
+                                        <input type="email" th:field="*{email}"
+                                               id = "email" class="form-control" >
+                                        <i th:errors="*{email}"></i>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputPhone">Điện thoại</label>
+                                        <input type="text" th:field="*{phone}" id = "phone" class="form-control" >
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputGender">Giới tính</label>
                                         <div class="form-control">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio1" value="option1">
-                                                <label class="form-check-label" for="inlineRadio1">Nam</label>
+                                                <input class="form-check-input" type="radio"
+                                                       name="inlineRadioOptions" th:field="*{gender}"
+                                                       id = "gender"
+                                                       value="false">
+                                                <label class="form-check-label"
+                                                       for="inlineRadio1">Nam</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio2" value="option2">
-                                                <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                                                <input class="form-check-input" type="radio"
+                                                       name="inlineRadioOptions" th:field="*{gender}"
+                                                       id = "gender1"
+                                                       value="true">
+                                                <label class="form-check-label"
+                                                       for="inlineRadio2">Nữ</label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Số điện thoại</label>
-                                        <input type="text" class="form-control">
-                                    </div>
                                 </div>
-                                <button class="btn btn-primary btn-w-100">Lưu</button>
-                                <button class="btn btn-light btn-w-100">Reset</button>
-                            </div>
+
+                                <div class="form-group">
+                                    <label for="inputIdCard">Họ và tên</label>
+                                    <input type="text" th:field="*{fullname}"
+                                           id = "fullname" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Địa chỉ</label>
+                                    <input type="text" th:field="*{address}" id = "address"
+                                           class="form-control"
+                                    >
+                                </div>
+                                <div class="form-group ">
+                                    <label for="inputIdCard">CMND/CCCD</label>
+                                    <input type="text" th:field="*{id_Card}" id ="id_Card"
+                                           class="form-control" >
+                                </div>
+
+                                <!--                                                 </div> -->
+                                <div class="right-button">
+                                    <!--                                                     <button type="button" id="submitCreate" class="btn btn-success" th:attr="onclick='createUser()'" disabled="true" >Thêm</button> -->
+                                    <button type="button" id="submitUpdate" th:attr="onclick='updateUser()'" class="btn btn-primary">Chỉnh sửa</button>
+                                    <button type="button" id="submitCacel" th:attr="onclick='cacelBtn()'" class="btn btn-secondary" >Làm mới</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <!-- end row info -->
@@ -455,6 +482,43 @@
     <script th:src="@{/admin/js/ruang-admin.min.js}"></script>
     <script th:src="@{/admin/vendor/chart.js/Chart.min.js}"></script>
     <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
+
+    <script th:inline="javascript">
+        function editUser(username) {
+            var url ='/admin/edit-information-admin?username=' +username;
+            $.get(url).done(function (fragment) {
+                $("#form").replaceWith(fragment);
+                $("#form").prop('action','/admin/edit-information-admin');
+                var imgUrl = $('#hiddenImgUrl').val();
+//     			$('#userImgUpload').prop('src','/admin/img/'+imgUrl);
+                $('html,body').animate({
+                    scrollTop: $("#form").offset().top
+                },1000);
+                $("#form :input").prop('readonly',false); // cho phép sửa
+                $("input#username").prop('readonly',true); // tô xám
+                $("#submitUpdate").prop('disabled',false);
+            })
+        };
+
+        function cacelBtn() {
+            $('#username').val('');
+            $('#email').val('');
+            $('#fullname').val('');
+            $('#phone').val('');
+            $('#id_Card').val('');
+            $('#address').val('');
+            $('#form:input').prop('readonly',true);
+            $('#submitUpdate').prop('disabled',true);
+        };
+
+
+        function updateUser() {
+
+            $('#form').submit();
+        };
+
+    </script>
+
     <script th:inline="javascript">
         // Set new default font family and font color to mimic Bootstrap's default styling
         Chart.defaults.global.defaultFontFamily = 'Nunito',

@@ -7,6 +7,8 @@ import com.nicetravel.service.AccountService;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
@@ -25,6 +28,9 @@ public class SecurityController {
 
     private final AccountService accountService;
 
+
+    @Autowired
+    private JavaMailSender mailSender;
     @Autowired
     public SecurityController(UserServices userServices, AccountService accountService) {
         this.userServices = userServices;
@@ -113,16 +119,41 @@ public String showRegistrationForm(Model model) {
         try {
             userServices.updateResetPasswordToken(token, email);
             String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
-            userServices.sendEmail(email, resetPasswordLink);
-            model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
+            sendEmail(email, resetPasswordLink);
+            model.addAttribute("message", "Một liên kết đặt lại mật khẩu đã gửi đến email của bạn. Vui lòng kiểm tra hộp thư.");
 
         } catch (UsernameNotFoundException ex) {
             model.addAttribute("error", ex.getMessage());
         } catch (UnsupportedEncodingException | MessagingException e) {
-            model.addAttribute("error", "Error while sending email");
+            model.addAttribute("error", "Đã xảy ra lỗi khi gửi email");
         }
 
         return "/account/forgot/forgot_password_form";
+    }
+
+    public void sendEmail(String recipientEmail, String link)
+            throws MessagingException, UnsupportedEncodingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom("nicetravelcompany@gmail.com", "NiceTravel Support");
+        helper.setTo(recipientEmail);
+
+        String subject = "Đặt lại mật khẩu của bạn";
+
+        String content = "<p>Xin chào,</p>"
+                + "<p>Bạn đã yêu cầu đặt lại mật khẩu của mình..</p>"
+                + "<p>Nhấp vào liên kết bên dưới để thay đổi mật khẩu của bạn:</p>"
+                + "<h3><a href=\"" + link + "\">Thay đổi mật khẩu</a></h3>"
+                + "<p><strong>Lưu ý: </strong>Bỏ qua email này nếu bạn nhớ mật khẩu của mình hoặc bạn chưa thực hiện yêu cầu.</p>"
+                + "Cảm ơn bạn,<br>"
+                + "Nice Travel.";
+
+        helper.setSubject(subject);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
     }
 
     @GetMapping("/reset_password")
@@ -131,15 +162,15 @@ public String showRegistrationForm(Model model) {
         model.addAttribute("token", token);
 
         if (account == null) {
-            model.addAttribute("message", "Invalid Token");
-            return "message";
+            model.addAttribute("message", "Mã Token không hợp lệ");
+            return "/account/forgot/forgot_password_form";
         }
 
         return "/account/forgot/reset_password_form";
     }
 
     @PostMapping("/reset_password")
-    public String processResetPassword(HttpServletRequest request, Model model) {
+    public String processResetPassword(HttpServletRequest request, Model model) throws Exception {
         String token = request.getParameter("token");
         String password = request.getParameter("password");
 
@@ -147,14 +178,14 @@ public String showRegistrationForm(Model model) {
         model.addAttribute("title", "Reset your password");
 
         if (account == null) {
-            model.addAttribute("message", "Invalid Token");
-            return "message";
+            model.addAttribute("message", "Mã Token không hợp lệ");
+            return "/account/forgot/forgot_password_form";
         } else {
             userServices.updatePassword(account, password);
 
-            model.addAttribute("message", "You have successfully changed your password.");
+            model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công.");
         }
 
-        return "message";
+        return "/account/forgot/forgot_password_form";
     }
 }

@@ -67,11 +67,11 @@ public class UserServices {
         String toAddress = account.getEmail();
         String fromAddress = "nicetravelcompany@gmail.com";
         String senderName = "Nice Travel Company";
-        String subject = "Please verify your registration";
-        String content = "Dear <b>[[name]]</b>,<br>"
-                + "Please click the link below to verify your registration:<br>"
-                + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
-                + "Thank you,<br>"
+        String subject = "Vui lòng xác minh đăng ký của bạn";
+        String content = "Thân chào <b>[[name]]</b>,<br>"
+                + "PVui lòng nhấp vào liên kết bên dưới để xác minh đăng ký của bạn:<br>"
+                + "<h3><a href=\"[[URL]]\" target=\"_self\">XÁC NHẬN</a></h3>"
+                + "Cảm ơn bạn,<br>"
                 + "Nice Travel.";
 
         MimeMessage message = mailSender.createMimeMessage();
@@ -90,7 +90,7 @@ public class UserServices {
 
         mailSender.send(message);
 
-        System.out.println("Email has been sent");
+        System.out.println("Email đã được gửi");
     }
 
     public boolean verify(String verificationCode) {
@@ -115,9 +115,9 @@ public class UserServices {
         Account account = accountService.findByEmail(email);
         if (account != null) {
             account.setVerificationCode(token);
-            accountService.createAccount(account);
+            accountService.updateAccount(account);
         } else {
-            throw new UsernameNotFoundException("Could not find any customer with the email " + email);
+            throw new UsernameNotFoundException("Không tìm thấy tài khoản nào có email: " + email);
         }
     }
 
@@ -125,38 +125,14 @@ public class UserServices {
         return accountService.findByVerificationCode(token);
     }
 
-    public void updatePassword(Account account, String newPassword) {
+    public void updatePassword(Account account, String newPassword) throws Exception {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(newPassword);
         account.setPassword(encodedPassword);
 
         account.setVerificationCode(null);
-        accountService.createAccount(account);
+        accountService.update(account);
     }
 
-    public void sendEmail(String recipientEmail, String link)
-            throws MessagingException, UnsupportedEncodingException {
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
-
-        helper.setFrom("nicetravelcompany@gmail.com", "NiceTravel Support");
-        helper.setTo(recipientEmail);
-
-        String subject = "Here's the link to reset your password";
-
-        String content = "<p>Hello,</p>"
-                + "<p>You have requested to reset your password.</p>"
-                + "<p>Click the link below to change your password:</p>"
-                + "<p><a href=\"" + link + "\">Change my password</a></p>"
-                + "<br>"
-                + "<p>Ignore this email if you do remember your password, "
-                + "or you have not made the request.</p>";
-
-        helper.setSubject(subject);
-
-        helper.setText(content, true);
-
-        mailSender.send(message);
-    }
 
 }
