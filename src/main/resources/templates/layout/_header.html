@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <header class="init">
 
 	<!-- subnav -->
@@ -17,7 +17,7 @@
 				<div class="col-md-6">
 					<div class="right">
 						<div id="sub-icon" class="social-icons-subnav">
-							<a href="#"><span class="ti-facebook"></span></a> <a href="#"><span
+							<a href="https://www.facebook.com/nicetravelcompany/"><span class="ti-facebook"></span></a> <a href="#"><span
 								class="ti-dribbble"></span></a> <a href="#"><span
 								class="ti-twitter"></span></a> <a href="#"><span
 								class="ti-instagram"></span></a> <a href="#"><span
@@ -35,8 +35,8 @@
 						</th:block>
 						<th:block th:if="${#request.remoteUser}">
 							<!-- <img src="" alt="" class="header__navbar-user-img"> -->
-							<div class="social-icons-subnav">
-								<a><span class="ti-user"></span>[[${#request.remoteUser}]]</a> / <a th:href="@{/logoff}">Đăng xuất</a>
+							<div class="social-icons-subnav" sec:authorize="isAuthenticated()">
+								<span class="ti-user"></span ><span sec:authentication="name"></span> / <a th:href="@{/logoff}">Đăng xuất</a>
 							</div>
 
 							<!-- <ul class="header__navbar-user-menu">

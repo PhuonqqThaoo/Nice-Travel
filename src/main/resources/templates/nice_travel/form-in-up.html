@@ -37,17 +37,17 @@
                         <input type="submit" value="Login" class="btn solid" />
                         <p class="social-text">Hoặc Đăng nhập bằng các nền tảng xã hội</p>
                         <div class="social-media">
-                            <a href="#" class="social-icon">
+                            <a th:href="@{/oauth2/authorization/facebook}" class="social-icon">
                                 <i class='bx bxl-facebook-circle' ></i>
                             </a>
                             <!--                            <a href="#" class="social-icon">-->
                             <!--                                <i class="fab fa-twitter"></i>-->
                             <!--                            </a>-->
-                            <a href="#" class="social-icon">
+                            <a th:href="@{/oauth2/authorization/google}" class="social-icon">
                                 <i class='bx bxl-google' ></i>
                             </a>
-                            <a href="#" class="social-icon">
-                                <i class='bx bxl-linkedin-square' ></i>
+                            <a th:href="@{/oauth2/authorization/github}" class="social-icon">
+                                <i class='bx bxl-github'></i>
                             </a>
                         </div>
                     </form>
@@ -75,17 +75,17 @@
                         <input type="submit" class="btn" value="Sign up" />
                         <p class="social-text">Hoặc Đăng ký với các nền tảng xã hội</p>
                         <div class="social-media">
-                            <a href="#" class="social-icon">
+                            <a th:href="@{/oauth2/authorization/facebook}" class="social-icon">
                                 <i class='bx bxl-facebook-circle' ></i>
                             </a>
-<!--                            <a href="#" class="social-icon">-->
-<!--                                <i class="fab fa-twitter"></i>-->
-<!--                            </a>-->
-                            <a href="#" class="social-icon">
+                            <!--                            <a href="#" class="social-icon">-->
+                            <!--                                <i class="fab fa-twitter"></i>-->
+                            <!--                            </a>-->
+                            <a th:href="@{/oauth2/authorization/google}" class="social-icon">
                                 <i class='bx bxl-google' ></i>
                             </a>
-                            <a href="#" class="social-icon">
-                                <i class='bx bxl-linkedin-square' ></i>
+                            <a th:href="@{/oauth2/authorization/github}" class="social-icon">
+                                <i class='bx bxl-github'></i>
                             </a>
                         </div>
                     </form>

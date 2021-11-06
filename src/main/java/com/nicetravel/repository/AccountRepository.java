@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -19,6 +20,9 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 //    getAccountByUsername
     @Query("SELECT u FROM Account u WHERE u.username =?1")
     Account findAccountsByUsername(String username);
+
+    @Query("SELECT u FROM Account u WHERE u.username = :username")
+    public Account getUserByUsername(@Param("username") String username);
 
     @Query("SELECT u FROM Account u WHERE u.email = ?1")
     public Account findByEmail(String email);

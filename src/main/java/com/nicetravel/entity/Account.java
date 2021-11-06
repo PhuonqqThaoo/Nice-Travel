@@ -39,7 +39,10 @@ public class Account implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-	
+
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
+
 	@NotEmpty
 	@NotNull
     @Column(name = "username", nullable = false, length = 20)

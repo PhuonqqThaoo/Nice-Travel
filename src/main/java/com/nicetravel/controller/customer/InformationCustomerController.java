@@ -4,6 +4,7 @@ import com.nicetravel.entity.Account;
 import com.nicetravel.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -82,6 +83,16 @@ public class InformationCustomerController {
 //		model.addAttribute("pass", accountService.findAccountsByUsername(username));
 		accountService.update(userRequest);
 		return "redirect:/customer/information-customer";
+	}
+
+	public void updatePassword(String token, String email) throws UsernameNotFoundException {
+		Account account = accountService.findByEmail(email);
+		if (account != null) {
+			account.setVerificationCode(token);
+			accountService.updateAccount(account);
+		} else {
+			throw new UsernameNotFoundException("Không tìm thấy tài khoản nào có email: " + email);
+		}
 	}
 
 }

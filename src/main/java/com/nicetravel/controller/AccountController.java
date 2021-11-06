@@ -8,8 +8,14 @@ import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -94,6 +100,20 @@ public class AccountController {
     public String delete(@PathVariable("id") Integer id){
         accountService.deleteAccount(id);
         return "redirect:/account";
+    }
+
+
+    @GetMapping("/oauth2/login/success")
+    public String success(OAuth2AuthenticationToken oauth){
+        String fullname = oauth.getPrincipal().getAttribute("name");
+
+        UserDetails user = User.withUsername(fullname).password("").roles("USER").build();
+
+        Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+
+        SecurityContextHolder.getContext().setAuthentication(auth);
+
+        return "redirect:/";
     }
 
 }
