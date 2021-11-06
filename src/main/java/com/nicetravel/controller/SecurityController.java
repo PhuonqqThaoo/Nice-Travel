@@ -169,7 +169,7 @@ public String showRegistrationForm(Model model) {
         return "/account/forgot/reset_password_form";
     }
 
-    @PostMapping("/reset_password")
+    @PostMapping("/reset_passwords")
     public String processResetPassword(HttpServletRequest request, Model model) throws Exception {
         String token = request.getParameter("token");
         String password = request.getParameter("password");
