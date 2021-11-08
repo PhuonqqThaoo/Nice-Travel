@@ -1,5 +1,7 @@
 package com.nicetravel.repository;
 
+import com.nicetravel.entity.Total;
+import com.nicetravel.entity.TotalSold;
 import com.nicetravel.entity.Travel;
 
 
@@ -22,5 +24,14 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
     
     @Query("SELECT t FROM Travel t WHERE t.typeId.id=?1")
 	List<Travel> findByTypeId(Integer tid);
-
+    
+//    // số lượng bán ra 
+//    @Query(value = "{CALL sp_getTotalSold()}", nativeQuery = true)
+//	List<TotalSold> getTotalSold();
+    
+    @Query(value = "{CALL sp_getTotalSold()}", nativeQuery = true)
+   	List<String[][]> getTotalSold();
+   	
+   	@Query("SELECT new com.nicetravel.entity.Total(u.name, (100- ((convert(float,u.quantityNew) / convert(float,u.quantity)) * 100)) ) From Travel u ")
+   	List<Total> getTotal();
 }

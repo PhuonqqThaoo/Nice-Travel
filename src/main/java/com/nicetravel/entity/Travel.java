@@ -82,5 +82,8 @@ public class Travel implements Serializable {
 
     @Column(name = "isDeleted", nullable = false)
     private Boolean isDeleted = false;
+    
+    @Column(name="quantityNew",nullable = false)
+    private Integer quantityNew;
 
 }

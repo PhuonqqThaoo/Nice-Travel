@@ -1,18 +1,27 @@
 package com.nicetravel.controller.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nicetravel.entity.Total;
+import com.nicetravel.entity.TotalSold;
+import com.nicetravel.entity.Travel;
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.BookingService;
+
 import com.nicetravel.service.TravelService;
 
 @CrossOrigin("*")
 @RestController
 public class HomeAdminRestController {
+	
+
+	
 	@Autowired
 	private TravelService travelService;
 	
@@ -59,5 +68,16 @@ public class HomeAdminRestController {
 	@GetMapping("/admin/totalUserLastMonth")
 	public Double gettotalUserLastMonth() {
 		return accountService.comparedLastMonth();
+	}
+	
+//	// số lượng đã đặt so với số lượng ban đầu
+//		@GetMapping("/admin/TotalSold")
+//		public List<String[][]> getTotalSold() {
+//			return travelService.getTotalSold();
+//		}
+	
+	@GetMapping("/admin/TotalSold")
+	public List<Total> getTotalSold() {
+		return travelService.getTotal();
 	}
 }

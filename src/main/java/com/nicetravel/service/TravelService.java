@@ -1,5 +1,7 @@
 package com.nicetravel.service;
 
+import com.nicetravel.entity.Total;
+import com.nicetravel.entity.TotalSold;
 import com.nicetravel.entity.Travel;
 
 
@@ -21,4 +23,8 @@ public interface TravelService {
     List<Travel> findByTypeId(Integer tid);
     
     Integer getCountTravel();
+    
+//    List<String [][]> getTotalSold();
+    
+    List<Total> getTotal();
 }
