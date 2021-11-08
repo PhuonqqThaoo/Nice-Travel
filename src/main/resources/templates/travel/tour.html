@@ -96,7 +96,7 @@
                                                 <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">[[${#numbers.formatCurrency(p.price)}]]</h5> / người
                                             </p>
                                             <div>
-                                                <a th:href="@{|/booking/check/${p.id}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
+                                                <a th:attr="ng-click=@{|booking.add(${p.id})|}" th:href="@{|/booking/check/${p.id}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
                                                     ngay</a>
                                                 <a th:href="@{|/travel/detail/${p.id}|}" style="float: right;">Xem chi tiết</a>
                                             </div>

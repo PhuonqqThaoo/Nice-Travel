@@ -66,9 +66,9 @@
                                     <p>&gt; 12 tuổi</p>
                                 </div>
                                 <div class="change-number">
-                                    <span class="minus btn-click"><i class="bx bx-minus-circle" id="adultMinus"></i></span>
+                                    <span class="minus btn-click"><i class="bx bx-minus-circle" id="adultMinus" ng-click="minus()"></i></span>
                                     <span class="number" id="adult">1</span>
-                                    <span class="plus btn-click"><i class="bx bx-plus-circle" id="adultPlus"></i></span>
+                                    <span class="plus btn-click"><i class="bx bx-plus-circle" id="adultPlus" ng-click="plus()"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -79,11 +79,9 @@
                                     <p>Từ 5 - 11 tuổi</p>
                                 </div>
                                 <div class="change-number">
-                                    <span class="minus btn-click"><i class="bx bx-minus-circle"
-                                            id="childrenMinus"></i></span>
+                                    <span class="minus btn-click"><i class="bx bx-minus-circle" id="childrenMinus"></i></span>
                                     <span class="number" id="children">0</span>
-                                    <span class="plus btn-click"><i class="bx bx-plus-circle"
-                                            id="childrenPlus"></i></span>
+                                    <span class="plus btn-click"><i class="bx bx-plus-circle" id="childrenPlus"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +136,7 @@
                 <div class="strikethrough"></div>
                 <h5 style="font-weight: 700;">Nơi đến </h5>
                 <div class="noi-den">
-                    <img th:src="@{|/assets/img/${travel.img}|}" alt="">
+                    <img src="/assets/img/{{booking.items.img}}" alt="">
                     <div>
                         <i class='bx bxs-star'></i>
                         <i class='bx bxs-star'></i>
