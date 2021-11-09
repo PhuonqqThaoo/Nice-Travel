@@ -36,13 +36,7 @@
 }
 
 .like {
-    border: none;
-    background-color: #ffffff;
-    color: #fd2d34;
-    font-weight: 700;
-    position: absolute;
-    top: 10px;
-    cursor: alias;
+
 }
 
 /* travel */
@@ -57,7 +51,6 @@
 
 .travel-btn {
     padding: .8rem 2.3rem;
-
     background-color: rgba(16, 172, 132, 1.0);
     border-radius: .5rem;
     color: #ffffff;
