@@ -1,133 +1,138 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
 <body>
-	<main>
-	<!-- box200 -->
+    <main>
+        <!-- box200 -->
         <div class="box-200"></div>
-	<!-- pay -->
+        <!-- pay -->
         <div class="pay pay-container">
-        <form th:action="@{|/booking/thanhtoan?id=${travel.id}|}" method="post">
-            <ol class="breadcrumb">
-                <li><a href="#">Đặt tour</a></li>
-                <li><a href="#">Nhập thông tin</a></li>
-            </ol>
+            <form th:action="@{|/booking/thanhtoan?id=${travel.id}|}" method="post">
+                <ol class="breadcrumb">
+                    <li><a href="#">Đặt tour</a></li>
+                    <li><a href="#">Nhập thông tin</a></li>
+                </ol>
 
-            <!-- left -->
-            <div class="col-65-left">
-                <div class="title">
-                    <h2>Nhập thông tin</h2>
-                </div>
-                <!-- thông tin liên lạc -->
-                <div class="thong-tin-lien-lac">
-                    <h4>Thông tin liên lạc</h4>
-                    <p>Đây là thông tin của khách hàng dùng để liên lạc khi đặt chỗ thành công</p>
-                </div>
-                <!-- box thông tin -->
-                <div class="box-thong-tin">
-                    <div class="col-12">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Họ và tên</label>
-                                <input type="text" class="form-control" th:placeholder="${account.fullname}" disabled>
+                <!-- left -->
+                <div class="col-65-left">
+                    <div class="title">
+                        <h2>Nhập thông tin</h2>
+                    </div>
+                    <!-- thông tin liên lạc -->
+                    <div class="thong-tin-lien-lac">
+                        <h4>Thông tin liên lạc</h4>
+                        <p>Đây là thông tin của khách hàng dùng để liên lạc khi đặt chỗ thành công</p>
+                    </div>
+                    <!-- box thông tin -->
+                    <div class="box-thong-tin">
+                        <div class="col-12">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Họ và tên</label>
+                                    <input type="text" class="form-control" th:placeholder="${account.fullname}"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Địa chỉ email</label>
+                                    <input type="text" class="form-control" th:placeholder="${account.email}" disabled>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Địa chỉ email</label>
-                                <input type="text" class="form-control" th:placeholder="${account.email}" disabled>
+                        <div class="col-12">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Số điện thoại</label>
+                                    <input type="text" class="form-control" th:placeholder="${account.phone}" disabled>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Địa chỉ</label>
+                                    <input type="text" class="form-control" th:placeholder="${account.address}"
+                                        disabled>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Số điện thoại</label>
-                                <input type="text" class="form-control" th:placeholder="${account.phone}" disabled>
+
+                    <!-- pay customer -->
+                    <div class="customer">
+                        <h3>Hành khách</h3>
+                        <div class="col-12">
+                            <div class="col-6">
+                                <div class="change">
+                                    <div class="change-title">
+                                        <h4>Người lớn</h4>
+                                        <p>&gt; 12 tuổi</p>
+                                    </div>
+                                    <div class="change-number">
+                                        <span class="minus btn-click"><i class="bx bx-minus-circle" id="adultMinus" ng-click="adultMinus()"></i></span>
+                                        <span class="number" id="adult">1</span>
+                                        <span class="plus btn-click"><i class="bx bx-plus-circle" id="adultPlus" ng-click="adultPlus()"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="change">
+                                    <div class="change-title">
+                                        <h4>Trẻ em</h4>
+                                        <p>Từ 5 - 11 tuổi</p>
+                                    </div>
+                                    <div class="change-number">
+                                        <span class="minus btn-click"><i class="bx bx-minus-circle"
+                                                id="childrenMinus" ng-click="childrenMinus()"></i></span>
+                                        <span class="number" id="children">0</span>
+                                        <span class="plus btn-click"><i class="bx bx-plus-circle"
+                                                id="childrenPlus" ng-click="childrenPlus()"></i></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Địa chỉ</label>
-                                <input type="text" class="form-control" th:placeholder="${account.address}" disabled>
+                        <div class="col-12">
+                            <div class="col-6">
+                                <div class="change">
+                                    <div class="change-title">
+                                        <h4>Trẻ nhỏ</h4>
+                                        <p>Từ 2 - 4 tuổi</p>
+                                    </div>
+                                    <div class="change-number">
+                                        <span class="minus btn-click"><i class="bx bx-minus-circle"
+                                                id="smallchildrenMinus" ng-click="smallchildrenMinus()"></i></span>
+                                        <span class="number" id="smallchildren">0</span>
+                                        <span class="plus btn-click"><i class="bx bx-plus-circle"
+                                                id="smallchildrenPlus" ng-click="smallchildrenPlus()"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="change">
+                                    <div class="change-title">
+                                        <h4>Em bé</h4>
+                                        <p>Từ 0 - 2 tuổi</p>
+                                    </div>
+                                    <div class="change-number">
+                                        <span class="minus btn-click"><i class="bx bx-minus-circle"
+                                                id="babyMinus" ng-click="babyMinus()"></i></span>
+                                        <span class="number" id="baby">0</span>
+                                        <span class="plus btn-click"><i class="bx bx-plus-circle"
+                                                id="babyPlus" ng-click="babyPlus()"></i></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- pay customer -->
-                <div class="customer">
-                    <h3>Hành khách</h3>
-                    <div class="col-12">
-                        <div class="col-6">
-                            <div class="change">
-                                <div class="change-title">
-                                    <h4>Người lớn</h4>
-                                    <p>&gt; 12 tuổi</p>
-                                </div>
-                                <div class="change-number">
-                                    <span class="minus btn-click"><i class="bx bx-minus-circle" id="adultMinus" ng-click="minus()"></i></span>
-                                    <span class="number" id="adult">1</span>
-                                    <span class="plus btn-click"><i class="bx bx-plus-circle" id="adultPlus" ng-click="plus()"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="change">
-                                <div class="change-title">
-                                    <h4>Trẻ em</h4>
-                                    <p>Từ 5 - 11 tuổi</p>
-                                </div>
-                                <div class="change-number">
-                                    <span class="minus btn-click"><i class="bx bx-minus-circle" id="childrenMinus"></i></span>
-                                    <span class="number" id="children">0</span>
-                                    <span class="plus btn-click"><i class="bx bx-plus-circle" id="childrenPlus"></i></span>
-                                </div>
-                            </div>
-                        </div>
+                <!-- right -->
+                <div class="col-35-right">
+                    <div class="title">
+                        <h4>Tóm tắt đặt chỗ</h4>
                     </div>
-                    <div class="col-12">
-                        <div class="col-6">
-                            <div class="change">
-                                <div class="change-title">
-                                    <h4>Trẻ nhỏ</h4>
-                                    <p>Từ 2 - 4 tuổi</p>
-                                </div>
-                                <div class="change-number">
-                                    <span class="minus btn-click"><i class="bx bx-minus-circle"
-                                            id="smallchildrenMinus"></i></span>
-                                    <span class="number" id="smallchildren">0</span>
-                                    <span class="plus btn-click"><i class="bx bx-plus-circle"
-                                            id="smallchildrenPlus"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="change">
-                                <div class="change-title">
-                                    <h4>Em bé</h4>
-                                    <p>Từ 0 - 2 tuổi</p>
-                                </div>
-                                <div class="change-number">
-                                    <span class="minus btn-click"><i class="bx bx-minus-circle"
-                                            id="babyMinus"></i></span>
-                                    <span class="number" id="baby">0</span>
-                                    <span class="plus btn-click"><i class="bx bx-plus-circle" id="babyPlus"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- right -->
-            <div class="col-35-right">
-                <div class="title">
-                    <h4>Tóm tắt đặt chỗ</h4>
-                </div>
-                <div class="travel-detail-lich-trinh-time">
-                    <h5><i class='bx bxs-timer'></i> Ngày khởi hành</h5>
-                    <p>[[${travel.hour}]]:00 - [[${#dates.format(travel.startDate, 'dd-MM-yyyy')}]]</p>
+                    <div class="travel-detail-lich-trinh-time">
+                        <h5><i class='bx bxs-timer'></i> Ngày khởi hành</h5>
+                        <p>[[${travel.hour}]]:00 - [[${#dates.format(travel.startDate, 'dd-MM-yyyy')}]]</p>
                 </div>
                 <div class="travel-detail-lich-trinh-time">
                     <h5><i class='bx bxs-timer'></i> Ngày kết thúc</h5>
@@ -236,5 +241,31 @@
         </section>
         <!--  gallery home end -->
 	</main>
+
+    <script>
+        $('.change-number .plus').click(function () {
+            adult = parseInt($("#adult").text());
+            children = parseInt($("#children").text());
+            smallchildren = parseInt($("#smallchildren").text());
+            baby = parseInt($("#baby").text());
+            if (adult + children + smallchildren + baby + 1 > parseInt('9')) {
+                alert("Số khách tối đa: 9");
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        $('.change-number .minus').click(function () {
+            adult = parseInt($("#adult").text());
+            children = parseInt($("#children").text());
+            smallchildren = parseInt($("#smallchildren").text());
+            baby = parseInt($("#baby").text());
+            if (adult + children + smallchildren + baby - 1 <= 0) {
+                alert("Số khách yêu cầu tối thiểu 1");
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
 </body>
 </html>
