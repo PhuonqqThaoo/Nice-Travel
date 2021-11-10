@@ -9,6 +9,7 @@ import com.nicetravel.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -64,6 +65,12 @@ public class TravelServiceImpl implements TravelService {
 	@Override
 	public List<Total> getTotal() {
 		return travelRepository.getTotal();
+	}
+
+	@Override
+	public List<Travel> searchTour(String depart, String desti, String sd) {
+		// TODO Auto-generated method stub
+		return travelRepository.searchTour(depart, desti,sd);
 	}
 
 //	@Override

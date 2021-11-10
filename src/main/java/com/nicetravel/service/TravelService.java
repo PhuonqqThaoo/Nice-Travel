@@ -4,7 +4,7 @@ import com.nicetravel.entity.Total;
 import com.nicetravel.entity.TotalSold;
 import com.nicetravel.entity.Travel;
 
-
+import java.util.Date;
 import java.util.List;
 
 public interface TravelService {
@@ -21,6 +21,8 @@ public interface TravelService {
     Travel findTravelBySlug(String slug);
     
     List<Travel> findByTypeId(Integer tid);
+    
+    List<Travel> searchTour(String depart,String desti, String sd); 
     
     Integer getCountTravel();
     
