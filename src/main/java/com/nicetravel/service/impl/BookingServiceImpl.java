@@ -1,6 +1,10 @@
 package com.nicetravel.service.impl;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nicetravel.entity.Booking;
+import com.nicetravel.entity.BookingDetail;
+import com.nicetravel.repository.BookingDetailRepository;
 import com.nicetravel.repository.BookingRepository;
 import com.nicetravel.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +19,9 @@ import java.util.List;
 public class BookingServiceImpl implements BookingService {
 
     BookingRepository bookingRepository;
-
+    
+    @Autowired BookingDetailRepository bookingDetailRepository;
+    
     @Autowired
     public BookingServiceImpl(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
@@ -59,5 +65,19 @@ public class BookingServiceImpl implements BookingService {
 	@Override
 	public Double getRevenue() {
 		return bookingRepository.getRevenue();
+	}
+
+	@Override
+	public Booking createBookingJson(JsonNode bookingData) {
+ObjectMapper mapper = new ObjectMapper();
+		
+		Booking booking = mapper.convertValue(bookingData, Booking.class);
+		bookingRepository.save(booking);
+		
+		BookingDetail bookingDetail = mapper.convertValue(bookingData.get("bookingDetails"), BookingDetail.class);
+		bookingDetail.setBookingId(booking);
+		bookingDetailRepository.save(bookingDetail);
+		
+		return booking;
 	}
 }

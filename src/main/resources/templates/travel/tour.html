@@ -18,15 +18,15 @@
                             <div class="container-fluid m-5-hor m-5-hor-dev">
                                 <div class="row">
 
-                                    <form class="form-inline" id="sform">
+                                    <form class="form-inline" id="sform" action="/tour/search" method="post">
                                         <div class="form-group">
                                             <h3 class="big-heading">Tìm kiếm</h3>
-                                            <span class="result">20 Tours du lịch hiện có</span>
+                                            <span class="result"></span>
                                         </div>
                                         <div class="form-group search-icn">
                                             <label><span class="ti-menu-alt color"></span> Điểm đi</label>
-                                            <select class="cust-select" name="select-trip" required="">
-                                                <option value="">Hồ Chí Minh</option>
+                                            <select class="cust-select" name="departurePlace" required="">
+                                                <option value="Tân Bình">Tân Bình</option>
                                                 <option value="">Hà Nội</option>
                                                 <option value="#">Đà Lạt</option>
                                                 <option value="#">Vũng Tàu</option>
@@ -35,12 +35,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label><span class="ti-menu-alt color"></span> Điểm đến</label>
-                                            <select class="cust-select" name="select-trip" required="">
-                                                <option value="">Hồ Chí Minh</option>
-                                                <option value="">Hà Nội</option>
-                                                <option value="#">Đà Lạt</option>
-                                                <option value="#">Vũng Tàu</option>
-                                                <option value="#">Phú Quốc</option>
+                                            <select class="cust-select" name="destinationPlace" required="">
+                                                 <option value="Phan Thiết">Phan Thiết</option>
+                                				<option value="Cần Thơ">Cần Thơ</option>
+                                				<option value="Đà Lạt">Đà Lạt</option>
+					                            <option value="Vũng Tàu">Vũng Tàu</option>
+					                            <option value="Phú Yên">Phú Yên</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -48,7 +48,7 @@
                                             <div id="filterDate2">
                                                 <!-- Datepicker as text field -->
                                                 <div class="input-group date" data-date-format="dd/mm/yyyy">
-                                                    <input type="text" class="form-control" placeholder="dd/mm/yyyy"
+                                                    <input name="startDate" type="text" class="form-control" placeholder="dd/mm/yyyy"
                                                         required="">
                                                     <div class="input-group-addon">
                                                         <span class="fa fa-calendar"></span>
@@ -84,7 +84,6 @@
                                         <div class="hovereffect">
                                             <img alt="imageportofolio" class="img-responsive"
                                                 th:src="@{|/assets/img/${p.img}|}">
-                                            <button class="like"><i class='bx bxs-heart'></i> Yêu thích</button>
                                         </div>
                                         <div class="gal-home-content travel-box-content">
                                             <p> [[${#dates.format(p.startDate, 'dd-MM-yyyy')}]]</p>
@@ -96,8 +95,9 @@
                                                 <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">[[${#numbers.formatCurrency(p.price)}]]</h5> / người
                                             </p>
                                             <div>
-                                                <a th:href="@{|/booking/check/${p.id}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
+                                                <a th:attr="ng-click=@{|load.add(${p.id})|}" href="/booking/check" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
                                                     ngay</a>
+                                                <a href="" class="travel-btn" style="padding: .8rem 1.8rem; background-color: rgb(9, 184, 253);"><i class='bx bxs-heart'></i></a>
                                                 <a th:href="@{|/travel/detail/${p.id}|}" style="float: right;">Xem chi tiết</a>
                                             </div>
                                         </div>
