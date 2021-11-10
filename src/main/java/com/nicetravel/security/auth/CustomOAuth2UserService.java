@@ -1,5 +1,6 @@
-package com.nicetravel.custom;
+package com.nicetravel.security.auth;
 
+import com.nicetravel.security.auth.CustomOAuth2User;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -11,6 +12,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User user =  super.loadUser(userRequest);
+        System.out.println("loading...");
         return new CustomOAuth2User(user);
     }
 

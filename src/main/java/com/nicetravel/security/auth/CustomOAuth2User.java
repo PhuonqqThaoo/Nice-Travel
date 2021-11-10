@@ -1,4 +1,4 @@
-package com.nicetravel.custom;
+package com.nicetravel.security.auth;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -25,6 +25,7 @@ public class CustomOAuth2User implements OAuth2User {
 
     @Override
     public String getName() {
+        System.out.println(oauth2User.<String>getAttribute("email"));
         return oauth2User.getAttribute("name");
     }
 

@@ -31,8 +31,23 @@ public class Role implements Serializable {
     @Column(name = "role", nullable = false, length = 20)
     private String role;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "role_Id")
-    List<Account> authorities;
+    public Role(Integer id, String role) {
+        this.id = id;
+        this.role = role;
+    }
 
+    public Role(Integer id) {
+        this.id = id;
+    }
+
+
+    @Override
+    public String toString() {
+        return this.role;
+    }
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "role")
+    List<Authority> authorities;
 }
