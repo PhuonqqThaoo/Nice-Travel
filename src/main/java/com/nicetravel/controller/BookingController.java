@@ -37,38 +37,10 @@ public class BookingController {
 	@Autowired
 	BookingDetailService bookingDetailService;
 
-	@RequestMapping("check/{id}")
-	public String check(Model model, HttpServletRequest request,@PathVariable("id") Integer id) {
+	@RequestMapping("check")
+	public String check(Model model, HttpServletRequest request) {
 		String username = request.getRemoteUser();
-		model.addAttribute("travel",travelService.findTravelById(id));
 		model.addAttribute("account", accountService.findAccountsByUsername(username));
 		return "booking/check";
-	}
-	
-	@RequestMapping("thanhtoan")
-	public String submit(HttpServletRequest request,@RequestParam("id") Integer id){
-		String username = request.getRemoteUser();
-		Account accountId = accountService.findAccountsByUsername(username);
-		Travel travelId = travelService.findTravelById(id);
-		Booking booking = new Booking();
-		Date now = new Date();
-		Timestamp timestamp = new Timestamp(now.getTime());
-		//tạo đơn hàng
-		booking.setCreatedDate(timestamp);
-		booking.setAccountId(accountId);
-		booking.setPayBoolean(true);
-		booking.setPhone(accountId.getPhone());
-		booking.setIsDeleted(false);
-		booking.setTotalPrice(travelId.getPrice());
-		
-		BookingDetail bDetail = new BookingDetail();
-		bDetail.setBookingId(booking);
-		bDetail.setPrice(booking.getTotalPrice());
-		bDetail.setTravelId(travelId);
-		
-		bookingService.createBooking(booking);
-		bookingDetailService.createBookingDetail(bDetail);
-		
-		return "redirect:/";
 	}
 }

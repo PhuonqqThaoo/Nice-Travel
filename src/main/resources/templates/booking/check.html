@@ -7,10 +7,9 @@
         <div class="box-200"></div>
         <!-- pay -->
         <div class="pay pay-container">
-            <form th:action="@{|/booking/thanhtoan?id=${travel.id}|}" method="post">
                 <ol class="breadcrumb">
-                    <li><a href="#">Đặt tour</a></li>
-                    <li><a href="#">Nhập thông tin</a></li>
+                    <li><a href="">Đặt tour</a></li>
+                    <li><a href="">Nhập thông tin</a></li>
                 </ol>
 
                 <!-- left -->
@@ -29,14 +28,14 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Họ và tên</label>
-                                    <input type="text" class="form-control" th:placeholder="${account.fullname}"
-                                        disabled>
+                                    <input type="text" class="form-control" th:value="${account.fullname}" disabled>
+                                    <div id="accountId" style="display: none">[[${account.id}]]</div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Địa chỉ email</label>
-                                    <input type="text" class="form-control" th:placeholder="${account.email}" disabled>
+                                    <input type="text" class="form-control" th:value="${account.email}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -44,14 +43,15 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số điện thoại</label>
-                                    <input type="text" class="form-control" th:placeholder="${account.phone}" disabled>
+                                    <input type="text" class="form-control" th:value="${account.phone}" disabled>
+                                    <div id="phone" style="display: none">[[${account.phone}]]</div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Địa chỉ</label>
-                                    <input type="text" class="form-control" th:placeholder="${account.address}"
-                                        disabled>
+                                    <input type="text" class="form-control" disabled th:value="${account.address}">
+                                    <div id="address" style="display: none">[[${account.address}]]</div>
                                 </div>
                             </div>
                         </div>
@@ -132,16 +132,16 @@
                     </div>
                     <div class="travel-detail-lich-trinh-time">
                         <h5><i class='bx bxs-timer'></i> Ngày khởi hành</h5>
-                        <p>[[${travel.hour}]]:00 - [[${#dates.format(travel.startDate, 'dd-MM-yyyy')}]]</p>
+                        <p>{{load.items.hour | date : 'HH:mm'}} - {{load.items.startDate | date : 'dd-MM-yyyy'}}</p>
                 </div>
                 <div class="travel-detail-lich-trinh-time">
                     <h5><i class='bx bxs-timer'></i> Ngày kết thúc</h5>
-                    <p>[[${travel.hour}]]:00 - [[${#dates.format(travel.endDate, 'dd-MM-yyyy')}]]</p>
+                    <p>{{load.items.hour | date : 'HH:mm'}} - {{load.items.endDate | date : 'dd-MM-yyyy'}}</p>
                 </div>
                 <div class="strikethrough"></div>
                 <h5 style="font-weight: 700;">Nơi đến </h5>
                 <div class="noi-den">
-                    <img src="/assets/img/{{booking.items.img}}" alt="">
+                    <img src="/assets/img/{{load.items.img}}" alt="">
                     <div>
                         <i class='bx bxs-star'></i>
                         <i class='bx bxs-star'></i>
@@ -149,7 +149,7 @@
                         <i class='bx bxs-star'></i>
                         <i class='bx bxs-star'></i>
                     </div>
-                    <h5>[[${travel.name}]]</h5>
+                    <h5>{{load.items.name}}</h5>
                 </div>
                 <div class="detail">
                     <table>
@@ -158,40 +158,40 @@
                                 <th class="l1">Hành khách</th>
                                 <th class="l2 text-right">
                                     <p class="add-more">
-                                        <p>1 người lớn<br>0 trẻ em<br>0 trẻ nhỏ<br>0 em bé</p>
+                                        <p>{{load.qtyAdult}} người lớn<br>{{load.qtyChildren}} trẻ em<br>{{load.qtySmallchildren}} trẻ nhỏ<br>{{load.qtyBaby}} em bé</p>
                                     </p>
                                 </th>
                             </tr>
                             <tr>
                                 <td>Người lớn</td>
-                                <td class="t-price text-right" id="AdultPrice">1 x [[${#numbers.formatCurrency(travel.price)}]]</td>
+                                <td class="t-price text-right" id="AdultPrice">{{load.qtyAdult}} x {{load.items.price * load.qtyAdult | number}}₫</td>
                             </tr>
                             <tr>
                                 <td>Trẻ em</td>
-                                <td class="t-price text-right" id="ChildrenPrice">0₫</td>
+                                <td class="t-price text-right" id="ChildrenPrice">{{load.qtyChildren}} x {{((load.items.price - (load.items.price * 0.1)) * load.qtyChildren)  | number}}₫</td>
                             </tr>
                             <tr>
                                 <td>Trẻ nhỏ</td>
-                                <td class="t-price text-right" id="SmallChildrenPrice">0₫</td>
+                                <td class="t-price text-right" id="SmallChildrenPrice">{{load.qtySmallchildren}} x {{((load.items.price - (load.items.price * 0.3)) * load.qtySmallchildren) | number}}₫</td>
                             </tr>
                             <tr>
                                 <td>Em bé</td>
-                                <td class="t-price text-right" id="BabyPrice">0₫</td>
+                                <td class="t-price text-right" id="BabyPrice">{{load.qtyBaby}} x {{((load.items.price - (load.items.price * 0.5)) * load.qtyBaby) | number}}₫</td>
                             </tr>
                             <tr class="total">
                                 <td>Tổng cộng</td>
-                                <td class="t-price text-right" id="TotalPrice">[[${#numbers.formatCurrency(travel.price)}]]</td>
+                                <td class="t-price text-right" id="TotalPrice"> <span id="Total">{{load.amout | number}}</span> ₫</td>
                             </tr>
                         </tbody>
                     </table>
                     <div>
-                        <button class="btn btn-primary btn-order" style="width:100% " >
+                        <button class="btn btn-primary btn-order" style="width:100% "  ng-click="booking.purchaser()" >
                             ĐẶT NGAY
                         </button>
                     </div>
                 </div>
             </div>
-            </form>
+
         </div>
         <!-- end pay -->
         <!--  gallery home -->
