@@ -44,10 +44,10 @@ public class SecurityController {
     @GetMapping("/login")
     public String loginForm(Model model) {
 //        model.addAttribute("message","Please login");
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "/nice_travel/form-in-up";
-        }
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+//            return "/nice_travel/form-in-up";
+//        }
 
         model.addAttribute("account", new Account());
         return "/nice_travel/form-in-up";

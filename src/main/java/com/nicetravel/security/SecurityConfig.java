@@ -6,7 +6,6 @@ import com.nicetravel.security.auth.CustomOAuth2UserService;
 import com.nicetravel.custom.CustomUserDetailsService;
 import com.nicetravel.custom.UserService;
 import com.nicetravel.entity.Account;
-import com.nicetravel.security.login.LoginSuccessHandler;
 import com.nicetravel.service.AccountService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +47,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private CustomOAuth2UserService oauthUserService;
-    private LoginSuccessHandler LoginSuccessHandler;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -85,8 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/account/login")
-//                .defaultSuccessUrl("/", false)
-                .successHandler(LoginSuccessHandler)
+                .defaultSuccessUrl("/", false)
                 .failureUrl("/login/error")
                 .usernameParameter("username")
                 .passwordParameter("password");

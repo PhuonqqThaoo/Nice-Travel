@@ -100,32 +100,4 @@ public class Account implements Serializable {
     @OneToMany(mappedBy = "accountId")
     List<TravelLike> travelLikes;
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-//    List<Authority> authorities;
-
-
-//    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-//    @JoinTable(
-//            name = "Authorities",
-//            joinColumns = @JoinColumn(name = "account_Id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_Id")
-//    )
-//    private Set<Role> roles = new HashSet<>();
-//
-//    public boolean hasRole(String roleName) {
-//        Iterator<Role> iterator = this.roles.iterator();
-//        while (iterator.hasNext()) {
-//            Role role = iterator.next();
-//            if (role.getRole().equals(roleName)) {
-//                return true;
-//            }
-//        }
-//
-//        return false;
-//    }
-//
-//    public void addRole(Role role) {
-//        this.roles.add(role);
-//    }
 }
