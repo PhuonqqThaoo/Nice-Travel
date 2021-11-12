@@ -1,0 +1,370 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    font-family: 'Mulish', sans-serif;
+    letter-spacing: 0;
+}
+
+.col-6 {
+    width: 50%;
+    padding: 0 20px;
+    float: left;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.xem-them {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+.btn-xem-them {
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.like {
+    border: none;
+    background-color: #ffffff;
+    color: #fd2d34;
+    font-weight: 700;
+    position: absolute;
+    top: 10px;
+    cursor: alias;
+}
+
+/* travel */
+.travel-box {
+    transition: 1s;
+}
+
+.travel-box:hover {
+    -webkit-box-shadow: 5px 5px 20px 0 rgb(131 149 167 / 60%);
+    top: -.7rem;
+}
+
+.travel-btn {
+    padding: .8rem 2.3rem;
+
+    background-color: rgba(16, 172, 132, 1.0);
+    border-radius: .5rem;
+    color: #ffffff;
+}
+
+a.travel-btn:hover {
+    background-color: rgba(238, 82, 83, 1.0);
+    color: #ffffff;
+}
+
+/* end travel */
+
+/* travel detail */
+.travel-detail {
+    padding: 90px 0 0 0;
+}
+
+.travel-detail-row {
+    width: 100%;
+    background-color: #ffffff;
+    display: inline;
+}
+
+.travel-detail-col-6 {
+    width: 50%;
+    float: left;
+}
+
+.travel-detail-section1 {
+    width: 100%;
+    min-height: 200px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px 15px;
+}
+
+.travel-detail-section1 p span {
+    color: black;
+    font-weight: 600;
+}
+
+.travel-detail-btn-tu-van {
+    padding: 15px 150px;
+    background-color: rgba(16, 172, 132, 1.0);
+    border-radius: 5px;
+    margin-left: 54px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    transition: .5s;
+}
+
+.travel-detail-btn-tu-van:hover {
+    color: #ffffff;
+    background-color: rgba(238, 82, 83, 1.0);
+}
+
+.travel-detail-lich-trinh {
+    width: 100%;
+    min-height: 100px;
+    background-color: #ffffff;
+    padding: 20px 0 30px 0;
+}
+
+.travel-detail-lich-trinh-time {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.travel-detail-lich-trinh-time p {
+    margin-left: 70px;
+    border-left: 5px dotted rgba(16, 172, 132, 1.0);
+    padding-left: 25px;
+}
+
+.h-img-309 {
+    height: auto;
+    max-height: 309px;
+}
+
+/* end travel detail */
+
+/* box 200 */
+.box-200 {
+    height: 180px;
+}
+
+/* pay */
+.pay {
+    width: 100%;
+    min-height: 500px;
+    font-family: 'Mulish', sans-serif;
+}
+
+.pay-container {
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 800px;
+}
+
+/* left */
+.pay .col-65-left {
+    width: 65%;
+    min-height: 500px;
+    float: left;
+    padding-right: 20px;
+}
+
+.pay .col-65-left .title h2 {
+    height: 50px;
+    font-weight: 700;
+}
+
+.pay .col-65-left .thong-tin-lien-lac p {
+    font-size: 16.3px;
+}
+
+.pay .col-65-left .thong-tin-lien-lac h4 {
+    font-weight: 700;
+}
+
+.pay .col-65-left .box-thong-tin {
+    width: 100%;
+    height: 190px;
+    background-color: #f5f5f5;
+    border-radius: 15px;
+    padding-top: 10px;
+}
+
+.pay .customer>h3 {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    color: #2d4271;
+    width: 100%;
+}
+
+.pay .customer .change {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    margin-bottom: 13px;
+    padding: 10px 15px;
+}
+
+.pay .customer .change .change-number {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.pay .customer .change .change-number .btn-click {
+    font-size: 25px;
+}
+
+.pay .customer .change .change-number .number {
+    border: none;
+    background: 0 0;
+    width: 30px;
+    text-align: center;
+    font-size: 27px;
+    line-height: 32px;
+    color: #2d4271;
+}
+
+
+/* right */
+.strikethrough {
+    width: 100%;
+    height: 1px;
+    background-color: #b1b1b1a8;
+    margin: 30px 0;
+}
+
+.pay .col-35-right {
+    width: 35%;
+    min-height: 500px;
+    float: left;
+    border: 1px solid #b1b1b1a8;
+    padding: 15px 15px;
+}
+
+.pay .col-35-right .title h4 {
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.pay .col-35-right .noi-den {
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #b1b1b162;
+}
+
+.pay .col-35-right .noi-den img {
+    height: 100%;
+    float: left;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.pay .col-35-right .noi-den i {
+    color: #fdc432;
+}
+
+.pay .col-35-right .noi-den h5 {
+    font-weight: 700;
+}
+
+.pay tbody,
+.pay tr,
+.pay td,
+.pay th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}
+
+.pay .detail {
+    padding-bottom: 27px;
+    margin-bottom: 27px;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.pay .col-35-right .detail table .total td {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19px;
+    text-transform: uppercase;
+    color: #2d4271;
+    border-top: 1 px solid #e7e7e7;
+    padding: 20 px 0;
+}
+
+.pay .col-35-right .detail table .total td.t-price {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    text-align: right;
+    color: #fd5056;
+    text-transform: lowercase;
+}
+
+.pay .detail table .text-right {
+    text-align: right;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: right;
+    color: #2d4271;
+}
+
+.pay .detail .btn-order {
+    background-color: #fd5056;
+    border: none;
+    font-size: 17px;
+    font-weight: 700;
+    height: 60px;
+    transition: .2s;
+}
+
+.pay .detail .btn-order:hover {
+    background-color: #fd2d34;
+}
+
+/* end pay */
+
+
+
+/* footer */
+footer {
+    background: #f9f9f9;
+    padding-top: 45px;
+    width: 100%;
+    min-height: 500px;
+}
+.footer {
+    width: 70%;
+    margin: 0 auto;
+}
+.footer-title h5 {
+    font-weight: 700;
+}
+.footer .col-xs-5 a, .footer .col-xs-12 a {
+    font-size: 16px;
+}
+.footer .row .col-xs-6 .row .col-xs-5, .footer .col-xs-12 {
+    height: 30px;
+}
+.footer .col-xs-12 i {
+    font-size: 35px;
+    padding-right: 7px;
+    padding-top: 5px;
+    color: #10ac84;
+}
+.footer .col-xs-12 i:hover {
+    color: #fd2d34;
+}
+/* end footer */
