@@ -23,6 +23,9 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.startDate = CONVERT(DATETIME, ?3 ,103)" )
 	  List<Travel> searchTour(String depart, String desti, String sd) ;
 	  
+	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2%" )
+	  List<Travel> searchTourNotDate(String depart, String desti) ;
+	  
     @Query("SELECT t FROM Travel t WHERE t.typeId.id=?1")
 	List<Travel> findByTypeId(Integer tid);
     

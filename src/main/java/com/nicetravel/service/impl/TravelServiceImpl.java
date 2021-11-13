@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 
@@ -70,7 +71,12 @@ public class TravelServiceImpl implements TravelService {
 	@Override
 	public List<Travel> searchTour(String depart, String desti, String sd) {
 		// TODO Auto-generated method stub
-		return travelRepository.searchTour(depart, desti,sd);
+		if(ObjectUtils.isEmpty(sd)) {
+			return travelRepository.searchTourNotDate(depart, desti);
+		}
+		else {
+			return travelRepository.searchTour(depart, desti,sd);
+		}
 	}
 
 //	@Override
