@@ -8,6 +8,7 @@ import com.nicetravel.repository.TravelRepository;
 import com.nicetravel.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Date;
 import java.util.List;
