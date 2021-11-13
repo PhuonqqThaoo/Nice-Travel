@@ -30,26 +30,39 @@
 	<link th:href="@{/assets/css/queries-on3step.css}" media="all" rel="stylesheet">
 	<!-- css -->
 	<link rel="stylesheet" th:href="@{/assets/css/main.css}">
+	<link rel="stylesheet" th:href="@{/assets/css/error/error404.css}">
+	<link rel="stylesheet" th:href="@{/assets/css/error/error500.css}">
+	<link rel="stylesheet" th:href="@{/assets/css/error/error403.css}">
+	<link rel="stylesheet" th:href="@{/assets/css/error/error405.css}">
+	
+	<!-- css customize -->
+    <link rel="stylesheet" th:href="@{/assets/css/nicetravel.style.css}">
+
+	<!-- boxicon -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 </head>
 
-<body>
+<body ng-app="booking-app" ng-controller="booking-ctrl">
 	<!-- preloader -->
-	<div class="bg-preloader-white"></div>
-	<div class="preloader-white">
-		<div class="mainpreloader">
-			<span></span>
-		</div>
-	</div>
-	<!-- preloader end -->
+    <div class="bg-preloader-white"></div>
+    <div class="preloader-white">
+        <div class="mainpreloader">
+            <span></span>
+        </div>
+    </div>
+    <!-- preloader end -->
+    
 	<div class="content-wrapper">
-		<nav>
-			<div th:replace="/layout/_header.html"></div>
-		</nav>
-		<div>
-			<!-- <article> -->
-			<div th:replace="${main}"></div>
-			<!-- </article> -->
-		</div>
+		<!-- header start -->
+		<div th:replace="/layout/_header.html"></div>
+		<!-- header end -->
+		
+		<!-- <main start> -->
+		<div th:replace="${main}"></div>
+		<!-- </main end> -->
+
 		<!-- Footer Section Begin -->
 		<div th:replace="/layout/_footer.html"></div>
 		<!-- Footer Section End -->
@@ -68,23 +81,30 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<form th:action="@{/security/login}" method="post">
+						<form th:action="@{/account/login}" method="post">
 							<div class="form-group">
 								<label>User Name</label>
-								<input type="text" name="username" class="form-control" required="required">
+								<input type="text" class="form-control" name="username" required="required">
 							</div>
 							<div class="form-group">
 								<label>Password</label>
-								<input type="password" name="password" class="form-control" required="required">
+								<input type="password" class="form-control" name="password" required="required">
+							</div>
+							<div class="form-group form-check">
+								<input type="checkbox" class="form-check-input" name="remember" id="exampleCheck1">
+								<label class="form-check-label" for="exampleCheck1">Remember me ?</label>
 							</div>
 							<div class="form-group">
-								<input type="submit" class="btn btn-primary btn-block btn-lg" value="Log In">
+								<button type="submit" class="btn btn-primary btn-block btn-lg"
+									value="Log In">Login</button>
 							</div>
+							<span class="message" th:text="${message}"></span>
+							<a th:href="@{/account/forgot_password}">Forgot your password?</a>
 						</form>
 
 					</div>
 					<div class="modal-footer">
-						<a href="#">or Sign Up</a>
+						<a th:href="@{/account/register}">or Sign Up</a>
 					</div>
 				</div>
 			</div>
@@ -100,40 +120,36 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								<label>First Name</label>
-								<input type="text" name="firstname" class="form-control" required="required">
-							</div>
-							<div class="form-group">
-								<label>Last Name</label>
-								<input type="text" name="lastname" class="form-control" required="required">
-							</div>
-							<div class="form-group">
-								<label>Email Address</label>
-								<input type="email" name="email" class="form-control" required="required">
-							</div>
-							<div class="form-group">
-								<label>Username</label>
-								<input type="text" name="username" class="form-control" required="required">
-							</div>
-							<div class="form-group">
-								<label>Password</label>
-								<input type="password" name="password" class="form-control" required="required">
-							</div>
-							<div class="form-group">
-								<label><input type="checkbox" name="terms"> I agree with the <a href="#">Terms and
-										Conditions</a>.</label>
-							</div>
-							<div class="form-group"><input type="submit" value="Sign up"
-									class="btn btn-primary btn-block btn-lg">
-							</div>
-							<div class="clearfix"></div>
-						</form>
+						<!--						<form th:action="@{/account/process-register}" th:object="${account}" method="post">-->
+						<!--							<div class="form-group">-->
+						<!--								<label>Email Address</label>-->
+						<!--								<input type="email" name="email" th:field="*{email}" class="form-control"-->
+						<!--									required="required">-->
+						<!--							</div>-->
+						<!--							<div class="form-group">-->
+						<!--								<label>Username</label>-->
+						<!--								<input type="text" name="username" th:field="*{username}" class="form-control"-->
+						<!--									required="required">-->
+						<!--							</div>-->
+						<!--							<div class="form-group">-->
+						<!--								<label>Password</label>-->
+						<!--								<input type="password" name="password" th:field="*{password}" class="form-control"-->
+						<!--									required="required">-->
+						<!--							</div>-->
+						<!--							<div class="form-group">-->
+						<!--								<label><input type="checkbox" name="terms"> I agree with the <a href="#"-->
+						<!--										style="color: #1a174d">Terms and-->
+						<!--										Conditions</a>.</label>-->
+						<!--							</div>-->
+						<!--							<div class="form-group"><input type="submit" value="Sign up"-->
+						<!--									class="btn btn-primary btn-block btn-lg">-->
+						<!--							</div>-->
+						<!--							<div class="clearfix"></div>-->
+						<!--						</form>-->
 
 					</div>
 					<div class="modal-footer">
-						<a href="#">or Log In</a>
+						<a th:href="@{/login}">or Log In</a>
 					</div>
 				</div>
 			</div>
@@ -141,7 +157,6 @@
 		<!-- modal registration end -->
 
 	</div>
-
 	<!-- plugin JS -->
 	<script src="/assets/plugin/pluginson3step.js"></script>
 	<script src="/assets/plugin/bootstrap.min.js"></script>
@@ -153,6 +168,10 @@
 	<!-- on3step JS -->
 	<script src="/assets/js/on3step.js"></script>
 	<script src="/assets/js/plugin-set.js"></script>
+	<script src="/assets/js/account/register/checkAgree.js"></script>
+	<script src="/assets/js/error/500.js"></script>
+	<!-- booking JS -->
+	<script src="/assets/js/booking-app.js"></script>
 </body>
 
 </html>

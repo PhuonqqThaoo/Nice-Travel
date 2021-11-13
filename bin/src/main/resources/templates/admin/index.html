@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+
 
 <head>
     <meta charset="utf-8">
@@ -13,12 +13,16 @@
     <link th:href="@{/admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/css/ruang-admin.min.css}" rel="stylesheet">
-
+	<script src="https://code.angularjs.org/1.8.0/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <!-- boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- css -->
+    <link th:href="@{/admin/css/admin.style.css}" rel="stylesheet">
 </head>
 
-<body id="page-top">
+<body id="page-top" ng-app="admin-app" ng-controller="admin-ctrl">
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
@@ -41,7 +45,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
                     aria-expanded="true" aria-controls="collapseBootstrap">
-                    <i class='bx bxs-dollar-circle' ></i>
+                    <i class='bx bxs-dollar-circle'></i>
                     <span>Doanh thu</span>
                 </a>
                 <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap"
@@ -60,7 +64,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
                     aria-expanded="true" aria-controls="collapseForm">
-                    <i class='bx bxs-plane-alt' ></i>
+                    <i class='bx bxs-plane-alt'></i>
                     <span>Tour du lịch</span>
                 </a>
                 <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
@@ -74,7 +78,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable"
                     aria-expanded="true" aria-controls="collapseTable">
-                    <i class='bx bxs-customize' ></i>
+                    <i class='bx bxs-customize'></i>
                     <span>Khách hàng</span>
                 </a>
                 <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
@@ -92,7 +96,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage"
                     aria-expanded="true" aria-controls="collapsePage">
-                    <i class='bx bxs-plane-alt' ></i>
+                    <i class='bx bxs-plane-alt'></i>
                     <span>Tour du lịch</span>
                 </a>
                 <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
@@ -100,24 +104,54 @@
                         <h6 class="collapse-header">Quản lý tour du lịch</h6>
                         <a class="collapse-item" href="/admin/danh-sach-tour">Danh sách tour</a>
                         <a class="collapse-item" href="/admin/chinh-sua-tour">Chỉnh sửa tour</a>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCustomer"
+                    aria-expanded="true" aria-controls="collapseCustomer">
+                    <i class='bx bxs-user-rectangle'></i>
+                    <span>Khách hàng</span>
+                </a>
+                <div id="collapseCustomer" class="collapse" aria-labelledby="headingCustomer"
+                    data-parent="#collapseCustomer">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Quản lý khách hàng</h6>
+                        <a class="collapse-item" href="/admin/thong-tin-khach-hang">Thông tin khách hàng</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStaff"
+                    aria-expanded="true" aria-controls="collapseStaff">
+                    <i class='bx bxs-user-rectangle'></i>
+                    <span>Nhân viên</span>
+                </a>
+                <div id="collapseStaff" class="collapse" aria-labelledby="headingStaff" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Quản lý nhân viên</h6>
+                        <a class="collapse-item" href="/admin/thong-tin-nhan-vien">Thông tin nhân viên</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- cá nhân -->
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Cá nhân
+            </div>
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
                     aria-expanded="true" aria-controls="collapseUser">
-                    <i class='bx bxs-user-rectangle' ></i>
-                    <span>Nhân viên</span>
+                    <i class='bx bxs-user-rectangle'></i>
+                    <span>Thông tin</span>
                 </a>
                 <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Quản lý nhân viên</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <h6 class="collapse-header">Thông tin cá nhân</h6>
+                        <a class="collapse-item" href="/admin/information-admin">Thông tin cá nhân</a>
+                        <a class="collapse-item" href="/admin/edit-information-admin">Thay đổi thông tin</a>
+                        <a class="collapse-item" href="/admin/change-password">Đổi mật khẩu</a>
                     </div>
                 </div>
             </li>
@@ -292,9 +326,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="img-profile rounded-circle" th:src="@{admin/img/boy.png}"
+                                <img class="img-profile rounded-circle" th:src="@{/admin/img/user.png}"
                                     style="max-width: 60px">
-                                <span class="ml-2 d-none d-lg-inline text-white small">Huynh Phuoc Dan</span>
+                                <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -339,14 +373,14 @@
                                 <div class="card-body">
                                     <div class="row align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Doanh thu trong ngày</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{RevenueInDay|number:0}} vnđ
                                             </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>
-                                                    3.48%</span>
-                                                <span>Since last month</span>
-                                            </div>
+<!--                                             <div class="mt-2 mb-0 text-muted text-xs"> -->
+<!--                                                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> -->
+<!--                                                     3.48%</span> <span>Since last -->
+<!--                                                     month</span> -->
+<!--                                             </div> -->
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-primary"></i>
@@ -361,33 +395,38 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
+
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Số lượng tour được đặt trong ngày</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{bookingInDay}}</div>
                                             <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i>
-                                                    12%</span>
-                                                <span>Since last years</span>
+                                                
+                                                <span> <a href="#">Chi tiết</a></span>
                                             </div>
+
+                                            
+                                            </div>
+
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-shopping-cart fa-2x text-success"></i>
-                                        </div>
+<!--                                         <div class="col-auto"> -->
+<!--                                             <i class='bx bxs-car-wash fa-2x text-success' ></i> -->
+<!--                                         </div> -->
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                      
                         <!-- New User Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card h-100">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng số lượng khách hàng</div>
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{totalUser}}</div>
                                             <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i>
-                                                    20.4%</span>
-                                                <span>Since last month</span>
+                                                <span class="text-danger mr-2">
+<!--                                                 	<i class="fas fa-arrow-up"></i> -->
+                                                    {{totalUserLastMonth | number:2 }}%</span>
+                                                <span>so với tháng trước</span>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -403,9 +442,9 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng doanh thu
                                             </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{Revenue|number:0}} vnđ</div>
                                             <div class="mt-2 mb-0 text-muted text-xs">
                                                 <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i>
                                                     1.10%</span>
@@ -423,6 +462,21 @@
                         <!-- Area Chart -->
                         <div class="col-xl-8 col-lg-7">
                             <div class="card mb-4">
+                                <div class="admin-search-date-1">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="date" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <input type="date" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <button type="submit" class="btn btn-primary" style="height: auto;min-height: 43px;"><i class='bx bx-search-alt'></i> Tìm</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Thống kê doanh Thu 6 tháng gần
@@ -454,7 +508,7 @@
                             <div class="card mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Products Sold</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Travel</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button"
                                             id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -471,52 +525,52 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Oblong T-Shirt
+                                <div class="card-body" ng-repeat="c in items">
+                                    <div class="mb-3" >
+                                        <div class="small text-gray-500">{{c.name}}
                                             <div class="small float-right"><b>600 of 800 Items</b></div>
                                         </div>
                                         <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 80%"
-                                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-warning" role="progressbar" ng-bind="{{c.phanTram}}" ""
+                                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Gundam 90'Editions
-                                            <div class="small float-right"><b>500 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 70%"
-                                                aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Rounded Hat
-                                            <div class="small float-right"><b>455 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 55%"
-                                                aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Indomie Goreng
-                                            <div class="small float-right"><b>400 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Remote Control Car Racing
-                                            <div class="small float-right"><b>200 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 30%"
-                                                aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
+<!--                                     <div class="mb-3"> -->
+<!--                                         <div class="small text-gray-500">Gundam 90'Editions -->
+<!--                                             <div class="small float-right"><b>500 of 800 Items</b></div> -->
+<!--                                         </div> -->
+<!--                                         <div class="progress" style="height: 12px;"> -->
+<!--                                             <div class="progress-bar bg-success" role="progressbar" style="width: 70%" -->
+<!--                                                 aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="mb-3"> -->
+<!--                                         <div class="small text-gray-500">Rounded Hat -->
+<!--                                             <div class="small float-right"><b>455 of 800 Items</b></div> -->
+<!--                                         </div> -->
+<!--                                         <div class="progress" style="height: 12px;"> -->
+<!--                                             <div class="progress-bar bg-danger" role="progressbar" style="width: 55%" -->
+<!--                                                 aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="mb-3"> -->
+<!--                                         <div class="small text-gray-500">Indomie Goreng -->
+<!--                                             <div class="small float-right"><b>400 of 800 Items</b></div> -->
+<!--                                         </div> -->
+<!--                                         <div class="progress" style="height: 12px;"> -->
+<!--                                             <div class="progress-bar bg-info" role="progressbar" style="width: 50%" -->
+<!--                                                 aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="mb-3"> -->
+<!--                                         <div class="small text-gray-500">Remote Control Car Racing -->
+<!--                                             <div class="small float-right"><b>200 of 800 Items</b></div> -->
+<!--                                         </div> -->
+<!--                                         <div class="progress" style="height: 12px;"> -->
+<!--                                             <div class="progress-bar bg-success" role="progressbar" style="width: 30%" -->
+<!--                                                 aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
                                 </div>
                                 <div class="card-footer text-center">
                                     <a class="m-0 small text-primary card-link" href="#">View More <i
@@ -529,56 +583,44 @@
                             <div class="card">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
-                                    <a class="m-0 float-right btn btn-danger btn-sm" href="#">View More <i
+                                    <h6 class="m-0 font-weight-bold text-primary">Chuyến đi yêu thích</h6>
+                                    <a class="m-0 float-right btn btn-danger btn-sm" href="#">Xem thêm <i
                                             class="fas fa-chevron-right"></i></a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>Order ID</th>
-                                                <th>Customer</th>
-                                                <th>Item</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th>...</th>
+                                                <th>Tên chuyến đi</th>
+                                                <th>Địa điểm</th>
+                                                <th>Giá</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><a href="#">RA0449</a></td>
-                                                <td>Udin Wayang</td>
-                                                <td>Nasi Padang</td>
-                                                <td><span class="badge badge-success">Delivered</span></td>
-                                                <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                                                <td style="width: 17%;">
+                                                    <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100%;" alt="">
+                                                </td>
+                                                <td><h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu Trắng - Bảo Tàng Làng Chài Xưa</h5></td>
+                                                <td>Sân Bay Tân Sơn Nhất</td>
+                                                <td>13,960,000 vnđ</td>
                                             </tr>
                                             <tr>
-                                                <td><a href="#">RA5324</a></td>
-                                                <td>Jaenab Bajigur</td>
-                                                <td>Gundam 90' Edition</td>
-                                                <td><span class="badge badge-warning">Shipping</span></td>
-                                                <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                                                <td style="width: 17%;">
+                                                    <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100%;" alt="">
+                                                </td>
+                                                <td><h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu Trắng - Bảo Tàng Làng Chài Xưa</h5></td>
+                                                <td>Sân Bay Tân Sơn Nhất</td>
+                                                <td>13,960,000 vnđ</td>
                                             </tr>
                                             <tr>
-                                                <td><a href="#">RA8568</a></td>
-                                                <td>Rivat Mahesa</td>
-                                                <td>Oblong T-Shirt</td>
-                                                <td><span class="badge badge-danger">Pending</span></td>
-                                                <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">RA1453</a></td>
-                                                <td>Indri Junanda</td>
-                                                <td>Hat Rounded</td>
-                                                <td><span class="badge badge-info">Processing</span></td>
-                                                <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">RA1998</a></td>
-                                                <td>Udin Cilok</td>
-                                                <td>Baby Powder</td>
-                                                <td><span class="badge badge-success">Delivered</span></td>
-                                                <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                                                <td style="width: 17%;">
+                                                    <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100%;" alt="">
+                                                </td>
+                                                <td><h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu Trắng - Bảo Tàng Làng Chài Xưa</h5></td>
+                                                <td>Sân Bay Tân Sơn Nhất</td>
+                                                <td>13,960,000 vnđ</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -588,65 +630,80 @@
                         </div>
                         <!-- Message From Customer-->
                         <div class="col-xl-4 col-lg-5 ">
-                            <div class="card">
+                            <div class="card mb-4">
                                 <div
-                                    class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-light">Message From Customer</h6>
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Các khách hàng mới đăng ký</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button"
+                                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Tùy chọn tìm <i class="fas fa-chevron-down"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Tùy chọn</div>
+                                            <a class="dropdown-item" href="#">Hôm nay</a>
+                                            <a class="dropdown-item" href="#">Tuần này</a>
+                                            <a class="dropdown-item active" href="#">Tháng này</a>
+                                            <a class="dropdown-item" href="#">Năm này</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div class="customer-message align-items-center">
-                                        <a class="font-weight-bold" href="#">
-                                            <div class="text-truncate message-title">Hi there! I am wondering if you can
-                                                help me with a
-                                                problem I've been having.</div>
-                                            <div class="small text-gray-500 message-time font-weight-bold">Udin Cilok ·
-                                                58m</div>
-                                        </a>
+                                <div class="card-body">
+                                    <div class="mb-3 table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">STT</th>
+                                                    <th scope="col">Họ tên</th>
+                                                    <th scope="col">Giới tính</th>
+                                                    <th scope="col">Số điện thoại</th>
+                                                </tr>
+                                            </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>Jacob</td>
+                                                    <td>Thornton</td>
+                                                    <td>@fat</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>Larry</td>
+                                                    <td>the Bird</td>
+                                                    <td>@twitter</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">4</th>
+                                                    <td>Larry</td>
+                                                    <td>the Bird</td>
+                                                    <td>@twitter</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">5</th>
+                                                    <td>Larry</td>
+                                                    <td>the Bird</td>
+                                                    <td>@twitter</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="customer-message align-items-center">
-                                        <a href="#">
-                                            <div class="text-truncate message-title">But I must explain to you how all
-                                                this mistaken idea
-                                            </div>
-                                            <div class="small text-gray-500 message-time">Nana Haminah · 58m</div>
-                                        </a>
-                                    </div>
-                                    <div class="customer-message align-items-center">
-                                        <a class="font-weight-bold" href="#">
-                                            <div class="text-truncate message-title">Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit
-                                            </div>
-                                            <div class="small text-gray-500 message-time font-weight-bold">Jajang Cincau
-                                                · 25m</div>
-                                        </a>
-                                    </div>
-                                    <div class="customer-message align-items-center">
-                                        <a class="font-weight-bold" href="#">
-                                            <div class="text-truncate message-title">At vero eos et accusamus et iusto
-                                                odio dignissimos
-                                                ducimus qui blanditiis
-                                            </div>
-                                            <div class="small text-gray-500 message-time font-weight-bold">Udin Wayang ·
-                                                54m</div>
-                                        </a>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <a class="m-0 small text-primary card-link" href="#">View More <i
-                                                class="fas fa-chevron-right"></i></a>
-                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <a class="m-0 small text-primary card-link" href="#">Xem thêm <i
+                                            class="fas fa-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--Row-->
-
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <p>Do you like this template ? you can download from <a
-                                    href="https://github.com/indrijunanda/RuangAdmin" class="btn btn-primary btn-sm"
-                                    target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
-                        </div>
-                    </div>
 
                     <!-- Modal Logout -->
                     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
@@ -820,6 +877,7 @@
                     intersect: false,
                     mode: 'index',
                     caretPadding: 10,
+                    
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
@@ -829,6 +887,69 @@
                 }
             }
         });
+    </script>
+    
+    <script>
+        var app = angular.module("admin-app", []);
+        app.controller("admin-ctrl",function($scope,$http){
+        	$scope.items =[];
+            $scope.initialize = function(){
+            	
+            	// load travel đã đặt với ban đầu
+            	$http.get("/admin/TotalSold").then(resp => {
+        			$scope.items = resp.data;
+        			console.log($scope.items)
+        			for(var i = 0; i < $scope.items.length; i++)
+//         				$scope.items[i].phanTram =  '{width: '+ $scope.items[i].phanTram+'%}'
+        			  $scope.items[i].phanTram =  'style= "width: '+ $scope.items[i].phanTram+'%"'
+        		}).catch(err => {
+        			console.log("erro",err)
+        		})
+            	
+                // load count travel
+                $http.get("/admin/count/travel").then(resp => {
+                    $scope.totalTravel = resp.data;
+                    console.log($scope.totalTravel )
+                })
+                // }).catch(err => {
+                //     console.log("erro",err)
+                // })
+                $http.get("/admin/count/bookingInDay").then(resp => {
+                    $scope.bookingInDay = resp.data;
+                    console.log($scope.bookingInDay )
+                })
+                
+                // doanh thu trong ngày
+                $http.get("/admin/total/RevenueInDay").then(resp => {
+                    $scope.RevenueInDay = resp.data;
+                    console.log($scope.RevenueInDay )
+                })
+                
+                 // tổng doanh thu
+                $http.get("/admin/total/Revenue").then(resp => {
+                    $scope.Revenue = resp.data;
+                    console.log($scope.Revenue )
+                })
+                
+                // tổng khách hàng
+                $http.get("/admin/total/user").then(resp => {
+                    $scope.totalUser = resp.data;
+                    
+                    console.log($scope.totalUser )
+                }) 
+                 // khách hàng so với tháng trước 
+                $http.get("/admin/totalUserLastMonth").then(resp => {
+                    $scope.totalUserLastMonth = resp.data;
+                    console.log($scope.totalUserLastMonth )
+                }) 
+
+            }
+            $scope.initialize();
+
+                
+        });
+    
+    
     </script>
 </body>
 

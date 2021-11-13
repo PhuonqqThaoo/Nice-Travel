@@ -30,9 +30,4 @@ public class Role implements Serializable {
 
     @Column(name = "role", nullable = false, length = 20)
     private String role;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "role_Id")
-    List<Account> authorities;
-
 }
