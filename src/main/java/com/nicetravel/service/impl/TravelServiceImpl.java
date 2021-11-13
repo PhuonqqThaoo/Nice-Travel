@@ -1,7 +1,6 @@
 package com.nicetravel.service.impl;
 
 import com.nicetravel.entity.Total;
-import com.nicetravel.entity.TotalSold;
 import com.nicetravel.entity.Travel;
 import com.nicetravel.repository.TravelRepository;
 
