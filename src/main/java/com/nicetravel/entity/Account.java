@@ -1,6 +1,5 @@
 package com.nicetravel.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,10 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 
 @Table(name = "Account", indexes = {
@@ -31,34 +33,35 @@ import java.util.List;
 @NoArgsConstructor
 public class Account implements Serializable {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "provider")
     private Provider provider;
 
-	@NotEmpty
-	@NotNull
+    @NotEmpty
+    @NotNull
     @Column(name = "username", nullable = false, length = 20)
     private String username;
-    
+
     @Column(name = "fullname")
-    @NotEmpty
-	@NotNull
+//    @NotEmpty
+//	@NotNull
     @Size(max = 30)
     private String fullname;
-    
+
     @Column(name = "password", nullable = false)
     private String password;
-    
+
     @NotBlank(message = "Không để trống email") // áp dụng cho chuỗi
-    @Email(message ="Không đúng định dạng email")
+    @Email(message = "Không đúng định dạng email")
     @Column(name = "email", nullable = false, length = 100)
     private String email;
 
@@ -73,13 +76,13 @@ public class Account implements Serializable {
 
     @Column(name = "img", length = 225)
     private String img;
-    
+
     @NotNull
-    @Column(name = "idCard", nullable = false, length = 50)
+    @Column(name = "id_card", nullable = false, length = 50)
     private String id_Card;
-    
+
     @ManyToOne
-    @JoinColumn(name = "roleId")
+    @JoinColumn(name = "role_Id")
     private Role role_Id;
 
     @Column(name = "verification_code", length = 64)
@@ -91,10 +94,9 @@ public class Account implements Serializable {
     @Column(name = "created_date", nullable = false)
     @CreationTimestamp
     private LocalDateTime createdDate;
-    
+
     @JsonIgnore
     @OneToMany(mappedBy = "accountId")
     List<TravelLike> travelLikes;
 
-    
 }

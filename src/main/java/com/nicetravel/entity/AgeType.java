@@ -26,6 +26,6 @@ public class AgeType implements Serializable {
     @Column(name = "description", nullable = false, length = 225)
     private String description;
 
-    @Column(name = "isDeleted", nullable = false)
+    @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
 }

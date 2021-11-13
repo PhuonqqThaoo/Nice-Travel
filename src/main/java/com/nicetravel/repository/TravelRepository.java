@@ -1,7 +1,6 @@
 package com.nicetravel.repository;
 
 import com.nicetravel.entity.Total;
-import com.nicetravel.entity.TotalSold;
 import com.nicetravel.entity.Travel;
 
 import java.util.Date;
@@ -34,6 +33,6 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
     @Query(value = "{CALL sp_getTotalSold()}", nativeQuery = true)
    	List<String[][]> getTotalSold();
    	
-   	@Query("SELECT new com.nicetravel.entity.Total(u.name, (100- ((convert(float,u.quantityNew) / convert(float,u.quantity)) * 100)) ) From Travel u ")
+   	@Query("SELECT new com.nicetravel.entity.Total(u.name, (100- ((convert(float,u.quantityNew) / convert(float,u.quantity)) * 100)),u.quantity, (u.quantity- u.quantityNew) ) From Travel u ")
    	List<Total> getTotal();
 }

@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 public class Total {
 	String name ;
 	Double phanTram;
+	Integer quantity;
+	Integer quantity_new;
 }

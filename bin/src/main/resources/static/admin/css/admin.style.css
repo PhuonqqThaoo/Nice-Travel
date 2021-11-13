@@ -29,12 +29,19 @@
     margin-bottom: 1rem;
 }
 
-.chinh-sua-tour .right .right-button {
+.chinh-sua-tour  .right-button {
     width: 100%;
     text-align: center;
     margin-top: 2rem;
 }
-.chinh-sua-tour .right .right-button .btn {
+.chinh-sua-tour  .right-button .btn {
     width: 9rem;
 }
 /* end chỉnh sửa tour du lịch */
+
+/* search date thống kê 6 tháng gần nhất */
+.admin-search-date-1 {
+    width: 70%;
+    padding: 20px 20px;
+}
+/* end search date thống kê 6 tháng gần nhất */

@@ -36,7 +36,7 @@
 						<th:block th:if="${#request.remoteUser}">
 							<!-- <img src="" alt="" class="header__navbar-user-img"> -->
 							<div class="social-icons-subnav" sec:authorize="isAuthenticated()">
-								<span class="ti-user"></span ><span sec:authentication="name"></span> / <a th:href="@{/logoff}">Đăng xuất</a>
+								<span class="ti-user"></span ><span sec:authentication="name"></span>/<a th:href="@{/logoff}">  Đăng xuất</a>
 							</div>
 
 							<!-- <ul class="header__navbar-user-menu">

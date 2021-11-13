@@ -528,10 +528,10 @@
                                 <div class="card-body" ng-repeat="c in items">
                                     <div class="mb-3" >
                                         <div class="small text-gray-500">{{c.name}}
-                                            <div class="small float-right"><b>600 of 800 Items</b></div>
+                                            <div class="small float-right"><b>{{c.quantity_new}} of {{c.quantity}}  Items</b></div>
                                         </div>
                                         <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-warning" role="progressbar" ng-bind="{{c.phanTram}}" ""
+                                            <div class="progress-bar bg-warning" role="progressbar" ng-style="{'width': +'{{c.phanTram}}'+'%'}"
                                                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
@@ -899,9 +899,9 @@
             	$http.get("/admin/TotalSold").then(resp => {
         			$scope.items = resp.data;
         			console.log($scope.items)
-        			for(var i = 0; i < $scope.items.length; i++)
+//         			for(var i = 0; i < $scope.items.length; i++)
 //         				$scope.items[i].phanTram =  '{width: '+ $scope.items[i].phanTram+'%}'
-        			  $scope.items[i].phanTram =  'style= "width: '+ $scope.items[i].phanTram+'%"'
+//         			  $scope.items[i].phanTram =  'style= "width: '+ $scope.items[i].phanTram+'%"'
         		}).catch(err => {
         			console.log("erro",err)
         		})

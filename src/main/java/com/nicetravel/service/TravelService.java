@@ -1,7 +1,6 @@
 package com.nicetravel.service;
 
 import com.nicetravel.entity.Total;
-import com.nicetravel.entity.TotalSold;
 import com.nicetravel.entity.Travel;
 
 import java.util.Date;

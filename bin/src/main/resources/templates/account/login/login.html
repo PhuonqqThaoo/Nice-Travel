@@ -20,7 +20,7 @@
                                 <input type="password" class="form-control" name="password" required="required">
                             </div>
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" name="remember" id="exampleCheck1">
+                                <input type="checkbox" class="form-check-input" name="remember-me" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Remember me ?</label>
                             </div>
                             <div class="form-group">
@@ -28,11 +28,12 @@
                                     value="Log In">Login</button>
                             </div>
                             <span class="message" th:text="${message}"></span>
+                            <a th:href="@{/account/forgot_password}">Forgot your password?</a>
                         </form>
 
                     </div>
                     <div class="modal-footer">
-                        <a href="#">or Sign Up</a>
+                        <a th:href="@{/account/register}">or Sign Up</a>
                     </div>
                 </div>
             </div>

@@ -1,131 +1,113 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <header class="init">
 
-    <!-- subnav -->
-    <div class="container-fluid m-5-hor">
-        <div class="row">
-            <div class="subnav">
+	<!-- subnav -->
+	<div class="container-fluid m-5-hor">
+		<div class="row">
+			<div class="subnav">
 
-                <div class="col-md-6">
-                    <div class="left">
-                        <div class="social-icons-subnav hidden-sm hidden-xs">
-                            <div>LiÃªn há»‡ : +(84) 352 363 014</div>
-                        </div>
-                    </div>
-                </div>
+				<div class="col-md-6">
+					<div class="left">
+						<div class="social-icons-subnav hidden-sm hidden-xs">
+							<div>Liên hệ : +(84) 352 363 014</div>
+						</div>
+					</div>
+				</div>
 
-                <div class="col-md-6">
-                    <div class="right">
-                        <div id="sub-icon" class="social-icons-subnav">
-                            <a href="#"><span class="ti-facebook"></span></a>
-                            <a href="#"><span class="ti-dribbble"></span></a>
-                            <a href="#"><span class="ti-twitter"></span></a>
-                            <a href="#"><span class="ti-instagram"></span></a>
-                            <a href="#"><span class="ti-linkedin"></span></a>
-                        </div>
+				<div class="col-md-6">
+					<div class="right">
+						<div id="sub-icon" class="social-icons-subnav">
+							<a href="https://www.facebook.com/nicetravelcompany/"><span class="ti-facebook"></span></a> <a href="#"><span
+								class="ti-dribbble"></span></a> <a href="#"><span
+								class="ti-twitter"></span></a> <a href="#"><span
+								class="ti-instagram"></span></a> <a href="#"><span
+								class="ti-linkedin"></span></a>
+						</div>
+						<th:block th:unless="${#request.remoteUser}">
+							<div class="social-icons-subnav">
+								<a data-toggle="modal" href="/login" data-target=""><span
+									class="ti-lock"></span>Đăng nhập</a>
+							</div>
+<!--							<div class="social-icons-subnav hidden-sm hidden-xs">-->
+<!--								<a data-toggle="modal" data-target=""><span-->
+<!--									class="ti-user"></span>Đăng ký</a>-->
+<!--							</div>-->
+						</th:block>
+						<th:block th:if="${#request.remoteUser}">
+							<!-- <img src="" alt="" class="header__navbar-user-img"> -->
+							<div class="social-icons-subnav" sec:authorize="isAuthenticated()">
+								<span class="ti-user"></span ><span sec:authentication="name"></span>/<a th:href="@{/logoff}">  Đăng xuất</a>
+							</div>
 
-                        <th:block th:unless="${#request.remoteUser}">
-                            <div class="social-icons-subnav">
-                                <a data-toggle="modal" data-target="#fLogin"><span class="ti-lock"></span> Đăng nhập</a>
-                            </div>
-                            <div class="social-icons-subnav hidden-sm hidden-xs">
-                                <a data-toggle="modal" data-target="#fsignUp"><span class="ti-user"></span> Đăng ký</a>
-                            </div>
-                        </th:block>
-                        <th:block th:if="${#request.remoteUser}">
-                            <!-- <img src="" alt="" class="header__navbar-user-img"> -->
-                            <div class="social-icons-subnav">
-                                <a><span class="ti-user"></span>[[${#request.remoteUser}]]</a>
-                                <a th:href="@{/logoff}">Logoff</a>
-                            </div>
-
-                            <!-- <ul class="header__navbar-user-menu">
+							<!-- <ul class="header__navbar-user-menu">
                                 <li class="header__navbar_user-item">
-                                    <a href="">TÃ i khoáº£n cá»§a tÃ´i</a>
+                                    <a href="">TÃƒÆ’Ã‚Â i khoÃƒÂ¡Ã‚ÂºÃ‚Â£n cÃƒÂ¡Ã‚Â»Ã‚Â§a tÃƒÆ’Ã‚Â´i</a>
                                 </li>
                                 <li class="header__navbar_user-item">
-                                    <a href="">Ä�á»‹a chá»‰ cá»§a tÃ´i</a>
+                                    <a href="">Ãƒâ€žÃ¯Â¿Â½ÃƒÂ¡Ã‚Â»Ã¢â‚¬Â¹a chÃƒÂ¡Ã‚Â»Ã¢â‚¬Â° cÃƒÂ¡Ã‚Â»Ã‚Â§a tÃƒÆ’Ã‚Â´i</a>
                                 </li>
                                 <li class="header__navbar_user-item">
-                                    <a th:href="@{/order/list}">Ä�Æ¡n mua</a>
+                                    <a th:href="@{/order/list}">Ãƒâ€žÃ¯Â¿Â½Ãƒâ€ Ã‚Â¡n mua</a>
                                 </li>
                                 <li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}"
                                     class="header__navbar_user-item">
                                     <a th:href="@{/admin/home/index}">Admin</a>
                                 </li>
                                 <li class="header__navbar_user-item header__navbar_user-item--separate">
-                                    <a th:href="@{/security/logoff}">Ä�Äƒng xuáº¥t</a>
+                                    <a th:href="@{/security/logoff}">Ãƒâ€žÃ¯Â¿Â½Ãƒâ€žÃ†â€™ng xuÃƒÂ¡Ã‚ÂºÃ‚Â¥t</a>
                                 </li> -->
-                        </th:block>
-                    </div>
-                </div>
+						</th:block>
+					</div>
+				</div>
 
-            </div>
-        </div>
-    </div>
-    <!-- subnav end -->
+			</div>
+		</div>
+	</div>
+	<!-- subnav end -->
 
-    <!-- nav -->
-    <div class="navbar-default-white navbar-fixed-top">
-        <div class="container-fluid m-5-hor">
-            <div class="row">
+	<!-- nav -->
+	<div class="navbar-default-white navbar-fixed-top">
+		<div class="container-fluid m-5-hor">
+			<div class="row">
 
-                <!-- menu mobile display -->
-                <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span></button>
+				<!-- menu mobile display -->
+				<button class="navbar-toggle" data-target=".navbar-collapse"
+					data-toggle="collapse">
+					<span class="icon icon-bar"></span> <span class="icon icon-bar"></span>
+					<span class="icon icon-bar"></span>
+				</button>
 
-                <!-- logo -->
-                <a class="navbar-brand white" th:href="@{/}">
-                    <img class="white" alt="logo" src="/assets/img/logoNiceTravel.png">
-                    <img class="black" alt="logo" src="/assets/img/logoNiceTravel.png">
-                </a>
-                <!-- logo end -->
+				<!-- logo -->
+				<a class="navbar-brand white" th:href="@{/}"> <img
+					class="white" alt="logo" src="/assets/img/logoNiceTravel.png">
+					<img class="black" alt="logo" src="/assets/img/logoNiceTravel.png">
+				</a>
+				<!-- logo end -->
 
-                <!-- mainmenu start -->
-                <div class="white menu-init" id="main-menu">
-                    <nav id="menu-center">
-                        <ul>
-                            <li>
-                                <a class="actived" href="index-2.html">Trang chủ <i
-                                        class="fa fa-angle-down"></i></a>
-                                <ul>
-                                    <li><a href="intro/index.html">Giới thiệu</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="about.html">Thông tin</a>
-                            </li>
-                            <li><a href="#">Gallery <i class="fa fa-angle-down"></i></a>
-                                <ul>
-                                    <li><a href="works.html">Gallery Column</a></li>
-                                    <li><a href="works-carousel.html">Gallery Carousel</a></li>
-                                    <li><a href="#">Projects Detail <i class="fa fa-angle-right"></i></a>
-                                        <ul>
-                                            <li><a href="projects-detail.html">Project Detail 1</a></li>
-                                            <li><a href="projects-detail-2.html">Project Detail 2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/travel/tour">Tour du lịch</a>
-                            </li>
-                            <li><a href="#">Blog <i class="fa fa-angle-down"></i></a>
-                                <ul>
-                                    <li><a href="blog.html">Blog Single</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">Liên hệ</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <!-- mainmenu end -->
+				<!-- mainmenu start -->
+				<div class="white menu-init" id="main-menu">
+					<nav id="menu-center">
+						<ul>
+							<li><a class="actived" href="/">Trang chủ<i
+									class="fa fa-angle-down"></i></a>
+								<ul>
+									<li><a href="">Giới thiệu</a></li>
+								</ul></li>
+							<li><a href="">Thông tin</a></li>
+							<li><a href="/travel/tour">Tour du lịch <i class="fa fa-angle-down"></i></a>
+								<ul>
+									 <li th:each="c:${types}"><a th:href="@{|/travel/tour?tid=${c.id}|}">[[${c.type}]]</a></li>
+								</ul>
+							</li>
+							<li><a href="">Liên hệ</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- mainmenu end -->
 
-            </div>
-        </div>
-        <!-- container -->
-    </div>
-    <!-- nav end -->
+			</div>
+		</div>
+		<!-- container -->
+	</div>
+	<!-- nav end -->
 </header>

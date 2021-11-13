@@ -9,18 +9,23 @@
     <tr>
         <th>Id</th>
         <th>Username</th>
-        <th>Password</th>
+        <th>Fullname</th>
+        <th>Address</th>
+        <th>Gender</th>
         <th>Email</th>
         <th>RoleId</th>
         <th>IsDel</th>
         <th>Action</th>
     </tr>
-    <tr th:each="account : ${accountDetails}">
+    <tr th:each="account : ${accounts}">
         <td th:text="${account.id}"></td>
         <td th:text="${account.username}"></td>
-        <td th:text="${account.password}"></td>
+        <td th:text="${account.fullname}"></td>
+        <td th:text="${account.address}"></td>
+        <td th:text="${account.gender}"></td>
+<!--        <td th:text="${account.password}"></td>-->
         <td th:text="${account.email}"></td>
-        <td th:text="${account.role_Id.role}"></td>
+<!--        <td th:text="${account.role_Id.role}"></td>-->
         <td th:text="${account.isEnable}"></td>
         <td>
             <a th:href="@{|/account/edit/${account.id}|}">Edit</a>

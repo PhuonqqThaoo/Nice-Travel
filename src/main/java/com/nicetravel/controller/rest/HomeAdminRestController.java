@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nicetravel.entity.Total;
-import com.nicetravel.entity.TotalSold;
 import com.nicetravel.entity.Travel;
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.service.AccountService;
