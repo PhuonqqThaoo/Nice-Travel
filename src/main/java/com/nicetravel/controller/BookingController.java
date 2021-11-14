@@ -38,8 +38,9 @@ public class BookingController {
 	BookingDetailService bookingDetailService;
 
 	@RequestMapping("check")
-	public String check(Model model, HttpServletRequest request) {
+	public String check(Model model, HttpServletRequest request, @RequestParam("tour") Integer tour) {
 		String username = request.getRemoteUser();
+		model.addAttribute("travel", travelService.findTravelById(tour));
 		model.addAttribute("account", accountService.findAccountsByUsername(username));
 		return "booking/check";
 	}
