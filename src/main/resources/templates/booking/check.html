@@ -28,7 +28,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Họ và tên</label>
-                                    <input type="text" class="form-control" th:value="${account.fullname}" disabled>
+                                    <input type="text" class="form-control" th:placeholder="${account.fullname}" disabled>
                                     <div id="accountId" style="display: none">[[${account.id}]]</div>
                                 </div>
                             </div>
@@ -43,15 +43,14 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số điện thoại</label>
-                                    <input type="text" class="form-control" th:value="${account.phone}" disabled>
-                                    <div id="phone" style="display: none">[[${account.phone}]]</div>
+                                    <input type="text" class="form-control" id="phone" th:value="${account.phone}" disabled>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Địa chỉ</label>
-                                    <input type="text" class="form-control" disabled th:value="${account.address}">
-                                    <div id="address" style="display: none">[[${account.address}]]</div>
+                                    <input type="text" class="form-control" id="address" th:value="${account.address}">
+
                                 </div>
                             </div>
                         </div>
@@ -132,16 +131,17 @@
                     </div>
                     <div class="travel-detail-lich-trinh-time">
                         <h5><i class='bx bxs-timer'></i> Ngày khởi hành</h5>
-                        <p>{{load.items.hour | date : 'HH:mm'}} - {{load.items.startDate | date : 'dd-MM-yyyy'}}</p>
+                        <p>[[${travel.hour}]]:00 - [[${#dates.format(travel.startDate, 'dd-MM-yyyy')}]]</p>
                 </div>
                 <div class="travel-detail-lich-trinh-time">
                     <h5><i class='bx bxs-timer'></i> Ngày kết thúc</h5>
-                    <p>{{load.items.hour | date : 'HH:mm'}} - {{load.items.endDate | date : 'dd-MM-yyyy'}}</p>
+                    <p>[[${travel.hour}]]:00 - [[${#dates.format(travel.endDate, 'dd-MM-yyyy')}]]</p>
                 </div>
                 <div class="strikethrough"></div>
                 <h5 style="font-weight: 700;">Nơi đến </h5>
                 <div class="noi-den">
-                    <img src="/assets/img/{{load.items.img}}" alt="">
+                    <img th:src="@{|/assets/img/${travel.img}|}" alt="">
+                    <div id="travelId" style="display: none">[[${travel.id}]]</div>
                     <div>
                         <i class='bx bxs-star'></i>
                         <i class='bx bxs-star'></i>
@@ -149,7 +149,7 @@
                         <i class='bx bxs-star'></i>
                         <i class='bx bxs-star'></i>
                     </div>
-                    <h5>{{load.items.name}}</h5>
+                    <h5>[[${travel.name}]]</h5>
                 </div>
                 <div class="detail">
                     <table>
@@ -164,23 +164,24 @@
                             </tr>
                             <tr>
                                 <td>Người lớn</td>
-                                <td class="t-price text-right" id="AdultPrice">{{load.qtyAdult}} x {{load.items.price * load.qtyAdult | number}}₫</td>
+                                <td class="t-price text-right" id="AdultPrice">{{load.qtyAdult}} x {{[[${travel.price}]] * load.qtyAdult | number}}₫</td>
                             </tr>
                             <tr>
                                 <td>Trẻ em</td>
-                                <td class="t-price text-right" id="ChildrenPrice">{{load.qtyChildren}} x {{((load.items.price - (load.items.price * 0.1)) * load.qtyChildren)  | number}}₫</td>
+                                <td class="t-price text-right" id="ChildrenPrice">{{load.qtyChildren}} x {{(([[${travel.price}]] - ([[${travel.price}]] * 0.1)) * load.qtyChildren)  | number}}₫</td>
                             </tr>
                             <tr>
                                 <td>Trẻ nhỏ</td>
-                                <td class="t-price text-right" id="SmallChildrenPrice">{{load.qtySmallchildren}} x {{((load.items.price - (load.items.price * 0.3)) * load.qtySmallchildren) | number}}₫</td>
+                                <td class="t-price text-right" id="SmallChildrenPrice">{{load.qtySmallchildren}} x {{(([[${travel.price}]] - ([[${travel.price}]] * 0.3)) * load.qtySmallchildren) | number}}₫</td>
                             </tr>
                             <tr>
                                 <td>Em bé</td>
-                                <td class="t-price text-right" id="BabyPrice">{{load.qtyBaby}} x {{((load.items.price - (load.items.price * 0.5)) * load.qtyBaby) | number}}₫</td>
+                                <td class="t-price text-right" id="BabyPrice">{{load.qtyBaby}} x {{(([[${travel.price}]] - ([[${travel.price}]] * 0.5)) * load.qtyBaby) | number}}₫</td>
                             </tr>
                             <tr class="total">
                                 <td>Tổng cộng</td>
-                                <td class="t-price text-right" id="TotalPrice"> <span id="Total">{{load.amout | number}}</span> ₫</td>
+                                <td class="t-price text-right" id="TotalPrice"> {{([[${travel.price}]] * load.qtyAdult) + (([[${travel.price}]] - ([[${travel.price}]] * 0.1)) * load.qtyChildren) + (([[${travel.price}]] - ([[${travel.price}]] * 0.3)) * load.qtySmallchildren) + (([[${travel.price}]] - ([[${travel.price}]] * 0.5)) * load.qtyBaby) | number}}₫</td>
+                                <div id="total" style="display: none">{{([[${travel.price}]] * load.qtyAdult) + (([[${travel.price}]] - ([[${travel.price}]] * 0.1)) * load.qtyChildren) + (([[${travel.price}]] - ([[${travel.price}]] * 0.3)) * load.qtySmallchildren) + (([[${travel.price}]] - ([[${travel.price}]] * 0.5)) * load.qtyBaby)}}</div>
                             </tr>
                         </tbody>
                     </table>
@@ -191,7 +192,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- end pay -->
         <!--  gallery home -->

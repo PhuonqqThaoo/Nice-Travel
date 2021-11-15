@@ -3,6 +3,7 @@ package com.nicetravel.service;
 import com.nicetravel.entity.Total;
 import com.nicetravel.entity.Travel;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface TravelService {
     
     List<Travel> findByTypeId(Integer tid);
     
-    List<Travel> searchTour(String depart,String desti, String sd); 
+    List<Travel> searchTour(String depart,String desti, String sd,BigDecimal pmin, BigDecimal pmax); 
     
     Integer getCountTravel();
     

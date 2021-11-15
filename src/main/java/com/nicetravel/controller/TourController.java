@@ -1,5 +1,6 @@
 package com.nicetravel.controller;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -24,9 +25,11 @@ public class TourController {
 	@RequestMapping("/search")
 	public String search(Model model,@RequestParam ("departurePlace") Optional<String> depart,
 			@RequestParam("destinationPlace") Optional<String> desti,
-			@RequestParam("startDate") Optional<String> sd) {
+			@RequestParam("startDate") Optional<String> sd,
+			@RequestParam("price-min") Optional<BigDecimal> pmin,
+			@RequestParam("price-max") Optional<BigDecimal> pmax) {
 		
-			List<Travel> list = travelService.searchTour(depart.get(), desti.get(), sd.get());
+			List<Travel> list = travelService.searchTour(depart.get(), desti.get(), sd.get(), pmin.get(), pmax.get());
 			model.addAttribute("items", list);
 		
 		return "travel/tour";
