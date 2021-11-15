@@ -80,4 +80,12 @@ ObjectMapper mapper = new ObjectMapper();
 		
 		return booking;
 	}
+
+	@Override
+	public Double getComparedLastYear() {
+		double currentMonth = bookingRepository.getRevenue();
+		double lastMonth = bookingRepository.getLastRevenue();
+		double result = ((currentMonth / lastMonth) * 100) -100;
+		return result;
+	}
 }

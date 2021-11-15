@@ -58,7 +58,7 @@ public class GenerateSlug {
         }
         return sb.toString();
     }
-//    public static void main(String[] args) {
+//    public static void mainee(String[] args) {
 //		String tensp = "Bánh Kinh Đô";
 //		System.out.println(toSlug(tensp));
 //	}

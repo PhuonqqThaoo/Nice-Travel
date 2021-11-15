@@ -24,4 +24,7 @@ public interface BookingService {
     Double getRevenueInDay();
     
     Double getRevenue();
+    
+ // so với tháng trước
+ 	Double getComparedLastYear();
 }
