@@ -38,14 +38,9 @@ public class HomeController {
 		return "admin/index";
 	}
 	
-	@GetMapping("/danh-sach-tour")
-	public String danhSachTour() {
-		return "admin/DanhSachTour";
-	}
-	
-	@GetMapping("/chinh-sua-tour")
-	public String chinhSuaTour() {
-		return "admin/ChinhSuaTour";
+	@GetMapping("/quan-ly/tour-du-lich")
+	public String quanLyTour() {
+		return "admin/quan-ly/tour-du-lich/QuanLy-TourDuLich";
 	}
 	
 //	@GetMapping("/thong-tin-khach-hang")

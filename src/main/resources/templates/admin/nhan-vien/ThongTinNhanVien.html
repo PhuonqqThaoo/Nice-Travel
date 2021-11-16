@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -103,8 +103,7 @@
                 <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý tour du lịch</h6>
-                        <a class="collapse-item" href="/admin/danh-sach-tour">Danh sách tour</a>
-                        <a class="collapse-item" href="/admin/chinh-sua-tour">Chỉnh sửa tour</a>
+                        <a class="collapse-item" href="/admin/quan-ly/tour-du-lich">Danh sách tour</a>
                     </div>
                 </div>
             </li>
@@ -114,7 +113,8 @@
                     <i class='bx bxs-user-rectangle'></i>
                     <span>Khách hàng</span>
                 </a>
-                <div id="collapseCustomer" class="collapse" aria-labelledby="headingCustomer" data-parent="#collapseCustomer">
+                <div id="collapseCustomer" class="collapse" aria-labelledby="headingCustomer"
+                    data-parent="#collapseCustomer">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý khách hàng</h6>
                         <a class="collapse-item" href="/admin/thong-tin-khach-hang">Thông tin khách hàng</a>
@@ -124,7 +124,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStaff"
                     aria-expanded="true" aria-controls="collapseStaff">
-                    <i class='bx bxs-user-rectangle' ></i>
+                    <i class='bx bxs-user-rectangle'></i>
                     <span>Nhân viên</span>
                 </a>
                 <div id="collapseStaff" class="collapse" aria-labelledby="headingStaff" data-parent="#accordionSidebar">
@@ -143,7 +143,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
                     aria-expanded="true" aria-controls="collapseUser">
-                    <i class='bx bxs-user-rectangle' ></i>
+                    <i class='bx bxs-user-rectangle'></i>
                     <span>Thông tin</span>
                 </a>
                 <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
@@ -378,7 +378,12 @@
                     <div class="row ">
                         <div class="chinh-sua-tour w-90 card">
                             <div class="row">
-                                
+                                <div class="col-12">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-secondary">Tạo mới nhân viên</button>
+                                        <button type="button" class="btn btn-secondary">Xuất excel</button>
+                                    </div>
+                                </div>
                                 <div class="col-12">
                                     <div class="tab-content" id="v-pills-tabContent">
                                         <button style="float: right" id="createBtn" type="button" class="btn btn-success">Create</button>

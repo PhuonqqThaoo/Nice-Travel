@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+
 
 <head>
     <meta charset="utf-8">
@@ -9,19 +9,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link th:href="@{/admin/img/logo/logoNiceIco.ico}" rel="icon">
-    <title>Quản lý | Danh sách tour du lịch | Nice Travel</title>
+    <title>Quản lý | Thống kê Tour du lịch | Nice Travel</title>
     <link th:href="@{/admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/css/ruang-admin.min.css}" rel="stylesheet">
-
+	<script src="https://code.angularjs.org/1.8.0/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <!-- boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
-    <!-- css customize -->
+    <!-- css -->
     <link th:href="@{/admin/css/admin.style.css}" rel="stylesheet">
 </head>
 
-<body id="page-top">
+<body id="page-top" ng-app="admin-app" ng-controller="admin-ctrl">
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
@@ -44,7 +45,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
                     aria-expanded="true" aria-controls="collapseBootstrap">
-                    <i class='bx bxs-dollar-circle' ></i>
+                    <i class='bx bxs-dollar-circle'></i>
                     <span>Doanh thu</span>
                 </a>
                 <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap"
@@ -63,21 +64,14 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
                     aria-expanded="true" aria-controls="collapseForm">
-                    <i class='bx bxs-plane-alt' ></i>
+                    <i class='bx bxs-plane-alt'></i>
                     <span>Tour du lịch</span>
                 </a>
-                <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                        <a class="collapse-item" href="form_basics.html">Home</a>
-                        <a class="collapse-item" href="form_advanceds.html">List</a>
-                    </div>
-                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable"
                     aria-expanded="true" aria-controls="collapseTable">
-                    <i class='bx bxs-customize' ></i>
+                    <i class='bx bxs-customize'></i>
                     <span>Khách hàng</span>
                 </a>
                 <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
@@ -95,7 +89,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage"
                     aria-expanded="true" aria-controls="collapsePage">
-                    <i class='bx bxs-plane-alt' ></i>
+                    <i class='bx bxs-plane-alt'></i>
                     <span>Tour du lịch</span>
                 </a>
                 <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
@@ -109,10 +103,11 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCustomer"
                     aria-expanded="true" aria-controls="collapseCustomer">
-                    <i class='bx bxs-user-rectangle' ></i>
+                    <i class='bx bxs-user-rectangle'></i>
                     <span>Khách hàng</span>
                 </a>
-                <div id="collapseCustomer" class="collapse" aria-labelledby="headingCustomer" data-parent="#collapseCustomer">
+                <div id="collapseCustomer" class="collapse" aria-labelledby="headingCustomer"
+                    data-parent="#collapseCustomer">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý khách hàng</h6>
                         <a class="collapse-item" href="/admin/thong-tin-khach-hang">Thông tin khách hàng</a>
@@ -122,7 +117,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStaff"
                     aria-expanded="true" aria-controls="collapseStaff">
-                    <i class='bx bxs-user-rectangle' ></i>
+                    <i class='bx bxs-user-rectangle'></i>
                     <span>Nhân viên</span>
                 </a>
                 <div id="collapseStaff" class="collapse" aria-labelledby="headingStaff" data-parent="#accordionSidebar">
@@ -141,7 +136,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
                     aria-expanded="true" aria-controls="collapseUser">
-                    <i class='bx bxs-user-rectangle' ></i>
+                    <i class='bx bxs-user-rectangle'></i>
                     <span>Thông tin</span>
                 </a>
                 <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
@@ -324,9 +319,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="img-profile rounded-circle" th:src="@{admin/img/boy.png}"
+                                <img class="img-profile rounded-circle" th:src="@{/admin/img/user.png}"
                                     style="max-width: 60px">
-                                <span class="ml-2 d-none d-lg-inline text-white small">Huynh Phuoc Dan</span>
+                                <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -357,91 +352,22 @@
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Danh sách tour du lịch</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Thống kê tour du lịch</h1>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="./">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Danh sách tour du lịch</li>
+                            <li class="breadcrumb-item active" aria-current="page">Thống kê tour du lịch</li>
                         </ol>
                     </div>
+                    <!--Row-->
 
-                    <div class="row mb-3">
-                        <div class="table-danh-sach-tour w-90 card">
-                            <h1>Phần sắp xếp (từ từ customize lại @@)</h1>
-                            <!-- table danh sách tour du lịch -->
-                            <table class="table">
-                                <thead>
-                                    <tr style="background-color: #6777ef; color: #ffffff">
-                                        <!-- click đúp để chuyển sang trang chỉnh sửa -->
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Departure place</th>
-                                        <th scope="col">Place</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Create date</th>
-                                        <th scope="col">Start date</th>
-                                        <th scope="col">End date</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Hour</th>
-                                        <th scope="col">Slug</th>
-                                        <th scope="col">Is deleted</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                    <div class="row w-90">
+                        <div class="col-xl-8 mb-4">
+                            <div class="card">asdasd</div>
+                        </div>
+                        <div class="col-xl-4 mb-4">
+                            <div class="card">asdaaaaaa</div>
                         </div>
                     </div>
-
 
                     <!-- Modal Logout -->
                     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
@@ -469,19 +395,6 @@
                 </div>
                 <!---Container Fluid-->
             </div>
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>copyright &copy; <script>
-                                document.write(new Date().getFullYear());
-                            </script> - developed by
-                            <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
-                        </span>
-                    </div>
-                </div>
-            </footer>
-            <!-- Footer -->
         </div>
     </div>
 
@@ -494,137 +407,6 @@
     <script th:src="@{/admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/admin/vendor/jquery-easing/jquery.easing.min.js}"></script>
     <script th:src="@{/admin/js/ruang-admin.min.js}"></script>
-    <script th:src="@{/admin/vendor/chart.js/Chart.min.js}"></script>
-    <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
-    <script th:inline="javascript">
-        // Set new default font family and font color to mimic Bootstrap's default styling
-        Chart.defaults.global.defaultFontFamily = 'Nunito',
-            '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-        Chart.defaults.global.defaultFontColor = '#858796';
-
-        function number_format(number, decimals, dec_point, thousands_sep) {
-            // *     example: number_format(1234.56, 2, ',', ' ');
-            // *     return: '1 234,56'
-            number = (number + '').replace(',', '').replace(' ', '');
-            var n = !isFinite(+number) ? 0 : +number,
-                prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-                sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-                dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-                s = '',
-                toFixedFix = function (n, prec) {
-                    var k = Math.pow(10, prec);
-                    return '' + Math.round(n * k) / k;
-                };
-            // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-            s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-            if (s[0].length > 3) {
-                s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-            }
-            if ((s[1] || '').length < prec) {
-                s[1] = s[1] || '';
-                s[1] += new Array(prec - s[1].length + 1).join('0');
-            }
-            return s.join(dec);
-        }
-        /*<![CDATA[*/
-        var totalPriceLast6Months = /*[[${chartData}]]*/ 'default';
-        /*]]>*/
-        var arrayLabels = totalPriceLast6Months[0];
-        var arrayData = totalPriceLast6Months[1];
-        // Area Chart Example
-        var ctx = document.getElementById("myAreaChart");
-        var myLineChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: arrayLabels,
-                datasets: [{
-                    label: 'Doanh thu: ',
-                    lineTension: 0.3,
-                    backgroundColor: "rgba(78, 115, 223, 0.5)",
-                    borderColor: "rgba(78, 115, 223, 1)",
-                    pointRadius: 3,
-                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHoverRadius: 3,
-                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHitRadius: 10,
-                    pointBorderWidth: 2,
-                    data: arrayData,
-                }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        left: 10,
-                        right: 25,
-                        top: 25,
-                        bottom: 0
-                    }
-                },
-                scales: {
-                    xAxes: [{
-                        time: {
-                            unit: 'date'
-                        },
-                        gridLines: {
-                            display: false,
-                            drawBorder: false
-                        },
-                        ticks: {
-                            maxTicksLimit: 7
-                        }
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            maxTicksLimit: 5,
-                            padding: 10,
-                            // Include a dollar sign in the ticks
-                            callback: function (value, index, values) {
-                                return value.toLocaleString("vi-VN", {
-                                    style: "currency",
-                                    currency: "VND"
-                                });
-                                // 	              return number_format(value)+'đ' ;
-                            }
-                        },
-                        gridLines: {
-                            color: "rgb(234, 236, 244)",
-                            zeroLineColor: "rgb(234, 236, 244)",
-                            drawBorder: false,
-                            borderDash: [2],
-                            zeroLineBorderDash: [2]
-                        }
-                    }],
-                },
-                legend: {
-                    display: false
-                },
-                tooltips: {
-                    backgroundColor: "rgb(255,255,255)",
-                    bodyFontColor: "#858796",
-                    titleMarginBottom: 10,
-                    titleFontColor: '#6e707e',
-                    titleFontSize: 14,
-                    borderColor: '#dddfeb',
-                    borderWidth: 1,
-                    xPadding: 15,
-                    yPadding: 15,
-                    displayColors: false,
-                    intersect: false,
-                    mode: 'index',
-                    caretPadding: 10,
-                    callbacks: {
-                        label: function (tooltipItem, chart) {
-                            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                            return datasetLabel + ':' + number_format(tooltipItem.yLabel) + 'đ';
-                        }
-                    }
-                }
-            }
-        });
-    </script>
 </body>
 
 </html>
