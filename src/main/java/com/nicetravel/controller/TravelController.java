@@ -28,11 +28,10 @@ public class TravelController {
 		return "travel/list";
 	}
 
-	@RequestMapping("/detail/{id}")
-	public String detail(Model model, @PathVariable("id") Integer id) {
+	@RequestMapping("/detail/{slug}")
+	public String detail(Model model,@PathVariable("slug") String slug) {
 
-		Travel item = travelService.findTravelById(id);
-		System.out.println(id);
+		Travel item = travelService.findTravelBySlug(slug);
 		List<Travel> list = travelService.getAllTravel();
 		model.addAttribute("items", list);
 

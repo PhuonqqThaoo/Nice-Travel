@@ -1,7 +1,6 @@
 const app = angular.module("booking-app", []);
 app.controller("booking-ctrl", function($scope, $http) {
 	/*hiển thị sản phẩm*/
-
 	$scope.load = {
 		get qtyAdult(){
 			return parseInt($('#adult').text());
@@ -27,22 +26,22 @@ app.controller("booking-ctrl", function($scope, $http) {
 			return  document.getElementById("phone").value;
 		},
 		get totalPrice() {
-			return  $('#total').text();
+			return  Number($('#total').text());
 		},
 		payBoolean : false,
 		isDeleted : false,
-		accountId : {id : $("#accountId").text()},
+		accountId : {id : Number($("#accountId").text())},
 		get bookingDetails(){
 			return {
-				travelId : {id : $('#travelId').text()},
-				price : $('#total').text(),
+				travelId : {id : Number($('#travelId').text())},
+				price : Number($('#total').text()),
 			}
 		},
 		purchaser(){
 			var booking = angular.copy(this);
 			console.log(booking)
 			//thực hiện đặt hàng
-			$http.post("/api/v1/booking", booking).then(resp => {
+			$http.post("/api/v2/booking", booking).then(resp => {
 				alert("Đặt hàng thành công")
 				location.href = "/"; 
 			}).catch(error => {

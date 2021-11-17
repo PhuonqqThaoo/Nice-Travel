@@ -498,14 +498,14 @@
 
                     <div th:each="p: ${items}" class="item">
                         <div class="gal-home travel-box">
-                            <a th:href="@{|/travel/detail/${p.id}|}">
+                            <a th:href="@{|/travel/detail/${p.slug}|}">
                                 <div class="hovereffect">
                                     <img alt="imageportofolio" class="img-responsive"
                                         th:src="@{|/assets/img/${p.img}|}">
                                 </div>
                                 <div class="gal-home-content travel-box-content">
                                     <p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate, 'dd-MM-yyyy')}]] - [[${#dates.format(p.endDate, 'dd')} - ${#dates.format(p.startDate, 'dd')}]]  ngày  </p>
-                                    <h5 style="min-height: 42px;"><a th:utext="${p.name}">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a></h5>
+                                    <h5 style="min-height: 42px;"><a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}"></a></h5>
                                     <br>
                                     <p>Số chỗ còn nhận: [[${p.quantityNew}]]</p>
                                     <p>Nơi khởi hành:  [[${p.departurePlace}]]</p>
@@ -514,9 +514,9 @@
                                         </h5> / người
                                     </p>
                                     <div>
-                                        <a th:href="@{|/booking/check?tour=${p.id}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
+                                        <a th:href="@{|/booking/check?tour=${p.slug}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
                                             ngay</a>
-                                        <a th:href="@{|/travel/detail/${p.id}|}" style="float: right;">Xem chi tiết</a>
+                                        <a th:href="@{|/travel/detail/${p.slug}|}" style="float: right;">Xem chi tiết</a>
                                     </div>
                                 </div>
                             </a>

@@ -81,14 +81,14 @@
 
                             <div class="col-md-6 col-lg-4" th:each="p: ${items}">
                                 <div class="gal-home travel-box">
-                                    <a th:href="@{|/travel/detail/${p.id}|}">
+                                    <a th:href="@{|/travel/detail/${p.slug}|}">
                                         <div class="hovereffect">
                                             <img alt="imageportofolio" class="img-responsive"
                                                 th:src="@{|/assets/img/${p.img}|}">
                                         </div>
                                         <div class="gal-home-content travel-box-content">
                                             <p> [[${#dates.format(p.startDate, 'dd-MM-yyyy')}]]</p>
-                                            <h5 style="min-height: 42px;"><a th:href="@{|/travel/detail/${p.id}|}" th:utext="${p.name}"></a></h5>
+                                            <h5 style="min-height: 42px;"><a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}"></a></h5>
                                             <br>
                                             <p>Số lượng: [[${p.quantity}]]</p>
                                             <p>Nơi khởi hành: [[${p.departurePlace}]]</p>
@@ -96,10 +96,10 @@
                                                 <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">[[${#numbers.formatCurrency(p.price)}]]</h5> / người
                                             </p>
                                             <div>
-                                                <a th:href="@{|/booking/check?tour=${p.id}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
+                                                <a th:href="@{|/booking/check?tour=${p.slug}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
                                                     ngay</a>
                                                 <a href="" class="travel-btn" style="padding: .8rem 1.8rem; background-color: rgb(9, 184, 253);"><i class='bx bxs-heart'></i></a>
-                                                <a th:href="@{|/travel/detail/${p.id}|}" style="float: right;">Xem chi tiết</a>
+                                                <a th:href="@{|/travel/detail/${p.slug}|}" style="float: right;">Xem chi tiết</a>
                                             </div>
                                         </div>
                                     </a>
