@@ -34,5 +34,8 @@ public class BookingDetail implements Serializable {
 
     @Column(name = "price", nullable = false, precision = 12, scale = 3)
     private BigDecimal price;
+    
+    @Column(name = "quantity")
+    private Integer quantity;
 
 }

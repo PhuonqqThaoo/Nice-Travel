@@ -35,6 +35,7 @@ app.controller("booking-ctrl", function($scope, $http) {
 			return {
 				travelId : {id : Number($('#travelId').text())},
 				price : Number($('#total').text()),
+				quantity : ($scope.load.qtyAdult + $scope.load.qtyChildren + $scope.load.qtySmallchildren + $scope.load.qtyBaby)
 			}
 		},
 		purchaser(){
