@@ -1,6 +1,7 @@
 package com.nicetravel.service;
 
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.Provider;
 
 import java.util.List;
 
@@ -41,4 +42,6 @@ public interface AccountService {
 	
 	// so với tháng trước
 	Double comparedLastMonth();
+
+    void updateProviderType(String username, Provider provider);
 }

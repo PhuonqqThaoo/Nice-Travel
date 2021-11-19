@@ -4,6 +4,7 @@ import com.nicetravel.entity.Account;
 
 import java.util.List;
 
+import com.nicetravel.entity.Provider;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -59,5 +60,10 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     // số lượng khách tháng trước
     @Query(value = "{CALL sp_getTotalUserLastMonth()}", nativeQuery = true)
 	Integer getTotalUserLastMonth();
+
+//
+    @Modifying
+    @Query("UPDATE Account u SET u.provider = ?2 WHERE u.username = ?1")
+    public void updateProviderType(String username, Provider provider);
    
 } 
