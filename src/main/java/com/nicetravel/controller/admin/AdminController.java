@@ -66,10 +66,44 @@ public class AdminController {
 		}
 		return "redirect:/admin/information-admin";
 	}
-	
+
 	@GetMapping("/change-password")
-	public String getChangePassword() {
+	public String getChangePassword(HttpServletRequest request, Model model) {
+		String username = request.getRemoteUser();
+		System.out.println("chang pass (user): " + username);
+		Account userRequest = accountService.findAccountsByUsername(username);
+		model.addAttribute("userRequest", userRequest);
+
 		return "admin/ca-nhan/ChangePassword";
+	}
+	
+	@PostMapping("/change-password")
+	public String postChangePassword(@Valid @ModelAttribute("userRequest") Account userRequest ,
+									BindingResult result,
+									RedirectAttributes redirect) {
+
+
+		String errorMessage = null;;
+		try {
+			// check if userRequest is not valid
+			if (result.hasErrors()) {
+				errorMessage ="User is not valid";
+				redirect.addFlashAttribute("errorMessage", errorMessage);
+			}else {
+				accountService.update(userRequest);
+				System.out.println("update password ");
+				String successMessage = "User " + userRequest.getFullname() + " was update";
+				redirect.addFlashAttribute("successMessage", successMessage);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			errorMessage = "Cannot update user " + userRequest.getFullname()+" , please try again!";
+		}
+
+		if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
+			redirect.addFlashAttribute("errorMessage", errorMessage);
+		}
+		return "redirect:/admin/information-admin";
 	}
 	
 	

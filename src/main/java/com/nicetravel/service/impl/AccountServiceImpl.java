@@ -1,6 +1,7 @@
 package com.nicetravel.service.impl;
 
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.Provider;
 import com.nicetravel.entity.Role;
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.service.AccountService;
@@ -158,5 +159,10 @@ public class AccountServiceImpl implements AccountService {
 		return result;
 	}
 
-	
+	@Override
+	public void updateProviderType(String username, Provider provider) {
+		accountRepository.updateProviderType(username, provider);
+	}
+
+
 }

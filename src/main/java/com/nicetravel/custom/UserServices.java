@@ -126,8 +126,7 @@ public class UserServices {
     }
 
     public void updatePassword(Account account, String newPassword) throws Exception {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(newPassword);
+String encodedPassword = passwordEncoder.encode(newPassword);
         account.setPassword(encodedPassword);
 
         account.setVerificationCode(null);

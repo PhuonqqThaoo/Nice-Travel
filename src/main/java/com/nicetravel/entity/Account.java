@@ -46,6 +46,14 @@ public class Account implements Serializable {
     @Column(name = "provider")
     private Provider provider;
 
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
     @NotEmpty
     @NotNull
     @Column(name = "username", nullable = false, length = 20)

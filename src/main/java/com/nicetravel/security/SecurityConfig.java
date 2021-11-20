@@ -6,12 +6,15 @@ import com.nicetravel.security.auth.CustomOAuth2UserService;
 import com.nicetravel.custom.CustomUserDetailsService;
 import com.nicetravel.custom.UserService;
 import com.nicetravel.entity.Account;
+import com.nicetravel.security.auth.DatabaseLoginSuccessHandler;
+import com.nicetravel.security.auth.OAuthLoginSuccessHandle;
 import com.nicetravel.service.AccountService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -46,13 +49,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     AccountService accountService;
 
     @Autowired
-    private CustomOAuth2UserService oauthUserService;
+    private CustomOAuth2UserService oauth2UserService;
 
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
     }
 
+    @Autowired
+    private OAuthLoginSuccessHandle oauthLoginSuccessHandler;
+
+    @Autowired
+    private DatabaseLoginSuccessHandler databaseLoginSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -65,13 +73,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v1/**").hasRole("ADMIN")
                 .anyRequest().permitAll();
 
-        http.formLogin()
+        http.formLogin().permitAll()
                 .loginPage("/login")
                 .loginProcessingUrl("/account/login")
-                .defaultSuccessUrl("/", false)
-                .failureUrl("/login/error")
                 .usernameParameter("username")
-                .passwordParameter("password");
+                .passwordParameter("password")
+                .successHandler(databaseLoginSuccessHandler)
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint()
+                .userService(oauth2UserService)
+                .and()
+                .successHandler(oauthLoginSuccessHandler)
+                .and()
+                .logout().logoutSuccessUrl("/").permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403")
+        ;;
 
         http.rememberMe();
 
@@ -80,38 +99,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/logoff/success")
                 .deleteCookies("JSESSIONID");
 
-//        http.exceptionHandling()
-//                .accessDeniedPage("/error");
-//        http.oauth2Login()
-//                .loginPage("/login")
-//                .defaultSuccessUrl("/", true)
-//                .failureUrl("/login/error")
-//                .authorizationEndpoint()
-//                .baseUri("/oauth2/authorization");
-        http.oauth2Login()
-                .loginPage("/login")
-                .userInfoEndpoint()
-                .userService(oauthUserService)
-                .and()
-                .successHandler(new AuthenticationSuccessHandler() {
-
-                    @SneakyThrows
-                    @Override
-                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                        Authentication authentication) {
-
-                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
-
-                        userService.processOAuthPostLogin(oauthUser.getName(), oauthUser.getEmail());
-
-                        response.sendRedirect("/");
-                    }
-                });
-
 
     }
 
-    @Autowired UserService userService;
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(getPasswordEncoder());
+
+        return authProvider;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -125,7 +124,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                String [] roles = account.getRoles().stream()
 //                        .map(Role::getRole).toArray(String[]::new);
 //                System.out.println(Arrays.toString(roles));
-                return User.withUsername(username).password((password)).roles(roles).build();
+                return User.withUsername(username).password(password).roles(roles).build();
             } catch (NoSuchElementException e) {
                 throw new UsernameNotFoundException(username + "Not Found !");
             }
