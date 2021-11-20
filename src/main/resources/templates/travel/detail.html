@@ -23,7 +23,7 @@
                     </div>
                     <div class="travel-detail-col-6">
                         <div class="travel-detail-section1">
-                            <p>Khởi hành: <span th:text="*{startDate}"></span></p>
+                            <p>Khởi hành: <span th:text="*{hour}"></span> <span>:00</span> <span th:text="*{#dates.format(startDate, 'dd/MM/yyyy')}"></span></p>
                             <p>Số lượng: <span th:text="*{quantity}"></span></p>
                             <p>Số ngày: <span>5</span></p>
                             <p>Số chỗ còn nhận: <span>10</span></p>
