@@ -7,6 +7,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 public interface TravelService {
     List<Travel> getAllTravel();
 
@@ -20,10 +23,15 @@ public interface TravelService {
 
     Travel findTravelBySlug(String slug);
     
-    List<Travel> findByTypeId(Integer tid);
+    //List<Travel> findByTypeId(Integer tid);
     
-    List<Travel> searchTour(String depart,String desti, String sd,BigDecimal pmin, BigDecimal pmax); 
+    Page<Travel> findByTypeId(Integer tid,Pageable pageable);
+	/*
+	 * List<Travel> searchTour(String depart,String desti, String sd,BigDecimal
+	 * pmin, BigDecimal pmax);
+	 */
     
+    Page<Travel> searchTour2(String depart,String desti, String sd,BigDecimal pmin, BigDecimal pmax, Pageable pageable); 
     Integer getCountTravel();
     
 //    List<String [][]> getTotalSold();

@@ -6,6 +6,8 @@ import com.nicetravel.repository.TravelRepository;
 
 import com.nicetravel.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -56,10 +58,10 @@ public class TravelServiceImpl implements TravelService {
         return travelRepository.findTravelBySlug(slug);
     }
 
-	@Override
-	public List<Travel> findByTypeId(Integer tid) {
-		return travelRepository.findByTypeId(tid);
-	}
+	/*
+	 * @Override public List<Travel> findByTypeId(Integer tid) { return
+	 * travelRepository.findByTypeId(tid); }
+	 */
 
 	@Override
 	public Integer getCountTravel() {
@@ -71,43 +73,50 @@ public class TravelServiceImpl implements TravelService {
 		return travelRepository.getTotal();
 	}
 
+	/*
+	 * @Override public List<Travel> searchTour(String depart, String desti, String
+	 * sd,BigDecimal pmin, BigDecimal pmax) { // TODO Auto-generated method stub
+	 * if(ObjectUtils.isEmpty(sd) && ObjectUtils.isEmpty(pmin) &&
+	 * ObjectUtils.isEmpty(pmax)) { System.out.println("1"); return
+	 * travelRepository.searchTourNotDate(depart,desti);
+	 * 
+	 * } else if(ObjectUtils.isEmpty(sd)){ System.out.println("2"); return
+	 * travelRepository.searchTourMinMaxNoDate(depart, desti, pmin, pmax);
+	 * 
+	 * }else if(ObjectUtils.isEmpty(sd) && ObjectUtils.isEmpty(pmax)) {
+	 * System.out.println("3"); return
+	 * travelRepository.searchTourMinNoMaxNoDate(depart, desti, pmin);
+	 * 
+	 * }else if(ObjectUtils.isEmpty(sd) && ObjectUtils.isEmpty(pmin)) {
+	 * System.out.println("4"); return
+	 * travelRepository.searchTourMaxNoMinNoDate(depart, desti, pmax); }
+	 * 
+	 * else if(ObjectUtils.isEmpty(pmax)) { System.out.println("5"); return
+	 * travelRepository.searchTourNoMax(depart, desti, sd, pmin); }
+	 * 
+	 * else if(ObjectUtils.isEmpty(pmin)) { System.out.println("6"); return
+	 * travelRepository.searchTourNoMin(depart, desti, sd, pmax); } else
+	 * if(ObjectUtils.isEmpty(pmin) && ObjectUtils.isEmpty(pmax)) {
+	 * System.out.println("7"); return travelRepository.searchTourNoMinNoMax(depart,
+	 * desti, sd); } else { return travelRepository.searchTour(depart,
+	 * desti,sd,pmin,pmax); } }
+	 */
+
 	@Override
-	public List<Travel> searchTour(String depart, String desti, String sd,BigDecimal pmin, BigDecimal pmax) {
-		// TODO Auto-generated method stub
-		if(ObjectUtils.isEmpty(sd) && ObjectUtils.isEmpty(pmin) && ObjectUtils.isEmpty(pmax)) {
-			System.out.println("1");
-			return travelRepository.searchTourNotDate(depart,desti);
-			
-		}
-		else if(ObjectUtils.isEmpty(sd)){
+	public Page<Travel> searchTour2(String depart, String desti, String sd, BigDecimal pmin, BigDecimal pmax,
+			Pageable pageable) {
+		if(ObjectUtils.isEmpty(sd)){
 			System.out.println("2");
-			return travelRepository.searchTourMinMaxNoDate(depart, desti, pmin, pmax);
-		
-		}else if(ObjectUtils.isEmpty(sd)  &&  ObjectUtils.isEmpty(pmax)) {
-			System.out.println("3");
-			return travelRepository.searchTourMinNoMaxNoDate(depart, desti, pmin);
-		
-		}else if(ObjectUtils.isEmpty(sd)  && ObjectUtils.isEmpty(pmin)) {
-			System.out.println("4");
-			return travelRepository.searchTourMaxNoMinNoDate(depart, desti, pmax);
-		}
-		
-		else if(ObjectUtils.isEmpty(pmax)) {
-			System.out.println("5");
-			return travelRepository.searchTourNoMax(depart, desti, sd, pmin);
-		}
-		
-		else if(ObjectUtils.isEmpty(pmin)) {
-			System.out.println("6");
-			return travelRepository.searchTourNoMin(depart, desti, sd, pmax);
-		}	
-		else if(ObjectUtils.isEmpty(pmin) && ObjectUtils.isEmpty(pmax)) {
-			System.out.println("7");
-			return travelRepository.searchTourNoMinNoMax(depart, desti, sd);
+			return travelRepository.searchTourMinMaxNoDate2(depart, desti, pmin, pmax,pageable);
 		}
 		else {
-			return travelRepository.searchTour(depart, desti,sd,pmin,pmax);
+			return travelRepository.searchTour2(depart, desti,sd,pmin,pmax,pageable);
 		}
+	}
+
+	@Override
+	public Page<Travel> findByTypeId(Integer tid, Pageable pageable) {
+		return travelRepository.findByTypeId(tid,pageable);
 	}
 
 //	@Override
