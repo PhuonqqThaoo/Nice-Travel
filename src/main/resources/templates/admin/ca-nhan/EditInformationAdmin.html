@@ -348,6 +348,7 @@
                     <!-- row info -->
                     <div class="information-box">
                         <!-- intro info -->
+                            <form th:object= "${userRequest}" id="form" method="POST" enctype="multipart/form-data" style="width: 100%;">
                         <div class="row box">
                             <div class="col-6">
                                 <h5 style="font-weight: 600;">Tài khoản: admin</h5>
@@ -358,15 +359,14 @@
                                 </p>
                             </div>
                             <div class="col-6">
-                                <img src="https://cuoituan.tuoitre.vn/img/author.png" alt=""
+                                <img th:src="@{${userRequest.getPhotosImagePath}}" alt=""
                                     style="width: 30%; height: auto; margin-left: 50px;">
-                                    <input type="file" name="" id="" class="form-control">
+                                    <input type="file" name="image" id="image" accept="image/png, image/jpg, image/jpeg" class="form-control">
                             </div>
                         </div>
 
                         <!-- edit information -->
                         <div class="row box box-border">
-                            <form th:object= "${userRequest}" id="form" method="POST" style="width: 100%;">
                                 <div class="form-row" style="display: none">
                                     <div class="form-group col-md-4">
                                         <label for="inputUsername">Tài khoản</label>
@@ -432,8 +432,8 @@
                                     <button type="button" id="submitUpdate" th:attr="onclick='updateUser()'" class="btn btn-primary">Chỉnh sửa</button>
                                     <button type="button" id="submitCacel" th:attr="onclick='cacelBtn()'" class="btn btn-secondary" >Làm mới</button>
                                 </div>
-                            </form>
                         </div>
+                            </form>
                     </div>
                     <!-- end row info -->
 

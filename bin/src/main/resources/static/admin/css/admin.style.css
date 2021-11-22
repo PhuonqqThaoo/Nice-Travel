@@ -4,6 +4,10 @@
     padding: 2rem 2rem;
 }
 
+.btn-group {
+    margin-bottom: 30px;
+}
+
 /* chỉnh sửa tour du lịch */
 .chinh-sua-tour {
     min-height: 35rem;
@@ -45,3 +49,21 @@
     padding: 20px 20px;
 }
 /* end search date thống kê 6 tháng gần nhất */
+
+
+/* Thống kê tour du lịch */
+
+/* end Thống kê tour du lịch */
+
+
+/* --------------------------------------------------------------------- */
+/* Quản lý danh sách tour */
+.quan-ly-danh-sach-tour {
+    width: auto;
+    max-width: 93%;
+    margin:  0 auto;
+}
+.quan-ly-danh-sach-tour .card {
+    padding: 20px 20px;
+}
+/* end Quản lý danh sách tour */

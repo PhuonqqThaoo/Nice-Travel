@@ -16,11 +16,9 @@ import javax.validation.constraints.Size;
 
 import java.io.Serializable;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Table(name = "Account", indexes = {
@@ -45,6 +43,19 @@ public class Account implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "provider")
     private Provider provider;
+
+    private static final long PASSWORD_EXPIRATION_TIME
+            = 30L * 24L * 60L * 60L * 1000L;    // 30 days
+    @Column(name = "password_changed_time")
+    private Date passwordChangedTime;
+    public boolean isPasswordExpired() {
+        if (this.passwordChangedTime == null) return false;
+
+        long currentTime = System.currentTimeMillis();
+        long lastChangedTime = this.passwordChangedTime.getTime();
+
+        return currentTime > lastChangedTime + PASSWORD_EXPIRATION_TIME;
+    }
 
     public Provider getProvider() {
         return provider;
@@ -82,6 +93,12 @@ public class Account implements Serializable {
     @Column(name = "phone", nullable = false, length = 20)
     private String phone;
 
+    @Transient
+    public String getPhotosImagePath() {
+        if (img == null || id == null) return null;
+
+        return "/user-photos/" + id + "/" + img;
+    }
     @Column(name = "img", length = 225)
     private String img;
 

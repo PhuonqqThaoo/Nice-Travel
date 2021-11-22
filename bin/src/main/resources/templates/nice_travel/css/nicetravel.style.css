@@ -28,6 +28,7 @@
     height: auto;
     text-align: center;
 }
+
 .btn-xem-them {
     width: 200px;
     height: 50px;
@@ -246,7 +247,7 @@ a.travel-btn:hover {
 
 .pay .col-35-right {
     width: 35%;
-    min-height: 500px;
+    min-height: 300px;
     float: left;
     border: 1px solid #b1b1b1a8;
     padding: 15px 15px;
@@ -286,14 +287,12 @@ a.travel-btn:hover {
     border-style: solid;
     border-width: 0;
 }
-
-.pay .detail {
+.detail {
     padding-bottom: 27px;
     margin-bottom: 27px;
     border-bottom: 1px solid #d5d5d5;
 }
-
-.pay .col-35-right .detail table .total td {
+.detail table .total td {
     font-weight: 700;
     font-size: 15px;
     line-height: 19px;
@@ -302,8 +301,7 @@ a.travel-btn:hover {
     border-top: 1 px solid #e7e7e7;
     padding: 20 px 0;
 }
-
-.pay .col-35-right .detail table .total td.t-price {
+.detail table .total td.t-price {
     font-weight: 700;
     font-size: 22px;
     line-height: 28px;
@@ -311,8 +309,7 @@ a.travel-btn:hover {
     color: #fd5056;
     text-transform: lowercase;
 }
-
-.pay .detail table .text-right {
+.detail table .text-right {
     text-align: right;
     font-weight: 700;
     font-size: 15px;
@@ -320,8 +317,7 @@ a.travel-btn:hover {
     text-align: right;
     color: #2d4271;
 }
-
-.pay .detail .btn-order {
+.detail .btn-order {
     background-color: #fd5056;
     border: none;
     font-size: 17px;
@@ -336,6 +332,22 @@ a.travel-btn:hover {
 
 /* end pay */
 
+/* --------------------------------------- */
+/* payment */
+.payment {
+    width: 100%;
+    min-height: 500px;
+    font-family: 'Mulish', sans-serif;
+}
+
+.payment-container {
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 200px;
+    padding-bottom: 100px;
+}
+/* end payment */
+
 
 
 /* footer */
@@ -345,26 +357,35 @@ footer {
     width: 100%;
     min-height: 500px;
 }
+
 .footer {
     width: 70%;
     margin: 0 auto;
 }
+
 .footer-title h5 {
     font-weight: 700;
 }
-.footer .col-xs-5 a, .footer .col-xs-12 a {
+
+.footer .col-xs-5 a,
+.footer .col-xs-12 a {
     font-size: 16px;
 }
-.footer .row .col-xs-6 .row .col-xs-5, .footer .col-xs-12 {
+
+.footer .row .col-xs-6 .row .col-xs-5,
+.footer .col-xs-12 {
     height: 30px;
 }
+
 .footer .col-xs-12 i {
     font-size: 35px;
     padding-right: 7px;
     padding-top: 5px;
     color: #10ac84;
 }
+
 .footer .col-xs-12 i:hover {
     color: #fd2d34;
 }
+
 /* end footer */

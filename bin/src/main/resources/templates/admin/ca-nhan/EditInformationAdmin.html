@@ -61,20 +61,6 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
-                    aria-expanded="true" aria-controls="collapseForm">
-                    <i class='bx bxs-plane-alt' ></i>
-                    <span>Tour du lịch</span>
-                </a>
-                <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                        <a class="collapse-item" href="form_basics.html">Home</a>
-                        <a class="collapse-item" href="form_advanceds.html">List</a>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable"
                     aria-expanded="true" aria-controls="collapseTable">
                     <i class='bx bxs-customize' ></i>
@@ -101,8 +87,7 @@
                 <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý tour du lịch</h6>
-                        <a class="collapse-item" href="/admin/danh-sach-tour">Danh sách tour</a>
-                        <a class="collapse-item" href="/admin/chinh-sua-tour">Chỉnh sửa tour</a>
+                        <a class="collapse-item" href="/admin/quan-ly/tour-du-lich">Danh sách tour</a>
                     </div>
                 </div>
             </li>
@@ -326,7 +311,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" th:src="@{admin/img/boy.png}"
                                     style="max-width: 60px">
-                                <span class="ml-2 d-none d-lg-inline text-white small">Huynh Phuoc Dan</span>
+                                <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -363,6 +348,7 @@
                     <!-- row info -->
                     <div class="information-box">
                         <!-- intro info -->
+                            <form th:object= "${userRequest}" id="form" method="POST" enctype="multipart/form-data" style="width: 100%;">
                         <div class="row box">
                             <div class="col-6">
                                 <h5 style="font-weight: 600;">Tài khoản: admin</h5>
@@ -373,15 +359,14 @@
                                 </p>
                             </div>
                             <div class="col-6">
-                                <img src="https://cuoituan.tuoitre.vn/img/author.png" alt=""
+                                <img th:src="@{${userRequest.getPhotosImagePath}}" alt=""
                                     style="width: 30%; height: auto; margin-left: 50px;">
-                                    <input type="file" name="" id="" class="form-control">
+                                    <input type="file" name="image" id="image" accept="image/png, image/jpg, image/jpeg" class="form-control">
                             </div>
                         </div>
 
                         <!-- edit information -->
                         <div class="row box box-border">
-                            <form th:object= "${userRequest}" id="form" method="POST">
                                 <div class="form-row" style="display: none">
                                     <div class="form-group col-md-4">
                                         <label for="inputUsername">Tài khoản</label>
@@ -447,8 +432,8 @@
                                     <button type="button" id="submitUpdate" th:attr="onclick='updateUser()'" class="btn btn-primary">Chỉnh sửa</button>
                                     <button type="button" id="submitCacel" th:attr="onclick='cacelBtn()'" class="btn btn-secondary" >Làm mới</button>
                                 </div>
-                            </form>
                         </div>
+                            </form>
                     </div>
                     <!-- end row info -->
 

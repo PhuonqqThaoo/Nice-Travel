@@ -78,7 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/account/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .successHandler(databaseLoginSuccessHandler)
+//                .successHandler(databaseLoginSuccessHandler)
                 .and()
                 .oauth2Login()
                 .loginPage("/login")

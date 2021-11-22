@@ -2,6 +2,8 @@ package com.nicetravel.service;
 
 import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Provider;
+import com.nicetravel.repository.AccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
