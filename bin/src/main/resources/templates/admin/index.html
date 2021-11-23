@@ -62,20 +62,6 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
-                    aria-expanded="true" aria-controls="collapseForm">
-                    <i class='bx bxs-plane-alt'></i>
-                    <span>Tour du lịch</span>
-                </a>
-                <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                        <a class="collapse-item" href="form_basics.html">Home</a>
-                        <a class="collapse-item" href="form_advanceds.html">List</a>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable"
                     aria-expanded="true" aria-controls="collapseTable">
                     <i class='bx bxs-customize'></i>
@@ -102,8 +88,7 @@
                 <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý tour du lịch</h6>
-                        <a class="collapse-item" href="/admin/danh-sach-tour">Danh sách tour</a>
-                        <a class="collapse-item" href="/admin/chinh-sua-tour">Chỉnh sửa tour</a>
+                        <a class="collapse-item" href="/admin/quan-ly/tour-du-lich">Danh sách tour</a>
                     </div>
                 </div>
             </li>
@@ -446,8 +431,8 @@
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{Revenue|number:0}} vnđ</div>
                                             <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i>
-                                                    1.10%</span>
+                                                <span class="text-danger mr-2">
+                                                    {{revenueComparedLastYear | number:2}}%</span>
                                                 <span>Since yesterday</span>
                                             </div>
                                         </div>
@@ -528,10 +513,10 @@
                                 <div class="card-body" ng-repeat="c in items">
                                     <div class="mb-3" >
                                         <div class="small text-gray-500">{{c.name}}
-                                            <div class="small float-right"><b>600 of 800 Items</b></div>
+                                            <div class="small float-right"><b>{{c.quantity_new}} of {{c.quantity}}  Items</b></div>
                                         </div>
                                         <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-warning" role="progressbar" ng-bind="{{c.phanTram}}" ""
+                                            <div class="progress-bar bg-warning" role="progressbar" ng-style="{'width': +'{{c.phanTram}}'+'%'}"
                                                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
@@ -899,9 +884,9 @@
             	$http.get("/admin/TotalSold").then(resp => {
         			$scope.items = resp.data;
         			console.log($scope.items)
-        			for(var i = 0; i < $scope.items.length; i++)
+//         			for(var i = 0; i < $scope.items.length; i++)
 //         				$scope.items[i].phanTram =  '{width: '+ $scope.items[i].phanTram+'%}'
-        			  $scope.items[i].phanTram =  'style= "width: '+ $scope.items[i].phanTram+'%"'
+//         			  $scope.items[i].phanTram =  'style= "width: '+ $scope.items[i].phanTram+'%"'
         		}).catch(err => {
         			console.log("erro",err)
         		})
@@ -941,6 +926,13 @@
                 $http.get("/admin/totalUserLastMonth").then(resp => {
                     $scope.totalUserLastMonth = resp.data;
                     console.log($scope.totalUserLastMonth )
+                }) 
+                
+                // doanh thu so với năm trước
+                // khách hàng so với tháng trước 
+                $http.get("/admin/sinceYesterday").then(resp => {
+                    $scope.revenueComparedLastYear = resp.data;
+                    console.log($scope.revenueComparedLastYear )
                 }) 
 
             }

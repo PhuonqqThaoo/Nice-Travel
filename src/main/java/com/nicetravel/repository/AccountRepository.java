@@ -48,7 +48,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Modifying(clearAutomatically =true)
     @Query(value="UPDATE Account SET fullname = ?1, email = ?2,password = ?3, phone = ?4, id_Card= ?5,  gender = ?6, address = ?7 WHERE username = ?8", nativeQuery = true)
     void update (String fullname, String email,String password, String phone,String idCard, Boolean gender, String address, String username);
-    
+
     @Modifying(clearAutomatically =true)
     @Query(value="UPDATE Account SET  is_enable = 1 WHERE username =?1", nativeQuery = true)
     void deletedUser(String username);
