@@ -2,6 +2,7 @@ package com.nicetravel.service.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Booking;
 import com.nicetravel.entity.BookingDetail;
 import com.nicetravel.entity.Travel;
@@ -27,7 +28,7 @@ public class BookingServiceImpl implements BookingService {
 
 	@Autowired
 	BookingDetailRepository bookingDetailRepository;
-	
+
 	@Autowired
 	TravelRepository travelRepository;
 
@@ -85,13 +86,13 @@ public class BookingServiceImpl implements BookingService {
 		BookingDetail bookingDetail = mapper.convertValue(bookingData.get("bookingDetails"), BookingDetail.class);
 		bookingDetail.setBookingId(booking);
 		bookingDetailRepository.save(bookingDetail);
-		
-		//cập nhật số lượng quantity	
+
+		// cập nhật số lượng quantity
 		Travel travel = travelRepository.findById(bookingDetail.getTravelId().getId()).get();
 		int qtynew = travel.getQuantityNew() - bookingDetail.getQuantity();
 		travel.setQuantityNew(qtynew);
 		travelRepository.save(travel);
-		
+
 		return booking;
 	}
 
@@ -99,7 +100,12 @@ public class BookingServiceImpl implements BookingService {
 	public Double getComparedLastYear() {
 		double currentMonth = bookingRepository.getRevenue();
 		double lastMonth = bookingRepository.getLastRevenue();
-		double result = ((currentMonth / lastMonth) * 100) -100;
+		double result = ((currentMonth / lastMonth) * 100) - 100;
 		return result;
+	}
+
+	@Override
+	public List<Booking> getAllBookingByAcId(Account accountId) {
+		return bookingRepository.getAllBookingByAcId(accountId);
 	}
 }

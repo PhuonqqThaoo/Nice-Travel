@@ -147,45 +147,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr th:each="p : ${items}">
                                             <td style="width: 14%;">
-                                                <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100px;" alt="">
+                                                <img th:src="@{|/assets/img/${p.id}|}" style="width: 100px;" alt="">
                                             </td>
                                             <td>
-                                                <h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu
-                                                    Trắng - Bảo Tàng Làng Chài Xưa</h5>
+                                                <h5 style="font-weight: 700;">[[${p.address}]]</h5>
                                             </td>
-                                            <td>Sân Bay Tân Sơn Nhất</td>
-                                            <td>13,960,000 vnđ</td>
+                                            <td>[[${p.phone}]]</td>
+                                            <td>[[${p.totalPrice}]] vnđ</td>
                                             <td><span class="badge badge-info">Chưa thanh toán</span></td>
-                                            <td><button type="button" class="btn btn-primary"><i
-                                                        class='bx bx-search'></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 14%;">
-                                                <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100px;" alt="">
-                                            </td>
-                                            <td>
-                                                <h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu
-                                                    Trắng - Bảo Tàng Làng Chài Xưa</h5>
-                                            </td>
-                                            <td>Sân Bay Tân Sơn Nhất</td>
-                                            <td>13,960,000 vnđ</td>
-                                            <td><span class="badge badge-info">Đã thanh toán</span></td>
-                                            <td><button type="button" class="btn btn-primary"><i
-                                                        class='bx bx-search'></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 14%;">
-                                                <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100px;" alt="">
-                                            </td>
-                                            <td>
-                                                <h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu
-                                                    Trắng - Bảo Tàng Làng Chài Xưa</h5>
-                                            </td>
-                                            <td>Sân Bay Tân Sơn Nhất</td>
-                                            <td>13,960,000 vnđ</td>
-                                            <td><span class="badge badge-info">Đã thanh toán</span></td>
                                             <td><button type="button" class="btn btn-primary"><i
                                                         class='bx bx-search'></i></button></td>
                                         </tr>

@@ -118,13 +118,9 @@
 										/ người
 										</p>
 										<div>
-											<a th:href="@{|/booking/check?tour=${p.slug}|}"
-												class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
-												ngay</a> <a href="" class="travel-btn"
-												style="padding: .8rem 1.8rem; background-color: rgb(9, 184, 253);"><i
-												class='bx bxs-heart'></i></a> <a
-												th:href="@{|/travel/detail/${p.slug}|}"
-												style="float: right;">Xem chi tiết</a>
+											<a th:href="@{|/booking/check?tour=${p.slug}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt ngay</a> 
+											<a th:href="@{|/travel/like/${p.id}|}" class="travel-btn" style="padding: .8rem 1.8rem; background-color: rgb(9, 184, 253);"><i class='bx bxs-heart'></i></a> 
+											<a th:href="@{|/travel/detail/${p.slug}|}" style="float: right;">Xem chi tiết</a>
 										</div>
 									</div>
 								</a>

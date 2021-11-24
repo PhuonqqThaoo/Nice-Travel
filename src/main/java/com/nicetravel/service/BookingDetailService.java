@@ -1,6 +1,8 @@
 package com.nicetravel.service;
 
 
+import com.nicetravel.entity.Account;
+import com.nicetravel.entity.Booking;
 import com.nicetravel.entity.BookingDetail;
 
 import java.util.List;
@@ -15,4 +17,5 @@ public interface BookingDetailService {
     BookingDetail updateBookingDetail(BookingDetail bookingDetail);
 
     void deleteBookingDetail(Integer id);
+    
 }

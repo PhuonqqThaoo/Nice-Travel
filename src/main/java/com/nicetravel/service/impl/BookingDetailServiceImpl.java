@@ -1,12 +1,13 @@
 package com.nicetravel.service.impl;
 
-import com.nicetravel.entity.BookingDetail;
-import com.nicetravel.repository.BookingDetailRepository;
-import com.nicetravel.service.BookingDetailService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.nicetravel.entity.BookingDetail;
+import com.nicetravel.repository.BookingDetailRepository;
+import com.nicetravel.service.BookingDetailService;
 
 @Service
 public class BookingDetailServiceImpl implements BookingDetailService {
@@ -42,4 +43,5 @@ public class BookingDetailServiceImpl implements BookingDetailService {
     public void deleteBookingDetail(Integer id) {
         bookingDetailRepository.deleteById(id);
     }
+
 }

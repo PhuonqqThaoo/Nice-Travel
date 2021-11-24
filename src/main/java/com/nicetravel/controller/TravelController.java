@@ -3,6 +3,8 @@ package com.nicetravel.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,7 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Travel;
+import com.nicetravel.entity.TravelLike;
+import com.nicetravel.service.AccountService;
+import com.nicetravel.service.TravelLikeService;
 import com.nicetravel.service.TravelService;
 
 @Controller
@@ -22,7 +28,11 @@ public class TravelController {
 
 	@Autowired
 	TravelService travelService;
-
+	@Autowired
+	AccountService 	accountService;
+	@Autowired
+	TravelLikeService travelLikeService;
+	
 	@RequestMapping("/list")
 	public String list(Model model) {
 
@@ -56,5 +66,17 @@ public class TravelController {
 		}
 		return "travel/tour";
 	}
-
+	@RequestMapping("/like/{id}")
+	public String like(@PathVariable("id") Integer id, HttpServletRequest request) {
+		String username = request.getRemoteUser();
+		Account account = accountService.findAccountsByUsername(username);
+		Travel travel = travelService.findTravelById(id);
+		
+		TravelLike like = new TravelLike();
+		like.setAccountId(account);
+		like.setTravelId(travel);
+		travelLikeService.createTravelLike(like);
+		
+		return "redirect:/";
+	}
 }
