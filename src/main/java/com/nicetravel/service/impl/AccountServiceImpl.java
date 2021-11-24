@@ -172,7 +172,7 @@ public class AccountServiceImpl implements AccountService {
         String encodePassword = passwordEncoder.encode(newPassword);
         account.setPassword(encodePassword);
         System.out.println(encodePassword);
-        account.setPasswordChangedTime(new Date());`
+        account.setPasswordChangedTime(new Date());
 
         accountRepository.save(account);
     }
