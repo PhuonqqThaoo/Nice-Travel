@@ -46,5 +46,5 @@ public interface AccountService {
 
     void updateProviderType(String username, Provider provider);
 
-    void changePassword(Account account, String newPassword, PasswordEncoder passwordEncoder);
+    void changePassword(Account account, String newPassword, PasswordEncoder passwordEncoder) throws Exception;
 }

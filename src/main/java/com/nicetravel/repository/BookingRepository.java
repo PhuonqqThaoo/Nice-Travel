@@ -1,11 +1,8 @@
 package com.nicetravel.repository;
 
-<<<<<<< HEAD
 import com.nicetravel.entity.Booking;
 
 import java.util.Date;
-=======
->>>>>>> 61fdeec545d7f4242324baf718a512e78a76b1db
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,18 +27,14 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
 	@Query(value = "{CALL sp_getLastRevenue()}", nativeQuery = true)
 	Double getLastRevenue();
-<<<<<<< HEAD
 	
 	@Query(value = "SELECT created_date, SUM(o2.price) "
 			+ "					FROM Booking o1 inner join Booking_detail o2 on o1.id = o2.booking_Id "
 			+ "					WHERE o1.created_date between ?1 and ?2 "
 			+ "					group by created_date",nativeQuery = true)
 	String[][] getTotalPriceFromTo(String from, String to);
-	
-=======
 
 	// Fix sau
 	@Query("SELECT u FROM Booking u WHERE u.accountId = ?1")
 	List<Booking> getAllBookingByAcId(Account id);
->>>>>>> 61fdeec545d7f4242324baf718a512e78a76b1db
 }

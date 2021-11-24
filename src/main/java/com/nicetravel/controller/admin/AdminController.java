@@ -54,7 +54,7 @@ public class AdminController {
     @PostMapping("/edit-information-admin")
     public String update(@Valid @ModelAttribute("userRequest") Account userRequest,
                          BindingResult result,
-                         RedirectAttributes redirect, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+                         RedirectAttributes redirect, @RequestParam("img") MultipartFile multipartFile) throws IOException {
         String errorMessage = null;
         ;
         try {
@@ -96,6 +96,7 @@ public class AdminController {
         String username = request.getRemoteUser();
         System.out.println("chang pass (user): " + username);
         Account userRequest = accountService.findAccountsByUsername(username);
+        model.addAttribute("pageTitle", "Change Expired Password");
         model.addAttribute("userRequest", userRequest);
 
         return "admin/ca-nhan/ChangePassword";
@@ -104,7 +105,7 @@ public class AdminController {
     @PostMapping("/change-password")
     public String postChangePassword(HttpServletRequest request, HttpServletResponse response,
                                      Model model, RedirectAttributes ra,
-                                     @AuthenticationPrincipal Authentication authentication,@ModelAttribute("userRequest") Account account) throws ServletException {
+                                     @AuthenticationPrincipal Authentication authentication,@ModelAttribute("userRequest") Account account) throws Exception {
 
 
 //        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();

@@ -8,11 +8,8 @@ import com.nicetravel.entity.BookingDetail;
 import com.nicetravel.entity.Travel;
 import com.nicetravel.repository.BookingDetailRepository;
 import com.nicetravel.repository.BookingRepository;
-<<<<<<< HEAD
 import com.nicetravel.repository.StatsRepository;
-=======
 import com.nicetravel.repository.TravelRepository;
->>>>>>> 61fdeec545d7f4242324baf718a512e78a76b1db
 import com.nicetravel.service.BookingService;
 
 import org.hibernate.type.descriptor.java.BigDecimalTypeDescriptor;
@@ -113,7 +110,6 @@ public class BookingServiceImpl implements BookingService {
 		double currentMonth = bookingRepository.getRevenue();
 		double lastMonth = bookingRepository.getLastRevenue();
 		double result = ((currentMonth / lastMonth) * 100) - 100;
-<<<<<<< HEAD
 		return result;
 	}
 
@@ -126,8 +122,6 @@ public class BookingServiceImpl implements BookingService {
 			result[0][result1.length- 1 - i] = result1[result1.length- 1 - i][0];
 			result[1][result1.length- 1 - i] = result1[result1.length- 1 - i][1];
 		}
-=======
->>>>>>> 61fdeec545d7f4242324baf718a512e78a76b1db
 		return result;
 	}
 

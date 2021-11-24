@@ -85,44 +85,6 @@ public class AccountServiceImpl implements AccountService {
 
 
     @Override
-<<<<<<< HEAD
-	public List<Account> findAll() {
-		return accountRepository.findAllAvailable();
-	}
-
-	@Override
-	public List<Account> findAllByStaff() {
-		return accountRepository.findAllByStaff();
-	}
-
-	@Override
-	@Transactional 
-	public void update(Account account) throws Exception {
-		if (ObjectUtils.isEmpty(account)) {
-			throw new Exception("user cannot be empty");
-		}
-		//check update non password or update full
-		if (ObjectUtils.isEmpty(account.getPassword())) {
-			accountRepository.updateNonPass(account.getFullname(), account.getEmail(), account.getPhone(), account.getId_Card(), account.getGender(),account.getAddress(), account.getUsername());
-		}else {
-			account.setPassword(bcrypt.encode(account.getPassword()));
-			accountRepository.update(account.getFullname(), account.getEmail(),account.getPassword(), account.getPhone(), account.getId_Card(), account.getGender(),account.getAddress(), account.getUsername());
-		}
-	}
-
-	@Override
-	@Transactional
-	public void delete(String username) throws Exception {
-		if (ObjectUtils.isEmpty(username)) {
-			throw new Exception("user cannot be empty");
-		}
-		accountRepository.deletedUser(username);
-		
-	}
-
-	@Override
-	public Account save(Account account) {
-=======
     public List<Account> findAll() {
         return accountRepository.findAllAvailable();
     }
@@ -140,7 +102,7 @@ public class AccountServiceImpl implements AccountService {
         }
         //check update non password or update full
         if (ObjectUtils.isEmpty(account.getPassword())) {
-            accountRepository.updateNonPass(account.getFullname(), account.getEmail(), account.getPhone(), account.getId_Card(), account.getGender(), account.getAddress(), account.getUsername());
+accountRepository.updateNonPass(account.getFullname(), account.getEmail(), account.getPhone(), account.getId_Card(), account.getGender(), account.getAddress(), account.getUsername());
         } else {
             account.setPassword(bcrypt.encode(account.getPassword()));
             accountRepository.update(account.getFullname(), account.getEmail(), account.getPassword(), account.getPhone(), account.getId_Card(), account.getGender(), account.getAddress(), account.getImg(), account.getUsername());
@@ -160,7 +122,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account save(Account account) {
->>>>>>> 61fdeec545d7f4242324baf718a512e78a76b1db
 //		account.setPassword(bcrypt.encode(account.getPassword()));
 
         account.setPassword(bcrypt.encode("123"));
@@ -207,13 +168,24 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void changePassword(Account account, String newPassword, PasswordEncoder passwordEncoder) {
-        String encodePassword = passwordEncoder.encode(newPassword);
-        account.setPassword(encodePassword);
-        System.out.println(encodePassword);
-        account.setPasswordChangedTime(new Date());
+    public void changePassword(Account account, String newPassword, PasswordEncoder passwordEncoder) throws Exception {
+        if (ObjectUtils.isEmpty(account)) {
+            throw new Exception("Tài khoản không thể trống");
+        }
+        //check update non password or update full
+        if (ObjectUtils.isEmpty(account.getPassword())) {
+            System.out.println("oldpass: " +account.getPassword());
+            accountRepository.updateNonPass(account.getFullname(), account.getEmail(), account.getPhone(), account.getId_Card(), account.getGender(), account.getAddress(), account.getUsername());
+        } else {
+            account.setPassword(bcrypt.encode(newPassword));
+//            String encodePassword = passwordEncoder.encode(newPassword);
+            accountRepository.update(account.getFullname(), account.getEmail(), account.getPassword(), account.getPhone(), account.getId_Card(), account.getGender(), account.getAddress(), account.getImg(), account.getUsername());
+        }
+//        account.setPassword(encodePassword);
+//        System.out.println(encodePassword);
+//        account.setPasswordChangedTime(new Date());
 
-        accountRepository.save(account);
+//        accountRepository.save(account);
     }
 
 
