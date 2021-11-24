@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 
 import java.io.Serializable;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -44,6 +43,13 @@ public class Account implements Serializable {
     @Column(name = "provider")
     private Provider provider;
 
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
     private static final long PASSWORD_EXPIRATION_TIME
             = 30L * 24L * 60L * 60L * 1000L;    // 30 days
     @Column(name = "password_changed_time")
@@ -56,15 +62,6 @@ public class Account implements Serializable {
 
         return currentTime > lastChangedTime + PASSWORD_EXPIRATION_TIME;
     }
-
-    public Provider getProvider() {
-        return provider;
-    }
-
-    public void setProvider(Provider provider) {
-        this.provider = provider;
-    }
-
     @NotEmpty
     @NotNull
     @Column(name = "username", nullable = false, length = 20)
@@ -92,13 +89,12 @@ public class Account implements Serializable {
 
     @Column(name = "phone", nullable = false, length = 20)
     private String phone;
-
     @Transient
     public String getPhotosImagePath() {
-        if (img == null || id == null) return null;
-
-        return "/user-photos/" + id + "/" + img;
+        if (img == null || username == null) return null;
+        return "/user-photos/" + username + "/" + img;
     }
+
     @Column(name = "img", length = 225)
     private String img;
 

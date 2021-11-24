@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,21 +31,61 @@ public class TourController {
 	@RequestMapping("/search")
 	public String search(Model model,
 			@RequestParam("p") Optional<Integer> p,
-			@RequestParam ("departurePlace") Optional<String> depart,
-			@RequestParam("destinationPlace") Optional<String> desti,
-			@RequestParam("startDate") Optional<String> sd,
-			@RequestParam("price-min") Optional<BigDecimal> pmin,
-			@RequestParam("price-max") Optional<BigDecimal> pmax) {
+			@RequestParam ("departurePlace") String depart,
+			@RequestParam("destinationPlace") String desti,
+			@RequestParam("startDate") String sd,
+			@RequestParam("price-min") BigDecimal pmin,
+			@RequestParam("price-max") BigDecimal pmax) {
 		
 		/*
 		 * List<Travel> list = travelService.searchTour(depart.get(), desti.get(),
 		 * sd.get(), pmin.get(), pmax.get());
 		 */
 			
+			
 			Pageable pageable = PageRequest.of(p.orElse(0), 6);
-			Page<Travel> list = travelService.searchTour2(depart.get(), desti.get(), sd.get(), pmin.get(), pmax.get(),pageable);
+			Page<Travel> list = travelService.searchTour2(depart, desti, sd, pmin, pmax,pageable);
 			model.addAttribute("items", list);
-		
+			model.addAttribute("departurePlace", depart);
+			model.addAttribute("destinationPlace", desti);
+			model.addAttribute("startDate", sd);
+			model.addAttribute("price-min", pmin);
+			model.addAttribute("price-max", pmax);
+			
+			
 		return "travel/tour";
 	}
+	
+	/*
+	 * @GetMapping("/page/{pageNumber}") public String listbyPage(Model model,
+	 * 
+	 * @PathVariable("pageNumber") int currentPage,
+	 * 
+	 * @Param ("departurePlace") String depart,
+	 * 
+	 * @Param("destinationPlace") String desti,
+	 * 
+	 * @Param("startDate") String sd,
+	 * 
+	 * @Param("price-min") BigDecimal pmin,
+	 * 
+	 * @Param("price-max") BigDecimal pmax) {
+	 * 
+	 * Page<Travel> page = travelService.search(depart, desti, sd, pmin, pmax,
+	 * currentPage);
+	 * 
+	 * List<Travel> listSearch = page.getContent();
+	 * 
+	 * model.addAttribute("currentPage", currentPage);
+	 * model.addAttribute("totalPages", page.getTotalPages());
+	 * model.addAttribute("totalItems", page.getTotalElements());
+	 * model.addAttribute("items", listSearch);
+	 * 
+	 * model.addAttribute("departurePlace", depart);
+	 * model.addAttribute("destinationPlace", desti);
+	 * model.addAttribute("startDate", sd); model.addAttribute("price-min", pmin);
+	 * model.addAttribute("price-max", pmax); return "travel/tour";
+	 * 
+	 * }
+	 */
 }

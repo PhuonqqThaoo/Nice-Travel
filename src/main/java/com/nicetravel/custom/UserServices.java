@@ -1,7 +1,6 @@
 package com.nicetravel.custom;
 
 import com.nicetravel.entity.Account;
-import com.nicetravel.entity.Provider;
 import com.nicetravel.entity.Role;
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.repository.RoleRepository;
@@ -21,6 +20,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -70,7 +70,7 @@ public class UserServices {
         String senderName = "Nice Travel Company";
         String subject = "Vui lòng xác minh đăng ký của bạn";
         String content = "Thân chào <b>[[name]]</b>,<br>"
-                + "Vui lòng nhấp vào liên kết bên dưới để xác minh đăng ký của bạn:<br>"
+                + "PVui lòng nhấp vào liên kết bên dưới để xác minh đăng ký của bạn:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">XÁC NHẬN</a></h3>"
                 + "Cảm ơn bạn,<br>"
                 + "Nice Travel.";
@@ -101,9 +101,8 @@ public class UserServices {
             return false;
         } else {
             account.setVerificationCode(null);
-            account.setIsEnable(false);
+            account.setIsEnable(true);
             account.setRole_Id(roleService.findByRoleName("USER"));
-            account.setProvider(Provider.DATABASE);
             accountService.createAccount(account);
 
             return true;
@@ -136,4 +135,15 @@ String encodedPassword = passwordEncoder.encode(newPassword);
     }
 
 
+//    ChangePassword
+//@Autowired PasswordEncoder passwordEncoder;
+
+    public void changePassword(Account account, String newPassword) {
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        account.setPassword(encodedPassword);
+
+        account.setPasswordChangedTime(new Date());
+
+        accountService.createAccount(account);
+    }
 }

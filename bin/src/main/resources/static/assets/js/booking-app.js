@@ -1,7 +1,25 @@
 const app = angular.module("booking-app", []);
 app.controller("booking-ctrl", function($scope, $http) {
 	/*hiển thị sản phẩm*/
+
 	$scope.load = {
+		items: {},
+		add(id) {
+			$http.get(`/api/v1/travel/${id}`).then(resp => {
+				this.items = resp.data;
+				var json = JSON.stringify(angular.copy(this.items));
+				sessionStorage.setItem("booking", json);
+				console.log(this.items)
+			})
+		},
+		get amout (){
+			return (this.items.price * this.qtyAdult) + ((this.items.price - (this.items.price * 0.1)) * this.qtyChildren) + ((this.items.price - (this.items.price * 0.3)) * this.qtySmallchildren) + ((this.items.price - (this.items.price * 0.5)) * this.qtyBaby);
+		},
+		loadFromLocalStorage() {
+			var json = sessionStorage.getItem("booking");
+			this.items = json ? JSON.parse(json) : {};
+			console.log(this.items)
+		},
 		get qtyAdult(){
 			return parseInt($('#adult').text());
 		},
@@ -15,34 +33,29 @@ app.controller("booking-ctrl", function($scope, $http) {
 			return parseInt($('#baby').text());
 		}
 	}
+	$scope.load.loadFromLocalStorage();
 	
 	/*lưu đơn hàng API*/
 	$scope.booking = {
 		createdDate : new Date(),
-		get address() {
-			return  document.getElementById("address").value;
-		},
-		get phone() {
-			return  document.getElementById("phone").value;
-		},
+		address: $('#address').text(),
+		phone: $('#phone').text(),
 		get totalPrice() {
-			return  Number($('#total').text());
+			return  $scope.load.amout;
 		},
 		payBoolean : false,
 		isDeleted : false,
-		accountId : {id : Number($("#accountId").text())},
+		accountId : {id : $("#accountId").text()},
 		get bookingDetails(){
 			return {
-				travelId : {id : Number($('#travelId').text())},
-				price : Number($('#total').text()),
-				quantity : ($scope.load.qtyAdult + $scope.load.qtyChildren + $scope.load.qtySmallchildren + $scope.load.qtyBaby)
+				travelId : {id : $scope.load.items.id},
+				price : $scope.load.amout,
 			}
 		},
 		purchaser(){
 			var booking = angular.copy(this);
-			console.log(booking)
 			//thực hiện đặt hàng
-			$http.post("/api/v2/booking", booking).then(resp => {
+			$http.post("/api/v1/booking", booking).then(resp => {
 				alert("Đặt hàng thành công")
 				location.href = "/"; 
 			}).catch(error => {

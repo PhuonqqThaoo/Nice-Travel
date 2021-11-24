@@ -7,6 +7,7 @@ import com.nicetravel.repository.TravelRepository;
 import com.nicetravel.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -113,7 +114,17 @@ public class TravelServiceImpl implements TravelService {
 			return travelRepository.searchTour2(depart, desti,sd,pmin,pmax,pageable);
 		}
 	}
-
+	
+	@Override
+	public Page<Travel> search(String depart,String desti, String sd,BigDecimal pmin, BigDecimal pmax,int pageNumber){
+			Pageable pageable = PageRequest.of(pageNumber - 1, 6);
+			
+			if(ObjectUtils.isEmpty(sd)) {
+				return travelRepository.searchTourMinMaxNoDate2(depart, desti, pmin, pmax, pageable);
+			}
+					return travelRepository.searchTour2(depart, desti, sd, pmin, pmax, pageable);
+	}
+	
 	@Override
 	public Page<Travel> findByTypeId(Integer tid, Pageable pageable) {
 		return travelRepository.findByTypeId(tid,pageable);
