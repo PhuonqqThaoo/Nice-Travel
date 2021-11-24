@@ -2,11 +2,17 @@ package com.nicetravel.service.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Booking;
 import com.nicetravel.entity.BookingDetail;
+import com.nicetravel.entity.Travel;
 import com.nicetravel.repository.BookingDetailRepository;
 import com.nicetravel.repository.BookingRepository;
+<<<<<<< HEAD
 import com.nicetravel.repository.StatsRepository;
+=======
+import com.nicetravel.repository.TravelRepository;
+>>>>>>> 61fdeec545d7f4242324baf718a512e78a76b1db
 import com.nicetravel.service.BookingService;
 
 import org.hibernate.type.descriptor.java.BigDecimalTypeDescriptor;
@@ -34,6 +40,9 @@ public class BookingServiceImpl implements BookingService {
 
 	@Autowired
 	BookingDetailRepository bookingDetailRepository;
+
+	@Autowired
+	TravelRepository travelRepository;
 
 	@Autowired
 	public BookingServiceImpl(BookingRepository bookingRepository) {
@@ -90,6 +99,12 @@ public class BookingServiceImpl implements BookingService {
 		bookingDetail.setBookingId(booking);
 		bookingDetailRepository.save(bookingDetail);
 
+		// cập nhật số lượng quantity
+		Travel travel = travelRepository.findById(bookingDetail.getTravelId().getId()).get();
+		int qtynew = travel.getQuantityNew() - bookingDetail.getQuantity();
+		travel.setQuantityNew(qtynew);
+		travelRepository.save(travel);
+
 		return booking;
 	}
 
@@ -98,6 +113,7 @@ public class BookingServiceImpl implements BookingService {
 		double currentMonth = bookingRepository.getRevenue();
 		double lastMonth = bookingRepository.getLastRevenue();
 		double result = ((currentMonth / lastMonth) * 100) - 100;
+<<<<<<< HEAD
 		return result;
 	}
 
@@ -110,6 +126,13 @@ public class BookingServiceImpl implements BookingService {
 			result[0][result1.length- 1 - i] = result1[result1.length- 1 - i][0];
 			result[1][result1.length- 1 - i] = result1[result1.length- 1 - i][1];
 		}
+=======
+>>>>>>> 61fdeec545d7f4242324baf718a512e78a76b1db
 		return result;
+	}
+
+	@Override
+	public List<Booking> getAllBookingByAcId(Account accountId) {
+		return bookingRepository.getAllBookingByAcId(accountId);
 	}
 }

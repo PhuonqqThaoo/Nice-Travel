@@ -1,6 +1,8 @@
 package com.nicetravel.service;
 
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.Provider;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -30,7 +32,7 @@ public interface AccountService {
     List<Account> findAllByStaff();
 
     void update(Account account) throws Exception;
-     
+
     void delete(String username) throws Exception;
 
 	Account save(Account userRequest);
@@ -41,4 +43,8 @@ public interface AccountService {
 	
 	// so với tháng trước
 	Double comparedLastMonth();
+
+    void updateProviderType(String username, Provider provider);
+
+    void changePassword(Account account, String newPassword, PasswordEncoder passwordEncoder);
 }

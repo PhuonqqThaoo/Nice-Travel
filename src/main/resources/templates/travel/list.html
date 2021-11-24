@@ -32,7 +32,7 @@
 
                                 <div class="tp-caption sfb" data-x="center" data-y="410" data-speed="400"
                                     data-start="800" data-easing="easeInOutExpo">
-                                    <div class="btn-slider"><span class="shine"></span><a href="#">Xem Ngay</a></div>
+                                    <div class="btn-slider"><span class="shine"></span><a href="/travel/tour?tid=8">Xem Ngay</a></div>
                                 </div>
 
                             </li>
@@ -57,7 +57,7 @@
 
                                 <div class="tp-caption sfb" data-x="center" data-y="410" data-speed="400"
                                     data-start="800" data-easing="easeInOutExpo">
-                                    <div class="btn-slider"><span class="shine"></span><a href="#">Xem Ngay</a></div>
+                                    <div class="btn-slider"><span class="shine"></span><a href="/travel/tour?tid=4">Xem Ngay</a></div>
                                 </div>
 
                             </li>
@@ -81,7 +81,7 @@
 
                                 <div class="tp-caption sfb" data-x="center" data-y="410" data-speed="400"
                                     data-start="800" data-easing="easeInOutExpo">
-                                    <div class="btn-slider"><span class="shine"></span><a href="#">Xem Ngay</a></div>
+                                    <div class="btn-slider"><span class="shine"></span><a href="/travel/tour?tid=3">Xem Ngay</a></div>
                                 </div>
 
                             </li>
@@ -100,11 +100,12 @@
         <section class="frm-clean ">
             <div class="container-fluid">
                 <div class="row">
-  
-                    <form id="sform" class="form-inline clean" action="/tour/search" method="post">
+ <!--   action="/tour/search" method="post" -->
+                    <form id="sform" class="form-inline clean" th:action="@{/tour/search}">
                         <div class="col-md-2">
                             <label><span class="ti-menu-alt color"></span> Điểm đi</label>
-                            <select name="departurePlace" class="cust-select"  required="">
+                            <select name="departurePlace" id="departurePlace" class="cust-select" >
+                            	<option value=" " >Tất cả</option>
                                 <option value="Hồ chí minh" >Hồ Chí Minh</option>
                                 <option value="Tân Bình">Tân Bình</option>
                                 <option value="Đà Lạt">Đà Lạt</option>
@@ -114,7 +115,8 @@
                         </div>
                         <div class="col-md-2">
                             <label><span class="ti-menu-alt color"></span> Điểm đến</label>
-                            <select  name="destinationPlace" class="cust-select"  required="">
+                            <select name="destinationPlace" id="destinationPlace" class="cust-select" >
+                            <option value=" " >Tất cả</option>
                                 <option value="Phan Thiết">Phan Thiết</option>
                                 <option value="Cần Thơ">Cần Thơ</option>
                                 <option value="Đà Lạt">Đà Lạt</option>
@@ -127,7 +129,7 @@
                             <div id="filterDate2">
                                 <!-- Datepicker as text field -->
                                 <div class="input-group date" data-date-format="dd/mm/yyyy">
-                                    <input name="startDate"  type="text" class="form-control" placeholder="dd/MM/yyyy"  >
+                                    <input name="startDate" id="startDate" type="text" class="form-control" placeholder="dd/MM/yyyy"  >
                                     <div class="input-group-addon">
                                         <span class="fa fa-calendar"></span>
                                     </div>
@@ -136,7 +138,7 @@
                         </div>
                         <div class="col-md-2">
                             <label><span class="ti-money color"></span> Giá thấp nhất</label>
-                            <select name="price-min"  class="cust-select">
+                            <select name="price-min" id="price-min"  class="cust-select">
                             	<option value="0">Tất cả</option>
                             	<option value="2000000">2 triệu</option>
                                 <option value="5000000">5 triệu</option>
@@ -146,7 +148,7 @@
                         </div>
                         <div class="col-md-2">
                             <label><span class="ti-money color"></span> Giá cao nhất</label>
-                            <select name="price-max"  class="cust-select">
+                            <select name="price-max" id="price-max"  class="cust-select">
                             	<option value="50000000">Tất cả</option>
                                 <option value="5000000">5 triệu</option>
                                 <option value="10000000">10 triệu</option>
@@ -156,7 +158,7 @@
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <button class="btn-frm-search">Tìm kiếm</button>
+                            <button type="submit" value="Search" class="btn-frm-search" >Tìm kiếm</button>
                         </div>
                     </form>
 
@@ -498,14 +500,14 @@
 
                     <div th:each="p: ${items}" class="item">
                         <div class="gal-home travel-box">
-                            <a th:href="@{|/travel/detail/${p.id}|}">
+                            <a th:href="@{|/travel/detail/${p.slug}|}">
                                 <div class="hovereffect">
                                     <img alt="imageportofolio" class="img-responsive"
                                         th:src="@{|/assets/img/${p.img}|}">
                                 </div>
                                 <div class="gal-home-content travel-box-content">
                                     <p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate, 'dd-MM-yyyy')}]] - [[${#dates.format(p.endDate, 'dd')} - ${#dates.format(p.startDate, 'dd')}]]  ngày  </p>
-                                    <h5 style="min-height: 42px;"><a th:utext="${p.name}">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a></h5>
+                                    <h5 style="min-height: 42px;"><a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}"></a></h5>
                                     <br>
                                     <p>Số chỗ còn nhận: [[${p.quantityNew}]]</p>
                                     <p>Nơi khởi hành:  [[${p.departurePlace}]]</p>
@@ -514,9 +516,9 @@
                                         </h5> / người
                                     </p>
                                     <div>
-                                        <a th:href="@{|/booking/check?tour=${p.id}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
+                                        <a th:href="@{|/booking/check?tour=${p.slug}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
                                             ngay</a>
-                                        <a th:href="@{|/travel/detail/${p.id}|}" style="float: right;">Xem chi tiết</a>
+                                        <a th:href="@{|/travel/detail/${p.slug}|}" style="float: right;">Xem chi tiết</a>
                                     </div>
                                 </div>
                             </a>

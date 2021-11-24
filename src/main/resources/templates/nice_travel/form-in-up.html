@@ -20,6 +20,7 @@
                 <!-- sign in -->
                 <div class="signin-signup">
                     <form th:action="@{/account/login}" method="POST" class="sign-in-form">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <h2 class="title">Đăng nhập</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>

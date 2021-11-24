@@ -1,13 +1,21 @@
 package com.nicetravel.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Booking;
+<<<<<<< HEAD
 
 import java.util.Date;
+=======
+import com.nicetravel.entity.BookingDetail;
+
+>>>>>>> 61fdeec545d7f4242324baf718a512e78a76b1db
 import java.util.List;
 
 public interface BookingService {
     List<Booking> getAllBooking();
+    
+    List<Booking> getAllBookingByAcId(Account accountId);
 
     Booking findById(Integer id);
 

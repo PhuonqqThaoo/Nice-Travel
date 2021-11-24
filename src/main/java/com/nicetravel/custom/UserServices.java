@@ -20,6 +20,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -126,8 +127,7 @@ public class UserServices {
     }
 
     public void updatePassword(Account account, String newPassword) throws Exception {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(newPassword);
+String encodedPassword = passwordEncoder.encode(newPassword);
         account.setPassword(encodedPassword);
 
         account.setVerificationCode(null);
@@ -135,4 +135,15 @@ public class UserServices {
     }
 
 
+//    ChangePassword
+//@Autowired PasswordEncoder passwordEncoder;
+
+    public void changePassword(Account account, String newPassword) {
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        account.setPassword(encodedPassword);
+
+        account.setPasswordChangedTime(new Date());
+
+        accountService.createAccount(account);
+    }
 }

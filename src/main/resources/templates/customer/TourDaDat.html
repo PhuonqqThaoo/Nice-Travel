@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link th:href="@{/admin/img/logo/logoNiceIco.ico}" rel="icon">
+    <title>Khách hàng | Tour đã đặt | Nice Travel</title>
+    <link th:href="@{/admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/admin/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/admin/css/ruang-admin.min.css}" rel="stylesheet">
+
+    <!-- css customize -->
+    <link th:href="@{/admin/css/customer.style.css}" rel="stylesheet">
+
+    <!-- boxicon -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/customer"
+                style="background-color: #10ac84;">
+                <div class="sidebar-brand-icon">
+                    <img th:src="@{/admin/img/logo/logoNice.png}">
+                </div>
+                <div class="sidebar-brand-text mx-3">Nice Travel</div>
+            </a>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/customer">
+                    <i class='bx bxs-home'></i>
+                    <span>Trang chủ</span></a>
+            </li>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Quản lý
+            </div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
+                    aria-expanded="true" aria-controls="collapseForm">
+                    <i class='bx bxs-plane-alt'></i>
+                    <span>Tour du lịch</span>
+                </a>
+                <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/customer/tour-da-dat">Tour đã đặt</a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Thông tin khách hàng
+            </div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" th:href="@{/customer/information-customer/}">
+                    <i class='bx bxs-plane-alt'></i>
+                    <span>Thông tin cá nhân</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/customer/edit-information-customer">
+                    <i class='bx bxs-user-rectangle'></i>
+                    <span>Chỉnh sửa thông tin</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/customer/change-password">
+                    <i class='bx bxs-user-rectangle'></i>
+                    <span>Đổi mật khẩu</span>
+                </a>
+            </li>
+            <hr class="sidebar-divider">
+            <div class="version" id="version-ruangadmin"></div>
+        </ul>
+        <!-- Sidebar -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <!-- TopBar -->
+                <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top"
+                    style="background-color: #1dd1a1;">
+                    <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-1 small"
+                                            placeholder="What do you want to look for?" aria-label="Search"
+                                            aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- Topbar -->
+
+                <!-- Container Fluid-->
+                <div class="container-fluid" id="container-wrapper">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Quản lý</h1>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="./">Home</a></li>
+                            <li class="breadcrumb-item">Quản lý</li>
+                            <li class="breadcrumb-item active" aria-current="page">Tour đã đặt</li>
+                        </ol>
+                    </div>
+
+                    <div class="row mb-3">
+                        <!-- Invoice Example -->
+                        <div class="col-xl-11 col-lg-7 mb-4">
+                            <!-- title -->
+                            <div id='nz-div-4'>
+                                <h3 class="tde">
+                                    <span>Chuyến du lịch đã đặt</span>
+                                </h3>
+                            </div>
+                            <div class="card mb-4">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Tên chuyến đi</th>
+                                            <th scope="col">Địa điểm</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Trạng thái</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="p : ${items}">
+                                            <td style="width: 14%;">
+                                                <img th:src="@{|/assets/img/${p.id}|}" style="width: 100px;" alt="">
+                                            </td>
+                                            <td>
+                                                <h5 style="font-weight: 700;">[[${p.address}]]</h5>
+                                            </td>
+                                            <td>[[${p.phone}]]</td>
+                                            <td>[[${p.totalPrice}]] vnđ</td>
+                                            <td><span class="badge badge-info">Chưa thanh toán</span></td>
+                                            <td><button type="button" class="btn btn-primary"><i
+                                                        class='bx bx-search'></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Row-->
+
+                    <!-- Modal Logout -->
+                    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabelLogout">Ohh Không!</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Bạn có chắc mình muốn thoát?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Trở
+                                        lại</button>
+                                    <a href="/logoff" class="btn btn-primary">Đăng xuất</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!---Container Fluid-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to top -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <script th:src="@{/admin/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/admin/vendor/jquery-easing/jquery.easing.min.js}"></script>
+    <script th:src="@{/admin/js/ruang-admin.min.js}"></script>
+    <script th:src="@{/admin/vendor/chart.js/Chart.min.js}"></script>
+    <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
+
+</body>
+
+</html>

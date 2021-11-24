@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <title>Thanh toán | Nice Travel</title>
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <meta content="" name="keywords">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <!-- icon thanh địa chỉ -->
+    <link rel="shortcut icon" href="img/logoNiceIco.ico">
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- font themify CSS -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- font awesome CSS -->
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- date picker CSS -->
+    <link href="css/datepicker.min.css" rel="stylesheet">
+    <!-- revolution slider css -->
+    <link rel="stylesheet" type="text/css" href="css/fullwidth.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="rs-plugin/css/settings.css" media="screen" />
+    <link rel="stylesheet" href="css/rev-settings.css" type="text/css">
+    <!-- on3step CSS -->
+    <link href="css/animated-on3step.css" rel="stylesheet">
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/owl.theme.css" rel="stylesheet">
+    <link href="css/on3step-style.css" rel="stylesheet">
+    <link href="css/queries-on3step.css" media="all" rel="stylesheet">
+
+    <!-- css customize -->
+    <link rel="stylesheet" href="css/nicetravel.style.css">
+
+    <!-- boxicon -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+
+    <!-- preloader -->
+    <div class="bg-preloader-white"></div>
+    <div class="preloader-white">
+        <div class="mainpreloader">
+            <span></span>
+        </div>
+    </div>
+    <!-- preloader end -->
+
+    <!-- content wraper -->
+    <div class="content-wrapper">
+        <header class="init">
+            <!-- subnav -->
+            <div class="container-fluid m-5-hor">
+                <div class="row">
+                    <div class="subnav">
+
+                        <div class="col-md-6">
+                            <div class="left">
+                                <div class="social-icons-subnav hidden-sm hidden-xs">
+                                    <div>Liên hệ : +(84) 352 363 014</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="right">
+                                <div id="sub-icon" class="social-icons-subnav">
+                                    <a href="#"><span class="ti-facebook"></span></a>
+                                    <a href="#"><span class="ti-dribbble"></span></a>
+                                    <a href="#"><span class="ti-twitter"></span></a>
+                                    <a href="#"><span class="ti-instagram"></span></a>
+                                    <a href="#"><span class="ti-linkedin"></span></a>
+                                </div>
+                                <div class="social-icons-subnav">
+                                    <a data-toggle="modal" data-target="#fLogin"><span class="ti-lock"></span> Đăng
+                                        nhập</a>
+                                </div>
+                                <div class="social-icons-subnav hidden-sm hidden-xs">
+                                    <a data-toggle="modal" data-target="#fsignUp"><span class="ti-user"></span> Đăng
+                                        ký</a>
+                                </div>
+                                <div class="social-icons-subnav">
+                                    <a><span class="ti-user"></span> Phuoc Dan</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- subnav end -->
+
+            <!-- nav -->
+            <div class="navbar-default-white navbar-fixed-top">
+                <div class="container-fluid m-5-hor">
+                    <div class="row">
+
+                        <!-- menu mobile display -->
+                        <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                            <span class="icon icon-bar"></span>
+                            <span class="icon icon-bar"></span>
+                            <span class="icon icon-bar"></span></button>
+
+                        <!-- logo -->
+                        <a class="navbar-brand white" href="home.html">
+                            <img class="white" alt="logo" src="img/logoNiceTravel.png">
+                            <img class="black" alt="logo" src="img/logoNiceTravel.png">
+                        </a>
+                        <!-- logo end -->
+
+                        <!-- mainmenu start -->
+                        <div class="white menu-init" id="main-menu">
+                            <nav id="menu-center">
+                                <ul>
+                                    <li>
+                                        <a class="actived" href="home.html">Trang chủ <i
+                                                class="fa fa-angle-down"></i></a>
+                                        <ul>
+                                            <li><a href="intro/index.html">Giới thiệu</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="about.html">Thông tin</a>
+                                    </li>
+                                    <li>
+                                        <a href="travel.html">Tour du lịch</a>
+                                    </li>
+                                    <li><a href="#">Blog <i class="fa fa-angle-down"></i></a>
+                                        <ul>
+                                            <li><a href="blog.html">Blog Single</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Liên hệ</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- mainmenu end -->
+
+                    </div>
+                </div>
+                <!-- container -->
+            </div>
+            <!-- nav end -->
+        </header>
+
+        <!-- pay -->
+        <div class="payment">
+            <div class="payment-container">
+                <ol class="breadcrumb">
+                    <li><a href="#">Đặt tour</a></li>
+                    <li><a href="#">Nhập thông tin</a></li>
+                    <li><a href="#">Thanh toán</a></li>
+                </ol>
+
+                <div class="row" style="margin-top: 50px;">
+                    <div class="col-md-4">
+                        <h5 class="big-heading">Thông tin cá nhân</h5>
+                        <div class="headingform">Là thông tin cần thiết để công ty liên hệ khách hàng.</div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="headingbook">Họ tên:</div>
+                                <div>Huynh Phuoc Dan</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="headingbook">Số điện thoại:</div>
+                                <div>0352 363 014</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="headingbook">Email:</div>
+                                <div>danhpps13462@fpt.edu.vn</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="headingbook">CMND/CCCD:</div>
+                                <div>291170081</div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="headingbook">Địa chỉ:</div>
+                                <div>Công viên phần mềm Quang Trung, phường Tân Chánh Hiệp, Q12 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="big-heading">Thông tin chuyến đi</h5>
+                        <div class="headingform">Là thông tin tóm tắt về chuyến đi khách hàng đã đặt.</div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img alt="imageportofolio" class="img-responsive h-img-309"
+                                    src="http://on3-step.com/tf/plesire/img/gallery-home/img1.jpg">
+                            </div>
+                            <div class="col-md-6">
+                                <p style="font-size: 2.5rem; margin-bottom: 17px;">Hành trình xanh Cần Giờ - Vàm Sát
+                                    (Nhóm 8 khách)</p>
+                                <p>
+                            </div>
+                        </div>
+                        <div class="travel-detail-section1">
+                            <p>Ngày khởi hành: <span>01/01/2022 10:00:00</span></p>
+                            <p>Số Ngày: <span>5</span></p>
+                            <p>Nơi khởi hành: <span>Sân bay Tân Sơn nhất</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="big-heading">Thông tin thanh toán</h5>
+                        <div class="headingform">Tóm tắt số tiền và số hàng khách.</div>
+                        <hr>
+                        <div class="detail">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Người lớn</td>
+                                        <td class="t-price text-right" id="AdultPrice">1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trẻ em</td>
+                                        <td class="t-price text-right" id="ChildrenPrice">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trẻ nhỏ</td>
+                                        <td class="t-price text-right" id="SmallChildrenPrice">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Em bé</td>
+                                        <td class="t-price text-right" id="BabyPrice">0</td>
+                                    </tr>
+                                    <tr class="total">
+                                        <td>Tổng cộng</td>
+                                        <td class="t-price text-right" id="TotalPrice">7,390,000₫</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div>
+                                <button class="btn btn-danger" style="width:100%; height: 50px;">
+                                    Thanh toán
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end pay -->
+
+
+        <!-- footer -->
+        <footer>
+            <div class="footer">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="footer-title">
+                            <h5>Du lịch trong nước</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5"><a href="">Hà Nội</a></div>
+                            <div class="col-xs-5"><a href="">Hải Phòng</a></div>
+                            <div class="col-xs-5"><a href="">Hạ Long</a></div>
+                            <div class="col-xs-5"><a href="">Huế</a></div>
+                            <div class="col-xs-5"><a href="">Quảng Bình</a></div>
+                            <div class="col-xs-5"><a href="">Đà Nẵng</a></div>
+                            <div class="col-xs-5"><a href="">Quảng Nam</a></div>
+                            <div class="col-xs-5"><a href="">Nha Trang</a></div>
+                            <div class="col-xs-5"><a href="">Đà Lạt</a></div>
+                            <div class="col-xs-5"><a href="">Phan Thiết</a></div>
+                            <div class="col-xs-5"><a href="">BR - VT</a></div>
+                            <div class="col-xs-5"><a href="">Phú Quốc</a></div>
+                            <div class="col-xs-5"><a href="">Cần Thơ</a></div>
+                            <div class="col-xs-5"><a href="">Hà Giang</a></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="footer-title">
+                            <h5>Du lịch ngoài nước</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5"><a href="">Trung Quốc</a></div>
+                            <div class="col-xs-5"><a href="">Ấn Độ</a></div>
+                            <div class="col-xs-5"><a href="">Thái Lan</a></div>
+                            <div class="col-xs-5"><a href="">Philippines</a></div>
+                            <div class="col-xs-5"><a href="">Malaysia</a></div>
+                            <div class="col-xs-5"><a href="">Maldives</a></div>
+                            <div class="col-xs-5"><a href="">Singapore</a></div>
+                            <div class="col-xs-5"><a href="">Na Uy</a></div>
+                            <div class="col-xs-5"><a href="">Hàn Quốc</a></div>
+                            <div class="col-xs-5"><a href="">Tây Ban Nha</a></div>
+                            <div class="col-xs-5"><a href="">Úc</a></div>
+                            <div class="col-xs-5"><a href="">Hà Lan</a></div>
+                            <div class="col-xs-5"><a href="">Nhật Bản</a></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="footer-title">
+                            <h5>Dòng tour</h5>
+                            <div class="row">
+                                <div class="col-xs-12"><a href="">Cao cấp</a></div>
+                                <div class="col-xs-12"><a href="">Tiêu chuẩn</a></div>
+                                <div class="col-xs-12"><a href="">Tiết kiệp</a></div>
+                                <div class="col-xs-12"><a href="">Giá tốt</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="footer-title">
+                            <h5>Ứng dụng di động</h5>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <img src="https://travel.com.vn/Content/Theme/images/ggp.png" alt="">
+                                </div>
+                                <div class="col-xs-6">
+                                    <img src="https://travel.com.vn/Content/Theme/images/aps.png" alt="">
+                                </div>
+                                <div class="col-xs-6">
+                                    Android
+                                </div>
+                                <div class="col-xs-6">
+                                    iOS
+                                </div>
+                                <div class="col-xs-6">
+                                    <img src="https://travel.com.vn/Content/Theme/images/image42.png" alt="">
+                                </div>
+                                <div class="col-xs-6">
+                                    <img src="https://travel.com.vn/Content/Theme/images/image43.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="footer-title">
+                            <h5>Liên hệ</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12"><a href="">Công viên Phần mềm Quang Trung, Quận 12, HCM</a></div>
+                            <div class="col-xs-12"><a href=""></a></div>
+                            <div class="col-xs-12"><a href="">(+84) 352 363 014</a></div>
+                            <div class="col-xs-12"><a href="">
+                                    <div class="footer-title">
+                                        <h5>Mạng xã hội</h5>
+                                    </div>
+                                </a></div>
+                            <div class="col-xs-12"><a href="">
+                                    <i class='bx bxl-facebook-circle'></i>
+                                    <i class='bx bxl-instagram-alt'></i>
+                                    <i class='bx bxs-phone-outgoing'></i>
+                                    <i class='bx bxl-youtube'></i>
+                                </a></div>
+                            <div class="col-xs-12"><a href=""></a></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="footer-title">
+                            <h5>Du lịch ngoài nước</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12"><a href="">Tạp chí du lịch</a></div>
+                            <div class="col-xs-12"><a href="">Cẩm nang du lịch</a></div>
+                            <div class="col-xs-12"><a href="">Tin tức</a></div>
+                            <div class="col-xs-12"><a href="">Chính sách riêng tư</a></div>
+                            <div class="col-xs-12"><a href="">Thỏa thuận sử dụng</a></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <div class="footer-title">
+                            <h5>Nice Travel</h5>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button type="button" class="btn btn-danger"
+                                        style="width: 170px; height: 45px;">1900 0000</button>
+                                </div>
+                                <div class="col-xs-12"></div>
+                                <div class="col-xs-12">Từ 8:00 - 20:00 hàng ngày</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="strikethrough"></div>
+
+                <div>Email: danhpps13462@fpt.edu.vn</div>
+                <div>Copyright - 2021 Nice Travel</div>
+                <br>
+
+            </div>
+        </footer>
+        <!-- footer end -->
+
+
+        <!-- ScrolltoTop -->
+        <div id="totop" class="init">
+            <span class="ti-angle-up"></span>
+        </div>
+
+        <!-- modal login -->
+        <div id="fLogin" class="modal fade">
+            <div class="modal-dialog modal-login">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Member Log In</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <label>User Name</label>
+                                <input type="text" class="form-control" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary btn-block btn-lg" value="Log In">
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#">or Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal login end -->
+
+        <!-- modal registration -->
+        <div id="fsignUp" class="modal fade">
+            <div class="modal-dialog modal-login">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Member Registration</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" name="firstname" class="form-control" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" name="lastname" class="form-control" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" name="email" class="form-control" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" class="form-control" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label><input type="checkbox" name="terms"> I agree with the <a href="#">Terms and
+                                        Conditions</a>.</label>
+                            </div>
+                            <div class="form-group"><input type="submit" value="Sign up"
+                                    class="btn btn-primary btn-block btn-lg">
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#">or Log In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal registration end -->
+
+
+    </div>
+    <!-- content wraper end -->
+
+    <!-- plugin JS -->
+    <script src="plugin/pluginson3step.js"></script>
+    <script src="plugin/bootstrap.min.js"></script>
+    <script src='plugin/bootstrap-datepicker.min.js'></script>
+    <script src="plugin/sticky.js"></script>
+    <!-- slider revolution  -->
+    <script src="rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <!-- on3step JS -->
+    <script src="js/on3step.js"></script>
+    <script src="js/plugin-set.js"></script>
+
+    <script>
+        $('.change-number .plus').click(function () {
+            adult = parseInt($("#adult").text());
+            children = parseInt($("#children").text());
+            smallchildren = parseInt($("#smallchildren").text());
+            baby = parseInt($("#baby").text());
+            if (adult + children + smallchildren + baby + 1 > parseInt('9')) {
+                alert("Số khách tối đa: 9");
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        $('.change-number .minus').click(function () {
+            adult = parseInt($("#adult").text());
+            children = parseInt($("#children").text());
+            smallchildren = parseInt($("#smallchildren").text());
+            baby = parseInt($("#baby").text());
+            if (adult + children + smallchildren + baby - 1 <= 0) {
+                alert("Số khách yêu cầu tối thiểu 1");
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
+</body>
+
+</html>

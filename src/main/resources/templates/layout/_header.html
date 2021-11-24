@@ -94,9 +94,9 @@
 									<li><a href="">Giới thiệu</a></li>
 								</ul></li>
 							<li><a href="">Thông tin</a></li>
-							<li><a href="/travel/tour">Tour du lịch <i class="fa fa-angle-down"></i></a>
+							<li><a href="/travel/tour">Du lịch <i class="fa fa-angle-down"></i></a>
 								<ul>
-									 <li th:each="c:${types}"><a th:href="@{|/travel/tour?tid=${c.id}|}">[[${c.type}]]</a></li>
+									 <li th:each="c:${types}"><a th:href="@{|/travel/tour?tid=${c.id}|}">Du lịch [[${c.type}]]</a></li>
 								</ul>
 							</li>
 							<li><a href="">Liên hệ</a></li>
