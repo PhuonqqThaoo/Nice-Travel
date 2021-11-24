@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link th:href="@{/admin/img/logo/logoNiceIco.ico}" rel="icon">
-    <title>Khách hàng | Nice Travel</title>
+    <title>Khách hàng | Tour đã đặt | Nice Travel</title>
     <link th:href="@{/admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/css/ruang-admin.min.css}" rel="stylesheet">
@@ -120,63 +120,21 @@
                         <h1 class="h3 mb-0 text-gray-800">Quản lý</h1>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="./">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Quản lý</li>
+                            <li class="breadcrumb-item">Quản lý</li>
+                            <li class="breadcrumb-item active" aria-current="page">Tour đã đặt</li>
                         </ol>
                     </div>
 
                     <div class="row mb-3">
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Các tour du lịch
-                                                đã đi
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">5 tour</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-primary"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Earnings (Annual) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Các tour đã đặt
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1 tour</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                <a href="">Xem chi tiết</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-shopping-cart fa-2x text-success"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Invoice Example -->
-                        <div class="col-xl-8 col-lg-7 mb-4">
+                        <div class="col-xl-11 col-lg-7 mb-4">
                             <!-- title -->
-                            <div id='nz-div-2'>
+                            <div id='nz-div-4'>
                                 <h3 class="tde">
-                                    <span>Yêu Thích <i class='bx bxs-heart'></i></span>
+                                    <span>Chuyến du lịch đã đặt</span>
                                 </h3>
-                                <hr>
                             </div>
                             <div class="card mb-4">
-
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
@@ -184,6 +142,7 @@
                                             <th scope="col">Tên chuyến đi</th>
                                             <th scope="col">Địa điểm</th>
                                             <th scope="col">Giá</th>
+                                            <th scope="col">Trạng thái</th>
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
@@ -198,6 +157,7 @@
                                             </td>
                                             <td>Sân Bay Tân Sơn Nhất</td>
                                             <td>13,960,000 vnđ</td>
+                                            <td><span class="badge badge-info">Chưa thanh toán</span></td>
                                             <td><button type="button" class="btn btn-primary"><i
                                                         class='bx bx-search'></i></button></td>
                                         </tr>
@@ -211,6 +171,7 @@
                                             </td>
                                             <td>Sân Bay Tân Sơn Nhất</td>
                                             <td>13,960,000 vnđ</td>
+                                            <td><span class="badge badge-info">Đã thanh toán</span></td>
                                             <td><button type="button" class="btn btn-primary"><i
                                                         class='bx bx-search'></i></button></td>
                                         </tr>
@@ -224,6 +185,7 @@
                                             </td>
                                             <td>Sân Bay Tân Sơn Nhất</td>
                                             <td>13,960,000 vnđ</td>
+                                            <td><span class="badge badge-info">Đã thanh toán</span></td>
                                             <td><button type="button" class="btn btn-primary"><i
                                                         class='bx bx-search'></i></button></td>
                                         </tr>
@@ -231,81 +193,49 @@
                                 </table>
                             </div>
                         </div>
-
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card">
-                                <div
-                                    class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between" style="background-color: #10ac84 !important;">
-                                    <h6 class="m-0 font-weight-bold text-light">Các chuyến đã đi</h6>
-                                </div>
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Địa điểm</th>
-                                            <th scope="col">Giá tiền</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><a href="">Phan Thiết - Lâu Đài Rượu Vang - Bàu
-                                                Trắng - Bảo Tàng Làng Chài Xưa</a></td>
-                                            <td style="font-size: 13px; font-weight: 700; color: #ee5253;">13,960,000 vnđ</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">Phan Thiết - Lâu Đài Rượu Vang - Bàu
-                                                Trắng - Bảo Tàng Làng Chài Xưa</a></td>
-                                            <td style="font-size: 13px; font-weight: 700; color: #ee5253;">13,960,000 vnđ</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Larry the Bird</td>
-                                            <td style="font-size: 13px; font-weight: 700; color: #ee5253;">13,960,000 vnđ</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!--Row-->
-
-                        <!-- Modal Logout -->
-                        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabelLogout">Ohh Không!</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Bạn có chắc mình muốn thoát?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Trở
-                                            lại</button>
-                                        <a href="/logoff" class="btn btn-primary">Đăng xuất</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                    <!---Container Fluid-->
+                    <!--Row-->
+
+                    <!-- Modal Logout -->
+                    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabelLogout">Ohh Không!</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Bạn có chắc mình muốn thoát?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Trở
+                                        lại</button>
+                                    <a href="/logoff" class="btn btn-primary">Đăng xuất</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+                <!---Container Fluid-->
             </div>
         </div>
+    </div>
 
-        <!-- Scroll to top -->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+    <!-- Scroll to top -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-        <script th:src="@{/admin/vendor/jquery/jquery.min.js}"></script>
-        <script th:src="@{/admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-        <script th:src="@{/admin/vendor/jquery-easing/jquery.easing.min.js}"></script>
-        <script th:src="@{/admin/js/ruang-admin.min.js}"></script>
-        <script th:src="@{/admin/vendor/chart.js/Chart.min.js}"></script>
-        <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
+    <script th:src="@{/admin/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/admin/vendor/jquery-easing/jquery.easing.min.js}"></script>
+    <script th:src="@{/admin/js/ruang-admin.min.js}"></script>
+    <script th:src="@{/admin/vendor/chart.js/Chart.min.js}"></script>
+    <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
 
 </body>
 

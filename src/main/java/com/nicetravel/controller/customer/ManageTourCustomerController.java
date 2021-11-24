@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/customer")
 public class ManageTourCustomerController {
 	
-	@GetMapping("/manage-tour")
+	@GetMapping("/tour-da-dat")
 	public String getManageTour() {
-		return "customer/ManageTour";
+		return "customer/TourDaDat";
 	}
 }
