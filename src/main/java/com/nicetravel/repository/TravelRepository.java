@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -65,4 +66,20 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
    	
    	@Query("SELECT new com.nicetravel.entity.Total(u.name, (100- ((convert(float,u.quantityNew) / convert(float,u.quantity)) * 100)),u.quantity, (u.quantity- u.quantityNew) ) From Travel u ")
    	List<Total> getTotal();
+   	
+   	@Query(value ="SELECT * FROM Travel WHERE is_deleted = 0 ", nativeQuery = true)
+    List<Travel> findAllByTravel();
+   	
+//   	@Query("SELECT u FROM Travel u WHERE u.id =?1")
+//   	Travel findTravelById(Integer id);
+   	@Modifying(clearAutomatically =true)
+    @Query(value="UPDATE Travel SET name = ?1, departure_place = ?2,place = ?3, price = ?4, start_date= ?5, end_date = ?6, quantity= ?7, quantity_new = ?8, hour = ?9, slug = ?10 WHERE id = ?11", nativeQuery = true)
+    void updateTravelAdmin(String name, String departurePlace,String place, BigDecimal price,Date start_date, Date end_date, Integer quantity , Integer quantityNew, Integer hour, String slug ,Integer id);
+    
+   	@Modifying(clearAutomatically =true)
+    @Query(value="UPDATE Travel SET  is_Deleted = 1 WHERE id =?1", nativeQuery = true)
+    void deletedTravel(Integer id);
+   	
+   	
+
 }

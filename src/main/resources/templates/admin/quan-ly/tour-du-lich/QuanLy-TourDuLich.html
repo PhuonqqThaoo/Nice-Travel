@@ -508,14 +508,16 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                            <button style="float: right" id="createBtn" type="button" class="btn btn-success">Create</button>
                                 <!-- table danh sách tour du lịch -->
                                 <table class="table">
                                     <thead>
                                         <tr style="background-color: #6777ef; color: #ffffff">
+                                        	
                                             <!-- click đúp để chuyển sang trang chỉnh sửa -->
-                                            <th scope="col">ID</th>
+                                            <th scope="col">STT</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Type</th>
+<!--                                             <th scope="col">Type</th> -->
                                             <th scope="col">Departure place</th>
                                             <th scope="col">Place</th>
                                             <th scope="col">Price</th>
@@ -524,40 +526,32 @@
                                             <th scope="col">End date</th>
                                             <th scope="col">Quantity</th>
                                             <th scope="col">Hour</th>
-                                            <th scope="col">Slug</th>
-                                            <th scope="col">Is deleted</th>
+<!--                                             <th scope="col">Slug</th> -->
+                                            <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                        <tr th:each="list,i : ${list}">
+                                            <td th:text = "${i.index+1}"></th>
+                                            <td th:text = "${list.name}"></td>
+<!--                                             <td th:text = "${list.TravelTypes.id}"></td> -->
+                                            <td th:text = "${list.departurePlace}"></td>
+                                            <td th:text = "${list.place}"></td>
+                                            <td th:text = "${list.price}"></td>
+                                            <td th:text = "${list.createdDate}"></td>
+                                            <td th:text = "${list.startDate}"></td>
+                                            <td th:text = "${list.endDate}"></td>
+                                            <td th:text = "${list.quantityNew}"></td>
+                                            <td th:text = "${list.hour}"></td>
+<!--                                             <td th:text = "${list.slug}"></td> -->
+                                            <td align="center">
+                                                <button th:attr="onclick='editTravel(\''+${list.id}+'\')'" class="btn btn-success" style="width: 40px">
+													<i class="fa fa-edit" aria-hidden="true"></i>                                                        	
+                                                </button>
+                                                <a class="btn btn-danger" th:href="@{'/admin/tour-du-lich/delete?id=' +${list.id}}">
+                                                     <i class="fa fa-trash" aria-hidden="true"></i>  
+                                                </a>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -587,71 +581,79 @@
 
                     <div class="row mb-3">
                         <div class="chinh-sua-tour w-90 card">
-                            <form action="" class="row col-12">
+                            <form th:object= "${travelRequest}" id="form" method="POST" class="row col-12">
                                 <div class="col-6 left">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputName">Name</label>
-                                            <input type="text" class="form-control" id="inputName">
+                                            <input th:field="*{name}" id = "name" 
+                                            readonly="true" type="text" class="form-control" >
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputType">Type travel</label>
-                                            <input type="text" class="form-control" id="inputType">
+                                            <label for="inputPrice">Price</label>
+                                            <input th:field="*{price}" id = "price" 
+                                            readonly="true" type="text" class="form-control" >
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputDeparture">Departure place</label>
-                                            <input type="text" class="form-control" id="inputDeparture">
+                                            <input th:field="*{departurePlace}" id = "departure_place" 
+                                             readonly="true" type="text" class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputPlace">Place</label>
-                                            <input type="text" class="form-control" id="inputPlace">
+                                            <input th:field="*{place}" id = "place" 
+                                            readonly="true" type="text" class="form-control" >
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCreateDate">Create date</label>
-                                            <input type="datetime-local" class="form-control" id="inputEndDate">
-                                        </div>
+<!--                                         <div class="form-group col-md-4"> -->
+<!--                                             <label for="inputCreateDate">Create date</label> -->
+<!--                                             <input type="datetime-local" class="form-control" id="inputEndDate"> -->
+<!--                                         </div> -->
                                         <div class="form-group col-md-4">
                                             <label for="inputStartDate">Start date</label>
-                                            <input type="datetime-local" class="form-control" id="inputStartDate">
+                                            <input th:field="*{startDate}" id = "start_date" 
+                                            readonly="true" type="date" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputEndDate">End date</label>
-                                            <input type="datetime-local" class="form-control" id="inputEndDate">
+                                            <input th:field="*{endDate}" id = "end_date" 
+                                            readonly="true" type="date" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label for="inputQuantity">Quantity</label>
-                                            <input type="number" class="form-control" id="inputQuantity">
+                                            <input th:field="*{quantityNew}" id = "quantity_new" 
+                                            readonly="true" type="number" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputHour">Hour</label>
-                                            <input type="number" class="form-control" id="inputHour">
+                                            <input th:field="*{hour}" id = "hour" 
+                                            readonly="true" type="number" class="form-control">
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputIsDeleted">Is Deleted</label>
-                                            <div class="form-control">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio"
-                                                        name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                    <label class="form-check-label" for="inlineRadio1">True</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio"
-                                                        name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                                    <label class="form-check-label" for="inlineRadio2">False</label>
-                                                </div>
-                                            </div>
-                                        </div>
+<!--                                         <div class="form-group col-md-4"> -->
+<!--                                             <label for="inputIsDeleted">Is Deleted</label> -->
+<!--                                             <div class="form-control"> -->
+<!--                                                 <div class="form-check form-check-inline"> -->
+<!--                                                     <input class="form-check-input" type="radio" -->
+<!--                                                         name="inlineRadioOptions" id="inlineRadio1" value="option1"> -->
+<!--                                                     <label class="form-check-label" for="inlineRadio1">True</label> -->
+<!--                                                 </div> -->
+<!--                                                 <div class="form-check form-check-inline"> -->
+<!--                                                     <input class="form-check-input" type="radio" -->
+<!--                                                         name="inlineRadioOptions" id="inlineRadio2" value="option2"> -->
+<!--                                                     <label class="form-check-label" for="inlineRadio2">False</label> -->
+<!--                                                 </div> -->
+<!--                                             </div> -->
+<!--                                         </div> -->
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleSlug">Slug</label>
-                                        <textarea class="form-control" id="exampleSlug" rows="3"></textarea>
-                                    </div>
+<!--                                     <div class="form-group"> -->
+<!--                                         <label for="exampleSlug">Slug</label> -->
+<!--                                         <textarea class="form-control" id="exampleSlug" rows="3"></textarea> -->
+<!--                                     </div> -->
                                 </div>
                                 <div class="col-6 right">
                                     <div class="right-image">
@@ -661,10 +663,10 @@
                                         </div>
                                     </div>
                                     <div class="right-button">
-                                        <button type="button" class="btn btn-success">Thêm</button>
-                                        <button type="button" class="btn btn-primary">Chỉnh sửa</button>
-                                        <button type="button" class="btn btn-danger">Xóa</button>
-                                        <button type="button" class="btn btn-secondary">Làm mới</button>
+                                        <button type="button" id="submitCreate" th:attr="onclick='createTravel()'" class="btn btn-success" disabled="true">Thêm</button>
+                                        <button type="button" id="submitUpdate" th:attr="onclick='updateTravel()'" disabled="true" class="btn btn-primary">Chỉnh sửa</button>
+<!--                                         <button type="button" class="btn btn-danger">Xóa</button> -->
+                                        <button type="button" id="submitCacel" th:attr="onclick='cacelBtn()'" class="btn btn-secondary">Làm mới</button>
                                     </div>
                                 </div>
                             </form>
@@ -860,6 +862,83 @@
         $(function () {
             $('#datetimepicker1').datetimepicker();
         });
+    </script>
+    
+    <script th:inline="javascript">
+    	function editTravel(id) {
+    		var url ='/admin/tour-du-lich/edit?id=' +id;
+        	$.get(url).done(function (fragment) {
+    			$("#form").replaceWith(fragment);
+    			$("#form").prop('action','/admin/tour-du-lich/edit');
+    			var imgUrl = $('#hiddenImgUrl').val();
+//     			$('#userImgUpload').prop('src','/admin/img/'+imgUrl);
+    			$('html,body').animate({
+    				scrollTop: $("#form").offset().top
+    			},1000);
+    			$("#form :input").prop('readonly',false); // cho phép sửa
+    			$("input#username").prop('readonly',true); // tô xám
+    			$("#submitUpdate").prop('disabled',false);
+    		})
+		};
+    	
+    	$("#createBtn").click(function() {
+			$('html,body').animate({
+				scrollTop: $("#form").offset().top
+    		},1000);
+			$("#form :input").prop('readonly',false);
+			$("#form").prop('action','/admin/tour-du-lich/create');
+			$("#submitCreate").prop('disabled',false);
+		});
+    	
+    	function cacelBtn() {
+			$('#name').val('');
+			$('#email').val('');
+			$('#fullname').val('');
+			$('#password').val('');
+			$('#confirmPass').val('');
+			$('#phone').val('');
+			$('#id_Card').val('');
+			$('#address').val('');
+			$('#form:input').prop('readonly',true);
+			$('#submitUpdate').prop('disabled',true);
+			$('#submitCreate').prop('disabled',true);
+		};
+    	
+    	
+    	function updateTravel() {
+				$('#form').submit();
+			
+		};
+    	 function createTravel() {
+				$('#form').submit();
+				
+		}
+    
+    </script>
+    
+    <script >
+    	$(document).ready(function () {
+				var err = $('#errorMessage').text();
+				var success = $('#successMessage').text();
+				if (err.length > 0) {
+					$('#thongBao').addClass("alert alert-danger");
+					$('#thongBao').css("display","block");
+					setTimeout(function(){
+						$('#thongBao').fadeOut("slow");
+					},2000);
+					return;
+				}
+				if (success.length > 0) {
+					$('#thongBao').addClass("alert alert-success");
+					$('#thongBao').css("display","block");
+					setTimeout(function(){
+						$('#thongBao').fadeOut("slow");
+					},2000);
+					return;	
+					
+				}
+			});
+		
     </script>
 </body>
 

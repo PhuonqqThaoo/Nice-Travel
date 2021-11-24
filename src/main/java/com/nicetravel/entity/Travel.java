@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.time.Instant;
+import java.sql.Date;
 import java.util.List;
 
 @Table(name = "travel")
@@ -63,13 +63,13 @@ public class Travel implements Serializable {
 
     @Column(name = "createdDate", nullable = false)
     @CreationTimestamp // defaut getDate()
-    private Timestamp createdDate;
+    private Date createdDate;
 
     @Column(name = "startDate", nullable = false)
-    private Timestamp startDate;
+    private Date startDate;
 
     @Column(name = "endDate", nullable = false)
-    private Timestamp endDate;
+    private Date endDate;
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;

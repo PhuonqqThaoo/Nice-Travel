@@ -112,7 +112,7 @@ public class AccountServiceImpl implements AccountService {
 		if (ObjectUtils.isEmpty(username)) {
 			throw new Exception("user cannot be empty");
 		}
-		accountRepository.deletedUser(username);;
+		accountRepository.deletedUser(username);
 		
 	}
 

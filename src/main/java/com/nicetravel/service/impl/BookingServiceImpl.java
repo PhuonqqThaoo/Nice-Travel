@@ -6,22 +6,31 @@ import com.nicetravel.entity.Booking;
 import com.nicetravel.entity.BookingDetail;
 import com.nicetravel.repository.BookingDetailRepository;
 import com.nicetravel.repository.BookingRepository;
+import com.nicetravel.repository.StatsRepository;
 import com.nicetravel.service.BookingService;
 
 import org.hibernate.type.descriptor.java.BigDecimalTypeDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.YearMonth;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 @Service
 public class BookingServiceImpl implements BookingService {
 
 	BookingRepository bookingRepository;
+
+	@Autowired
+	private StatsRepository repo;
 
 	@Autowired
 	BookingDetailRepository bookingDetailRepository;
@@ -88,7 +97,19 @@ public class BookingServiceImpl implements BookingService {
 	public Double getComparedLastYear() {
 		double currentMonth = bookingRepository.getRevenue();
 		double lastMonth = bookingRepository.getLastRevenue();
-		double result = ((currentMonth / lastMonth) * 100) -100;
+		double result = ((currentMonth / lastMonth) * 100) - 100;
+		return result;
+	}
+
+	@Override
+	public String[][] getTotalPriceFromTo(String from, String to) {
+		String[][] result1 = bookingRepository.getTotalPriceFromTo(from, to);
+			System.out.println(result1.length);
+			String[][] result = new String[2][result1.length];	
+		for(int i =0 ; i<result1.length; i++) {
+			result[0][result1.length- 1 - i] = result1[result1.length- 1 - i][0];
+			result[1][result1.length- 1 - i] = result1[result1.length- 1 - i][1];
+		}
 		return result;
 	}
 }

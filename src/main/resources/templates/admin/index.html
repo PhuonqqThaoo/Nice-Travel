@@ -95,7 +95,7 @@
                 <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý tour du lịch</h6>
-                        <a class="collapse-item" href="/admin/quan-ly/tour-du-lich">Danh sách tour</a>
+                        <a class="collapse-item" href="/admin/tour-du-lich">Danh sách tour</a>
                     </div>
                 </div>
             </li>
@@ -455,24 +455,23 @@
                         <div class="col-xl-8 col-lg-7">
                             <div class="card mb-4">
                                 <div class="admin-search-date-1">
-                                    <form>
+                                    <form th:action="@{/admin}" method="post">
                                         <div class="row">
                                             <div class="col">
-                                                <input type="date" class="form-control">
+                                                <input name="day" type="date" class="form-control">
                                             </div>
                                             <div class="col">
-                                                <input type="date" class="form-control">
+                                                <input name="end" type="date" class="form-control">
                                             </div>
                                             <div class="col">
-                                                <button type="submit" class="btn btn-primary" style="height: auto;min-height: 43px;"><i class='bx bx-search-alt'></i> Tìm</button>
+                                                <button class="btn btn-primary" style="height: auto;min-height: 43px;"><i class='bx bx-search-alt'></i> Tìm</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Thống kê doanh Thu 6 tháng gần
-                                        nhất<br>(Revenue report for the last 6 months)<br></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Thống kê doanh Thu<br>(Revenue report)<br></h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

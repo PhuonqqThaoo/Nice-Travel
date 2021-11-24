@@ -5,6 +5,8 @@ import com.nicetravel.entity.Travel;
 import com.nicetravel.repository.TravelRepository;
 
 import com.nicetravel.service.TravelService;
+import com.nicetravel.util.GenerateSlug;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -15,6 +17,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.management.ObjectName;
+import javax.transaction.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TravelServiceImpl implements TravelService {
@@ -110,11 +114,43 @@ public class TravelServiceImpl implements TravelService {
 		}
 	}
 
-//	@Override
-//	public List<String[][]> getTotalSold() {
-//		// TODO Auto-generated method stub
-//		return travelRepository.getTotalSold();
-//	}
+	@Override
+	public List<Travel> getFindAllByTravel() {
+		return travelRepository.findAllByTravel();
+	}
+
+	@Override
+	@Transactional 
+	public void updateTraveladmin(Travel travel) throws Exception{
+		if (ObjectUtils.isEmpty(travel)) {
+			throw new Exception("Travel cannot be empty");
+		}
+			travel.setQuantity(travel.getQuantityNew());
+			String slug = GenerateSlug.toSlug(travel.getName());
+			travel.setSlug(slug);
+			travelRepository.updateTravelAdmin(travel.getName(), travel.getDeparturePlace(),travel.getPlace(),travel.getPrice(),travel.getStartDate(),travel.getEndDate(), travel.getQuantity(),travel.getQuantityNew(),travel.getHour(),travel.getSlug(),travel.getId());
+		
+	}
+
+	@Override
+	@Transactional
+	public void deleteTravelAdmin(Integer id) throws Exception {
+		if (ObjectUtils.isEmpty(id)) {
+			throw new Exception("Travel cannot be empty");
+		}
+		travelRepository.deletedTravel(id);
+		
+	}
+
+	@Override
+	public Travel saveTravel(Travel travelRequest) {
+		travelRequest.setQuantity(travelRequest.getQuantityNew());
+		String slug = GenerateSlug.toSlug(travelRequest.getName());
+		travelRequest.setSlug(slug);
+		return travelRepository.saveAndFlush(travelRequest);
+	}
+
+
 
 	
 
