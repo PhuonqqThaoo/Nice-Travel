@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.nicetravel.entity.Booking;
 @Repository
-public interface StatsRepository extends JpaRepository<Booking, Integer>{ //Stats:Viết tắt từ thống kê
+public interface StatsRepository extends JpaRepository<Booking, Integer>{
+	//Stats:Viết tắt từ thống kê
 	
 	@Query(value = "{CALL sp_getTotalPriceOneMonth(:month, :year)}", nativeQuery = true)
 	String getTotalPriceOneMonth(@Param("month") String month, 

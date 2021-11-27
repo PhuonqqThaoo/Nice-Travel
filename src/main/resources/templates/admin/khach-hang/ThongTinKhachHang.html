@@ -412,7 +412,7 @@
                                                         <td th:text = "${user.username}"></td>
                                                         <td th:text = "${user.fullname}"></td>
                                                         <td th:text = "${user.email}"></td>
-                                                        <td th:text = "${user.gender}"></td>
+                                                        <td th:text = "${user.gender ? 'Nam' : 'Nữ'}"></td>
                                                         <td th:text = "${user.phone}"></td>
                                                         <td th:text = "${user.address}"></td>
                                                         <td align="center">
@@ -500,7 +500,7 @@
                                                                     id = "gender" readonly="true"
                                                                     value="false">
                                                                 <label class="form-check-label"
-                                                                    for="inlineRadio1">Nam</label>
+                                                                    for="gender">Nam</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
@@ -508,7 +508,7 @@
                                                                     id = "gender1" readonly="true"
                                                                     value="true">
                                                                 <label class="form-check-label"
-                                                                    for="inlineRadio2">Nữ</label>
+                                                                    for="gender1">Nữ</label>
                                                             </div>
                                                         </div>
                                                     </div>

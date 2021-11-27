@@ -2,9 +2,12 @@ package com.nicetravel.controller.rest;
 
 import java.util.List;
 
+import com.nicetravel.repository.StatsRepository;
+import com.nicetravel.service.StatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nicetravel.entity.Total;
@@ -18,6 +21,7 @@ import com.nicetravel.service.TravelService;
 
 @CrossOrigin("*")
 @RestController
+@RequestMapping("/admin")
 public class HomeAdminRestController {
 	
 	@Autowired
@@ -35,31 +39,31 @@ public class HomeAdminRestController {
 	@Autowired
 	private AccountRepository accountRepo;
 	
-	@GetMapping("/admin/count/travel")
+	@GetMapping("/count/travel")
 	public Integer getCountTravel() {
 	
 		return travelService.getCountTravel();
 	}
 	
 	
-	@GetMapping("/admin/count/bookingInDay")
+	@GetMapping("/count/bookingInDay")
 	public Integer getBookingInDay() {
 		return bookingService.getBookingInDay();
 	}
 	
 	// doanh thu trong ngày
-	@GetMapping("/admin/total/RevenueInDay")
+	@GetMapping("/total/RevenueInDay")
 	public Double getRevenueInDay() {
 		return bookingService.getRevenueInDay();
 	}
 	
 	// tổng doanh thu
-	@GetMapping("/admin/total/Revenue")
+	@GetMapping("/total/Revenue")
 	public Double getRevenue() {
 		return bookingService.getRevenue();
 	}
 	 // doanh thu so với năm trước
-	@GetMapping("/admin/sinceYesterday")
+	@GetMapping("/sinceYesterday")
 	public Double getRevenueSinceYesterday() {
 		double currentMonth = bookingRepository.getRevenue();
 		double lastMonth = bookingRepository.getLastRevenue();
@@ -70,13 +74,13 @@ public class HomeAdminRestController {
 	}
 	
 	// tổng khách hàng
-	@GetMapping("/admin/total/user")
+	@GetMapping("/total/user")
 	public Integer getTotalUser() {
 		return accountService.getTotalUsers();
 	}
 	
 	// khách hàng so với tháng trước
-	@GetMapping("/admin/totalUserLastMonth")
+	@GetMapping("/totalUserLastMonth")
 	public Double gettotalUserLastMonth() {
 		double currentMonth = accountRepo.getTotalUsers();
 		double lastMonth = accountRepo.getTotalUserLastMonth();
@@ -96,8 +100,16 @@ public class HomeAdminRestController {
 //			return travelService.getTotalSold();
 //		}
 	
-	@GetMapping("/admin/TotalSold")
+	@GetMapping("/TotalSold")
 	public List<Total> getTotalSold() {
 		return travelService.getTotal();
 	}
+
+//	@GetMapping("/stats")
+//	public String getTotalPriceOneMonth(){
+//		return statsService.getTotalPriceOneMonth();
+//	}
+
+	@Autowired
+	private StatsRepository statsService;
 }
