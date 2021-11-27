@@ -3,6 +3,8 @@ package com.nicetravel.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,12 +24,17 @@ public class TravelController {
 
 	@Autowired
 	TravelService travelService;
-
+	@Autowired
+	HttpServletRequest request;
+	
 	@RequestMapping("/list")
 	public String list(Model model) {
 
 		List<Travel> list = travelService.getAllTravel();
 		model.addAttribute("items", list);
+		
+		List<Travel> listFavo = travelService.getFavoriteTour();
+		model.addAttribute("favoriteItems", listFavo);
 		return "travel/list";
 	}
 
@@ -44,14 +51,18 @@ public class TravelController {
 	}
 
 	@RequestMapping("/tour")
-	public String tour(Model model, @RequestParam("tid") Optional<Integer> tid,@RequestParam("p") Optional<Integer> p) {
+	public String tour(Model model, @RequestParam("tid") Optional<Integer> tid,@RequestParam(name="p", defaultValue ="1") int p) {
 		if (tid.isPresent()) {
 		//	List<Travel> list = travelService.findByTypeId(tid.get());
-			Pageable pageable = PageRequest.of(p.orElse(0), 6);
+			Pageable pageable = PageRequest.of(p-1, 6);
 			Page<Travel> list = travelService.findByTypeId(tid.get(),pageable);
+			model.addAttribute("currentURL", request.getQueryString().toString());
 			model.addAttribute("items", list);
+			int n =2;
+			model.addAttribute("n", n);
 		} else {
-			List<Travel> list = travelService.getAllTravel();
+			Pageable pageable = PageRequest.of(p-1, 6);
+			Page<Travel> list = travelService.getAll(pageable);
 			model.addAttribute("items", list);
 		}
 		return "travel/tour";

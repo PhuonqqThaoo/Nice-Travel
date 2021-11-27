@@ -1,535 +1,571 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
 
 <body>
-    <main>
+	<main> <!-- home -->
+	<div id="home">
+		<!-- revolution slider -->
+		<section class="no-top no-bottom" aria-label="section-slider">
+			<div class="fullwidthbanner-container">
+				<div id="revolution-slider-half">
+					<ul>
 
-        <!-- home -->
-        <div id="home">
-            <!-- revolution slider -->
-            <section class="no-top no-bottom" aria-label="section-slider">
-                <div class="fullwidthbanner-container">
-                    <div id="revolution-slider-half">
-                        <ul>
+						<li data-transition="parallaxtobottom" data-slotamount="10"
+							data-masterspeed="1200" data-delay="5000">
+							<!--  BACKGROUND IMAGE --> <img
+							src="/assets/images-slider/img-slide-1.jpg" alt="" data-start="0"
+							data-bgposition="center center" data-kenburns="on"
+							data-duration="10000" data-ease="Linear.easeNone"
+							data-bgfit="120" data-bgfitend="100"
+							data-bgpositionend="center center" />
+							<div class="tp-caption slide-big-heading sft" data-x="center"
+								data-y="300" data-speed="800" data-start="400"
+								data-easing="easeInOutExpo" data-endspeed="450">Du Lịch Đà
+								Nẵng</div>
 
-                            <li data-transition="parallaxtobottom" data-slotamount="10" data-masterspeed="1200"
-                                data-delay="5000">
-                                <!--  BACKGROUND IMAGE -->
-                                <img src="/assets/images-slider/img-slide-1.jpg" alt="" data-start="0"
-                                    data-bgposition="center center" data-kenburns="on" data-duration="10000"
-                                    data-ease="Linear.easeNone" data-bgfit="120" data-bgfitend="100"
-                                    data-bgpositionend="center center" />
-                                <div class="tp-caption slide-big-heading sft" data-x="center" data-y="300"
-                                    data-speed="800" data-start="400" data-easing="easeInOutExpo" data-endspeed="450">
-                                    Du Lịch Đà Nẵng
-                                </div>
+							<div class="tp-caption slide-sub-heading sft" data-x="center"
+								data-y="370" data-speed="1000" data-start="800"
+								data-easing="easeOutExpo" data-endspeed="400">Bà Nà Hills,
+								Ngũ Hành Sơn, Bán đảo Sơn Trà , Công viên Châu Á - Asian Park,
+								Biển Mỹ Khê</div>
 
-                                <div class="tp-caption slide-sub-heading sft" data-x="center" data-y="370"
-                                    data-speed="1000" data-start="800" data-easing="easeOutExpo" data-endspeed="400">
-                                    Bà Nà Hills, Ngũ Hành Sơn, Bán đảo Sơn Trà , Công viên Châu Á - Asian Park, Biển Mỹ
-                                    Khê
-                                </div>
+							<div class="tp-caption sfb" data-x="center" data-y="410"
+								data-speed="400" data-start="800" data-easing="easeInOutExpo">
+								<div class="btn-slider">
+									<span class="shine"></span><a href="/travel/tour?tid=8">Xem
+										Ngay</a>
+								</div>
+							</div>
 
-                                <div class="tp-caption sfb" data-x="center" data-y="410" data-speed="400"
-                                    data-start="800" data-easing="easeInOutExpo">
-                                    <div class="btn-slider"><span class="shine"></span><a href="/travel/tour?tid=8">Xem Ngay</a></div>
-                                </div>
+						</li>
 
-                            </li>
+						<li data-transition="parallaxtobottom" data-slotamount="10"
+							data-masterspeed="1200" data-delay="5000">
+							<!--  BACKGROUND IMAGE --> <img
+							src="/assets/images-slider/img-slide-2.jpg" alt="" data-start="0"
+							data-bgposition="center center" data-kenburns="on"
+							data-duration="10000" data-ease="Linear.easeNone"
+							data-bgfit="120" data-bgfitend="100"
+							data-bgpositionend="center center" />
+							<div class="tp-caption slide-big-heading sft" data-x="center"
+								data-y="300" data-speed="800" data-start="400"
+								data-easing="easeInOutExpo" data-endspeed="450">Du Lịch Đà
+								Lạt</div>
 
-                            <li data-transition="parallaxtobottom" data-slotamount="10" data-masterspeed="1200"
-                                data-delay="5000">
-                                <!--  BACKGROUND IMAGE -->
-                                <img src="/assets/images-slider/img-slide-2.jpg" alt="" data-start="0"
-                                    data-bgposition="center center" data-kenburns="on" data-duration="10000"
-                                    data-ease="Linear.easeNone" data-bgfit="120" data-bgfitend="100"
-                                    data-bgpositionend="center center" />
-                                <div class="tp-caption slide-big-heading sft" data-x="center" data-y="300"
-                                    data-speed="800" data-start="400" data-easing="easeInOutExpo" data-endspeed="450">
-                                    Du Lịch Đà Lạt
-                                </div>
+							<div class="tp-caption slide-sub-heading sft" data-x="center"
+								data-y="370" data-speed="1000" data-start="800"
+								data-easing="easeOutExpo" data-endspeed="400">Hồ Xuân
+								Hương, Langbiang, Thác Đambri, Kim Ngân Hills, Đồi chè Cầu Đất,
+								Trang trại Rau và Hoa Vạn Thành, Ga xe lửa Đà Lạt</div>
 
-                                <div class="tp-caption slide-sub-heading sft" data-x="center" data-y="370"
-                                    data-speed="1000" data-start="800" data-easing="easeOutExpo" data-endspeed="400">
-                                    Hồ Xuân Hương, Langbiang, Thác Đambri, Kim Ngân Hills, Đồi chè Cầu Đất, Trang trại
-                                    Rau và Hoa Vạn Thành, Ga xe lửa Đà Lạt
-                                </div>
+							<div class="tp-caption sfb" data-x="center" data-y="410"
+								data-speed="400" data-start="800" data-easing="easeInOutExpo">
+								<div class="btn-slider">
+									<span class="shine"></span><a href="/travel/tour?tid=4">Xem
+										Ngay</a>
+								</div>
+							</div>
 
-                                <div class="tp-caption sfb" data-x="center" data-y="410" data-speed="400"
-                                    data-start="800" data-easing="easeInOutExpo">
-                                    <div class="btn-slider"><span class="shine"></span><a href="/travel/tour?tid=4">Xem Ngay</a></div>
-                                </div>
+						</li>
 
-                            </li>
+						<li data-transition="parallaxtobottom" data-slotamount="10"
+							data-masterspeed="1200" data-delay="5000">
+							<!--  BACKGROUND IMAGE --> <img
+							src="/assets/images-slider/img-slide-3.jpg" alt="" data-start="0"
+							data-bgposition="center center" data-kenburns="on"
+							data-duration="10000" data-ease="Linear.easeNone"
+							data-bgfit="120" data-bgfitend="100"
+							data-bgpositionend="center center" />
+							<div class="tp-caption slide-big-heading sft" data-x="center"
+								data-y="300" data-speed="800" data-start="400"
+								data-easing="easeInOutExpo" data-endspeed="450">Du Lịch
+								Phú Quốc</div>
 
-                            <li data-transition="parallaxtobottom" data-slotamount="10" data-masterspeed="1200"
-                                data-delay="5000">
-                                <!--  BACKGROUND IMAGE -->
-                                <img src="/assets/images-slider/img-slide-3.jpg" alt="" data-start="0"
-                                    data-bgposition="center center" data-kenburns="on" data-duration="10000"
-                                    data-ease="Linear.easeNone" data-bgfit="120" data-bgfitend="100"
-                                    data-bgpositionend="center center" />
-                                <div class="tp-caption slide-big-heading sft" data-x="center" data-y="300"
-                                    data-speed="800" data-start="400" data-easing="easeInOutExpo" data-endspeed="450">
-                                    Du Lịch Phú Quốc
-                                </div>
+							<div class="tp-caption slide-sub-heading sft" data-x="center"
+								data-y="370" data-speed="1000" data-start="800"
+								data-easing="easeOutExpo" data-endspeed="400">Dinh Cậu &
+								Dinh Bà Thủy Long Thánh Mẫu , Bãi Sao, Thiền Viện Trúc Lâm Hộ
+								Quốc</div>
 
-                                <div class="tp-caption slide-sub-heading sft" data-x="center" data-y="370"
-                                    data-speed="1000" data-start="800" data-easing="easeOutExpo" data-endspeed="400">
-                                    Dinh Cậu & Dinh Bà Thủy Long Thánh Mẫu , Bãi Sao, Thiền Viện Trúc Lâm Hộ Quốc
-                                </div>
+							<div class="tp-caption sfb" data-x="center" data-y="410"
+								data-speed="400" data-start="800" data-easing="easeInOutExpo">
+								<div class="btn-slider">
+									<span class="shine"></span><a href="/travel/tour?tid=3">Xem
+										Ngay</a>
+								</div>
+							</div>
 
-                                <div class="tp-caption sfb" data-x="center" data-y="410" data-speed="400"
-                                    data-start="800" data-easing="easeInOutExpo">
-                                    <div class="btn-slider"><span class="shine"></span><a href="/travel/tour?tid=3">Xem Ngay</a></div>
-                                </div>
+						</li>
 
-                            </li>
+					</ul>
+					<div class="tp-bannertimer hide"></div>
+				</div>
+			</div>
+		</section>
+		<!-- revolution slider end -->
 
-                        </ul>
-                        <div class="tp-bannertimer hide"></div>
-                    </div>
-                </div>
-            </section>
-            <!-- revolution slider end -->
+	</div>
+	<!-- home end --> <!-- section search -->
+	<section class="frm-clean ">
+		<div class="container-fluid">
+			<div class="row">
+				<!--   action="/tour/search" method="post" -->
+				<form id="sform" class="form-inline clean"
+					th:action="@{/tour/search/p=1}">
+					<div class="col-md-2">
+						<label><span class="ti-menu-alt color"></span> Điểm đi</label> <select
+							name="departurePlace" id="departurePlace" class="cust-select">
+							<option value=" ">Tất cả</option>
+							<option value="Hồ chí minh">Hồ Chí Minh</option>
+							<option value="Tân Bình">Tân Bình</option>
+							<option value="Đà Lạt">Đà Lạt</option>
+							<option value="Vũng Tàu">Vũng Tàu</option>
+							<option value="Phú Quốc">Phú Quốc</option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<label><span class="ti-menu-alt color"></span> Điểm đến</label> <select
+							name="destinationPlace" id="destinationPlace" class="cust-select">
+							<option value=" ">Tất cả</option>
+							<option value="Phan Thiết">Phan Thiết</option>
+							<option value="Cần Thơ">Cần Thơ</option>
+							<option value="Đà Lạt">Đà Lạt</option>
+							<option value="Vũng Tàu">Vũng Tàu</option>
+							<option value="Phú Yên">Phú Yên</option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<label><span class="ti-calendar color"></span> Ngày khời
+							hành</label>
+						<div id="filterDate2">
+							<!-- Datepicker as text field -->
+							<div class="input-group date" data-date-format="dd/mm/yyyy">
+								<input name="startDate" id="startDate" type="text"
+									class="form-control" placeholder="dd/MM/yyyy">
+								<div class="input-group-addon">
+									<span class="fa fa-calendar"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<label><span class="ti-money color"></span> Giá thấp nhất</label>
+						<select name="price-min" id="price-min" class="cust-select">
+							<option value="0">Tất cả</option>
+							<option value="2000000">2 triệu</option>
+							<option value="5000000">5 triệu</option>
+							<option value="10000000">10 triệu</option>
+							<option value="15000000">15 triệu</option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<label><span class="ti-money color"></span> Giá cao nhất</label> <select
+							name="price-max" id="price-max" class="cust-select">
+							<option value="50000000">Tất cả</option>
+							<option value="5000000">5 triệu</option>
+							<option value="10000000">10 triệu</option>
+							<option value="15000000">15 triệu</option>
+							<option value="20000000">20 triệu</option>
+							<option value="25000000">25 triệu</option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<button type="submit" value="Search" class="btn-frm-search">Tìm
+							kiếm</button>
+					</div>
+				</form>
 
-        </div>
-        <!-- home end -->
+			</div>
+		</div>
+	</section>
+	<!-- section search end --> <!--  top rated --> <!--  top rated end -->
 
-        <!-- section search -->
-        <section class="frm-clean ">
-            <div class="container-fluid">
-                <div class="row">
- <!--   action="/tour/search" method="post" -->
-                    <form id="sform" class="form-inline clean" action="/tour/search" method="post">
-                        <div class="col-md-2">
-                            <label><span class="ti-menu-alt color"></span> Điểm đi</label>
-                            <select name="departurePlace" class="cust-select" >
-                            	<option value="" >Tất cả</option>
-                                <option value="Hồ chí minh" >Hồ Chí Minh</option>
-                                <option value="Tân Bình">Tân Bình</option>
-                                <option value="Đà Lạt">Đà Lạt</option>
-                                <option value="Vũng Tàu">Vũng Tàu</option>
-                                <option value="Phú Quốc">Phú Quốc</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label><span class="ti-menu-alt color"></span> Điểm đến</label>
-                            <select  name="destinationPlace" class="cust-select" >
-                            <option value="" >Tất cả</option>
-                                <option value="Phan Thiết">Phan Thiết</option>
-                                <option value="Cần Thơ">Cần Thơ</option>
-                                <option value="Đà Lạt">Đà Lạt</option>
-                                <option value="Vũng Tàu">Vũng Tàu</option>
-                                <option value="Phú Yên">Phú Yên</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label><span class="ti-calendar color"></span> Ngày khời hành</label>
-                            <div id="filterDate2">
-                                <!-- Datepicker as text field -->
-                                <div class="input-group date" data-date-format="dd/mm/yyyy">
-                                    <input name="startDate"  type="text" class="form-control" placeholder="dd/MM/yyyy"  >
-                                    <div class="input-group-addon">
-                                        <span class="fa fa-calendar"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <label><span class="ti-money color"></span> Giá thấp nhất</label>
-                            <select name="price-min"  class="cust-select">
-                            	<option value="0">Tất cả</option>
-                            	<option value="2000000">2 triệu</option>
-                                <option value="5000000">5 triệu</option>
-                                <option value="10000000">10 triệu</option>
-                                <option value="15000000">15 triệu</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label><span class="ti-money color"></span> Giá cao nhất</label>
-                            <select name="price-max"  class="cust-select">
-                            	<option value="50000000">Tất cả</option>
-                                <option value="5000000">5 triệu</option>
-                                <option value="10000000">10 triệu</option>
-                                <option value="15000000">15 triệu</option>
-                                <option value="20000000">20 triệu</option>
-                                <option value="25000000">25 triệu</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <button class="btn-frm-search" >Tìm kiếm</button>
-                        </div>
-                    </form>
+	<!-- section features -->
+	<section class="whitepage no-bottom no-top no-padding">
+		<div class="container-fluid">
+			<div class="row">
 
-                </div>
-            </div>
-        </section>
-        <!-- section search end -->
+				<div class="no-gutter">
 
-        <!--  top rated -->
-        <!--  top rated end -->
+					<div class="col-md-4">
+						<div class="features no-margin">
+							<div class="bg-img">
+								<h3 class="big-heading">
+									Đà Nẵng <sup class="subtour">7 Tours</sup>
+								</h3>
+								<p class="content">Đà Nẵng nằm giữa ba di sản thế giới: cố
+									đô Huế, phố cổ Hội An và thánh địa Mỹ Sơn. Đà Nẵng còn có nhiều
+									danh thắng tuyệt đẹp say lòng du khách như Ngũ Hành Sơn, Bà Nà,
+									bán đảo Sơn Trà, đèo Hải Vân, sông Hàn thơ mộng và cầu quay
+									Sông Hàn – niềm tự hào của thành phố, và biển Mỹ Khê đẹp nhất
+									hành tinh.</p>
+							</div>
+						</div>
+					</div>
 
-        <!-- section features -->
-        <section class="whitepage no-bottom no-top no-padding">
-            <div class="container-fluid">
-                <div class="row">
+					<div class="col-md-4">
+						<div class="features no-margin">
+							<div class="bg-img-1">
+								<h3 class="big-heading">
+									Đà Lạt <sup class="subtour">9 Tours</sup>
+								</h3>
+								<p class="content">Đà Lạt mộng mơ nơi mimosa và ngàn hoa
+									khoe sắc, từ đồi Robin ngắm Hồ Tuyền Lâm, núi Voi, viếng Thiền
+									Viện Trúc Lâm, thăm Dinh Bảo Đại, tản bộ dưới những tán thông,
+									ngắm biệt thự cổ, nhấm nháp ly café ấm áp trong thời tiết se
+									lạnh. Những chuyến xe ngựa thổ mộ chạy quanh Hồ Xuân Hương cũng
+									là nét duyên của Đà Lạt mờ sương.</p>
+							</div>
+						</div>
+					</div>
 
-                    <div class="no-gutter">
+					<div class="col-md-4">
+						<div class="features no-margin">
+							<div class="bg-img-2">
+								<h3 class="big-heading">
+									Phú Quốc <sup class="subtour">12 Tours</sup>
+								</h3>
+								<p class="content">Phú Quốc là điểm nghỉ dưỡng, tham quan,
+									và khám phá sinh thái tuyệt vời. Mũi Ông Đội, Đá Chào là thế
+									giới san hô và cá biển sặc sỡ. Bãi Sao cát trắng mịn, dáng
+									cong, nước xanh ngọc bích. Đặc sản danh tiếng cả nước là tiêu
+									sọ, nước mắm, rượu sim, ngọc trai. Phú Quốc thực sự là một viên
+									ngọc quý trên bản đồ Việt Nam.</p>
+							</div>
+						</div>
+					</div>
 
-                        <div class="col-md-4">
-                            <div class="features no-margin">
-                                <div class="bg-img">
-                                    <h3 class="big-heading">Đà Nẵng <sup class="subtour">7 Tours</sup></h3>
-                                    <p class="content">
-                                        Đà Nẵng nằm giữa ba di sản thế giới: cố đô Huế, phố cổ Hội An và thánh địa Mỹ
-                                        Sơn. Đà Nẵng còn có nhiều danh thắng tuyệt đẹp say lòng du khách như Ngũ Hành
-                                        Sơn, Bà Nà, bán đảo Sơn Trà, đèo Hải Vân, sông Hàn thơ mộng và cầu quay Sông Hàn
-                                        – niềm tự hào của thành phố, và biển Mỹ Khê đẹp nhất hành tinh.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+				</div>
 
-                        <div class="col-md-4">
-                            <div class="features no-margin">
-                                <div class="bg-img-1">
-                                    <h3 class="big-heading">Đà Lạt <sup class="subtour">9 Tours</sup></h3>
-                                    <p class="content">
-                                        Đà Lạt mộng mơ nơi mimosa và ngàn hoa khoe sắc, từ đồi Robin ngắm Hồ Tuyền Lâm,
-                                        núi Voi, viếng Thiền Viện Trúc Lâm, thăm Dinh Bảo Đại, tản bộ dưới những tán
-                                        thông, ngắm biệt thự cổ, nhấm nháp ly café ấm áp trong thời tiết se lạnh. Những
-                                        chuyến xe ngựa thổ mộ chạy quanh Hồ Xuân Hương cũng là nét duyên của Đà Lạt mờ
-                                        sương.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+			</div>
+		</div>
+	</section>
+	<!-- section features end --> <!-- section list -->
+	<section class="whitepage">
+		<div class="container-fluid m-5-hor">
+			<div class="row">
 
-                        <div class="col-md-4">
-                            <div class="features no-margin">
-                                <div class="bg-img-2">
-                                    <h3 class="big-heading">Phú Quốc <sup class="subtour">12 Tours</sup></h3>
-                                    <p class="content">
-                                        Phú Quốc là điểm nghỉ dưỡng, tham quan, và khám phá sinh thái tuyệt vời. Mũi Ông
-                                        Đội, Đá Chào là thế giới san hô và cá biển sặc sỡ. Bãi Sao cát trắng mịn, dáng
-                                        cong, nước xanh ngọc bích. Đặc sản danh tiếng cả nước là tiêu sọ, nước mắm, rượu
-                                        sim, ngọc trai. Phú Quốc thực sự là một viên ngọc quý trên bản đồ Việt Nam.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+				<div class="col-lg-12">
+					<h3 class="big-heading">Địa điểm yêu thích</h3>
+					<span class="sub-heading-content">Trong nước</span> <span
+						class="devider-left"></span>
+				</div>
 
-                    </div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="feature-1">
+						<div class="cont-img">
+							<img alt="img-cont" class="img-responsive"
+								src="https://media.travel.com.vn/destination/dg_211014_ha-noi.jpg">
+						</div>
+						<div class="cont-detail">
+							<h3 class="big-heading">
+								<span class="color">HÀ NỘI</span> <sup class="subtour">7
+									Tours</sup>
+							</h3>
+							<div class="star-content color">
+								<i class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star-o" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                </div>
-            </div>
-        </section>
-        <!-- section features end -->
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="feature-1">
+						<div class="cont-img">
+							<img alt="img-cont" class="img-responsive"
+								src="https://media.travel.com.vn/destination/dg_200827_CAU RONG VE DEM_1.jpg">
+						</div>
+						<div class="cont-detail">
+							<h3 class="big-heading">
+								<span class="color">ĐÀ NẴNG</span> <sup class="subtour">22
+									Tours</sup>
+							</h3>
+							<div class="star-content color">
+								<i class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star-o" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
 
-        <!-- section list -->
-        <section class="whitepage">
-            <div class="container-fluid m-5-hor">
-                <div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="feature-1">
+						<div class="cont-img">
+							<img alt="img-cont" class="img-responsive"
+								src="https://media.travel.com.vn/destination/dg_200914_Da Lat  (8).jpg">
+						</div>
+						<div class="cont-detail">
+							<h3 class="big-heading">
+								<span class="color">ĐÀ LẠT</span> <sup class="subtour">20
+									Tours</sup>
+							</h3>
+							<div class="star-content color">
+								<i class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star-o" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                    <div class="col-lg-12">
-                        <h3 class="big-heading">Địa điểm yêu thích</h3>
-                        <span class="sub-heading-content">Trong nước</span>
-                        <span class="devider-left"></span>
-                    </div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="feature-1">
+						<div class="cont-img">
+							<img alt="img-cont" class="img-responsive"
+								src="https://media.travel.com.vn/destination/dg_211014_phu-quoc.jpg">
+						</div>
+						<div class="cont-detail">
+							<h3 class="big-heading">
+								<span class="color">PHÚ QUỐC</span> <sup class="subtour">12
+									Tours</sup>
+							</h3>
+							<div class="star-content color">
+								<i class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star" aria-hidden="true"></i> <i
+									class="fa fa-star-o" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- section list end --> <!-- Ưu đãi đặt biệt -->
+	<section class="whitepage">
+		<div class="container-fluid m-5-hor">
+			<div class="row">
+				<div class="col-lg-12">
+					<h3 class="big-heading">Tour yêu thích nhiều nhất</h3>
+					<span class="devider-left"></span>
+				</div>
 
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="feature-1">
-                            <div class="cont-img">
-                                <img alt="img-cont" class="img-responsive"
-                                    src="https://media.travel.com.vn/destination/dg_211014_ha-noi.jpg">
-                            </div>
-                            <div class="cont-detail">
-                                <h3 class="big-heading"><span class="color">HÀ NỘI</span> <sup class="subtour">7
-                                        Tours</sup></h3>
-                                <div class="star-content color">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+				<div th:each="p: ${favoriteItems}" class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+					<div class="feature-1">
+						<a th:href="@{|/travel/detail/${p.slug}|}">
+							<div class="hovereffect">
+								<img alt="imageportofolio" class="img-responsive w-100"
+									th:src="@{|/assets/img/${p.img}|}">
+							</div>
+							<div class="gal-home-content travel-box-content">
+								<p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate,
+									'dd-MM-yyyy')}]] - [[${#dates.format(p.endDate, 'dd')} -
+									${#dates.format(p.startDate, 'dd')}]] ngày</p>
+								<h5>
+									<a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a>
+								</h5>
+								<br>
+								<p>Số chỗ còn nhận: [[${p.quantityNew}]]</p>
+								<p>Nơi khởi hành: [[${p.departurePlace}]]</p>
+								<p>
+								<h5
+									style="display: inline-block; color: rgba(238, 82, 83, 1.0);">[[${#numbers.formatCurrency(p.price)}]]</h5>
+								/ người
+								</p>
+								<div>
+									<a th:href="@{|/booking/check?tour=${p.slug}|}"
+										class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
+										ngay</a> <a th:href="@{|/travel/detail/${p.slug}|}"
+										style="float: right;">Xem chi tiết</a>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
 
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="feature-1">
-                            <div class="cont-img">
-                                <img alt="img-cont" class="img-responsive"
-                                    src="https://media.travel.com.vn/destination/dg_200827_CAU RONG VE DEM_1.jpg">
-                            </div>
-                            <div class="cont-detail">
-                                <h3 class="big-heading"><span class="color">ĐÀ NẴNG</span> <sup class="subtour">22
-                                        Tours</sup></h3>
-                                <div class="star-content color">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+			<!-- 	<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+					<div class="feature-1">
+						<a href="travel-detail.html">
+							<div class="hovereffect">
+								<img alt="imageportofolio" class="img-responsive w-100"
+									src="http://on3-step.com/tf/plesire/img/gallery-home/img1.jpg">
+							</div>
+							<div class="gal-home-content travel-box-content">
+								<p>01/01/2021 10:00:00 - 5 ngày</p>
+								<h5>
+									<a href="">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a>
+								</h5>
+								<br>
+								<p>Số lượng: 20 người</p>
+								<p>Nơi khởi hành: Tp.Hồ Chí Minh</p>
+								<p>
+								<h5
+									style="display: inline-block; color: rgba(238, 82, 83, 1.0);">5.000.000
+									vnđ</h5>
+								/ người
+								</p>
+								<div>
+									<a href="booking.html" class="travel-btn"><i
+										class='bx bxs-cart-alt'></i> Đặt ngay</a> <a href=""
+										style="float: right;">Xem chi tiết</a>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
 
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="feature-1">
-                            <div class="cont-img">
-                                <img alt="img-cont" class="img-responsive"
-                                    src="https://media.travel.com.vn/destination/dg_200914_Da Lat  (8).jpg">
-                            </div>
-                            <div class="cont-detail">
-                                <h3 class="big-heading"><span class="color">ĐÀ LẠT</span> <sup class="subtour">20
-                                        Tours</sup></h3>
-                                <div class="star-content color">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="feature-1">
-                            <div class="cont-img">
-                                <img alt="img-cont" class="img-responsive"
-                                    src="https://media.travel.com.vn/destination/dg_211014_phu-quoc.jpg">
-                            </div>
-                            <div class="cont-detail">
-                                <h3 class="big-heading"><span class="color">PHÚ QUỐC</span> <sup class="subtour">12
-                                        Tours</sup></h3>
-                                <div class="star-content color">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- section list end -->
-
-        <!-- Ưu đãi đặt biệt -->
-        <section class="whitepage">
-            <div class="container-fluid m-5-hor">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h3 class="big-heading">Gói ưu đãi đặt biệt</h3>
-                        <span class="devider-left"></span>
-                    </div>
-
-                    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                        <div class="feature-1">
-                            <a href="travel-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive w-100"
-                                        src="http://on3-step.com/tf/plesire/img/gallery-home/img1.jpg">
-                                </div>
-                                <div class="gal-home-content travel-box-content">
-                                    <p>01/01/2021 10:00:00 - 5 ngày </p>
-                                    <h5><a href="">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a></h5>
-                                    <br>
-                                    <p>Số lượng: 20 người</p>
-                                    <p>Nơi khởi hành: Tp.Hồ Chí Minh</p>
-                                    <p>
-                                        <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">5.000.000 vnđ
-                                        </h5> / người
-                                    </p>
-                                    <div>
-                                        <a href="booking.html" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
-                                            ngay</a>
-                                        <a href="" style="float: right;">Xem chi tiết</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                        <div class="feature-1">
-                            <a href="travel-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive w-100"
-                                        src="http://on3-step.com/tf/plesire/img/gallery-home/img1.jpg">
-                                </div>
-                                <div class="gal-home-content travel-box-content">
-                                    <p>01/01/2021 10:00:00 - 5 ngày </p>
-                                    <h5><a href="">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a></h5>
-                                    <br>
-                                    <p>Số lượng: 20 người</p>
-                                    <p>Nơi khởi hành: Tp.Hồ Chí Minh</p>
-                                    <p>
-                                        <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">5.000.000 vnđ
-                                        </h5> / người
-                                    </p>
-                                    <div>
-                                        <a href="booking.html" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
-                                            ngay</a>
-                                        <a href="" style="float: right;">Xem chi tiết</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                        <div class="feature-1">
-                            <a href="travel-detail.html">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive w-100"
-                                        src="http://on3-step.com/tf/plesire/img/gallery-home/img1.jpg">
-                                </div>
-                                <div class="gal-home-content travel-box-content">
-                                    <p>01/01/2021 10:00:00 - 5 ngày </p>
-                                    <h5 style="min-height: 42px;"><a href="">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a></h5>
-                                    <br>
-                                    <p>Số lượng: 20 người</p>
-                                    <p>Nơi khởi hành: Tp.Hồ Chí Minh</p>
-                                    <p>
-                                        <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">5.000.000 vnđ
-                                        </h5> / người
-                                    </p>
-                                    <div>
-                                        <a href="booking.html" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
-                                            ngay</a>
-                                        <a href="" style="float: right;">Xem chi tiết</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- testimony -->
-        <section id="testimony" class="color-page no-padding">
-            <div class="container-fluid">
-                <div class="row">
-
-                    <div class="image-container autoheight col-lg-6 pull-right hidden-md hidden-sm hidden-xs onStep"
-                        data-animation="fadeInRight" data-time="300"></div>
-
-                    <div class="col-lg-6 col-md-12 autoheight">
-
-                        <div class="p-90">
-                            <div id="owl-testimonial" class="owl-carousel owl-theme">
-
-                                <div class="item">
-                                    <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut
-                                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                            exercitation ullamco laboris
-                                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                            reprehenderit in voluptate velit
-                                            esse cillum dolore eu fugiat nulla pariatur.</p>
-                                        <small>Someone famous in <cite title="Source Title" class="color">Source
-                                                Title</cite></small>
-                                    </blockquote>
-                                    <img alt="imagetesti" class="tal" src="/assets/img/img-testi-1.png">
-                                    <h3>Emma Watson</h3>
-                                </div>
-
-                                <div class="item">
-                                    <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut
-                                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                            exercitation ullamco laboris
-                                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                            reprehenderit in voluptate velit
-                                            esse cillum dolore eu fugiat nulla pariatur.</p>
-                                        <small>Someone famous in <cite title="Source Title" class="color">Source
-                                                Title</cite></small>
-                                    </blockquote>
-                                    <img alt="imagetesti" class="tal" src="/assets/img/img-testi-1.png">
-                                    <h3>Emma Watson</h3>
-                                </div>
-
-                                <div class="item">
-                                    <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut
-                                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                            exercitation ullamco laboris
-                                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                            reprehenderit in voluptate velit
-                                            esse cillum dolore eu fugiat nulla pariatur.</p>
-                                        <small>Someone famous in <cite title="Source Title" class="color">Source
-                                                Title</cite></small>
-                                    </blockquote>
-                                    <img alt="imagetesti" class="tal" src="img/img-testi-1.png">
-                                    <h3>Emma Watson</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+				<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+					<div class="feature-1">
+						<a href="travel-detail.html">
+							<div class="hovereffect">
+								<img alt="imageportofolio" class="img-responsive w-100"
+									src="http://on3-step.com/tf/plesire/img/gallery-home/img1.jpg">
+							</div>
+							<div class="gal-home-content travel-box-content">
+								<p>01/01/2021 10:00:00 - 5 ngày</p>
+								<h5>
+									<a href="">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a>
+								</h5>
+								<br>
+								<p>Số lượng: 20 người</p>
+								<p>Nơi khởi hành: Tp.Hồ Chí Minh</p>
+								<p>
+								<h5
+									style="display: inline-block; color: rgba(238, 82, 83, 1.0);">5.000.000
+									vnđ</h5>
+								/ người
+								</p>
+								<div>
+									<a href="booking.html" class="travel-btn"><i
+										class='bx bxs-cart-alt'></i> Đặt ngay</a> <a href=""
+										style="float: right;">Xem chi tiết</a>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</section>
 
 
+	<!-- testimony -->
+	<section id="testimony" class="color-page no-padding">
+		<div class="container-fluid">
+			<div class="row">
 
-                </div>
-            </div>
-        </section>
-        <!-- testimony end -->
+				<div
+					class="image-container autoheight col-lg-6 pull-right hidden-md hidden-sm hidden-xs onStep"
+					data-animation="fadeInRight" data-time="300"></div>
 
-        <!--  gallery home -->
-        <section aria-label="gallery">
-            <div class="container-fluid m-5-hor">
-                <div class="row">
+				<div class="col-lg-6 col-md-12 autoheight">
 
-                </div>
-            </div>
+					<div class="p-90">
+						<div id="owl-testimonial" class="owl-carousel owl-theme">
 
-            <div class="onStep" data-animation="fadeInUp" data-time="0">
-                <div id="owl-gal" class="owl-carousel">
+							<div class="item">
+								<blockquote>
+									<p>Đà Nẵng nằm giữa ba di sản thế giới: cố đô Huế, phố cổ
+										Hội An và thánh địa Mỹ Sơn. Đà Nẵng còn có nhiều danh thắng
+										tuyệt đẹp say lòng du khách như Ngũ Hành Sơn, Bà Nà, bán đảo
+										Sơn Trà, đèo Hải Vân, sông Hàn thơ mộng và cầu quay Sông Hàn –
+										niềm tự hào của thành phố, và biển Mỹ Khê đẹp nhất hành tinh.</p>
+									<!-- <small>Someone famous in <cite title="Source Title"
+										class="color">Source Title</cite></small> -->
+								</blockquote>
+								<img alt="imagetesti" class="tal" src="/assets/img/img-dn.jpg">
+								<h3>Đà Nẵng</h3>
+							</div>
 
-                    <div th:each="p: ${items}" class="item">
-                        <div class="gal-home travel-box">
-                            <a th:href="@{|/travel/detail/${p.slug}|}">
-                                <div class="hovereffect">
-                                    <img alt="imageportofolio" class="img-responsive"
-                                        th:src="@{|/assets/img/${p.img}|}">
-                                </div>
-                                <div class="gal-home-content travel-box-content">
-                                    <p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate, 'dd-MM-yyyy')}]] - [[${#dates.format(p.endDate, 'dd')} - ${#dates.format(p.startDate, 'dd')}]]  ngày  </p>
-                                    <h5 style="min-height: 42px;"><a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}"></a></h5>
-                                    <br>
-                                    <p>Số chỗ còn nhận: [[${p.quantityNew}]]</p>
-                                    <p>Nơi khởi hành:  [[${p.departurePlace}]]</p>
-                                    <p>
-                                        <h5 style="display: inline-block; color: rgba(238, 82, 83,1.0);">[[${#numbers.formatCurrency(p.price)}]]
-                                        </h5> / người
-                                    </p>
-                                    <div>
-                                        <a th:href="@{|/booking/check?tour=${p.slug}|}" class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
-                                            ngay</a>
-                                        <a th:href="@{|/travel/detail/${p.slug}|}" style="float: right;">Xem chi tiết</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+							<div class="item">
+								<blockquote>
+									<p>Ngoài ra, Đà Nẵng còn là nơi kết nối 3 di sản văn hóa
+										thế giới đó là Phố cổ Hội An, Cố đô Huế và Thánh địa Mỹ Sơn.
+										Xa hơn một chút nữa là di sản thiên nhiên thế giới Rừng quốc
+										gia Phong Nha – Kẻ Bàng và Động Thiên Đường. Với tổng diện
+										tích 1.256,53 km2, Đà Nẵng may mắn khi vừa có núi cao, sông
+										sâu, vừa có đồi dốc trung du sen kẽ vùng đồng bằng ven biển
+										tuyệt đẹp.</p>
+									<!-- <small>Someone famous in <cite title="Source Title"
+										class="color">Source Title</cite></small> -->
+								</blockquote>
+								<img alt="imagetesti" class="tal"
+									src="/assets/img/vi-tri-da-nang.jpg">
+								<h3>Vị trí địa lý</h3>
+							</div>
 
-                 
-                </div>
-            </div>
-        </section>
-        <!--  gallery home end -->
-	</main>
+							<div class="item">
+								<blockquote>
+									<p>Với lợi thế về vị trí địa lý và điều kiện tự nhiên, Đà
+										Nẵng may mắn khi sở hữu nhiều bãi biển đẹp, trải dài thoai
+										thoải và cát trắng miên man. Biển Đà Nẵng được tạp chí Forbes
+										(Mỹ) bình chọn là một trong 6 bãi biển quyến rũ nhất hành
+										tinh. Nếu bạn là người yêu biển chắc chắn sẽ thỏa mãn khi được
+										ngụp lặn trong nước biếc, đùa giỡn với những con sóng hay các
+										trò chơi như lướt ván, chèo thuyền chuối, motor nước,…</p>
+									<!-- <small>Someone famous in <cite title="Source Title"
+										class="color">Source Title</cite></small> -->
+								</blockquote>
+								<img alt="imagetesti" class="tal" src="/assets/img/canh-quan-da-nang.jpg">
+								<h3>Đa dạng cảnh quan </h3>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</section>
+	<!-- testimony end --> <!--  gallery home -->
+	<section aria-label="gallery">
+		<div class="container-fluid m-5-hor">
+			<div class="row"></div>
+		</div>
+
+		<div class="onStep" data-animation="fadeInUp" data-time="0">
+			<div id="owl-gal" class="owl-carousel">
+
+				<div th:each="p: ${items}" class="item">
+					<div class="gal-home travel-box">
+						<a th:href="@{|/travel/detail/${p.slug}|}">
+							<div class="hovereffect">
+								<img alt="imageportofolio" class="img-responsive"
+									th:src="@{|/assets/img/${p.img}|}">
+							</div>
+							<div class="gal-home-content travel-box-content">
+								<p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate,
+									'dd-MM-yyyy')}]] - [[${#dates.format(p.endDate, 'dd')} -
+									${#dates.format(p.startDate, 'dd')}]] ngày</p>
+								<h5 style="min-height: 42px;">
+									<a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}"></a>
+								</h5>
+								<br>
+								<p>Số chỗ còn nhận: [[${p.quantityNew}]]</p>
+								<p>Nơi khởi hành: [[${p.departurePlace}]]</p>
+								<p>
+								<h5
+									style="display: inline-block; color: rgba(238, 82, 83, 1.0);">[[${#numbers.formatCurrency(p.price)}]]
+								</h5>
+								/ người
+								</p>
+								<div>
+									<a th:href="@{|/booking/check?tour=${p.slug}|}"
+										class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
+										ngay</a> <a th:href="@{|/travel/detail/${p.slug}|}"
+										style="float: right;">Xem chi tiết</a>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</section>
+	<!--  gallery home end --> </main>
 </body>
 </html>

@@ -29,36 +29,11 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.startDate = CONVERT(DATETIME, ?3 ,103) and price between ?4 and ?5" )
 	  Page<Travel> searchTour2(String depart, String desti, String sd, BigDecimal pmin, BigDecimal pmax, Pageable pageable) ;
 	  
-	  //Ko ngày, komin, komax
-	 // @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2%" )
-	 // List<Travel> searchTourNotDate(String depart, String desti) ;
-	  
-	  //ko ngày, có min có max
 	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and price between ?3 and ?4" )
 	  List<Travel> searchTourMinMaxNoDate(String depart, String desti,BigDecimal pmin, BigDecimal pmax);
 	  
 	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and price between ?3 and ?4" )
 	  Page<Travel> searchTourMinMaxNoDate2(String depart, String desti,BigDecimal pmin, BigDecimal pmax, Pageable pageable);
-	  
-	  // ko ngày ko max, có min
-	 // @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and price >= ?3" )
-	  //List<Travel> searchTourMinNoMaxNoDate(String depart, String desti,BigDecimal pmin);
-	  
-	  //ko ngày , ko min, có max
-	  //@Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and price <= ?3" )
-	  //List<Travel> searchTourMaxNoMinNoDate(String depart, String desti,BigDecimal pmax);
-	  
-	  // có ngày , có min ko max
-	  //@Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.startDate = CONVERT(DATETIME, ?3 ,103) and price >= ?4" )
-	  //List<Travel> searchTourNoMax(String depart, String desti, String sd, BigDecimal pmin) ;
-	  
-	  //có ngày ko min có max
-	 // @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.startDate = CONVERT(DATETIME, ?3 ,103) and price <= ?4" )
-	  //List<Travel> searchTourNoMin(String depart, String desti, String sd, BigDecimal pmax) ;
-	  
-	  //có ngày ko max ko min
-	  //@Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.startDate = CONVERT(DATETIME, ?3 ,103)" )
-	 // List<Travel> searchTourNoMinNoMax(String depart, String desti, String sd) ;
 	  
 	/*
 	 * @Query("SELECT t FROM Travel t WHERE t.typeId.id=?1") List<Travel>
@@ -69,6 +44,8 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	    @Query("SELECT t FROM Travel t WHERE t.typeId.id=?1")
 		Page<Travel> findByTypeId(Integer tid,Pageable pageable);
     
+	    @Query("SELECT t FROM Travel t")
+	    Page<Travel> getAll(Pageable pageable);
 //    // số lượng bán ra 
 //    @Query(value = "{CALL sp_getTotalSold()}", nativeQuery = true)
 //	List<TotalSold> getTotalSold();
@@ -78,4 +55,7 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
    	
    	@Query("SELECT new com.nicetravel.entity.Total(u.name, (100- ((convert(float,u.quantityNew) / convert(float,u.quantity)) * 100)),u.quantity, (u.quantity- u.quantityNew) ) From Travel u ")
    	List<Total> getTotal();
+   	
+    @Query(value = "{CALL sp_getTourFavorite()}" , nativeQuery = true)
+	  List<Travel> getTourFavorite() ;
 }

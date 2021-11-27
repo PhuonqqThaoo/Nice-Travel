@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 public interface TravelService {
@@ -26,15 +27,23 @@ public interface TravelService {
     //List<Travel> findByTypeId(Integer tid);
     
     Page<Travel> findByTypeId(Integer tid,Pageable pageable);
+    
 	/*
 	 * List<Travel> searchTour(String depart,String desti, String sd,BigDecimal
 	 * pmin, BigDecimal pmax);
 	 */
     
     Page<Travel> searchTour2(String depart,String desti, String sd,BigDecimal pmin, BigDecimal pmax, Pageable pageable); 
+    
+//    Page<Travel> searchTourMinMaxNoDate2(String depart, String desti,BigDecimal pmin, BigDecimal pmax, Pageable pageable);
     Integer getCountTravel();
     
 //    List<String [][]> getTotalSold();
+    Page<Travel> search(String depart,String desti, String sd,BigDecimal pmin, BigDecimal pmax, int pageNumber);
     
     List<Total> getTotal();
+
+	Page<Travel> getAll(Pageable pageable);
+	
+	List<Travel> getFavoriteTour();
 }

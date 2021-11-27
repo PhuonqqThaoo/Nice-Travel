@@ -92,8 +92,15 @@
 				<!-- right content -->
 							
 				<div class="col-md-9">	
-					<h4 class="text-center">Chúng tôi tìm thấy <span style="color: red;font-weight: 900;">[[${items.totalElements}]]</span> tour cho Quý khách.</h4>	
+					<h4 class="text-center" th:if="${items.totalPages}>0">Chúng tôi tìm thấy <span style="color: red;font-weight: 900;">[[${items.totalElements}]]</span> tour cho Quý khách.</h4>	
 				
+				<div class="xem-them" th:unless="${items.totalPages}>0">
+					<h4 class="text-center" ><span style="color: red;font-weight: bold; font-size: 20pt;">Không tìm thấy tour</span></h4>
+						<a href="/travel/tour">  <button class="btn btn-primary btn-xem-them">
+							Xem tất cả các tour
+						</button>
+						</a>
+					</div>
 					<div class="row">
 
 						<div class="col-md-6 col-lg-4" th:each="p: ${items}">
@@ -106,13 +113,16 @@
 									<div class="gal-home-content travel-box-content">
 										<p>[[${#dates.format(p.startDate, 'dd-MM-yyyy')}]]</p>
 										<h5 style="min-height: 42px;">
-											<a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}"></a>
+											<a th:href="@{|/travel/detail/${p.slug}|}"
+												th:utext="${p.name}"></a>
 										</h5>
-										
+										<br>
 										<p>Số lượng: [[${p.quantity}]]</p>
 										<p>Nơi khởi hành: [[${p.departurePlace}]]</p>
 										<p>
-											<h5 style="display: inline-block; color: rgba(238, 82, 83, 1.0);">[[${#numbers.formatCurrency(p.price)}]]</h5>/ người
+										<h5
+											style="display: inline-block; color: rgba(238, 82, 83, 1.0);">[[${#numbers.formatCurrency(p.price)}]]</h5>
+										/ người
 										</p>
 										<div>
 											<a th:href="@{|/booking/check?tour=${p.slug}|}"
@@ -132,19 +142,26 @@
 						<!--  <button class="btn btn-primary btn-xem-them">
 							Xem thêm
 						</button> -->
-<!-- 						<ul>
+	<!--  					<ul>
 	 	<li>Số thực thể hiện tại: [[${items.numberOfElements}]]</li>
 		<li>Trang số: [[${items.number}]]</li>
 		<li>Kích thước trang: [[${items.size}]]</li>
 		<li>Tổng số thực thể: [[${items.totalElements}]]</li>
 		<li>Tổng số trang: [[${items.totalPages}]]</li>
-	</ul> -->
-		<div class="pagination">
-			<a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p=1' : '?p=1'}">&laquo;</a>
-			<span th:each="i: ${#numbers.sequence(1,items.totalPages)}">
-		  		<a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p='+${i} : '?p='+${i}}">[[${i}]]</a>
+	</ul>  -->
+		<div class="pagination" th:if="${items.totalPages}>0">
+			<a th:href="@{'/tour/search/p=1'}+ '?'+${currentURL}">&laquo;</a>
+			
+			 
+			  <span th:each="i: ${#numbers.sequence(1,items.totalPages)}"> 
+		  		<!-- <a th:href="@{${#httpServletRequest.requestURL} + '&p=' +${i}}">[[${i}]]</a> -->
+		  		<a th:href="@{'/tour/search/p='+${i}}+ '?'+${currentURL}">[[${i}]]</a>
 		 	 </span>
-		  	<a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p='+${items.totalPages} : '?p='+${items.totalPages}}">&raquo;</a>
+		 	 
+		 	 
+		 	 
+		  	<a th:href="@{'/tour/search/p='+${items.totalPages}}+ '?'+${currentURL}">&raquo;</a>
+	</div>
 	</div>
 
 					</div>
@@ -152,7 +169,7 @@
 				<!-- right content end -->
 
 			</div>
-		</div>
+		<!-- </div> -->
 	</section>
 	</main>
 	<script>
