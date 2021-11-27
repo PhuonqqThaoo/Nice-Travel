@@ -1,4 +1,100 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<style>
+		.header__navbar-item {
+			margin: 0 8px;
+			position: relative;
+			min-height: 26px;
+		}
+
+		.header___navbar-user {
+			display: flex;
+			justify-items: center;
+			position: relative;
+		}
+
+		.header__navbar-user:hover .header__navbar-user-menu {
+			display: block;
+		}
+
+		.header__navbar-user-img {
+			width: 22px;
+			height: 22px;
+			border-radius: 50%;
+			border: 1px solid rgba(0, 0, 0, 0.1);
+		}
+
+		.header__navbar-user-name {
+			margin-left: 4px;
+			/*font: size 1.4em;*/
+			font-weight: 400;
+		}
+
+		.header__navbar-user-menu {
+			position: absolute;
+			z-index: 100;
+			padding-left: 0;
+			width: 160px;
+			top: calc(100% + 6px);
+			right: -11px;
+			background-color: white;
+			border-radius: 2px;
+			list-style: none;
+			box-shadow: 0 1px 3.125rem rgba(0, 0, 0, 0.2);
+			display: none;
+			transform-origin: calc(100% - 32px) top;
+			animation: headerNotifyGrowth ease-in 0.2s;
+			will-change: opacity, transform;
+		}
+
+		.header__navbar-user-menu::before {
+			content: "";
+			border-width: 18px 22px;
+			border-style: solid;
+			border-color: transparent transparent white transparent;
+			position: absolute;
+			right: 0px;
+			top: -25px;
+		}
+
+		.header__navbar-user-menu::after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: -8px;
+			right: 0;
+			width: 62%;
+			height: 8px;
+		}
+
+		.header__navbar_user-item--separate {
+			border-top: 1px solid rgba(0, 0, 0, 0.05);
+		}
+
+		.header__navbar_user-item a {
+			text-decoration: none;
+			color: #000000;
+			font-size: 1.4rem;
+			padding: 10px 16px;
+			display: block;
+		}
+
+		.header__navbar_user-item a:first-child {
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
+		}
+
+		.header__navbar_user-item a:last-child {
+			border-bottom-left-radius: 2px;
+			border-bottom-right-radius: 2px;
+		}
+
+		.header__navbar_user-item a:hover {
+			background-color: #fafafa;
+		}
+	</style>
+</head>
 <header class="init">
 
 	<!-- subnav -->
@@ -17,45 +113,45 @@
 				<div class="col-md-6">
 					<div class="right">
 						<div id="sub-icon" class="social-icons-subnav">
-							<a href="https://www.facebook.com/nicetravelcompany/"><span class="ti-facebook"></span></a> <a href="#"><span
-								class="ti-dribbble"></span></a> <a href="#"><span
-								class="ti-twitter"></span></a> <a href="#"><span
-								class="ti-instagram"></span></a> <a href="#"><span
-								class="ti-linkedin"></span></a>
+							<a href="https://www.facebook.com/nicetravelcompany/"><span class="ti-facebook"></span></a>
+							<a href="#"><span class="ti-dribbble"></span></a> <a href="#"><span
+								class="ti-twitter"></span></a> <a href="#"><span class="ti-instagram"></span></a> <a
+								href="#"><span class="ti-linkedin"></span></a>
 						</div>
 						<th:block th:unless="${#request.remoteUser}">
 							<div class="social-icons-subnav">
-								<a data-toggle="modal" href="/login" data-target=""><span
-									class="ti-lock"></span>Đăng nhập</a>
+								<a data-toggle="modal" href="/login" data-target=""><span class="ti-lock"></span>Đăng
+									nhập</a>
 							</div>
-<!--							<div class="social-icons-subnav hidden-sm hidden-xs">-->
-<!--								<a data-toggle="modal" data-target=""><span-->
-<!--									class="ti-user"></span>Đăng ký</a>-->
-<!--							</div>-->
 						</th:block>
 						<th:block th:if="${#request.remoteUser}">
-							<!-- <img src="" alt="" class="header__navbar-user-img"> -->
-							<div class="social-icons-subnav" sec:authorize="isAuthenticated()">
-								<span class="ti-user"></span ><span sec:authentication="name"></span>/<a th:href="@{/logoff}">  Đăng xuất</a>
-							</div>
+							<b class=" header__navbar-item header__navbar-user">
+								<!--								 <img th:src="@{${userRequest.getPhotosImagePath()}}" alt="" class="header__navbar-user-img">-->
+								<span class="header__navbar-user-name">[[${#request.remoteUser}]]</span>
+								<ul class="header__navbar-user-menu">
+									<li class="header__navbar_user-item">
+										<a href="">Tài khoản của tôi</a>
+									</li>
+									<li th:if="${#request.isUserInRole('ADMIN')}" class="header__navbar_user-item">
+										<a th:href="@{/admin/edit-information-admin}">Chỉnh sửa tài khoản</a>
+									</li>
+									<li th:if="${#request.isUserInRole('STAFF') or #request.isUserInRole('USER')}"
+										class="header__navbar_user-item">
+										<a th:href="@{/customer/edit-information-customer}">Chỉnh sửa</a>
+									</li>
+									<li th:if="${#request.isUserInRole('USER')}" class="header__navbar_user-item">
+										<a th:href="@{/order/list}">Tour đã đặt</a>
+									</li>
+									<li th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('STAFF')}"
+										class="header__navbar_user-item">
+										<a th:href="@{/admin}">Quản lý</a>
+									</li>
+									<li class="header__navbar_user-item header__navbar_user-item--separate">
+										<a th:href="@{/logoff}">Đăng xuất</a>
+									</li>
+								</ul>
+							</b>
 
-							<!-- <ul class="header__navbar-user-menu">
-                                <li class="header__navbar_user-item">
-                                    <a href="">TÃƒÆ’Ã‚Â i khoÃƒÂ¡Ã‚ÂºÃ‚Â£n cÃƒÂ¡Ã‚Â»Ã‚Â§a tÃƒÆ’Ã‚Â´i</a>
-                                </li>
-                                <li class="header__navbar_user-item">
-                                    <a href="">Ãƒâ€žÃ¯Â¿Â½ÃƒÂ¡Ã‚Â»Ã¢â‚¬Â¹a chÃƒÂ¡Ã‚Â»Ã¢â‚¬Â° cÃƒÂ¡Ã‚Â»Ã‚Â§a tÃƒÆ’Ã‚Â´i</a>
-                                </li>
-                                <li class="header__navbar_user-item">
-                                    <a th:href="@{/order/list}">Ãƒâ€žÃ¯Â¿Â½Ãƒâ€ Ã‚Â¡n mua</a>
-                                </li>
-                                <li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}"
-                                    class="header__navbar_user-item">
-                                    <a th:href="@{/admin/home/index}">Admin</a>
-                                </li>
-                                <li class="header__navbar_user-item header__navbar_user-item--separate">
-                                    <a th:href="@{/security/logoff}">Ãƒâ€žÃ¯Â¿Â½Ãƒâ€žÃ†â€™ng xuÃƒÂ¡Ã‚ÂºÃ‚Â¥t</a>
-                                </li> -->
 						</th:block>
 					</div>
 				</div>
@@ -66,20 +162,19 @@
 	<!-- subnav end -->
 
 	<!-- nav -->
-	<div class="navbar-default-white navbar-fixed-top">
+	<div class="navbar-default-white navbar-fixed-top" style="z-index: 1;">
 		<div class="container-fluid m-5-hor">
 			<div class="row">
 
 				<!-- menu mobile display -->
-				<button class="navbar-toggle" data-target=".navbar-collapse"
-					data-toggle="collapse">
+				<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
 					<span class="icon icon-bar"></span> <span class="icon icon-bar"></span>
 					<span class="icon icon-bar"></span>
 				</button>
 
 				<!-- logo -->
-				<a class="navbar-brand white" th:href="@{/}"> <img
-					class="white" alt="logo" src="/assets/img/logoNiceTravel.png">
+				<a class="navbar-brand white" th:href="@{/}"> <img class="white" alt="logo"
+																   src="/assets/img/logoNiceTravel.png">
 					<img class="black" alt="logo" src="/assets/img/logoNiceTravel.png">
 				</a>
 				<!-- logo end -->
@@ -88,15 +183,16 @@
 				<div class="white menu-init" id="main-menu">
 					<nav id="menu-center">
 						<ul>
-							<li><a class="actived" href="/">Trang chủ<i
-									class="fa fa-angle-down"></i></a>
+							<li><a class="actived" href="/">Trang chủ<i class="fa fa-angle-down"></i></a>
 								<ul>
 									<li><a href="">Giới thiệu</a></li>
-								</ul></li>
+								</ul>
+							</li>
 							<li><a href="">Thông tin</a></li>
 							<li><a href="/travel/tour">Du lịch <i class="fa fa-angle-down"></i></a>
 								<ul>
-									 <li th:each="c:${types}"><a th:href="@{|/travel/tour?tid=${c.id}|}">Du lịch [[${c.type}]]</a></li>
+									<li th:each="c:${types}"><a th:href="@{|/travel/tour?tid=${c.id}|}">Du lịch
+										[[${c.type}]]</a></li>
 								</ul>
 							</li>
 							<li><a href="">Liên hệ</a></li>

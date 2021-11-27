@@ -34,6 +34,7 @@ public class SecurityController {
 
     @Autowired
     private JavaMailSender mailSender;
+
     @Autowired
     public SecurityController(UserServices userServices, AccountService accountService) {
         this.userServices = userServices;
@@ -79,12 +80,12 @@ public class SecurityController {
         return "forward:/login";
     }
 
-// REGISTER
-@GetMapping("/register")
-public String showRegistrationForm(Model model) {
-    model.addAttribute("account", new Account());
-    return "/nice_travel/form-in-up";
-}
+    // REGISTER
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("account", new Account());
+        return "/nice_travel/form-in-up";
+    }
 
     @PostMapping("/process-register")
     public String processRegister(Account account, HttpServletRequest request)

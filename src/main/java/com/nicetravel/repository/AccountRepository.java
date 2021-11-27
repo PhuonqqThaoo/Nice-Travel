@@ -65,5 +65,9 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Modifying
     @Query("UPDATE Account u SET u.provider = ?2 WHERE u.username = ?1")
     public void updateProviderType(String username, Provider provider);
-   
+
+    @Modifying
+    @Query("UPDATE Account u SET u.password = ?1 WHERE u.username = ?2")
+    public void changePassword(String newPass, String username);
+
 } 

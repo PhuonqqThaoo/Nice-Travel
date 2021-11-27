@@ -1,8 +1,10 @@
 package com.nicetravel.controller.admin;
 
 import com.nicetravel.custom.CustomUserDetails;
+import com.nicetravel.custom.UserServices;
 import com.nicetravel.entity.Account;
 import com.nicetravel.service.AccountService;
+import com.nicetravel.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,18 +24,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     private final AccountService accountService;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
+
+    private final RoleService roleService;
+
+    private final UserServices userServices;
 
     @Autowired
-    public AdminController(AccountService accountService) {
+    public AdminController(AccountService accountService, RoleService roleService, UserServices userServices) {
         this.accountService = accountService;
+        this.roleService = roleService;
+        this.userServices = userServices;
     }
 
     @GetMapping("/information-admin")
@@ -52,27 +64,46 @@ public class AdminController {
     }
 
     @PostMapping("/edit-information-admin")
-    public String update(@Valid @ModelAttribute("userRequest") Account userRequest,
+    public String update(@Valid @ModelAttribute(name = "userRequest") Account userRequest,
                          BindingResult result,
-                         RedirectAttributes redirect, @RequestParam("img") MultipartFile multipartFile) throws IOException {
+                         RedirectAttributes redirect, @RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
         String errorMessage = null;
-        ;
+
         try {
             // check if userRequest is not valid
             if (result.hasErrors()) {
                 errorMessage = "Tài khoản không hợp lệ";
+                System.out.println(errorMessage);
                 redirect.addFlashAttribute("errorMessage", errorMessage);
             } else {
                 String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
                 System.out.println(fileName);
                 userRequest.setImg(fileName);
-                System.out.println("get" + userRequest.getImg());
+                System.out.println("getImg" + userRequest.getImg());
+
+                userRequest.setRole_Id(roleService.findByRoleName("USER"));
+                System.out.println(userRequest.getRole_Id());
 
                 accountService.update(userRequest);
+                System.out.println("image: " + userRequest.getImg());
 
-                System.out.println(userRequest);
+                System.out.println("userRequest: " + userRequest);
 
                 String uploadDir = "user-photos/" + userRequest.getUsername();
+
+                Path uploadPath = Paths.get(uploadDir);
+
+                if(!Files.exists(uploadPath)){
+                    Files.createDirectories(uploadPath);
+                }
+
+                try(InputStream inputStream = multipartFile.getInputStream()){
+                    Path filePath = uploadPath.resolve(fileName);
+                    Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+                }catch(IOException e){
+                    throw new IOException("Could not save upload file: " + fileName);
+                }
+
 
                 FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 //				accountService.update(userRequest);
@@ -105,11 +136,13 @@ public class AdminController {
     @PostMapping("/change-password")
     public String postChangePassword(HttpServletRequest request, HttpServletResponse response,
                                      Model model, RedirectAttributes ra,
-                                     @AuthenticationPrincipal Authentication authentication,@ModelAttribute("userRequest") Account account) throws Exception {
+                                     @AuthenticationPrincipal Authentication authentication) throws Exception {
 
 
-//        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-//        Account account = userDetails.getAccount();
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        System.out.println("userDetails" + userDetails);
+        Account account = userDetails.getAccount();
+        System.out.println("account" + account);
 
         String oldPassword = request.getParameter("oldPassword");
         String newPassword = request.getParameter("newPassword");
@@ -117,28 +150,28 @@ public class AdminController {
         String encodeOldPassword = passwordEncoder.encode(newPassword);
         String encodeNewPassword = passwordEncoder.encode(newPassword);
         System.out.println("encodeNew: " + encodeNewPassword);
-        System.out.println("oldPass: " + account.getPassword());
+        System.out.println("oldPass: " + oldPassword);
         model.addAttribute("pageTitle", "Thay đổi mật khẩu đã hết hạn");
 
-//        if (encodeOldPassword.equals(encodeNewPassword)) {
-//            model.addAttribute("message", "Mật khẩu mới của bạn phải khác mật khẩu cũ.");
-//
-//            return "redirect:/change-password";
-//        }
-//
-//        if (!passwordEncoder.matches(encodeOldPassword, account.getPassword())) {
+        if (oldPassword.equals(newPassword)) {
+            model.addAttribute("message", "Mật khẩu mới của bạn phải khác mật khẩu cũ.");
+
+            return "redirect:/admin/change-password";
+        }
+
+//        if (!passwordEncoder.matches(oldPassword, account.getPassword())) {
 //            model.addAttribute("message", "Mật khẩu cũ của bạn không chính xác.");
-//            return "redirect:/change-password";
+//            return "redirect:/admin/change-password";
 //
-//        } else {
-            System.out.println(encodeNewPassword);
-            accountService.changePassword(account, newPassword, passwordEncoder);
+//        }
+        else {
+            userServices.changePassword(account, encodeNewPassword);
             request.logout();
             ra.addFlashAttribute("message", "Bạn đã đổi mật khẩu thành công. "
                     + "Vui lòng thử lại.");
 
             return "redirect:/login";
-//        }
+        }
     }
 
 

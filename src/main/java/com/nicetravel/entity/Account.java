@@ -50,6 +50,7 @@ public class Account implements Serializable {
     public void setProvider(Provider provider) {
         this.provider = provider;
     }
+
     private static final long PASSWORD_EXPIRATION_TIME
             = 30L * 24L * 60L * 60L * 1000L;    // 30 days
     @Column(name = "password_changed_time")
@@ -62,6 +63,7 @@ public class Account implements Serializable {
 
         return currentTime > lastChangedTime + PASSWORD_EXPIRATION_TIME;
     }
+
     @NotEmpty
     @NotNull
     @Column(name = "username", nullable = false, length = 20)
