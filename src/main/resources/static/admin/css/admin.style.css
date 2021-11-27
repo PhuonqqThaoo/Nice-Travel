@@ -14,13 +14,13 @@
 }
 
 /* phần input */
-.chinh-sua-tour .left {
-}
+.chinh-sua-tour .left {}
 
 /* phần input hình */
 .chinh-sua-tour .right {
     width: 100%;
 }
+
 .chinh-sua-tour .right .right-image {
     width: 100%;
     min-height: 18.5rem;
@@ -28,19 +28,22 @@
     background-color: rgba(95, 158, 160, 0.432);
     text-align: center;
 }
+
 .chinh-sua-tour .right .right-image img {
     height: 16rem;
     margin-bottom: 1rem;
 }
 
-.chinh-sua-tour  .right-button {
+.chinh-sua-tour .right-button {
     width: 100%;
     text-align: center;
     margin-top: 2rem;
 }
-.chinh-sua-tour  .right-button .btn {
+
+.chinh-sua-tour .right-button .btn {
     width: 9rem;
 }
+
 /* end chỉnh sửa tour du lịch */
 
 /* search date thống kê 6 tháng gần nhất */
@@ -48,6 +51,7 @@
     width: 70%;
     padding: 20px 20px;
 }
+
 /* end search date thống kê 6 tháng gần nhất */
 
 
@@ -61,9 +65,18 @@
 .quan-ly-danh-sach-tour {
     width: auto;
     max-width: 93%;
-    margin:  0 auto;
+    margin: 0 auto;
 }
+
 .quan-ly-danh-sach-tour .card {
     padding: 20px 20px;
 }
+
 /* end Quản lý danh sách tour */
+
+
+/* Staff quản lý */
+.quan-ly-danh-sach-tour .col-xl-2 .card-body .col {
+    margin-bottom: 10px;
+}
+/* end Staff quản lý */
