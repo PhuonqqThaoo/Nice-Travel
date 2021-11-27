@@ -38,7 +38,7 @@ public class Booking implements Serializable {
 
     @Column(name = "createdDate", nullable = false)
     @CreationTimestamp // defaut getDate()
-    private Timestamp createdDate;
+    private Date createdDate;
 
     @Column(name = "address", length = 225)
     private String address;

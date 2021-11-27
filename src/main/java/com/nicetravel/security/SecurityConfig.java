@@ -67,7 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/", "/login", "/oauth/**").permitAll()
-                .antMatchers("/booking/**").authenticated()
+                .antMatchers("/booking/**", "/travel/like/**").authenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/customer", "/api/v2/**").hasAnyRole( "STAFF", "USER")
                 .antMatchers("/api/v1/**").hasRole("ADMIN")
@@ -78,7 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/account/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .successHandler(databaseLoginSuccessHandler)
+//                .successHandler(databaseLoginSuccessHandler)
                 .and()
                 .oauth2Login()
                 .loginPage("/login")

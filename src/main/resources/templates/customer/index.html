@@ -13,6 +13,9 @@
     <link th:href="@{/admin/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/css/ruang-admin.min.css}" rel="stylesheet">
 
+    <!-- css customize -->
+    <link th:href="@{/admin/css/customer.style.css}" rel="stylesheet">
+
     <!-- boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -21,7 +24,8 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/customer"
+                style="background-color: #10ac84;">
                 <div class="sidebar-brand-icon">
                     <img th:src="@{/admin/img/logo/logoNice.png}">
                 </div>
@@ -40,37 +44,35 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
                     aria-expanded="true" aria-controls="collapseForm">
-                    <i class='bx bxs-plane-alt' ></i>
+                    <i class='bx bxs-plane-alt'></i>
                     <span>Tour du lịch</span>
                 </a>
                 <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="form_basics.html">Tour đã đặt</a>
-                        <a class="collapse-item" href="form_advanceds.html">Tour đi thành công</a>
-                        <a class="collapse-item" href="form_advanceds.html">Tour yêu thích</a>
+                        <a class="collapse-item" href="/customer/tour-da-dat">Tour đã đặt</a>
                     </div>
                 </div>
             </li>
-        
+
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
                 Thông tin khách hàng
             </div>
             <li class="nav-item">
                 <a class="nav-link collapsed" th:href="@{/customer/information-customer/}">
-                    <i class='bx bxs-plane-alt' ></i>
+                    <i class='bx bxs-plane-alt'></i>
                     <span>Thông tin cá nhân</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/customer/edit-information-customer">
-                    <i class='bx bxs-user-rectangle' ></i>
+                    <i class='bx bxs-user-rectangle'></i>
                     <span>Chỉnh sửa thông tin</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/customer/change-password">
-                    <i class='bx bxs-user-rectangle' ></i>
+                    <i class='bx bxs-user-rectangle'></i>
                     <span>Đổi mật khẩu</span>
                 </a>
             </li>
@@ -81,7 +83,8 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- TopBar -->
-                <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+                <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top"
+                    style="background-color: #1dd1a1;">
                     <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
@@ -128,11 +131,11 @@
                                 <div class="card-body">
                                     <div class="row align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Các tour du lịch đã đi
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Các tour du lịch
+                                                đã đi
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">5 tour</div>
                                             <div class="mt-2 mb-0 text-muted text-xs">
-                                                <a href="">Xem chi tiết</a>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -148,7 +151,8 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Các tour đã đặt</div>
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Các tour đã đặt
+                                            </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">1 tour</div>
                                             <div class="mt-2 mb-0 text-muted text-xs">
                                                 <a href="">Xem chi tiết</a>
@@ -161,169 +165,123 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Invoice Example -->
                         <div class="col-xl-8 col-lg-7 mb-4">
+                            <!-- title -->
+                            <div id='nz-div-2'>
+                                <h3 class="tde">
+                                    <span>Yêu Thích <i class='bx bxs-heart'></i></span>
+                                </h3>
+                                <hr>
+                            </div>
                             <div class="card mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Các tour yêu thích</h6>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>...</th>
-                                                <th>Tên chuyến đi</th>
-                                                <th>Địa điểm</th>
-                                                <th>Giá</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="width: 17%;">
-                                                    <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100%;"
-                                                        alt="">
-                                                </td>
-                                                <td>
-                                                    <h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu
-                                                        Trắng - Bảo Tàng Làng Chài Xưa</h5>
-                                                </td>
-                                                <td>Sân Bay Tân Sơn Nhất</td>
-                                                <td>13,960,000 vnđ</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 17%;">
-                                                    <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100%;"
-                                                        alt="">
-                                                </td>
-                                                <td>
-                                                    <h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu
-                                                        Trắng - Bảo Tàng Làng Chài Xưa</h5>
-                                                </td>
-                                                <td>Sân Bay Tân Sơn Nhất</td>
-                                                <td>13,960,000 vnđ</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 17%;">
-                                                    <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100%;"
-                                                        alt="">
-                                                </td>
-                                                <td>
-                                                    <h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu
-                                                        Trắng - Bảo Tàng Làng Chài Xưa</h5>
-                                                </td>
-                                                <td>Sân Bay Tân Sơn Nhất</td>
-                                                <td>13,960,000 vnđ</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Tên chuyến đi</th>
+                                            <th scope="col">Địa điểm</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="p : ${items}">
+                                            <td style="width: 14%;">
+                                                <img th:src="@{|/assets/img/${p.travelId.img}|}" style="width: 100px;" alt="">
+                                            </td>
+                                            <td>
+                                                <h5 style="font-weight: 700;">[[${p.travelId.name}]]</h5>
+                                            </td>
+                                            <td>[[${p.travelId.departurePlace}]]</td>
+                                            <td>[[${p.travelId.price}]] vnđ</td>
+                                            <td>
+                                            	<a href="" class="btn btn-primary"><i class='bx bx-search'></i></a>
+                                            	<a th:href="@{|/customer/delete/${p.id}|}" class="btn btn-primary">Xóa</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <!-- Message From Customer-->
-                        <div class="col-xl-4 col-lg-5 ">
+
+                        <div class="col-xl-4 col-lg-5">
                             <div class="card">
                                 <div
-                                    class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-light">Message From Customer</h6>
+                                    class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between" style="background-color: #10ac84 !important;">
+                                    <h6 class="m-0 font-weight-bold text-light">Các chuyến đã đi</h6>
                                 </div>
-                                <div>
-                                    <div class="customer-message align-items-center">
-                                        <a class="font-weight-bold" href="#">
-                                            <div class="text-truncate message-title">Hi there! I am wondering if you can
-                                                help me with a
-                                                problem I've been having.</div>
-                                            <div class="small text-gray-500 message-time font-weight-bold">Udin Cilok ·
-                                                58m</div>
-                                        </a>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Địa điểm</th>
+                                            <th scope="col">Giá tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="">Phan Thiết - Lâu Đài Rượu Vang - Bàu
+                                                Trắng - Bảo Tàng Làng Chài Xưa</a></td>
+                                            <td style="font-size: 13px; font-weight: 700; color: #ee5253;">13,960,000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="">Phan Thiết - Lâu Đài Rượu Vang - Bàu
+                                                Trắng - Bảo Tàng Làng Chài Xưa</a></td>
+                                            <td style="font-size: 13px; font-weight: 700; color: #ee5253;">13,960,000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Larry the Bird</td>
+                                            <td style="font-size: 13px; font-weight: 700; color: #ee5253;">13,960,000 vnđ</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--Row-->
+
+                        <!-- Modal Logout -->
+                        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabelLogout">Ohh Không!</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    <div class="customer-message align-items-center">
-                                        <a href="#">
-                                            <div class="text-truncate message-title">But I must explain to you how all
-                                                this mistaken idea
-                                            </div>
-                                            <div class="small text-gray-500 message-time">Nana Haminah · 58m</div>
-                                        </a>
+                                    <div class="modal-body">
+                                        <p>Bạn có chắc mình muốn thoát?</p>
                                     </div>
-                                    <div class="customer-message align-items-center">
-                                        <a class="font-weight-bold" href="#">
-                                            <div class="text-truncate message-title">Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit
-                                            </div>
-                                            <div class="small text-gray-500 message-time font-weight-bold">Jajang Cincau
-                                                · 25m</div>
-                                        </a>
-                                    </div>
-                                    <div class="customer-message align-items-center">
-                                        <a class="font-weight-bold" href="#">
-                                            <div class="text-truncate message-title">At vero eos et accusamus et iusto
-                                                odio dignissimos
-                                                ducimus qui blanditiis
-                                            </div>
-                                            <div class="small text-gray-500 message-time font-weight-bold">Udin Wayang ·
-                                                54m</div>
-                                        </a>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <a class="m-0 small text-primary card-link" href="#">View More <i
-                                                class="fas fa-chevron-right"></i></a>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Trở
+                                            lại</button>
+                                        <a href="/logoff" class="btn btn-primary">Đăng xuất</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!--Row-->
 
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <p>Do you like this template ? you can download from <a
-                                    href="https://github.com/indrijunanda/RuangAdmin" class="btn btn-primary btn-sm"
-                                    target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
-                        </div>
                     </div>
-
-                    <!-- Modal Logout -->
-                    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabelLogout">Ohh Không!</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Bạn có chắc mình muốn thoát?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary"
-                                        data-dismiss="modal">Trở lại</button>
-                                    <a href="/logoff" class="btn btn-primary">Đăng xuất</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <!---Container Fluid-->
                 </div>
-                <!---Container Fluid-->
             </div>
         </div>
-    </div>
 
-    <!-- Scroll to top -->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+        <!-- Scroll to top -->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <script th:src="@{/admin/vendor/jquery/jquery.min.js}"></script>
-    <script th:src="@{/admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-    <script th:src="@{/admin/vendor/jquery-easing/jquery.easing.min.js}"></script>
-    <script th:src="@{/admin/js/ruang-admin.min.js}"></script>
-    <script th:src="@{/admin/vendor/chart.js/Chart.min.js}"></script>
-    <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
-    
+        <script th:src="@{/admin/vendor/jquery/jquery.min.js}"></script>
+        <script th:src="@{/admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/admin/vendor/jquery-easing/jquery.easing.min.js}"></script>
+        <script th:src="@{/admin/js/ruang-admin.min.js}"></script>
+        <script th:src="@{/admin/vendor/chart.js/Chart.min.js}"></script>
+        <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
+
 </body>
 
 </html>

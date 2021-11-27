@@ -47,7 +47,7 @@ public class UserController {
 	public String doPostEdit(@Valid @ModelAttribute("userRequest") Account userRequest ,
 							BindingResult result,
 							 RedirectAttributes redirect) {
-		String errorMessage = null;;
+		String errorMessage = null;
 		try {
 			// check if userRequest is not valid
 			if (result.hasErrors()) {

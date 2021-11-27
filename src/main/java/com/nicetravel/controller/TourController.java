@@ -34,6 +34,7 @@ public class TourController {
 	
 	@RequestMapping("/search/p={p}")
 	public String search(Model model,
+
 			@PathVariable("p") Integer p,
 			@RequestParam ("departurePlace") String depart,
 			@RequestParam("destinationPlace") String desti,
@@ -47,7 +48,10 @@ public class TourController {
 		 */
 			
 			
+
 			Pageable pageable = PageRequest.of(p-1, 6);
+
+
 			Page<Travel> list = travelService.searchTour2(depart, desti, sd, pmin, pmax,pageable);
 			model.addAttribute("items", list);
 			model.addAttribute("departurePlace", depart);
@@ -56,7 +60,12 @@ public class TourController {
 			model.addAttribute("price-min", pmin);
 			model.addAttribute("price-max", pmax);
 			
+
 			model.addAttribute("currentURL", request.getQueryString().toString());
 		return "travel/search";
+
+			
 	}
+	
+	
 }

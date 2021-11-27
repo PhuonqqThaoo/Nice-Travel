@@ -348,9 +348,10 @@
                     <!-- row info -->
                     <div class="information-box">
                         <!-- intro info -->
+                        <form th:object= "${userRequest}" id="form" method="POST"  enctype="multipart/form-data" style="width: 100%;">
                         <div class="row box">
                             <div class="col-6">
-                                <h5 style="font-weight: 600;">Tài khoản: admin</h5>
+                                Tài khoản: <span style="font-weight: 600; font-size: 20px" th:text="*{username}"></span>
                                 <p>
                                     Thông tin cá nhân và các tùy chọn giúp quản lý thông tin đó. Bạn có thể tùy chỉnh
                                     thông tin cá nhân. Các thông tin cá nhân phải chính xác, thuận lợi cho giao dịch hóa
@@ -358,15 +359,15 @@
                                 </p>
                             </div>
                             <div class="col-6">
-                                <img src="https://cuoituan.tuoitre.vn/img/author.png" alt=""
-                                    style="width: 30%; height: auto; margin-left: 50px;">
-                                    <input type="file" name="" id="" class="form-control">
+                                <img th:src="@{${userRequest.getPhotosImagePath()}}" alt=""
+                                    style="width: 30%; height: auto; margin-left: 50px;" >
+                                    <input type="file" name="image" accept="image/png, image/jpeg" class="form-control">
                             </div>
                         </div>
 
                         <!-- edit information -->
                         <div class="row box box-border">
-                            <form th:object= "${userRequest}" id="form" method="POST" style="width: 100%;">
+
                                 <div class="form-row" style="display: none">
                                     <div class="form-group col-md-4">
                                         <label for="inputUsername">Tài khoản</label>

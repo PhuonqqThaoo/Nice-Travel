@@ -1,5 +1,6 @@
 package com.nicetravel.service;
 
+import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Total;
 import com.nicetravel.entity.Travel;
 
@@ -43,7 +44,18 @@ public interface TravelService {
     
     List<Total> getTotal();
 
+
 	Page<Travel> getAll(Pageable pageable);
 	
 	List<Travel> getFavoriteTour();
+
+    
+    List<Travel> getFindAllByTravel();
+    
+   void updateTraveladmin(Travel travel) throws Exception;
+   
+   void deleteTravelAdmin(Integer id) throws Exception;
+   
+   Travel saveTravel(Travel travelRequest);
+
 }
