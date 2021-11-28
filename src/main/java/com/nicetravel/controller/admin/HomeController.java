@@ -19,13 +19,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.ListTravelLike;
+import com.nicetravel.entity.Travel;
+import com.nicetravel.entity.TravelLike;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.BookingService;
 import com.nicetravel.service.StatsService;
+import com.nicetravel.service.TravelLikeService;
 import com.nicetravel.service.TravelService;
 
 @Controller(value = "homeControllerOfAdmin")
 public class HomeController {
+
+	@Autowired
+	private AccountService accountService;
+
 	@Autowired
 	private StatsService statsService;
 	
@@ -41,25 +49,41 @@ public class HomeController {
 	@Autowired
 	private BookingService booking;
 	
+	@Autowired
+	private TravelLikeService travelLike;
+	
 	@RequestMapping("/admin")
-	public String doGetIndex(Model model) throws Exception {
+	public String doGetIndex(Model model,HttpServletRequest request) throws Exception {
+		List<Account> list = accountService.findAll();
+		model.addAttribute("listUser",list);
+		List<Travel> listFavo = travel.getFavoriteTour();
+		model.addAttribute("favoriteItems", listFavo);
+		System.out.println(listFavo);
+		String username = request.getRemoteUser();
+		System.out.println(username);
 	    String day1 = request.getParameter("day");
 	    String end1 = request.getParameter("end");
+	    model.addAttribute("day",day1);
+	    model.addAttribute("end",end1);
 		String[][] chartData;
 		String[][] chartData1;
-		if (ObjectUtils.isEmpty(day1) && ObjectUtils.isEmpty(end1)) {
+		if(ObjectUtils.isEmpty(day1) && ObjectUtils.isEmpty(end1)) {
 			chartData = statsService.getTotalPriceLast6Month();
 			for(int i =0 ; i<6; i++) {
-			System.out.println(chartData[0][i]);
-			System.out.println(chartData[1][i]);
-			System.out.println("");
-		}
+				System.out.println(chartData[0][i]);
+				System.out.println(chartData[1][i]);
+				System.out.println("");
+			}
+			String text = "Thống kê doanh thu 6 tháng";
+			model.addAttribute("text",text);
 			System.out.println(chartData);
 			model.addAttribute("chartData",chartData);
 		}
 		else {
 			chartData = booking.getTotalPriceFromTo(day1, end1);
 			System.out.println(chartData);
+			String text = "Thống kê doanh thu từ ngày " + day1+" đến ngày "+end1 ;
+			model.addAttribute("text",text);
 			model.addAttribute("chartData",chartData);
 			
 		}

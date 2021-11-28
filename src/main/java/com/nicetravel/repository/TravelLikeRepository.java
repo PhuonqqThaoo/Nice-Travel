@@ -7,11 +7,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.ListTravelLike;
+import com.nicetravel.entity.Travel;
 import com.nicetravel.entity.TravelLike;
 
 @Repository
 public interface TravelLikeRepository extends JpaRepository<TravelLike, Integer> {
 	@Query("SELECT u FROM TravelLike u WHERE u.accountId = ?1")
 	List<TravelLike> getAllTravelLikeByIdAcount(Account id);
+	
+//	@Query("SELECT u from TravelLike u")
+//	List<TravelLike> getFindAllAdmin();
+
+
+
 
 }

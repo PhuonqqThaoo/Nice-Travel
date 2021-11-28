@@ -5,10 +5,9 @@ import java.util.List;
 import com.nicetravel.repository.StatsRepository;
 import com.nicetravel.service.StatsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import com.nicetravel.entity.Total;
 import com.nicetravel.entity.Travel;
@@ -38,7 +37,9 @@ public class HomeAdminRestController {
 	
 	@Autowired
 	private AccountRepository accountRepo;
-	
+
+	private static final int SIZE =4;
+
 	@GetMapping("/count/travel")
 	public Integer getCountTravel() {
 	
@@ -103,6 +104,7 @@ public class HomeAdminRestController {
 	@GetMapping("/TotalSold")
 	public List<Total> getTotalSold() {
 		return travelService.getTotal();
+
 	}
 
 //	@GetMapping("/stats")

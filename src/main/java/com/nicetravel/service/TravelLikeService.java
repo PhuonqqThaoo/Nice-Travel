@@ -3,6 +3,8 @@ package com.nicetravel.service;
 import java.util.List;
 
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.ListTravelLike;
+import com.nicetravel.entity.Travel;
 import com.nicetravel.entity.TravelLike;
 
 public interface TravelLikeService {
@@ -12,4 +14,8 @@ public interface TravelLikeService {
 	void deleteTravelLike(Integer id);
 	
 	List<TravelLike> getAllTravelLikeByIdAcount(Account accountId);
+	
+
+
+
 }

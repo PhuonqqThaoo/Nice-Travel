@@ -18,4 +18,5 @@ public interface TravelTypeService {
     void deleteTravelType(Integer id);
     
     List<TravelTypes> findAll();
+    List<TravelTypes> findAllAdmin();
 }

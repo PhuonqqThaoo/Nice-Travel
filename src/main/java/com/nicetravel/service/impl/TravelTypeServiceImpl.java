@@ -50,4 +50,9 @@ public class TravelTypeServiceImpl implements TravelTypeService {
 			return travelTypeRepository.findAll();
 
 	}
+
+    @Override
+    public List<TravelTypes> findAllAdmin() {
+        return travelTypeRepository.findAllAdmin();
+    }
 }

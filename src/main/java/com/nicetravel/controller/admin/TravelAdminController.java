@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.nicetravel.entity.TravelTypes;
+import com.nicetravel.service.TravelTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +28,14 @@ public class TravelAdminController {
 	@Autowired
 	private TravelService travelService;
 
+	@Autowired
+	private TravelTypeService travelTypeService;
+
 	@GetMapping("")
 	public String quanLyTour(Model model) {
 		List<Travel> list = travelService.getFindAllByTravel();
+		List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
+		model.addAttribute("listTravelType",listTravelType);
 		model.addAttribute("list", list);
 		model.addAttribute("travelRequest", new Travel());
 		return "admin/quan-ly/tour-du-lich/QuanLy-TourDuLich";
@@ -37,19 +44,23 @@ public class TravelAdminController {
 	@GetMapping("/edit")
 	public String doGetEdit(@RequestParam("id") Integer id, Model model) {
 		Travel travelRequest = travelService.findTravelById(id);
+		List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
+		model.addAttribute("listTravelType",listTravelType);
 		model.addAttribute("travelRequest", travelRequest);
 		return "admin/quan-ly/tour-du-lich/QuanLy-TourDuLich::#form";
 	}
 
 	@PostMapping("/edit")
 	public String doPostEdit(@Valid @ModelAttribute("travelRequest") Travel travelRequest, BindingResult result,
-			RedirectAttributes redirect) {
+			RedirectAttributes redirect, Model model) {
 		String errorMessage = null;
 		try {
 			// check if userRequest is not valid
 			if (result.hasErrors()) {
 				errorMessage = "Travel is not valid";
 			} else {
+				List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
+				model.addAttribute("listTravelType",listTravelType);
 				travelService.updateTraveladmin(travelRequest);
 				String successMessage = "Travel " + travelRequest.getName() + " was update";
 				redirect.addFlashAttribute("successMessage", successMessage);

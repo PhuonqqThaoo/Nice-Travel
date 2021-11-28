@@ -574,6 +574,8 @@
                                             <label for="inputName">Name</label>
                                             <input th:field="*{name}" id = "name" 
                                             readonly="true" type="text" class="form-control" >
+                                            <input th:field="*{id}" id = "id"
+                                                   readonly="false" type="text" class="form-control" hidden >
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputPrice">Price</label>
@@ -590,14 +592,16 @@
                                         <div class="form-group col-md-6">
                                             <label for="inputPlace">Place</label>
                                             <input th:field="*{place}" id = "place" 
-                                            readonly="true" type="text" class="form-control" >
+                                            readonly="true" type="text" class="form-controls" >
                                         </div>
                                     </div>
                                     <div class="form-row">
-<!--                                         <div class="form-group col-md-4"> -->
-<!--                                             <label for="inputCreateDate">Create date</label> -->
-<!--                                             <input type="datetime-local" class="form-control" id="inputEndDate"> -->
-<!--                                         </div> -->
+                                        <div class="form-group col-md-4">
+                                            <label for="travel_type">Travel Type</label>
+                                            <select id="travel_type" class="form-control" th:field="*{typeId}">
+                                                <option  th:each="item : ${listTravelType}" th:value="${item.id}" th:utext="${item.type}" ></option>
+                                            </select>
+                                        </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputStartDate">Start date</label>
                                             <input th:field="*{startDate}" id = "start_date" 
@@ -852,11 +856,15 @@
     
     <script th:inline="javascript">
     	function editTravel(id) {
+    	    console.log(id);
     		var url ='/admin/tour-du-lich/edit?id=' +id;
+    		console.log(url);
+    		var a = $('#travel_type').val();
+    		console.log("Type"+a);
         	$.get(url).done(function (fragment) {
     			$("#form").replaceWith(fragment);
     			$("#form").prop('action','/admin/tour-du-lich/edit');
-    			var imgUrl = $('#hiddenImgUrl').val();
+<!--    			var imgUrl = $('#hiddenImgUrl').val();-->
 //     			$('#userImgUpload').prop('src','/admin/img/'+imgUrl);
     			$('html,body').animate({
     				scrollTop: $("#form").offset().top

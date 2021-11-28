@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.ListTravelLike;
+import com.nicetravel.entity.Travel;
 import com.nicetravel.entity.TravelLike;
 import com.nicetravel.repository.TravelLikeRepository;
 import com.nicetravel.service.TravelLikeService;
@@ -34,4 +36,7 @@ public class TravelLikeServiceImpl implements TravelLikeService {
 	public List<TravelLike> getAllTravelLikeByIdAcount(Account accountId) {
 		return travelLikeRepository.getAllTravelLikeByIdAcount(accountId);
 	}
+
+
+
 }

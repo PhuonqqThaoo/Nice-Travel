@@ -1,8 +1,6 @@
 package com.nicetravel.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -19,7 +17,8 @@ import java.util.List;
 
 @Table(name = "travel")
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Travel implements Serializable {
@@ -36,9 +35,9 @@ public class Travel implements Serializable {
     @Column(name = "name", nullable = false, length = 225)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne( cascade = CascadeType.MERGE)
     @JoinColumn(name = "typeId", referencedColumnName = "id")
-    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
+//    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
     private TravelTypes typeId;
     
     @JsonIgnore
