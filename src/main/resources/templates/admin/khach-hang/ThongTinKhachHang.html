@@ -3,7 +3,7 @@
 
 
 <head>
-    <meta charset="utf-8">       
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -89,7 +89,7 @@
                 <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý tour du lịch</h6>
-                        <a class="collapse-item" href="/admin/quan-ly/tour-du-lich">Danh sách tour</a>
+                        <a class="collapse-item" href="/admin/tour-du-lich">Danh sách tour</a>
                     </div>
                 </div>
             </li>
@@ -99,7 +99,8 @@
                     <i class='bx bxs-user-rectangle'></i>
                     <span>Khách hàng</span>
                 </a>
-                <div id="collapseCustomer" class="collapse" aria-labelledby="headingCustomer" data-parent="#collapseCustomer">
+                <div id="collapseCustomer" class="collapse" aria-labelledby="headingCustomer"
+                    data-parent="#collapseCustomer">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý khách hàng</h6>
                         <a class="collapse-item" href="/admin/thong-tin-khach-hang">Thông tin khách hàng</a>
@@ -109,7 +110,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStaff"
                     aria-expanded="true" aria-controls="collapseStaff">
-                    <i class='bx bxs-user-rectangle' ></i>
+                    <i class='bx bxs-user-rectangle'></i>
                     <span>Nhân viên</span>
                 </a>
                 <div id="collapseStaff" class="collapse" aria-labelledby="headingStaff" data-parent="#accordionSidebar">
@@ -128,7 +129,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
                     aria-expanded="true" aria-controls="collapseUser">
-                    <i class='bx bxs-user-rectangle' ></i>
+                    <i class='bx bxs-user-rectangle'></i>
                     <span>Thông tin</span>
                 </a>
                 <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
@@ -152,162 +153,6 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-1 small"
-                                            placeholder="What do you want to look for?" aria-label="Search"
-                                            aria-describedby="basic-addon2" style="border-color: #3f51b5;">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <span class="badge badge-warning badge-counter">2</span>
-                            </a>
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" th:src="@{/admin/img/man.png}"
-                                            style="max-width: 60px" alt="">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been
-                                            having.</div>
-                                        <div class="small text-gray-500">Udin Cilok · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" th:src="@{/admin/img/girl.png}"
-                                            style="max-width: 60px" alt="">
-                                        <div class="status-indicator bg-default"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people
-                                            say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Jaenab · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-tasks fa-fw"></i>
-                                <span class="badge badge-success badge-counter">3</span>
-                            </a>
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Task
-                                </h6>
-                                <a class="dropdown-item align-items-center" href="#">
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Design Button
-                                            <div class="small float-right"><b>50%</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 50%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item align-items-center" href="#">
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Make Beautiful Transitions
-                                            <div class="small float-right"><b>30%</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%"
-                                                aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item align-items-center" href="#">
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Create Pie Chart
-                                            <div class="small float-right"><b>75%</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%"
-                                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">View All Taks</a>
-                            </div>
-                        </li>
-                        <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -361,173 +206,174 @@
                             <li class="breadcrumb-item active" aria-current="page">Thông tin khách hàng</li>
                         </ol>
                     </div>
-<!--                     <span  th:text="${errorMessage}"></span> -->
-<!-- 	                		<span  th:text="${successMessage}"></span> -->
 					
                     <div class="row mb-3">
                         <div class="chinh-sua-tour w-90 card">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-secondary">Xuất excel</button>
-                                    </div>
-                                </div>
-<!--                                 <div class="col-3"> -->
-<!--                                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" -->
-<!--                                         aria-orientation="vertical"> -->
-<!--                                         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" -->
-<!--                                             href="#v-pills-home" role="tab" aria-controls="v-pills-home" -->
-<!--                                             aria-selected="true">Khách hàng</a> -->
-<!--                                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" -->
-<!--                                             href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" -->
-<!--                                             aria-selected="false">Chi tiết</a> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-                                <div class="col-12">
                                     <div class="tab-content" id="v-pills-tabContent">
-<!--                                     <button style="float: right" id="createBtn" type="button" class="btn btn-success">Create</button> -->
-<!--                                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" -->
-<!--                                             aria-labelledby="v-pills-home-tab"> -->
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">STT</th>
-                                                        <th scope="col" style="width: 30px;">Hình</th>
-                                                        <th scope="col">Tài khoản</th>
-                                                        <th scope="col">Họ và tên</th>
-                                                        <th scope="col">Email</th>
-                                                        <th scope="col">Giới tính</th>
-                                                        <th scope="col">Điện thoại</th>
-                                                        <th scope="col">Địa chỉ</th>
-                                                        <th scope="col"></th>
-                                                        
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr th:each="user,i : ${listUser}" >
-                                                        <td th:text = "${i.index+1}"></th>
-                                                        <td>
-                                                        	<img width="30px" th:alt="${user.username}" th:src="${'/admin/img/'+user.img}" >
-                                                        </td>
-                                                        <td th:text = "${user.username}"></td>
-                                                        <td th:text = "${user.fullname}"></td>
-                                                        <td th:text = "${user.email}"></td>
-                                                        <td th:text = "${user.gender ? 'Nam' : 'Nữ'}"></td>
-                                                        <td th:text = "${user.phone}"></td>
-                                                        <td th:text = "${user.address}"></td>
-                                                        <td align="center">
-                                                        	<button th:attr="onclick='editUser(\''+${user.username}+'\')'" class="btn btn-success" style="width: 40px">
-																<i class="fa fa-edit" aria-hidden="true"></i>                                                        	
-                                                        	</button>
-                                                        	<a class="btn btn-danger" th:href="@{'/admin/thong-tin-khach-hang/delete?username=' +${user.username}}">
-                                                        		<i class="fa fa-trash" aria-hidden="true"></i>  
-                                                        	</a>
-                                                        </td>
-                                                    </tr>
-                                                    
-                                                    
-                                                </tbody>
-                                            </table>
-                                            <nav aria-label="Page navigation example">
-                                                <ul class="pagination justify-content-center">
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#" aria-label="Previous">
-                                                            <span aria-hidden="true">&laquo;</span>
-                                                            <span class="sr-only">Previous</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#" aria-label="Next">
-                                                            <span aria-hidden="true">&raquo;</span>
-                                                            <span class="sr-only">Next</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-<!--                                         </div> -->
-<!--                                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" -->
-<!--                                             aria-labelledby="v-pills-profile-tab"> -->
-                                            <form th:object= "${userRequest}" id="form" method="POST">
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputUsername">Tài khoản</label>
-                                                        <input th:field="*{username}" id = "username" 
-                                                         readonly="true" type="text" class="form-control" >
+                                        <div class="row" style="margin-bottom: 20px;">
+                                            <div class="col-xl-2">
+                                                <div class="card">
+                                                    <h5 class="card-header" style="font-weight: 700; text-transform: uppercase; font-size: 14px; background-color: #4c60da; color: #ffffff;">Bộ lọc</h5>
+                                                    <div class="card-body">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                            <label class="form-check-label" for="exampleRadios1">
+                                                                Tất cả
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                                            <label class="form-check-label" for="exampleRadios2">
+                                                                Đang hoạt động
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                                                            <label class="form-check-label" for="exampleRadios3">
+                                                                Ngưng hoạt động
+                                                            </label>
+                                                        </div>
+                                                        <button type="button" class="btn btn-success" style="margin: 10px 0;">Xuất excel</button>
                                                     </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputFullname">Mật khẩu</label>
-                                                        <input type="password" class="form-control" th:field="*{password}"
-                                                         id="password" readonly="true">
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputFullname">Nhập lại mật khẩu</label>
-                                                        <input type="password" class="form-control" 
-                                                         id="confirmPass" readonly="true">
-                                                    </div>
-                                                    
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="inputAddress">Địa chỉ</label>
-                                                    <input type="text" th:field="*{address}" id = "address" 
-                                                    readonly="true" class="form-control"
-              >
+                                            </div>
+                                            <div class="col-xl-10">
+                                                <div class="card" style="margin-bottom: 15px;">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">STT</th>
+                                                                <th scope="col" style="width: 30px;">Hình</th>
+                                                                <th scope="col">Tài khoản</th>
+                                                                <th scope="col">Họ và tên</th>
+                                                                <th scope="col">Email</th>
+                                                                <th scope="col">Giới tính</th>
+                                                                <th scope="col">Điện thoại</th>
+                                                                <th scope="col">Địa chỉ</th>
+                                                                <th scope="col"></th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr th:each="user,i : ${listUser}" >
+                                                                <td th:text = "${i.index+1}"></th>
+                                                                <td>
+                                                                    <img width="30px" th:alt="${user.username}" th:src="${'/admin/img/'+user.img}" >
+                                                                </td>
+                                                                <td th:text = "${user.username}"></td>
+                                                                <td th:text = "${user.fullname}"></td>
+                                                                <td th:text = "${user.email}"></td>
+                                                                <td th:text = "${user.gender ? 'Nam' : 'Nữ'}"></td>
+                                                                <td th:text = "${user.phone}"></td>
+                                                                <td th:text = "${user.address}"></td>
+                                                                <td align="center">
+                                                                    <button th:attr="onclick='editUser(\''+${user.username}+'\')'" class="btn btn-success" style="width: 40px">
+                                                                        <i class="fa fa-edit" aria-hidden="true"></i>                                                        	
+                                                                    </button>
+                                                                    <a class="btn btn-danger" th:href="@{'/admin/thong-tin-khach-hang/delete?username=' +${user.username}}">
+                                                                        <i class="fa fa-trash" aria-hidden="true"></i>  
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-                                                <div class="form-group">
-                                                        <label for="inputIdCard">Họ và tên</label>
-                                                        <input type="text" th:field="*{fullname}" 
-                                                         id = "fullname" readonly="true" class="form-control" >
-                                                 </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputEmail">Email</label>
-                                                        <input type="email" th:field="*{email}" 
-                                                        id = "email" readonly="true" class="form-control" >
-                                                        <i th:errors="*{email}"></i>
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputPhone">Điện thoại</label>
-                                                        <input type="text" th:field="*{phone}" id = "phone" readonly="true" class="form-control" >
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputGender">Giới tính</label>
-                                                        <div class="form-control">
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio"
-                                                                    name="inlineRadioOptions" th:field="*{gender}" 
-                                                                    id = "gender" readonly="true"
-                                                                    value="false">
-                                                                <label class="form-check-label"
-                                                                    for="gender">Nam</label>
-                                                            </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio"
-                                                                    name="inlineRadioOptions" th:field="*{gender}" 
-                                                                    id = "gender1" readonly="true"
-                                                                    value="true">
-                                                                <label class="form-check-label"
-                                                                    for="gender1">Nữ</label>
-                                                            </div>
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination justify-content-center">
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#" aria-label="Previous">
+                                                                <span aria-hidden="true">&laquo;</span>
+                                                                <span class="sr-only">Previous</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#" aria-label="Next">
+                                                                <span aria-hidden="true">&raquo;</span>
+                                                                <span class="sr-only">Next</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                        <form th:object= "${userRequest}" id="form" method="POST">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputUsername">Tài khoản</label>
+                                                    <input th:field="*{username}" id = "username" 
+                                                        readonly="true" type="text" class="form-control" >
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputFullname">Mật khẩu</label>
+                                                    <input type="password" class="form-control" th:field="*{password}"
+                                                        id="password" readonly="true">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputFullname">Nhập lại mật khẩu</label>
+                                                    <input type="password" class="form-control" 
+                                                        id="confirmPass" readonly="true">
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputAddress">Địa chỉ</label>
+                                                <input type="text" th:field="*{address}" id = "address" 
+                                                readonly="true" class="form-control" >
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="inputIdCard">Họ và tên</label>
+                                                    <input type="text" th:field="*{fullname}" 
+                                                        id = "fullname" readonly="true" class="form-control" >
+                                                </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputEmail">Email</label>
+                                                    <input type="email" th:field="*{email}" 
+                                                    id = "email" readonly="true" class="form-control" >
+                                                    <i th:errors="*{email}"></i>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputPhone">Điện thoại</label>
+                                                    <input type="text" th:field="*{phone}" id = "phone" readonly="true" class="form-control" >
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputGender">Giới tính</label>
+                                                    <div class="form-control">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="inlineRadioOptions" th:field="*{gender}" 
+                                                                id = "gender" readonly="true"
+                                                                value="false">
+                                                            <label class="form-check-label"
+                                                                for="gender">Nam</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="inlineRadioOptions" th:field="*{gender}" 
+                                                                id = "gender1" readonly="true"
+                                                                value="true">
+                                                            <label class="form-check-label"
+                                                                for="gender1">Nữ</label>
                                                         </div>
                                                     </div>
                                                 </div>
-<!--                                                 <div class="form-row"> -->
-                                                 <div class="form-group ">
-                                                        <label for="inputIdCard">CMND/CCCD</label>
-                                                        <input type="text" th:field="*{id_Card}" id ="id_Card" 
-                                                         readonly="true" class="form-control" >
-                                                  </div>
-                                                    
-<!--                                                 </div> -->
-                                                <div class="right-button">
-<!--                                                     <button type="button" id="submitCreate" class="btn btn-success" th:attr="onclick='createUser()'" disabled="true" >Thêm</button> -->
-                                                    <button type="button" id="submitUpdate" th:attr="onclick='updateUser()'" class="btn btn-primary" disabled="true">Chỉnh sửa</button>
-                                                    <button type="button" id="submitCacel" th:attr="onclick='cacelBtn()'" class="btn btn-secondary" >Làm mới</button>
-                                                </div>
-                                            </form>
-<!--                                         </div> -->
+                                            </div>
+                                            <div class="form-group ">
+                                                    <label for="inputIdCard">CMND/CCCD</label>
+                                                    <input type="text" th:field="*{id_Card}" id ="id_Card" 
+                                                    readonly="true" class="form-control" >
+                                            </div>
+                                                
+                                            <div class="right-button">
+                                                <button type="button" id="submitUpdate" th:attr="onclick='updateUser()'" class="btn btn-primary" disabled="true">Chỉnh sửa</button>
+                                                <button type="button" id="submitCacel" th:attr="onclick='cacelBtn()'" class="btn btn-secondary" >Làm mới</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
