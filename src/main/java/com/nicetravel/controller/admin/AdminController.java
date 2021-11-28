@@ -88,14 +88,17 @@ public class AdminController {
             } else {
                 String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
                 System.out.println(fileName);
-                account.setImg(fileName);
+                if (fileName.equals("") || fileName.length() == 0){
+                    System.out.println("accountImg: " + account.getImg());
+                    account.setImg(account.getImg());
+                }
+                else {
+                    account.setImg(fileName);
+                }
                 System.out.println("getImg: " + userRequest.getImg());
 
-                userRequest.setRole_Id(roleService.findByRoleName("USER"));
-                System.out.println(userRequest.getRole_Id());
-
-                accountService.update(userRequest);
                 accountService.update(account);
+                accountService.update(userRequest);
                 System.out.println("image: " + userRequest.getImg());
 
                 System.out.println("userRequest: " + userRequest);

@@ -1,23 +1,21 @@
 package com.nicetravel.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
+import lombok.*;
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
 import java.io.Serializable;
-
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 
 @Table(name = "Account", indexes = {
@@ -25,7 +23,10 @@ import java.util.*;
         @Index(name = "UQ__Account__F3DBC57267F2E915", columnList = "username", unique = true)
 })
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+//@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 public class Account implements Serializable {
@@ -55,6 +56,7 @@ public class Account implements Serializable {
             = 30L * 24L * 60L * 60L * 1000L;    // 30 days
     @Column(name = "password_changed_time")
     private Date passwordChangedTime;
+
     public boolean isPasswordExpired() {
         if (this.passwordChangedTime == null) return false;
 
@@ -121,6 +123,7 @@ public class Account implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "accountId")
+    @ToString.Exclude
     List<TravelLike> travelLikes;
 
 }
