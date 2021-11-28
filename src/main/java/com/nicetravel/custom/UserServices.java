@@ -1,6 +1,7 @@
 package com.nicetravel.custom;
 
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.Provider;
 import com.nicetravel.entity.Role;
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.repository.RoleRepository;
@@ -101,8 +102,9 @@ public class UserServices {
             return false;
         } else {
             account.setVerificationCode(null);
-            account.setIsEnable(true);
+            account.setIsEnable(false);
             account.setRole_Id(roleService.findByRoleName("USER"));
+            account.setProvider(Provider.DATABASE);
             accountService.createAccount(account);
 
             return true;
@@ -127,11 +129,10 @@ public class UserServices {
     }
 
     public void updatePassword(Account account, String newPassword) throws Exception {
-String encodedPassword = passwordEncoder.encode(newPassword);
+        String encodedPassword = passwordEncoder.encode(newPassword);
         account.setPassword(encodedPassword);
-
         account.setVerificationCode(null);
-        accountService.update(account);
+        accountService.updateAccount(account);
     }
 
 
@@ -140,7 +141,7 @@ String encodedPassword = passwordEncoder.encode(newPassword);
 
     public void changePassword(Account account, String newPassword) {
         String encodedPassword = passwordEncoder.encode(newPassword);
-        account.setPassword(encodedPassword);
+        account.setPassword(newPassword);
 
         account.setPasswordChangedTime(new Date());
 

@@ -183,14 +183,21 @@ public class SecurityController {
         String token = request.getParameter("token");
         String password = request.getParameter("password");
 
+        System.out.println("token: " + token);
+
+        System.out.println("pass: " + password);
+
         Account account = userServices.getByResetPasswordToken(token);
-        model.addAttribute("title", "Reset your password");
+        model.addAttribute("title", "Đặt lại mật khẩu của bạn");
+
+        System.out.println("account by token: " + account);
 
         if (account == null) {
             model.addAttribute("message", "Mã Token không hợp lệ");
             return "/account/forgot/forgot_password_form";
         } else {
             userServices.updatePassword(account, password);
+            System.out.println("updated Password: " + account.getPassword() );
 
             model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công.");
         }
