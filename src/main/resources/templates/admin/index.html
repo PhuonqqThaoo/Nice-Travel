@@ -13,8 +13,8 @@
     <link th:href="@{/admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/css/ruang-admin.min.css}" rel="stylesheet">
-	<script src="https://code.angularjs.org/1.8.0/angular-route.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.8.0/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <!-- boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
@@ -88,7 +88,7 @@
                 <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý tour du lịch</h6>
-                        <a class="collapse-item" href="/admin/tour-du-lich">Danh sách tour</a>
+                        <a class="collapse-item" href="/admin/tour-du-lich">Quản lý chuyến đi</a>
                     </div>
                 </div>
             </li>
@@ -153,162 +153,6 @@
                     </button>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-1 small"
-                                            placeholder="What do you want to look for?" aria-label="Search"
-                                            aria-describedby="basic-addon2" style="border-color: #3f51b5;">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <span class="badge badge-warning badge-counter">2</span>
-                            </a>
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" th:src="@{/admin/img/man.png}"
-                                            style="max-width: 60px" alt="">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been
-                                            having.</div>
-                                        <div class="small text-gray-500">Udin Cilok · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" th:src="@{/admin/img/girl.png}"
-                                            style="max-width: 60px" alt="">
-                                        <div class="status-indicator bg-default"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people
-                                            say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Jaenab · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-tasks fa-fw"></i>
-                                <span class="badge badge-success badge-counter">3</span>
-                            </a>
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Task
-                                </h6>
-                                <a class="dropdown-item align-items-center" href="#">
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Design Button
-                                            <div class="small float-right"><b>50%</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 50%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item align-items-center" href="#">
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Make Beautiful Transitions
-                                            <div class="small float-right"><b>30%</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%"
-                                                aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item align-items-center" href="#">
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Create Pie Chart
-                                            <div class="small float-right"><b>75%</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%"
-                                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">View All Taks</a>
-                            </div>
-                        </li>
-                        <div class="topbar-divider d-none d-sm-block"></div>
-                        <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" th:src="@{/admin/img/user.png}"
@@ -361,11 +205,6 @@
                                             <div class="text-xs font-weight-bold text-uppercase mb-1">Doanh thu trong ngày</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{RevenueInDay|number:0}} vnđ
                                             </div>
-<!--                                             <div class="mt-2 mb-0 text-muted text-xs"> -->
-<!--                                                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> -->
-<!--                                                     3.48%</span> <span>Since last -->
-<!--                                                     month</span> -->
-<!--                                             </div> -->
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-primary"></i>
@@ -384,20 +223,13 @@
                                             <div class="text-xs font-weight-bold text-uppercase mb-1">Số lượng tour được đặt trong ngày</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{bookingInDay}}</div>
                                             <div class="mt-2 mb-0 text-muted text-xs">
-                                                
                                                 <span> <a href="#">Chi tiết</a></span>
                                             </div>
-
-                                            
-                                            </div>
-
                                         </div>
-<!--                                         <div class="col-auto"> -->
-<!--                                             <i class='bx bxs-car-wash fa-2x text-success' ></i> -->
-<!--                                         </div> -->
                                     </div>
                                 </div>
                             </div>
+                        </div>
                       
                         <!-- New User Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -409,7 +241,6 @@
                                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{totalUser}}</div>
                                             <div class="mt-2 mb-0 text-muted text-xs">
                                                 <span class="text-danger mr-2">
-<!--                                                 	<i class="fas fa-arrow-up"></i> -->
                                                     {{totalUserLastMonth | number:2 }}%</span>
                                                 <span>so với tháng trước</span>
                                             </div>
@@ -509,17 +340,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body" ng-repeat="c in items">
-                                    <div class="mb-3" >
-                                        <div class="small text-gray-500">{{c.name}}
-                                            <div class="small float-right"><b>{{c.quantity_new}} of {{c.quantity}}  Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-warning" role="progressbar" ng-style="{'width': +'{{c.phanTram}}'+'%'}"
-                                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="scrollbar">
+                                    <div class="card-body" ng-repeat="c in items">
+                                        <div class="mb-3">
+                                            <div class="small text-gray-500">{{c.name}}
+                                                <div class="small float-right"><b>{{c.quantity_new}} of {{c.quantity}}  Items</b></div>
+                                            </div>
+                                            <div class="progress" style="height: 12px;">
+                                                <div class="progress-bar bg-warning" role="progressbar" ng-style="{'width': +'{{c.phanTram}}'+'%'}"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="card-footer text-center">
                                     <a class="m-0 small text-primary card-link" href="#">View More <i
@@ -566,8 +398,7 @@
                         <!-- Message From Customer-->
                         <div class="col-xl-4 col-lg-5 ">
                             <div class="card mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Các khách hàng mới đăng ký</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button"
