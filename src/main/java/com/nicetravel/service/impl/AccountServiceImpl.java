@@ -95,6 +95,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public List<Account> findAllByUser() {
+        return accountRepository.findAllByUser();
+    }
+
+    @Override
     @Transactional
     public void update(Account account) throws Exception {
         if (ObjectUtils.isEmpty(account)) {

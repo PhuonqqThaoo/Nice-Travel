@@ -2,19 +2,18 @@ package com.nicetravel.custom;
 
 import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Provider;
-import com.nicetravel.entity.Role;
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.repository.RoleRepository;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.RoleService;
-import com.nicetravel.service.impl.AccountServiceImpl;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -144,5 +143,10 @@ public class UserServices {
         account.setPasswordChangedTime(new Date());
 
         accountService.update(account);
+    }
+
+    //    export excel
+    public List<Account> listAllAccounts() {
+        return accountRepository.findAll(Sort.by("id").ascending());
     }
 }

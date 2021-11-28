@@ -39,6 +39,9 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     
     @Query(value ="SELECT * FROM Account WHERE is_enable = 0 and role_Id = 2", nativeQuery = true)
     List<Account> findAllByStaff();
+
+    @Query(value ="SELECT * FROM Account WHERE is_enable = 0 and role_Id = 3", nativeQuery = true)
+    List<Account> findAllByUser();
     
 //    List<Account> findByIsEnable (Boolean isDeleted) ;
     @Modifying(clearAutomatically =true)

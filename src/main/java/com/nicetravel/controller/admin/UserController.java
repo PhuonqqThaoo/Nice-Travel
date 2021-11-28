@@ -1,16 +1,22 @@
 package com.nicetravel.controller.admin;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.nicetravel.custom.UserServices;
+import com.nicetravel.export.UserExcelExporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,16 +33,19 @@ public class UserController {
 
     private final AccountService accountService;
 
+    private final UserServices service;
+
     @Autowired
-    public UserController(AccountService accountService) {
+    public UserController(AccountService accountService, UserServices service) {
         this.accountService = accountService;
+        this.service = service;
     }
 
     @GetMapping("")
     public String doGetIndex(Model model, HttpServletRequest request) {
         Account account = accountService.findAccountsByUsername(request.getRemoteUser());
         model.addAttribute("account", account);
-        List<Account> list = accountService.findAll();
+        List<Account> list = accountService.findAllByUser();
         model.addAttribute("listUser", list);
         model.addAttribute("userRequest", new Account());
         return "/admin/khach-hang/ThongTinKhachHang";
@@ -114,5 +123,22 @@ public class UserController {
         }
 
         return "redirect:/admin/thong-tin-khach-hang";
+    }
+
+    @GetMapping("/users/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=users_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Account> listUsers =accountService.findAllByUser();
+
+        UserExcelExporter excelExporter = new UserExcelExporter(listUsers);
+
+        excelExporter.export(response);
     }
 }

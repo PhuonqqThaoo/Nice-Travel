@@ -1,4 +1,4 @@
-package com.nicetravel.controller.rest;
+package com.nicetravel.controller.rest.account;
 
 import com.nicetravel.entity.Account;
 import com.nicetravel.service.AccountService;

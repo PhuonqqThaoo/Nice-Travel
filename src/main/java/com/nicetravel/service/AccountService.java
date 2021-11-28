@@ -31,6 +31,8 @@ public interface AccountService {
 
     List<Account> findAllByStaff();
 
+    List<Account> findAllByUser();
+
     void update(Account account) throws Exception;
 
     void delete(String username) throws Exception;
