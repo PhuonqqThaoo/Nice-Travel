@@ -130,3 +130,12 @@
     border-radius: 5px;
     padding: 20px 30px !important;
 }
+
+.avatar_account{
+    text-align: center;
+}
+
+#thumbnail{
+    width: 50%;
+    height: auto;
+}

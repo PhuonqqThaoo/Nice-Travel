@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link th:href="@{/admin/img/logo/logoNiceIco.ico}" rel="icon">
-    <title>Khách hàng | Chỉnh sửa thông tin | Nice Travel</title>
+    <!-- icon thanh địa chỉ -->
+    <link rel="shortcut icon" th:href="@{/assets/img/logoNiceIco.ico}">
+    <title>Quản lý | Chỉnh sửa thông tin | Nice Travel</title>
     <link th:href="@{/admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/css/ruang-admin.min.css}" rel="stylesheet">
@@ -224,8 +225,10 @@
                                 </p>
                             </div>
                             <div class="col-6">
-                                <img id="thumbnail" th:src="@{${userRequest.getPhotosImagePath()}}" alt=""
-                                     style="width: 30%; height: auto; margin-left: 50px;">
+                                <div class="avatar_account">
+                                    <img id="thumbnail" th:src="@{${userRequest.getPhotosImagePath()}}"
+                                         alt="avatar-account">
+                                </div>
                                 <input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg"
                                        class="form-control">
                             </div>
@@ -236,7 +239,7 @@
 
                             <div class="form-row" style="display: none">
                                 <div class="form-group col-md-4">
-                                    <label for="inputUsername">Tài khoản</label>
+                                    <label for="username">Tài khoản</label>
                                     <input th:field="*{username}" id="username"
                                            readonly="true" type="text" class="form-control">
                                 </div>
@@ -244,25 +247,25 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="inputEmail">Email</label>
+                                    <label for="email">Email</label>
                                     <input type="email" th:field="*{email}"
                                            id="email" class="form-control">
                                     <i th:errors="*{email}"></i>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputPhone">Điện thoại</label>
+                                    <label for="phone">Điện thoại</label>
                                     <input type="text" th:field="*{phone}" id="phone" class="form-control">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputGender">Giới tính</label>
-                                    <div class="form-control">
+                                    <div class="form-control" id="inputGender">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio"
                                                    name="inlineRadioOptions" th:field="*{gender}"
                                                    id="gender"
                                                    value="false">
                                             <label class="form-check-label"
-                                                   for="inlineRadio1">Nam</label>
+                                                   for="gender">Nam</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio"
@@ -270,25 +273,25 @@
                                                    id="gender1"
                                                    value="true">
                                             <label class="form-check-label"
-                                                   for="inlineRadio2">Nữ</label>
+                                                   for="gender1">Nữ</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="inputIdCard">Họ và tên</label>
+                                <label for="fullname">Họ và tên</label>
                                 <input type="text" th:field="*{fullname}"
                                        id="fullname" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="inputAddress">Địa chỉ</label>
+                                <label for="address">Địa chỉ</label>
                                 <input type="text" th:field="*{address}" id="address"
                                        class="form-control"
                                 >
                             </div>
                             <div class="form-group ">
-                                <label for="inputIdCard">CMND/CCCD</label>
+                                <label for="id_Card">CMND/CCCD</label>
                                 <input type="text" th:field="*{id_Card}" id="id_Card"
                                        class="form-control">
                             </div>

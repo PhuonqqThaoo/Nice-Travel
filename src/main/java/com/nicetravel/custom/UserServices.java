@@ -137,14 +137,12 @@ public class UserServices {
 
 
 //    ChangePassword
-//@Autowired PasswordEncoder passwordEncoder;
 
-    public void changePassword(Account account, String newPassword) {
-        String encodedPassword = passwordEncoder.encode(newPassword);
+    public void changePassword(Account account, String newPassword) throws Exception {
         account.setPassword(newPassword);
 
         account.setPasswordChangedTime(new Date());
 
-        accountService.createAccount(account);
+        accountService.update(account);
     }
 }

@@ -24,7 +24,7 @@ public class PasswordExpirationFilter implements Filter {
             return;
         }
 
-        System.out.println("Bộ lọc hết hạn mật khẩu");
+//        System.out.println("Bộ lọc hết hạn mật khẩu");
 
         Account account = getLoggedInCustomer();
 

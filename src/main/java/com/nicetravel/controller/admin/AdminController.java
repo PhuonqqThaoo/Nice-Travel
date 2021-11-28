@@ -8,6 +8,7 @@ import com.nicetravel.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +18,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -29,21 +27,25 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     private final AccountService accountService;
 
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private final RoleService roleService;
 
     private final UserServices userServices;
 
     @Autowired
-    public AdminController(AccountService accountService, RoleService roleService, UserServices userServices) {
+    public AdminController(AccountService accountService, PasswordEncoder passwordEncoder, RoleService roleService, UserServices userServices) {
         this.accountService = accountService;
+        this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
         this.userServices = userServices;
     }
@@ -68,7 +70,7 @@ public class AdminController {
     }
 
     @PostMapping("/edit-information-admin")
-    public String update(@Valid @ModelAttribute(name = "userRequest") Account userRequest,
+    public String postEditInformationAdmin(@Valid @ModelAttribute(name = "userRequest") Account userRequest,
                          BindingResult result,
                          RedirectAttributes redirect, @RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
 
@@ -141,41 +143,33 @@ public class AdminController {
     }
 
     @PostMapping("/change-password")
-    public String postChangePassword(HttpServletRequest request, HttpServletResponse response,
-                                     Model model, RedirectAttributes ra,
-                                     @AuthenticationPrincipal Authentication authentication) throws Exception {
+    public String postChangePassword(HttpServletRequest request,
+                                     Model model, RedirectAttributes ra, @ModelAttribute(name = "account") Account account) throws Exception {
 
-
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        System.out.println("userDetails" + userDetails);
-        Account account = userDetails.getAccount();
-        System.out.println("account" + account);
+        Account acc = accountService.findAccountsByUsername(request.getRemoteUser());
 
         String oldPassword = request.getParameter("oldPassword");
         String newPassword = request.getParameter("newPassword");
-        System.out.println("new: " + newPassword);
-        String encodeOldPassword = passwordEncoder.encode(newPassword);
-        String encodeNewPassword = passwordEncoder.encode(newPassword);
-        System.out.println("encodeNew: " + encodeNewPassword);
-        System.out.println("oldPass: " + oldPassword);
+
         model.addAttribute("pageTitle", "Thay đổi mật khẩu đã hết hạn");
 
         if (oldPassword.equals(newPassword)) {
             model.addAttribute("message", "Mật khẩu mới của bạn phải khác mật khẩu cũ.");
-
+            System.out.println("Mật khẩu mới của bạn phải khác mật khẩu cũ.");
             return "redirect:/admin/change-password";
         }
 
-//        if (!passwordEncoder.matches(oldPassword, account.getPassword())) {
-//            model.addAttribute("message", "Mật khẩu cũ của bạn không chính xác.");
-//            return "redirect:/admin/change-password";
-//
-//        }
+        if (!passwordEncoder.matches(oldPassword, acc.getPassword())) {
+            model.addAttribute("message", "Mật khẩu cũ của bạn không chính xác.");
+            System.out.println("Mật khẩu cũ của bạn không chính xác.");
+            return "redirect:/admin/change-password";
+
+        }
         else {
-            userServices.changePassword(account, encodeNewPassword);
+            userServices.changePassword(acc, newPassword);
             request.logout();
             ra.addFlashAttribute("message", "Bạn đã đổi mật khẩu thành công. "
-                    + "Vui lòng thử lại.");
+                    + "Vui lòng đăng nhập lại.");
 
             return "redirect:/login";
         }
