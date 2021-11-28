@@ -2,6 +2,7 @@ package com.nicetravel.controller.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,90 +22,97 @@ import com.nicetravel.entity.Account;
 import com.nicetravel.service.AccountService;
 
 @Controller
-@RequestMapping("/admin/thong-tin-khach-hang") 
+@RequestMapping("/admin/thong-tin-khach-hang")
 public class UserController {
-	
-	@Autowired
-	private AccountService accountService;
-	
-	@GetMapping("")
-	public String doGetIndex(Model model) {
-		List<Account> list = accountService.findAll();
-		model.addAttribute("listUser",list);
-		model.addAttribute("userRequest",new Account());
-		return "/admin/khach-hang/ThongTinKhachHang";
-	}
-	
-	// localhost:8081/admin/thong-tin-khach-hang/edit?username={username}
-	@GetMapping("/edit")
-	public String doGetEdit(@RequestParam("username") String username, Model model) {
-		Account userRequest = accountService.findAccountsByUsername(username);
-		model.addAttribute("userRequest", userRequest);
-		return "/admin/khach-hang/ThongTinKhachHang::#form";
-	}
-	
-	@PostMapping("/edit")
-	public String doPostEdit(@Valid @ModelAttribute("userRequest") Account userRequest ,
-							BindingResult result,
-							 RedirectAttributes redirect) {
-		String errorMessage = null;
-		try {
-			// check if userRequest is not valid
-			if (result.hasErrors()) {
-				errorMessage ="User is not valid";
-				redirect.addFlashAttribute("errorMessage", errorMessage);
-			}else {
-				accountService.update(userRequest);
-				String successMessage = "User " + userRequest.getFullname() + " was update";
-				redirect.addFlashAttribute("successMessage", successMessage);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			errorMessage = "Cannot update user " + userRequest.getFullname()+" , please try again!";
-		}
-		
-		if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
-			redirect.addFlashAttribute("errorMessage", errorMessage);
-		}
-		return "redirect:/admin/thong-tin-khach-hang";
-	}
-	@GetMapping("/delete")
-	public String doGetDeleted(@RequestParam(name="username",required = true)String username,
-			RedirectAttributes redirect) {
-		try {
-			accountService.delete(username);
-			String successMessage = "User " +username + " was deleted!";
-			redirect.addFlashAttribute("successMessage", successMessage);
-		} catch (Exception e) {
-			e.printStackTrace();
-			redirect.addFlashAttribute("errorMessage ", "Cannot delete user, please try again!");
-		}
-		return "redirect:/admin/thong-tin-khach-hang";
-	}
-	
-	@PostMapping("/create")
-	public String doPostCreate(@Valid @ModelAttribute("userRequest") Account userRequest,
-			BindingResult result,
-			RedirectAttributes redirect) {
-		String errorMessage = null;
-		try {
-			// check if userRequest is not valid
-			if (result.hasErrors()) {
-				errorMessage ="User is not valid";
-			}else {
-				accountService.save(userRequest);
-				String successMessage = "User " + userRequest.getFullname() + " was created!";
-				redirect.addFlashAttribute("successMessage", successMessage);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			errorMessage = "Cannot create user, please try again!";
-		}
-		
-		if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
-			redirect.addFlashAttribute("errorMessage", errorMessage);
-		}
-		
-		return "redirect:/admin/thong-tin-khach-hang";
-	}
+
+    private final AccountService accountService;
+
+    @Autowired
+    public UserController(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+    @GetMapping("")
+    public String doGetIndex(Model model, HttpServletRequest request) {
+        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+        model.addAttribute("account", account);
+        List<Account> list = accountService.findAll();
+        model.addAttribute("listUser", list);
+        model.addAttribute("userRequest", new Account());
+        return "/admin/khach-hang/ThongTinKhachHang";
+    }
+
+    // localhost:8081/admin/thong-tin-khach-hang/edit?username={username}
+    @GetMapping("/edit")
+    public String doGetEdit(@RequestParam("username") String username, Model model) {
+        Account userRequest = accountService.findAccountsByUsername(username);
+        model.addAttribute("userRequest", userRequest);
+        return "/admin/khach-hang/ThongTinKhachHang::#form";
+    }
+
+    @PostMapping("/edit")
+    public String doPostEdit(@Valid @ModelAttribute("userRequest") Account userRequest,
+                             BindingResult result,
+                             RedirectAttributes redirect) {
+        String errorMessage = null;
+        try {
+            // check if userRequest is not valid
+            if (result.hasErrors()) {
+                errorMessage = "User is not valid";
+                redirect.addFlashAttribute("errorMessage", errorMessage);
+            } else {
+                accountService.update(userRequest);
+                String successMessage = "User " + userRequest.getFullname() + " was update";
+                redirect.addFlashAttribute("successMessage", successMessage);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorMessage = "Cannot update user " + userRequest.getFullname() + " , please try again!";
+        }
+
+        if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
+            redirect.addFlashAttribute("errorMessage", errorMessage);
+        }
+        return "redirect:/admin/thong-tin-khach-hang";
+    }
+
+    @GetMapping("/delete")
+    public String doGetDeleted(@RequestParam(name = "username", required = true) String username,
+                               RedirectAttributes redirect) {
+        try {
+            accountService.delete(username);
+            String successMessage = "User " + username + " was deleted!";
+            redirect.addFlashAttribute("successMessage", successMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirect.addFlashAttribute("errorMessage ", "Cannot delete user, please try again!");
+        }
+        return "redirect:/admin/thong-tin-khach-hang";
+    }
+
+    @PostMapping("/create")
+    public String doPostCreate(@Valid @ModelAttribute("userRequest") Account userRequest,
+                               BindingResult result,
+                               RedirectAttributes redirect) {
+        String errorMessage = null;
+        try {
+            // check if userRequest is not valid
+            if (result.hasErrors()) {
+                errorMessage = "User is not valid";
+            } else {
+                accountService.save(userRequest);
+                String successMessage = "User " + userRequest.getFullname() + " was created!";
+                redirect.addFlashAttribute("successMessage", successMessage);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorMessage = "Cannot create user, please try again!";
+        }
+
+        if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
+            redirect.addFlashAttribute("errorMessage", errorMessage);
+        }
+
+        return "redirect:/admin/thong-tin-khach-hang";
+    }
 }

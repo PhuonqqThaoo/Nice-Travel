@@ -2,6 +2,7 @@ package com.nicetravel.controller.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,18 @@ import com.nicetravel.service.AccountService;
 @Controller
 @RequestMapping("/admin/thong-tin-nhan-vien")
 public class StaffController { 
-	
+
+	private final AccountService accountService;
+
 	@Autowired
-	private AccountService accountService;
-	
+	public StaffController(AccountService accountService) {
+		this.accountService = accountService;
+	}
+
 	@GetMapping("")
-	public String doGetIndex(Model model) {
+	public String doGetIndex(HttpServletRequest request, Model model) {
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+		model.addAttribute("account", account);
 		List<Account> list = accountService.findAllByStaff();
 		model.addAttribute("listStaff",list);
 		model.addAttribute("userRequest",new Account());

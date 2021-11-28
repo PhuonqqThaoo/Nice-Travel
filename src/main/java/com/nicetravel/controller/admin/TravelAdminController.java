@@ -2,9 +2,12 @@ package com.nicetravel.controller.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.nicetravel.entity.Account;
 import com.nicetravel.entity.TravelTypes;
+import com.nicetravel.service.AccountService;
 import com.nicetravel.service.TravelTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,14 +28,23 @@ import com.nicetravel.service.TravelService;
 @RequestMapping("/admin/tour-du-lich")
 public class TravelAdminController {
 
-	@Autowired
-	private TravelService travelService;
+	private final TravelService travelService;
+
+	private final TravelTypeService travelTypeService;
+
+	private final AccountService accountService;
 
 	@Autowired
-	private TravelTypeService travelTypeService;
+	public TravelAdminController(TravelService travelService, TravelTypeService travelTypeService, AccountService accountService) {
+		this.travelService = travelService;
+		this.travelTypeService = travelTypeService;
+		this.accountService = accountService;
+	}
 
 	@GetMapping("")
-	public String quanLyTour(Model model) {
+	public String quanLyTour(Model model, HttpServletRequest request) {
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+		model.addAttribute("account", account);
 		List<Travel> list = travelService.getFindAllByTravel();
 		List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
 		model.addAttribute("listTravelType",listTravelType);

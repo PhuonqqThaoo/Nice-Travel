@@ -50,6 +50,8 @@ public class AdminController {
 
     @GetMapping("/information-admin")
     public String getInformationAdmin(Model model, HttpServletRequest request) {
+        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+        model.addAttribute("account", account);
         String username = request.getRemoteUser();
         model.addAttribute("account", accountService.findAccountsByUsername(username));
         return "admin/ca-nhan/InformationAdmin";
@@ -57,6 +59,8 @@ public class AdminController {
 
     @GetMapping("/edit-information-admin")
     public String getEditInformationAdmin(HttpServletRequest request, Model model) {
+        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+        model.addAttribute("account", account);
         String username = request.getRemoteUser();
         Account userRequest = accountService.findAccountsByUsername(username);
         model.addAttribute("userRequest", userRequest);
@@ -67,6 +71,7 @@ public class AdminController {
     public String update(@Valid @ModelAttribute(name = "userRequest") Account userRequest,
                          BindingResult result,
                          RedirectAttributes redirect, @RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
+
         String errorMessage = null;
 
         try {
@@ -124,6 +129,8 @@ public class AdminController {
 
     @GetMapping("/change-password")
     public String getChangePassword(HttpServletRequest request, Model model) {
+        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+        model.addAttribute("account", account);
         String username = request.getRemoteUser();
         System.out.println("chang pass (user): " + username);
         Account userRequest = accountService.findAccountsByUsername(username);

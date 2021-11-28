@@ -31,29 +31,33 @@ import com.nicetravel.service.TravelService;
 @Controller(value = "homeControllerOfAdmin")
 public class HomeController {
 
-	@Autowired
-	private AccountService accountService;
+	private final AccountService accountService;
+
+	private final StatsService statsService;
+
+	private final HttpServletRequest request;
+
+	private final TravelService travel;
+
+	private final BookingService booking;
 
 	@Autowired
-	private StatsService statsService;
-	
-	@Autowired
-	private AccountService acc;
-	
-	@Autowired
-	HttpServletRequest request;
-	
-	@Autowired
-	private TravelService travel;
-	
-	@Autowired
-	private BookingService booking;
-	
+	public HomeController(AccountService accountService, StatsService statsService, HttpServletRequest request, TravelService travel, BookingService booking, TravelLikeService travelLike) {
+		this.accountService = accountService;
+		this.statsService = statsService;
+		this.request = request;
+		this.travel = travel;
+		this.booking = booking;
+		this.travelLike = travelLike;
+	}
+
 	@Autowired
 	private TravelLikeService travelLike;
 	
 	@RequestMapping("/admin")
-	public String doGetIndex(Model model,HttpServletRequest request) throws Exception {
+	public String doGetIndex(Model model) throws Exception {
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+		model.addAttribute("account", account);
 		List<Account> list = accountService.findAll();
 		model.addAttribute("listUser",list);
 		List<Travel> listFavo = travel.getFavoriteTour();
