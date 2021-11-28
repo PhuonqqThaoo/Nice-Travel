@@ -78,7 +78,8 @@ public class Account implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @NotBlank(message = "Không để trống email") // áp dụng cho chuỗi
+    @NotBlank(message = "Không để trống email")
+    // áp dụng cho chuỗi
     @Email(message = "Không đúng định dạng email")
     @Column(name = "email", nullable = false, length = 100)
     private String email;

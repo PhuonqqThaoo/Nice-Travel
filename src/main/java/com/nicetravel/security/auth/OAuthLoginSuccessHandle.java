@@ -21,16 +21,21 @@ import java.io.IOException;
 
 @Component
 public class OAuthLoginSuccessHandle extends SavedRequestAwareAuthenticationSuccessHandler {
-    @Autowired
-    UserService userService;
+
+    private final UserService userService;
+
+    private final AccountService accountService;
+
+    private final RoleService roleService;
+
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    private AccountService accountService;
-
-    @Autowired
-    private RoleService roleService;
-
-    private PasswordEncoder passwordEncoder;
+    public OAuthLoginSuccessHandle(UserService userService, AccountService accountService, RoleService roleService) {
+        this.userService = userService;
+        this.accountService = accountService;
+        this.roleService = roleService;
+    }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -47,28 +52,35 @@ public class OAuthLoginSuccessHandle extends SavedRequestAwareAuthenticationSucc
         System.out.println("Oauth2 email: " + oauth2User.getEmail());
 
         Account accountByEmail = accountService.findByEmail(email);
-        System.out.println("accountByEmail: " + accountByEmail);
 
-        if(accountByEmail != null){
+        if (accountByEmail != null) {
             System.out.println("user account already exists in database");
-        }else{
-            System.out.println("new user. Add to database");
-            Account newAccount = new Account();
-            if (oauth2ClientName.equals("Github")){
-                newAccount.setUsername(username);
-            }
-            else {
-                newAccount.setUsername(email);
-            }
-            newAccount.setEmail(email);
-            newAccount.setFullname(fullname);
-            newAccount.setPassword("");
-            newAccount.setRole_Id(roleService.findByRoleName("USER"));
-            newAccount.setProvider(Provider.valueOf(oauth2ClientName.toUpperCase()));
-            newAccount.setIsEnable(false);
-            newAccount.setTravelLikes(null);
-            accountService.createAccount(newAccount);
         }
+        System.out.println("new user. Add to database");
+        Account newAccount = new Account();
+        if (oauth2ClientName.equalsIgnoreCase("GitHub")) {
+            newAccount.setUsername(username);
+            newAccount.setEmail("");
+        }
+        else {
+            newAccount.setUsername(email);
+            newAccount.setEmail(email);
+        }
+//            System.out.println("new user. Add to database");
+//            Account newAccount = new Account();
+
+        newAccount.setFullname(fullname);
+        newAccount.setPassword("");
+        newAccount.setGender(false);
+        newAccount.setAddress("");
+        newAccount.setPhone("");
+        newAccount.setImg("");
+        newAccount.setRole_Id(roleService.findByRoleName("USER"));
+        newAccount.setVerificationCode("");
+        newAccount.setProvider(Provider.valueOf(oauth2ClientName.toUpperCase()));
+        newAccount.setIsEnable(false);
+        newAccount.setTravelLikes(null);
+        accountService.createAccount(newAccount);
 
 
         userService.updateAuthenticationType(username, oauth2ClientName);

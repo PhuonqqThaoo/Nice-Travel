@@ -26,9 +26,9 @@
 		}
 
 		.header__navbar-user-name {
-			margin-left: 4px;
 			/*font: size 1.4em;*/
-			font-weight: 400;
+			font-weight: 600;
+			text-transform: uppercase;
 		}
 
 		.header__navbar-user-menu {
@@ -36,7 +36,7 @@
 			z-index: 100;
 			padding-left: 0;
 			width: 180px;
-			top: calc(100% + 6px);
+			top: calc(100% + 10px);
 			right: -11px;
 			background-color: white;
 			border-radius: 2px;
@@ -62,10 +62,10 @@
 			content: "";
 			display: block;
 			position: absolute;
-			top: -8px;
+			top: -12px;
 			right: 0;
-			width: 62%;
-			height: 8px;
+			width: 100%;
+			height: 13px;
 		}
 
 		.header__navbar_user-item--separate {
@@ -127,7 +127,17 @@
 						<th:block th:if="${#request.remoteUser}">
 							<b class=" header__navbar-item header__navbar-user">
 								<!--								 <img th:src="@{${userRequest.getPhotosImagePath()}}" alt="" class="header__navbar-user-img">-->
-								<span class="header__navbar-user-name">[[${#request.remoteUser}]]</span>
+<!--								<div sec:authorize="isAuthenticated()" class="text-center p-3">-->
+<!--									<form th:action="@{/logout}" method="post">-->
+<!--										Welcome <b><span sec:authentication="name">Username</span></b>-->
+<!--										&nbsp;-->
+<!--										<input type="submit" value="Logout" />-->
+<!--									</form>-->
+<!--								</div>-->
+
+								<span sec:authorize="isAuthenticated()" class="header__navbar-user-name">
+									<span sec:authentication="name" >Username</span>
+								</span>
 								<ul class="header__navbar-user-menu">
 									<li class="header__navbar_user-item">
 										<a href="">Tài khoản của tôi</a>
