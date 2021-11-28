@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -71,10 +72,12 @@ public class AdminController {
 
     @PostMapping("/edit-information-admin")
     public String postEditInformationAdmin(@Valid @ModelAttribute(name = "userRequest") Account userRequest,
-                         BindingResult result,
-                         RedirectAttributes redirect, @RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
+                                           BindingResult result,
+                                           RedirectAttributes redirect, @RequestParam("fileImage") MultipartFile multipartFile, HttpServletRequest request) throws IOException {
 
         String errorMessage = null;
+
+        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
 
         try {
             // check if userRequest is not valid
@@ -85,29 +88,32 @@ public class AdminController {
             } else {
                 String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
                 System.out.println(fileName);
-                userRequest.setImg(fileName);
-                System.out.println("getImg" + userRequest.getImg());
+                account.setImg(fileName);
+                System.out.println("getImg: " + userRequest.getImg());
 
                 userRequest.setRole_Id(roleService.findByRoleName("USER"));
                 System.out.println(userRequest.getRole_Id());
 
                 accountService.update(userRequest);
+                accountService.update(account);
                 System.out.println("image: " + userRequest.getImg());
 
                 System.out.println("userRequest: " + userRequest);
+
+                System.out.println("request: " + accountService.findAccountsByUsername(request.getRemoteUser()));
 
                 String uploadDir = "user-photos/" + userRequest.getUsername();
 
                 Path uploadPath = Paths.get(uploadDir);
 
-                if(!Files.exists(uploadPath)){
+                if (!Files.exists(uploadPath)) {
                     Files.createDirectories(uploadPath);
                 }
 
-                try(InputStream inputStream = multipartFile.getInputStream()){
+                try (InputStream inputStream = multipartFile.getInputStream()) {
                     Path filePath = uploadPath.resolve(fileName);
                     Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-                }catch(IOException e){
+                } catch (IOException e) {
                     throw new IOException("Could not save upload file: " + fileName);
                 }
 
@@ -144,7 +150,7 @@ public class AdminController {
 
     @PostMapping("/change-password")
     public String postChangePassword(HttpServletRequest request,
-                                     Model model, RedirectAttributes ra, @ModelAttribute(name = "account") Account account) throws Exception {
+                                     Model model, RedirectAttributes ra) throws Exception {
 
         Account acc = accountService.findAccountsByUsername(request.getRemoteUser());
 
@@ -164,8 +170,7 @@ public class AdminController {
             System.out.println("Mật khẩu cũ của bạn không chính xác.");
             return "redirect:/admin/change-password";
 
-        }
-        else {
+        } else {
             userServices.changePassword(acc, newPassword);
             request.logout();
             ra.addFlashAttribute("message", "Bạn đã đổi mật khẩu thành công. "
