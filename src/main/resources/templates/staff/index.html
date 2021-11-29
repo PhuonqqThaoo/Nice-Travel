@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 
 <head>
@@ -10,16 +10,16 @@
     <meta name="author" content="">
     <link th:href="@{/admin/img/logo/logoNiceIco.ico}" rel="icon">
     <title>Nhân Viên | Nice Travel</title>
-    <link th:href="@{/admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/admin/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/admin/css/ruang-admin.min.css}" rel="stylesheet">
+    <link th:href="@{/dashboard/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/dashboard/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/dashboard/css/ruang-admin.min.css}" rel="stylesheet">
 	<script src="https://code.angularjs.org/1.8.0/angular-route.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <!-- boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- css -->
-    <link th:href="@{/admin/css/admin.style.css}" rel="stylesheet">
+    <link th:href="@{/dashboard/css/admin.style.css}" rel="stylesheet">
 </head>
 
 <body id="page-top" ng-app="admin-app" ng-controller="admin-ctrl">
@@ -28,7 +28,7 @@
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/" style="background-color: #ee5253 !important;">
                 <div class="sidebar-brand-icon">
-                    <img th:src="@{/admin/img/logo/logoNice.png}">
+                    <img th:src="@{/dashboard/img/logo/logoNice.png}">
                 </div>
                 <div class="sidebar-brand-text mx-3">Nice Travel</div>
             </a>
@@ -544,142 +544,10 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <script th:src="@{/admin/vendor/jquery/jquery.min.js}"></script>
-    <script th:src="@{/admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-    <script th:src="@{/admin/vendor/jquery-easing/jquery.easing.min.js}"></script>
-    <script th:src="@{/admin/js/ruang-admin.min.js}"></script>
-    <script th:src="@{/admin/vendor/chart.js/Chart.min.js}"></script>
-    <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
-    <script th:inline="javascript">
-        // Set new default font family and font color to mimic Bootstrap's default styling
-        Chart.defaults.global.defaultFontFamily = 'Nunito',
-            '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-        Chart.defaults.global.defaultFontColor = '#858796';
-
-        function number_format(number, decimals, dec_point, thousands_sep) {
-            // *     example: number_format(1234.56, 2, ',', ' ');
-            // *     return: '1 234,56'
-            number = (number + '').replace(',', '').replace(' ', '');
-            var n = !isFinite(+number) ? 0 : +number,
-                prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-                sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-                dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-                s = '',
-                toFixedFix = function (n, prec) {
-                    var k = Math.pow(10, prec);
-                    return '' + Math.round(n * k) / k;
-                };
-            // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-            s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-            if (s[0].length > 3) {
-                s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-            }
-            if ((s[1] || '').length < prec) {
-                s[1] = s[1] || '';
-                s[1] += new Array(prec - s[1].length + 1).join('0');
-            }
-            return s.join(dec);
-        }
-        /*<![CDATA[*/
-        var totalPriceLast6Months = /*[[${chartData}]]*/ 'default';
-        /*]]>*/
-        var arrayLabels = totalPriceLast6Months[0];
-        var arrayData = totalPriceLast6Months[1];
-        // Area Chart Example
-        var ctx = document.getElementById("myAreaChart");
-        var myLineChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: arrayLabels,
-                datasets: [{
-                    label: 'Doanh thu: ',
-                    lineTension: 0.3,
-                    backgroundColor: "rgba(78, 115, 223, 0.5)",
-                    borderColor: "rgba(78, 115, 223, 1)",
-                    pointRadius: 3,
-                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHoverRadius: 3,
-                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHitRadius: 10,
-                    pointBorderWidth: 2,
-                    data: arrayData,
-                }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        left: 10,
-                        right: 25,
-                        top: 25,
-                        bottom: 0
-                    }
-                },
-                scales: {
-                    xAxes: [{
-                        time: {
-                            unit: 'date'
-                        },
-                        gridLines: {
-                            display: false,
-                            drawBorder: false
-                        },
-                        ticks: {
-                            maxTicksLimit: 7
-                        }
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            maxTicksLimit: 5,
-                            padding: 10,
-                            // Include a dollar sign in the ticks
-                            callback: function (value, index, values) {
-                                return value.toLocaleString("vi-VN", {
-                                    style: "currency",
-                                    currency: "VND"
-                                });
-                                // 	              return number_format(value)+'đ' ;
-                            }
-                        },
-                        gridLines: {
-                            color: "rgb(234, 236, 244)",
-                            zeroLineColor: "rgb(234, 236, 244)",
-                            drawBorder: false,
-                            borderDash: [2],
-                            zeroLineBorderDash: [2]
-                        }
-                    }],
-                },
-                legend: {
-                    display: false
-                },
-                tooltips: {
-                    backgroundColor: "rgb(255,255,255)",
-                    bodyFontColor: "#858796",
-                    titleMarginBottom: 10,
-                    titleFontColor: '#6e707e',
-                    titleFontSize: 14,
-                    borderColor: '#dddfeb',
-                    borderWidth: 1,
-                    xPadding: 15,
-                    yPadding: 15,
-                    displayColors: false,
-                    intersect: false,
-                    mode: 'index',
-                    caretPadding: 10,
-                    
-                    callbacks: {
-                        label: function (tooltipItem, chart) {
-                            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                            return datasetLabel + ':' + number_format(tooltipItem.yLabel) + 'đ';
-                        }
-                    }
-                }
-            }
-        });
-    </script>
+    <script th:src="@{/dashboard/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/dashboard/vendor/jquery-easing/jquery.easing.min.js}"></script>
+    <script th:src="@{/dashboard/js/ruang-admin.min.js}"></script>
     
     <script>
         var app = angular.module("admin-app", []);
