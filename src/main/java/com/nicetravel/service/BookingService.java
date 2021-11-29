@@ -11,7 +11,7 @@ import java.util.List;
 public interface BookingService {
     List<Booking> getAllBooking();
     
-    List<Booking> getAllBookingByAcId(Account accountId);
+    List<Booking> getAllBookingByAcId(String id);
 
     Booking findById(Integer id);
 

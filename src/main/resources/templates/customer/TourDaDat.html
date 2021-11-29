@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link th:href="@{/admin/img/logo/logoNiceIco.ico}" rel="icon">
+    <!-- icon thanh địa chỉ -->
+    <link rel="shortcut icon" th:href="@{/assets/img/logoNiceIco.ico}">
     <title>Khách hàng | Tour đã đặt | Nice Travel</title>
     <link th:href="@{/dashboard/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/dashboard/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
@@ -24,7 +25,7 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/"
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/customer"
                 style="background-color: #10ac84;">
                 <div class="sidebar-brand-icon">
                     <img th:src="@{/dashboard/img/logo/logoNice.png}">
@@ -59,20 +60,20 @@
                 Thông tin khách hàng
             </div>
             <li class="nav-item">
-                <a class="nav-link collapsed" th:href="@{/customer/information-customer/}">
-                    <i class='bx bxs-plane-alt'></i>
+                <a class="nav-link collapsed" href="/customer/information-customer">
+                    <i class='bx bxs-user-rectangle'></i>
                     <span>Thông tin cá nhân</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/customer/edit-information-customer">
-                    <i class='bx bxs-user-rectangle'></i>
+                    <i class='bx bx-edit'></i>
                     <span>Chỉnh sửa thông tin</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/customer/change-password">
-                    <i class='bx bxs-user-rectangle'></i>
+                <a class="nav-link collapsed" href="/customer/change-password" th:attr="onclick='editUser(\''+ ${#request.remoteUser} +'\')'">
+                    <i class='bx bxs-lock-alt'></i>
                     <span>Đổi mật khẩu</span>
                 </a>
             </li>
@@ -99,7 +100,7 @@
                                 <form class="navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-1 small"
-                                            placeholder="What do you want to look for?" aria-label="Search"
+                                            placeholder="Bạn muốn tìm gì?" aria-label="Search"
                                             aria-describedby="basic-addon2" style="border-color: #3f51b5;">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">

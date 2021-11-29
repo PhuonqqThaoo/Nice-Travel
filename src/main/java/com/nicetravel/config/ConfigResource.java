@@ -1,4 +1,4 @@
-package com.nicetravel.security;
+package com.nicetravel.config;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;

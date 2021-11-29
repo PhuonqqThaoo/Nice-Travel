@@ -35,6 +35,6 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 	String[][] getTotalPriceFromTo(String from, String to);
 
 	// Fix sau
-	@Query("SELECT u FROM Booking u WHERE u.accountId = ?1")
-	List<Booking> getAllBookingByAcId(Account id);
+	@Query("SELECT u FROM Booking u WHERE u.accountId.username = ?1")
+	List<Booking> getAllBookingByAcId(String id);
 }

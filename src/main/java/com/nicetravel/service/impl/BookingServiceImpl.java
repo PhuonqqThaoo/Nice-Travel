@@ -126,7 +126,7 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public List<Booking> getAllBookingByAcId(Account accountId) {
-		return bookingRepository.getAllBookingByAcId(accountId);
+	public List<Booking> getAllBookingByAcId(String id) {
+		return bookingRepository.getAllBookingByAcId(id);
 	}
 }

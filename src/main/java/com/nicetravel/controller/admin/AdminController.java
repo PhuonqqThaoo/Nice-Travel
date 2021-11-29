@@ -78,6 +78,8 @@ public class AdminController {
         String errorMessage = null;
 
         Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+        String password = account.getPassword();
+        System.out.println("password: " + account.getPassword());
 
         try {
             // check if userRequest is not valid
@@ -88,12 +90,14 @@ public class AdminController {
             } else {
                 String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
                 System.out.println(fileName);
-                if (fileName.equals("") || fileName.length() == 0){
+                if (fileName.equals("") || fileName.length() == 0 || fileName == null){
                     System.out.println("accountImg: " + account.getImg());
                     account.setImg(account.getImg());
+                    account.setPassword(password);
                 }
                 else {
                     account.setImg(fileName);
+//                    userRequest.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));
                 }
                 System.out.println("getImg: " + userRequest.getImg());
 
@@ -140,8 +144,6 @@ public class AdminController {
 
     @GetMapping("/change-password")
     public String getChangePassword(HttpServletRequest request, Model model) {
-        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
-        model.addAttribute("account", account);
         String username = request.getRemoteUser();
         System.out.println("chang pass (user): " + username);
         Account userRequest = accountService.findAccountsByUsername(username);
@@ -174,7 +176,7 @@ public class AdminController {
             return "redirect:/admin/change-password";
 
         } else {
-            userServices.changePassword(acc, newPassword);
+            userServices.changePassword(acc, passwordEncoder.encode(newPassword));
             request.logout();
             ra.addFlashAttribute("message", "Bạn đã đổi mật khẩu thành công. "
                     + "Vui lòng đăng nhập lại.");

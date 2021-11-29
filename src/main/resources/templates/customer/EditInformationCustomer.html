@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link th:href="@{/admin/img/logo/logoNiceIco.ico}" rel="icon">
+    <!-- icon thanh địa chỉ -->
+    <link rel="shortcut icon" th:href="@{/assets/img/logoNiceIco.ico}">
     <title>Khách hàng | Chỉnh sửa thông tin | Nice Travel</title>
     <link th:href="@{/dashboard/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/dashboard/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
@@ -22,421 +23,450 @@
 </head>
 
 <body id="page-top">
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/" style="background-color: #10ac84;">
-                <div class="sidebar-brand-icon">
-                    <img th:src="@{/dashboard/img/logo/logoNice.png}">
-                </div>
-                <div class="sidebar-brand-text mx-3">Nice Travel</div>
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/customer"
+           style="background-color: #10ac84;">
+            <div class="sidebar-brand-icon">
+                <img th:src="@{/dashboard/img/logo/logoNice.png}">
+            </div>
+            <div class="sidebar-brand-text mx-3">Nice Travel</div>
+        </a>
+        <hr class="sidebar-divider my-0">
+        <li class="nav-item">
+            <a class="nav-link" href="/customer">
+                <i class='bx bxs-home'></i>
+                <span>Trang chủ</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Quản lý
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
+               aria-expanded="true" aria-controls="collapseForm">
+                <i class='bx bxs-plane-alt'></i>
+                <span>Tour du lịch</span>
             </a>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item">
-                <a class="nav-link" href="/customer">
-                    <i class='bx bxs-home'></i>
-                    <span>Trang chủ</span></a>
-            </li>
-            <hr class="sidebar-divider">
-            <div class="sidebar-heading">
-                Quản lý
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
-                    aria-expanded="true" aria-controls="collapseForm">
-                    <i class='bx bxs-plane-alt'></i>
-                    <span>Tour du lịch</span>
-                </a>
-                <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/customer/tour-da-dat">Tour đã đặt</a>
-                    </div>
+            <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/customer/tour-da-dat">Tour đã đặt</a>
                 </div>
-            </li>
-
-            <hr class="sidebar-divider">
-            <div class="sidebar-heading">
-                Thông tin khách hàng
             </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/customer/information-customer">
-                    <i class='bx bxs-plane-alt'></i>
-                    <span>Thông tin cá nhân</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/customer/edit-information-customer" th:attr="onclick='editUser(\''+ ${#request.remoteUser} +'\')'">
-                    <i class='bx bxs-user-rectangle'></i>
-                    <span>Chỉnh sửa thông tin</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/customer/change-password">
-                    <i class='bx bxs-user-rectangle'></i>
-                    <span>Đổi mật khẩu</span>
-                </a>
-            </li>
-            <hr class="sidebar-divider">
-            <div class="version" id="version-ruangadmin"></div>
-        </ul>
-        <!-- Sidebar -->
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                <!-- TopBar -->
-                <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top" style="background-color: #1dd1a1;">
-                    <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-1 small"
-                                            placeholder="What do you want to look for?" aria-label="Search"
-                                            aria-describedby="basic-addon2" style="border-color: #3f51b5;">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
+        </li>
+
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Thông tin khách hàng
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/customer/information-customer">
+                <i class='bx bxs-user-rectangle'></i>
+                <span>Thông tin cá nhân</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/customer/edit-information-customer">
+                <i class='bx bx-edit'></i>
+                <span>Chỉnh sửa thông tin</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/customer/change-password" th:attr="onclick='editUser(\''+ ${#request.remoteUser} +'\')'">
+                <i class='bx bxs-lock-alt'></i>
+                <span>Đổi mật khẩu</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+        <div class="version" id="version-ruangadmin"></div>
+    </ul>
+    <!-- Sidebar -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <!-- TopBar -->
+            <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top"
+                 style="background-color: #1dd1a1;">
+                <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                             aria-labelledby="searchDropdown">
+                            <form class="navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-1 small"
+                                           placeholder="Bạn muốn tìm gì?" aria-label="Search"
+                                           aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
                                     </div>
-                                </form>
-                            </div>
-                        </li>
-                        <div class="topbar-divider d-none d-sm-block"></div>
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="img-profile rounded-circle" th:src="@{admin/img/boy.png}"
-                                    style="max-width: 60px">
-                                <span class="ml-2 d-none d-lg-inline text-white small">Huynh Phuoc Dan</span>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="img-profile rounded-circle" th:src="@{${account.getPhotosImagePath()}}"
+                                 style="max-width: 60px">
+                            <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <a class="dropdown-item" th:href="@{/customer/information-customer}">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Thông tin cá nhân
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Thông tin cá nhân
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Cài đặt
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="bx bxs-lock-open-alt fa-fw mr-2 text-gray-400"></i>
-                                    Đổi mật khẩu
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Đăng xuất
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- Topbar -->
+                            <a class="dropdown-item" th:href="@{/customer/change-password}">
+                                <i class="bx bxs-lock-open-alt fa-fw mr-2 text-gray-400"></i>
+                                Đổi mật khẩu
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
+                               data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Đăng xuất
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Topbar -->
 
-                <!-- Container Fluid-->
-                <div class="container-fluid customer-information" id="container-wrapper">
-                    <div class="d-sm-flex justify-content-between mb-4 title">
-                        <h1 class="h3 mb-0 text-gray-800">Thay đổi thông tin cá nhân</h1>
-                    </div>
+            <!-- Container Fluid-->
+            <div class="container-fluid customer-information" id="container-wrapper">
+                <div class="d-sm-flex justify-content-between mb-4 title">
+                    <h1 class="h3 mb-0 text-gray-800">Thay đổi thông tin cá nhân</h1>
+                </div>
 
-                    <!-- row info -->
-                    <div class="information-box">
-                        <!-- intro info -->
+                <!-- row info -->
+                <div class="information-box">
+                    <!-- intro info -->
 
-                        <!-- edit information -->
-                        <div class="row box box-border">
+                    <!-- edit information -->
+                    <div class="row box box-border">
+                        <form th:action="@{/customer/edit-information-customer}" th:object="${userRequest}" id="form"
+                              method="POST" enctype="multipart/form-data" style="width: 100%; border-radius: 10px; padding: 20px">
                             <div class="row box">
                                 <div class="col-6">
-                                    <h5 style="font-weight: 600;">Tài khoản khách hàng: [[${#request.remoteUser}]]</h5>
+                                    <h5 style="font-weight: 600;">Tài khoản khách hàng: <span th:text="*{username}"></span></h5>
                                     <p>
-                                        Thông tin cá nhân và các tùy chọn giúp quản lý thông tin đó. Bạn có thể tùy chỉnh
-                                        thông tin cá nhân. Các thông tin cá nhân phải chính xác, thuận lợi cho giao dịch hóa
+                                        Thông tin cá nhân và các tùy chọn giúp quản lý thông tin đó. Bạn có thể tùy
+                                        chỉnh
+                                        thông tin cá nhân. Các thông tin cá nhân phải chính xác, thuận lợi cho giao dịch
+                                        hóa
                                         đơn.
                                     </p>
                                 </div>
                                 <div class="col-6">
-                                    <img src="https://cuoituan.tuoitre.vn/img/author.png" alt=""
-                                         style="width: 30%; height: auto; margin-left: 50px;">
-                                    <input type="file" name="" id="" class="form-control">
+                                    <div class="avatar_account">
+                                        <img id="thumbnail" th:src="@{${userRequest.getPhotosImagePath()}}"
+                                             alt="avatar-account" style="width: 150px; height: 150px; border-radius: 50%">
+                                    </div>
+                                    <input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg"
+                                           class="form-control">
                                 </div>
                             </div>
-                            <form th:object= "${userRequest}" id="form" method="POST" style="width: 100%;">
-                                <div class="form-row" style="display: none">
-                                    <div class="form-group col-md-4">
-                                        <label for="inputUsername">Tài khoản</label>
-                                        <input th:field="*{username}" id = "username"
-                                               readonly="true" type="text" class="form-control" >
-                                    </div>
-
+                            <!--                            -->
+                            <div class="form-row" style="display: none">
+                                <div class="form-group col-md-4">
+                                    <label for="username">Tài khoản</label>
+                                    <input th:field="*{username}" id="username"
+                                           readonly="true" type="text" class="form-control">
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="inputEmail">Email</label>
-                                        <input type="email" th:field="*{email}"
-                                               id = "email" class="form-control" >
-                                        <i th:errors="*{email}"></i>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputPhone">Điện thoại</label>
-                                        <input type="text" th:field="*{phone}" id = "phone" class="form-control" >
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputGender">Giới tính</label>
-                                        <div class="form-control">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio"
-                                                       name="inlineRadioOptions" th:field="*{gender}"
-                                                       id = "gender"
-                                                       value="false">
-                                                <label class="form-check-label"
-                                                       for="inlineRadio1">Nam</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio"
-                                                       name="inlineRadioOptions" th:field="*{gender}"
-                                                       id = "gender1"
-                                                       value="true">
-                                                <label class="form-check-label"
-                                                       for="inlineRadio2">Nữ</label>
-                                            </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="email">Email</label>
+                                    <input type="email" th:field="*{email}"
+                                           id="email" class="form-control">
+                                    <i th:errors="*{email}"></i>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="phone">Điện thoại</label>
+                                    <input type="text" th:field="*{phone}" id="phone" class="form-control">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="genderRadio">Giới tính</label>
+                                    <div class="form-control">
+                                        <div class="form-check form-check-inline" id="genderRadio">
+                                            <input class="form-check-input" type="radio"
+                                                   name="inlineRadioOptions" th:field="*{gender}"
+                                                   id="gender"
+                                                   value="true">
+                                            <label class="form-check-label"
+                                                   for="gender">Nam</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio"
+                                                   name="inlineRadioOptions" th:field="*{gender}"
+                                                   id="gender1"
+                                                   value="false">
+                                            <label class="form-check-label"
+                                                   for="gender1">Nữ</label>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="inputIdCard">Họ và tên</label>
-                                    <input type="text" th:field="*{fullname}"
-                                           id = "fullname" class="form-control" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputAddress">Địa chỉ</label>
-                                    <input type="text" th:field="*{address}" id = "address"
-                                           class="form-control"
-                                    >
-                                </div>
-                                <div class="form-group ">
-                                    <label for="inputIdCard">CMND/CCCD</label>
-                                    <input type="text" th:field="*{id_Card}" id ="id_Card"
-                                            class="form-control" >
-                                </div>
+                            <div class="form-group">
+                                <label for="fullname">Họ và tên</label>
+                                <input type="text" th:field="*{fullname}"
+                                       id="fullname" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Địa chỉ</label>
+                                <input type="text" th:field="*{address}" id="address"
+                                       class="form-control"
+                                >
+                            </div>
+                            <div class="form-group ">
+                                <label for="id_Card">CMND/CCCD</label>
+                                <input type="text" th:field="*{id_Card}" id="id_Card"
+                                       class="form-control">
+                            </div>
 
-                                <!--                                                 </div> -->
-                                <div class="right-button">
-                                    <!--                                                     <button type="button" id="submitCreate" class="btn btn-success" th:attr="onclick='createUser()'" disabled="true" >Thêm</button> -->
-                                    <button type="button" id="submitUpdate" th:attr="onclick='updateUser()'" class="btn btn-primary">Chỉnh sửa</button>
-                                    <button type="button" id="submitCacel" th:attr="onclick='cacelBtn()'" class="btn btn-secondary" >Làm mới</button>
-                                </div>
-                            </form>
-                        </div>
+                            <!--                                                 </div> -->
+                            <div class="right-button">
+                                <!--                                                     <button type="button" id="submitCreate" class="btn btn-success" th:attr="onclick='createUser()'" disabled="true" >Thêm</button> -->
+                                <button type="button" id="submitUpdate" th:attr="onclick='updateUser()'"
+                                        class="btn btn-primary">Chỉnh sửa
+                                </button>
+                                <button type="button" id="submitCacel" th:attr="onclick='cacelBtn()'"
+                                        class="btn btn-secondary">Làm mới
+                                </button>
+                            </div>
+                        </form>
+
                     </div>
-                    <!-- end row info -->
-
                 </div>
-                <!---Container Fluid-->
+                <!-- end row info -->
+
             </div>
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
+            <!---Container Fluid-->
+        </div>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
                         <span>copyright &copy; <script>
                                 document.write(new Date().getFullYear());
                             </script> - developed by
                             <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
                         </span>
-                    </div>
                 </div>
-            </footer>
-            <!-- Footer -->
-        </div>
+            </div>
+        </footer>
+        <!-- Footer -->
     </div>
+</div>
 
-    <!-- Scroll to top -->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+<!-- Scroll to top -->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
 
-    <script th:src="@{/dashboard/vendor/jquery/jquery.min.js}"></script>
-    <script th:src="@{/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-    <script th:src="@{/dashboard/vendor/jquery-easing/jquery.easing.min.js}"></script>
-    <script th:src="@{/dashboard/js/ruang-admin.min.js}"></script>
-    <script th:src="@{/dashboard/vendor/chart.js/Chart.min.js}"></script>
-    <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
-    <script th:inline="javascript">
-        function editUser(username) {
-            var url ='/customer/edit-information-customer?username=' +username;
-            $.get(url).done(function (fragment) {
-                $("#form").replaceWith(fragment);
-                $("#form").prop('action','/customer/edit-information-customer');
-                var imgUrl = $('#hiddenImgUrl').val();
+<script th:src="@{/dashboard/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/dashboard/vendor/jquery-easing/jquery.easing.min.js}"></script>
+<script th:src="@{/dashboard/js/ruang-admin.min.js}"></script>
+<script th:src="@{/dashboard/vendor/chart.js/Chart.min.js}"></script>
+<!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
+<script th:inline="javascript">
+    function editUser(username) {
+        var url = '/customer/edit-information-customer?username=' + username;
+        $.get(url).done(function (fragment) {
+            $("#form").replaceWith(fragment);
+            $("#form").prop('action', '/customer/edit-information-customer');
+            var imgUrl = $('#hiddenImgUrl').val();
 //     			$('#userImgUpload').prop('src','/admin/img/'+imgUrl);
-                $('html,body').animate({
-                    scrollTop: $("#form").offset().top
-                },1000);
-                $("#form :input").prop('readonly',false); // cho phép sửa
-                $("input#username").prop('readonly',true); // tô xám
-                $("#submitUpdate").prop('disabled',false);
-            })
-        };
+            $('html,body').animate({
+                scrollTop: $("#form").offset().top
+            }, 1000);
+            $("#form :input").prop('readonly', false); // cho phép sửa
+            $("input#username").prop('readonly', true); // tô xám
+            $("#submitUpdate").prop('disabled', false);
+        })
+    };
 
-        function cacelBtn() {
-            $('#username').val('');
-            $('#email').val('');
-            $('#fullname').val('');
-            $('#phone').val('');
-            $('#id_Card').val('');
-            $('#address').val('');
-            $('#form:input').prop('readonly',true);
-            $('#submitUpdate').prop('disabled',true);
-        };
+    function cacelBtn() {
+        $('#username').val('');
+        $('#email').val('');
+        $('#fullname').val('');
+        $('#phone').val('');
+        $('#id_Card').val('');
+        $('#address').val('');
+        $('#form:input').prop('readonly', true);
+        $('#submitUpdate').prop('disabled', true);
+    };
 
 
-        function updateUser() {
+    function updateUser() {
 
-                $('#form').submit();
-        };
+        $('#form').submit();
+    };
 
-    </script>
+</script>
 
-    <script th:inline="javascript">
-        // Set new default font family and font color to mimic Bootstrap's default styling
-        Chart.defaults.global.defaultFontFamily = 'Nunito',
-            '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-        Chart.defaults.global.defaultFontColor = '#858796';
+<script th:inline="javascript">
 
-        function number_format(number, decimals, dec_point, thousands_sep) {
-            // *     example: number_format(1234.56, 2, ',', ' ');
-            // *     return: '1 234,56'
-            number = (number + '').replace(',', '').replace(' ', '');
-            var n = !isFinite(+number) ? 0 : +number,
-                prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-                sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-                dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-                s = '',
-                toFixedFix = function (n, prec) {
-                    var k = Math.pow(10, prec);
-                    return '' + Math.round(n * k) / k;
-                };
-            // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-            s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-            if (s[0].length > 3) {
-                s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-            }
-            if ((s[1] || '').length < prec) {
-                s[1] = s[1] || '';
-                s[1] += new Array(prec - s[1].length + 1).join('0');
-            }
-            return s.join(dec);
+    $(document).ready(function () {
+        $('#fileImage').change(function () {
+            showImageThumbnail(this)
+        })
+    })
+
+    function showImageThumbnail(fileInput) {
+        file = fileInput.files[0];
+        render = new FileReader();
+
+        render.onload = function (e) {
+            $('#thumbnail').attr('src', e.target.result);
         }
-        /*<![CDATA[*/
-        var totalPriceLast6Months = /*[[${chartData}]]*/ 'default';
-        /*]]>*/
-        var arrayLabels = totalPriceLast6Months[0];
-        var arrayData = totalPriceLast6Months[1];
-        // Area Chart Example
-        var ctx = document.getElementById("myAreaChart");
-        var myLineChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: arrayLabels,
-                datasets: [{
-                    label: 'Doanh thu: ',
-                    lineTension: 0.3,
-                    backgroundColor: "rgba(78, 115, 223, 0.5)",
-                    borderColor: "rgba(78, 115, 223, 1)",
-                    pointRadius: 3,
-                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHoverRadius: 3,
-                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHitRadius: 10,
-                    pointBorderWidth: 2,
-                    data: arrayData,
+
+        render.readAsDataURL(file);
+    }
+
+    // Set new default font family and font color to mimic Bootstrap's default styling
+    Chart.defaults.global.defaultFontFamily = 'Nunito',
+        '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#858796';
+
+    function number_format(number, decimals, dec_point, thousands_sep) {
+        // *     example: number_format(1234.56, 2, ',', ' ');
+        // *     return: '1 234,56'
+        number = (number + '').replace(',', '').replace(' ', '');
+        var n = !isFinite(+number) ? 0 : +number,
+            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+            sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+            s = '',
+            toFixedFix = function (n, prec) {
+                var k = Math.pow(10, prec);
+                return '' + Math.round(n * k) / k;
+            };
+        // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+        if (s[0].length > 3) {
+            s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+        }
+        if ((s[1] || '').length < prec) {
+            s[1] = s[1] || '';
+            s[1] += new Array(prec - s[1].length + 1).join('0');
+        }
+        return s.join(dec);
+    }
+
+    /*<![CDATA[*/
+    var totalPriceLast6Months = /*[[${chartData}]]*/ 'default';
+    /*]]>*/
+    var arrayLabels = totalPriceLast6Months[0];
+    var arrayData = totalPriceLast6Months[1];
+    // Area Chart Example
+    var ctx = document.getElementById("myAreaChart");
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: arrayLabels,
+            datasets: [{
+                label: 'Doanh thu: ',
+                lineTension: 0.3,
+                backgroundColor: "rgba(78, 115, 223, 0.5)",
+                borderColor: "rgba(78, 115, 223, 1)",
+                pointRadius: 3,
+                pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointBorderColor: "rgba(78, 115, 223, 1)",
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
+                data: arrayData,
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 25,
+                    top: 25,
+                    bottom: 0
+                }
+            },
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'date'
+                    },
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 7
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        maxTicksLimit: 5,
+                        padding: 10,
+                        // Include a dollar sign in the ticks
+                        callback: function (value, index, values) {
+                            return value.toLocaleString("vi-VN", {
+                                style: "currency",
+                                currency: "VND"
+                            });
+                            // 	              return number_format(value)+'đ' ;
+                        }
+                    },
+                    gridLines: {
+                        color: "rgb(234, 236, 244)",
+                        zeroLineColor: "rgb(234, 236, 244)",
+                        drawBorder: false,
+                        borderDash: [2],
+                        zeroLineBorderDash: [2]
+                    }
                 }],
             },
-            options: {
-                maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        left: 10,
-                        right: 25,
-                        top: 25,
-                        bottom: 0
-                    }
-                },
-                scales: {
-                    xAxes: [{
-                        time: {
-                            unit: 'date'
-                        },
-                        gridLines: {
-                            display: false,
-                            drawBorder: false
-                        },
-                        ticks: {
-                            maxTicksLimit: 7
-                        }
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            maxTicksLimit: 5,
-                            padding: 10,
-                            // Include a dollar sign in the ticks
-                            callback: function (value, index, values) {
-                                return value.toLocaleString("vi-VN", {
-                                    style: "currency",
-                                    currency: "VND"
-                                });
-                                // 	              return number_format(value)+'đ' ;
-                            }
-                        },
-                        gridLines: {
-                            color: "rgb(234, 236, 244)",
-                            zeroLineColor: "rgb(234, 236, 244)",
-                            drawBorder: false,
-                            borderDash: [2],
-                            zeroLineBorderDash: [2]
-                        }
-                    }],
-                },
-                legend: {
-                    display: false
-                },
-                tooltips: {
-                    backgroundColor: "rgb(255,255,255)",
-                    bodyFontColor: "#858796",
-                    titleMarginBottom: 10,
-                    titleFontColor: '#6e707e',
-                    titleFontSize: 14,
-                    borderColor: '#dddfeb',
-                    borderWidth: 1,
-                    xPadding: 15,
-                    yPadding: 15,
-                    displayColors: false,
-                    intersect: false,
-                    mode: 'index',
-                    caretPadding: 10,
+            legend: {
+                display: false
+            },
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                titleMarginBottom: 10,
+                titleFontColor: '#6e707e',
+                titleFontSize: 14,
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                intersect: false,
+                mode: 'index',
+                caretPadding: 10,
 
-                    callbacks: {
-                        label: function (tooltipItem, chart) {
-                            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                            return datasetLabel + ':' + number_format(tooltipItem.yLabel) + 'đ';
-                        }
+                callbacks: {
+                    label: function (tooltipItem, chart) {
+                        var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                        return datasetLabel + ':' + number_format(tooltipItem.yLabel) + 'đ';
                     }
                 }
             }
-        });
-    </script>
+        }
+    });
+</script>
 </body>
 
 </html>

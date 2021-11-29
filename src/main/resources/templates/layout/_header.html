@@ -1,4 +1,6 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:schemaLocation="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
 
 <head>
 	<style>
@@ -127,30 +129,43 @@
 						<th:block th:if="${#request.remoteUser}">
 							<b class=" header__navbar-item header__navbar-user">
 								<!--								 <img th:src="@{${userRequest.getPhotosImagePath()}}" alt="" class="header__navbar-user-img">-->
-<!--								<div sec:authorize="isAuthenticated()" class="text-center p-3">-->
-<!--									<form th:action="@{/logout}" method="post">-->
-<!--										Welcome <b><span sec:authentication="name">Username</span></b>-->
-<!--										&nbsp;-->
-<!--										<input type="submit" value="Logout" />-->
-<!--									</form>-->
-<!--								</div>-->
+								<!--								<div sec:authorize="isAuthenticated()" class="text-center p-3">-->
+								<!--									<form th:action="@{/logout}" method="post">-->
+								<!--										Welcome <b><span sec:authentication="name">Username</span></b>-->
+								<!--										&nbsp;-->
+								<!--										<input type="submit" value="Logout" />-->
+								<!--									</form>-->
+								<!--								</div>-->
 
 								<span sec:authorize="isAuthenticated()" class="header__navbar-user-name">
-									<span sec:authentication="name" >Username</span>
+									<span sec:authentication="name">Username</span>
 								</span>
 								<ul class="header__navbar-user-menu">
-									<li class="header__navbar_user-item">
-										<a href="">Tài khoản của tôi</a>
+<!--									Tài khoản của tôi-->
+									<li th:if="${#request.isUserInRole('ADMIN')}" class="header__navbar_user-item">
+										<a th:href="@{/admin/information-admin}">Tài khoản của tôi</a>
 									</li>
+									<li th:if="${#request.isUserInRole('STAFF')}" class="header__navbar_user-item">
+										<a th:href="@{/staff/information-staff}">Tài khoản của tôi</a>
+									</li>
+									<li th:if="${#request.isUserInRole('USER')}" class="header__navbar_user-item">
+										<a th:href="@{/customer/information-customer}">Tài khoản của tôi</a>
+									</li>
+
+<!--									Chỉnh sủa tài khoản-->
 									<li th:if="${#request.isUserInRole('ADMIN')}" class="header__navbar_user-item">
 										<a th:href="@{/admin/edit-information-admin}">Chỉnh sửa tài khoản</a>
 									</li>
-									<li th:if="${#request.isUserInRole('STAFF') or #request.isUserInRole('USER')}"
+									<li th:if="${#request.isUserInRole('STAFF')}"
 										class="header__navbar_user-item">
-										<a th:href="@{/customer/edit-information-customer}">Chỉnh sửa</a>
+										<a th:href="@{/staff/edit-information-staff}">Chỉnh sửa tài khoản</a>
+									</li>
+									<li th:if="${#request.isUserInRole('USER')}"
+										class="header__navbar_user-item">
+										<a th:href="@{/customer/edit-information-customer}">Chỉnh sửa tài khoản</a>
 									</li>
 									<li th:if="${#request.isUserInRole('USER')}" class="header__navbar_user-item">
-										<a th:href="@{/order/list}">Tour đã đặt</a>
+										<a th:href="@{/customer/tour-da-dat}">Tour đã đặt</a>
 									</li>
 									<li th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('STAFF')}"
 										class="header__navbar_user-item">

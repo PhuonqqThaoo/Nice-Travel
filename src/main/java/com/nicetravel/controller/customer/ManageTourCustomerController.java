@@ -30,7 +30,7 @@ public class ManageTourCustomerController {
 		String username = request.getRemoteUser();
 		Account accountId = accountService.findAccountsByUsername(username);
 		
-		List<Booking> items = bookingService.getAllBookingByAcId(accountId);
+		List<Booking> items = bookingService.getAllBookingByAcId(username);
 		model.addAttribute("items", items);
 		return "customer/TourDaDat";
 	}

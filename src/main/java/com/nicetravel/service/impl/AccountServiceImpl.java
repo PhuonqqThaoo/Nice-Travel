@@ -107,8 +107,12 @@ public class AccountServiceImpl implements AccountService {
         }
         //check update non password or update full
         if (ObjectUtils.isEmpty(account.getPassword())) {
-accountRepository.updateNonPass(account.getFullname(), account.getEmail(), account.getPhone(), account.getId_Card(), account.getGender(), account.getAddress(), account.getUsername());
-        } else {
+            accountRepository.updateNonPass(account.getFullname(), account.getEmail(), account.getPhone(), account.getId_Card(), account.getGender(), account.getAddress(), account.getUsername());
+        }
+        else if(account.getPassword().length() != 0 || account.getPassword() != null){
+            accountRepository.update(account.getFullname(), account.getEmail(), account.getPassword(), account.getPhone(), account.getId_Card(), account.getGender(), account.getAddress(), account.getImg(), account.getUsername());
+        }
+        else {
             account.setPassword(bcrypt.encode(account.getPassword()));
             accountRepository.update(account.getFullname(), account.getEmail(), account.getPassword(), account.getPhone(), account.getId_Card(), account.getGender(), account.getAddress(), account.getImg(), account.getUsername());
         }
