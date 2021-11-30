@@ -19,6 +19,7 @@
 
     <!-- boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+     
 </head>
 
 <body id="page-top">
@@ -139,27 +140,34 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col"></th>
-                                            <th scope="col">Tên chuyến đi</th>
-                                            <th scope="col">Địa điểm</th>
+                                            <th scope="col">Mã Hóa đơn</th>
+                                            <th scope="col">Ngày tạo</th>
+                                            <th scope="col">Địa chỉ</th>
                                             <th scope="col">Giá</th>
-                                            <th scope="col">Trạng thái</th>
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr th:each="p : ${items}">
-                                            <td style="width: 14%;">
-                                                <img th:src="@{|/assets/img/${p.id}|}" style="width: 100px;" alt="">
+                                            <td>
+                                                <h style="font-weight: 700;" class="idBooking" id="idBooking">[[${p.id}]]</h4>
+                                            </td>
+                                            <td>[[${#dates.format(p.createdDate, 'dd-MM-yyyy')}]]</td>
+                                            <td>[[${p.address}]]</td>
+                                            <td>[[${p.totalPrice}]] vnđ</td>
+                                            <td th:if="${p.payBoolean} == false AND ${p.isDeleted} == false">
+                                            	<span class="badge badge-danger">Chưa thanh toán</span>
+                                            </td>
+                                            <td th:if="${p.payBoolean} == true AND ${p.isDeleted} == false">
+                                            	<span class="badge badge-info">Đã thanh toán</span>
+                                            </td>
+                                            <td th:if="${p.payBoolean} == false AND ${p.isDeleted} == true">
+                                            	<span class="badge badge-warning">Đơn hàng đã hủy</span>
                                             </td>
                                             <td>
-                                                <h5 style="font-weight: 700;">[[${p.address}]]</h5>
+                                            	<a class="btn btn-primary"><i class='bx bx-search'></i></a>
+                                            	<a class="btn btn-danger isDelete-window button" th:href="@{|/customer/isDelete/${p.id}|}" th:if="${p.payBoolean} == false AND ${p.isDeleted} == false">Hủy</a>
                                             </td>
-                                            <td>[[${p.phone}]]</td>
-                                            <td>[[${p.totalPrice}]] vnđ</td>
-                                            <td><span class="badge badge-info">Chưa thanh toán</span></td>
-                                            <td><button type="button" class="btn btn-primary"><i
-                                                        class='bx bx-search'></i></button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -208,7 +216,7 @@
     <script th:src="@{/dashboard/js/ruang-admin.min.js}"></script>
     <script th:src="@{/dashboard/vendor/chart.js/Chart.min.js}"></script>
     <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
-
+	
 </body>
 
 </html>
