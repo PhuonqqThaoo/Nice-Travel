@@ -8,6 +8,8 @@ import com.nicetravel.service.AccountService;
 import com.nicetravel.service.RoleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -90,15 +92,20 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public Page<Account> findAllByStaffPage(int page, int size) {
+        return accountRepository.findAllByStaffPage(PageRequest.of(page, size));
+    }
+
+    @Override
     public List<Account> findAllByStaff() {
         return accountRepository.findAllByStaff();
     }
 
     @Override
-    public List<Account> findAllByUser() {
-        return accountRepository.findAllByUser();
+    @Transactional
+    public Page<Account> findAllByUser(int page, int size) {
+        return accountRepository.findAllByUser(PageRequest.of(page, size));
     }
-
     @Override
     @Transactional
     public void update(Account account) throws Exception {

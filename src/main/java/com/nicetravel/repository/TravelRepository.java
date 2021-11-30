@@ -61,8 +61,8 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
     @Query(value = "{CALL sp_getTourFavorite()}" , nativeQuery = true)
 	  List<Travel> getTourFavorite() ;
 
-   	@Query(value ="SELECT * FROM Travel WHERE is_deleted = 0 ", nativeQuery = true)
-    List<Travel> findAllByTravel();
+	@Query(value ="SELECT * FROM Travel WHERE is_deleted = 0 ", nativeQuery = true)
+	Page<Travel> findAllByTravel(Pageable page);
    	
 //   	@Query("SELECT u FROM Travel u WHERE u.id =?1")
 //   	Travel findTravelById(Integer id);
@@ -73,6 +73,10 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
    	@Modifying(clearAutomatically =true)
     @Query(value="UPDATE Travel SET  is_Deleted = 1 WHERE id =?1", nativeQuery = true)
     void deletedTravel(Integer id);
+
+	// danh sách tour trong tháng
+	@Query(value="select * from Travel where Month(created_date) = MONTH(GetDate()) and YEAR(created_date) = Year(GetDate()) and is_deleted = 0", nativeQuery = true)
+	Page<Travel> getTravelInMonth(Pageable page);
    	
    	
 

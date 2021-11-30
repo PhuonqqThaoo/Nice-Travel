@@ -147,15 +147,25 @@ public class TravelServiceImpl implements TravelService {
 		return travelRepository.getTourFavorite();
 	}
 
+	@Override
+	public Page<Travel> getTravelInMonth(int page, int size) {
+		return travelRepository.getTravelInMonth(PageRequest.of(page, size));
+	}
+
+	public Page<Travel> getFindAllByTravel(int page, int size) {
+
+		return travelRepository.findAllByTravel(PageRequest.of(page, size));
+	}
+
 //	@Override
 //	public List<String[][]> getTotalSold() {
 //		// TODO Auto-generated method stub
 //		return travelRepository.getTotalSold();
 //	}
 
-	public List<Travel> getFindAllByTravel() {
-		return travelRepository.findAllByTravel();
-	}
+//	public List<Travel> getFindAllByTravel() {
+//		return travelRepository.findAllByTravel();
+//	}
 
 	@Override
 	@Transactional 

@@ -254,42 +254,45 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr th:each="user,i : ${listUser}" >
-                                                                <td th:text = "${i.index+1}"></th>
-                                                                <td>
-                                                                    <img width="30px" th:alt="${user.username}" th:src="${'/admin/img/'+user.img}" >
-                                                                </td>
-                                                                <td th:text = "${user.username}"></td>
-                                                                <td th:text = "${user.fullname}"></td>
-                                                                <td th:text = "${user.email}"></td>
-                                                                <td th:text = "${user.gender ? 'Nam' : 'Nữ'}"></td>
-                                                                <td th:text = "${user.phone}"></td>
-                                                                <td th:text = "${user.address}"></td>
-                                                                <td align="center">
-                                                                    <button th:attr="onclick='editUser(\''+${user.username}+'\')'" class="btn btn-success" style="width: 40px">
-                                                                        <i class="fa fa-edit" aria-hidden="true"></i>                                                        	
-                                                                    </button>
-                                                                    <a class="btn btn-danger" th:href="@{'/admin/thong-tin-khach-hang/delete?username=' +${user.username}}">
-                                                                        <i class="fa fa-trash" aria-hidden="true"></i>  
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
+                                                        <tr th:each="user,i : ${listUser}" >
+                                                            <td th:text = "${i.index+1}"></th>
+                                                            <td>
+                                                                <img width="30px" th:alt="${user.username}" th:src="${'/admin/img/'+user.img}" >
+                                                            </td>
+                                                            <td th:text = "${user.username}"></td>
+                                                            <td th:text = "${user.fullname}"></td>
+                                                            <td th:text = "${user.email}"></td>
+                                                            <td th:text = "${user.gender ? 'Nữ' : 'Nam'}"></td>
+                                                            <td th:text = "${user.phone}"></td>
+                                                            <td th:text = "${user.address}"></td>
+                                                            <td align="center">
+                                                                <button th:attr="onclick='editUser(\''+${user.username}+'\')'" class="btn btn-success" style="width: 40px">
+                                                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                                                </button>
+                                                                <a class="btn btn-danger" th:href="@{'/admin/thong-tin-khach-hang/delete?username=' +${user.username}}">
+                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <nav aria-label="Page navigation example">
+                                                <nav aria-label="Page navigation example" th:if="${totalPage >1}">
                                                     <ul class="pagination justify-content-center">
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#" aria-label="Previous">
+                                                        <li class="page-item" th:class="${currentPage == 1} ? 'disabled' : ''">
+                                                            <a th:href="@{${currentPage > 1} ? ${'?page=' + (currentPage-1)} :''}" class="page-link" aria-label="Previous">
                                                                 <span aria-hidden="true">&laquo;</span>
                                                                 <span class="sr-only">Previous</span>
                                                             </a>
                                                         </li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#" aria-label="Next">
+                                                        <li th:each="i : ${#numbers.sequence(1,totalPage)}" class="page-item">
+                                                            <a class="page-link" th:href="@{'?page='+ ${i} }" th:text="${i}"></a>
+                                                        </li>
+                                                        <!--                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                                                        <!--                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                                                        <li class="page-item" th:class="${currentPage == totalPage} ? 'disabled' : ''">
+                                                            <a th:href="@{${currentPage < totalPage} ? ${'?page=' + (currentPage+1)} : '' }"
+                                                               class="page-link" href="#" aria-label="Next">
                                                                 <span aria-hidden="true">&raquo;</span>
                                                                 <span class="sr-only">Next</span>
                                                             </a>
@@ -343,19 +346,19 @@
                                                     <div class="form-control">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio"
-                                                                name="inlineRadioOptions" th:field="*{gender}" 
-                                                                id = "gender" readonly="true"
-                                                                value="false">
+                                                                   name="gender" th:field="*{gender}"
+                                                                   id = "gender" readonly="true"
+                                                                   value="false">
                                                             <label class="form-check-label"
-                                                                for="gender">Nam</label>
+                                                                   for="gender">Nam</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio"
-                                                                name="inlineRadioOptions" th:field="*{gender}" 
-                                                                id = "gender1" readonly="true"
-                                                                value="true">
+                                                                   name="gender" th:field="*{gender}"
+                                                                   id = "gender1" readonly="true"
+                                                                   value="true">
                                                             <label class="form-check-label"
-                                                                for="gender1">Nữ</label>
+                                                                   for="gender1">Nữ</label>
                                                         </div>
                                                     </div>
                                                 </div>

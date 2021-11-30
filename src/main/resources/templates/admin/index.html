@@ -425,7 +425,7 @@
                                                 </tr>
                                             </thead>
                                                 <tbody>
-                                                <tr th:each="user,i : ${listUser}" >
+                                                <tr th:each="user,i : ${listUser1}" >
                                                     <td th:text = "${i.index+1}"></th>
                                                     <td th:text = "${user.fullname}"></td>
                                                     <td th:text = "${user.gender ? 'Nam' : 'Nữ'}"></td>
@@ -437,7 +437,29 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <a class="m-0 small text-primary card-link" href="#">Xem thêm <i
+                                    <nav aria-label="Page navigation example" th:if="${totalPage >1}">
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item" th:class="${currentPage == 1} ? 'disabled' : ''">
+                                                <a th:href="@{${currentPage > 1} ? ${'?page=' + (currentPage-1)} :''}" class="page-link" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                            <li th:each="i : ${#numbers.sequence(1,totalPage)}" class="page-item">
+                                                <a class="page-link" th:href="@{'?page='+ ${i} }" th:text="${i}"></a>
+                                            </li>
+                                            <!--                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                                            <!--                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                                            <li class="page-item" th:class="${currentPage == totalPage} ? 'disabled' : ''">
+                                                <a th:href="@{${currentPage < totalPage} ? ${'?page=' + (currentPage+1)} : '' }"
+                                                   class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    <a class="m-0 small text-primary card-link" href="/admin/thong-tin-khach-hang">Xem thêm <i
                                             class="fas fa-chevron-right"></i></a>
                                 </div>
                             </div>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.jasper.tagplugins.jstl.core.If;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -42,6 +43,11 @@ public class HomeController {
 	private final BookingService booking;
 
 	@Autowired
+	private TravelLikeService travelLike;
+
+	private static final int SIZE = 4;
+
+	@Autowired
 	public HomeController(AccountService accountService, StatsService statsService, HttpServletRequest request, TravelService travel, BookingService booking, TravelLikeService travelLike) {
 		this.accountService = accountService;
 		this.statsService = statsService;
@@ -51,15 +57,18 @@ public class HomeController {
 		this.travelLike = travelLike;
 	}
 
-	@Autowired
-	private TravelLikeService travelLike;
 	
 	@RequestMapping("/admin")
-	public String doGetIndex(Model model) throws Exception {
+	public String doGetIndex(Model model,HttpServletRequest request,
+							 @RequestParam(name="page",defaultValue = "1") int page)  throws Exception {
 		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
 		model.addAttribute("account", account);
 		List<Account> list = accountService.findAll();
 		model.addAttribute("listUser",list);
+		Page<Account> listByUser = accountService.findAllByUser(page-1, SIZE);
+		model.addAttribute("listUser1", listByUser.getContent());
+		model.addAttribute("totalPage", listByUser.getTotalPages());
+		model.addAttribute("currentPage", page);
 		List<Travel> listFavo = travel.getFavoriteTour();
 		model.addAttribute("favoriteItems", listFavo);
 		System.out.println(listFavo);

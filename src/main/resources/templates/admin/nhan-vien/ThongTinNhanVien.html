@@ -261,7 +261,7 @@
                                                                 <td th:text = "${user.username}"></td>
                                                                 <td th:text = "${user.fullname}"></td>
                                                                 <td th:text = "${user.email}"></td>
-                                                                <td th:text = "${user.gender}"></td>
+                                                                <td th:text = "${user.gender ? 'Nữ' : 'Nam'}"></td>
                                                                 <td th:text = "${user.phone}"></td>
                                                                 <td th:text = "${user.address}"></td>
                                                                 <td align="center">
@@ -278,25 +278,29 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <nav aria-label="Page navigation example">
+                                                <nav aria-label="Page navigation example" th:if="${totalPage >1}">
                                                     <ul class="pagination justify-content-center">
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#" aria-label="Previous">
+                                                        <li class="page-item" th:class="${currentPage == 1} ? 'disabled' : ''">
+                                                            <a th:href="@{${currentPage > 1} ? ${'?page=' + (currentPage-1)} :''}" class="page-link" aria-label="Previous">
                                                                 <span aria-hidden="true">&laquo;</span>
                                                                 <span class="sr-only">Previous</span>
                                                             </a>
                                                         </li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#" aria-label="Next">
+                                                        <li th:each="i : ${#numbers.sequence(1,totalPage)}" class="page-item">
+                                                            <a class="page-link" th:href="@{'?page='+ ${i} }" th:text="${i}"></a>
+                                                        </li>
+                                                        <!--                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                                                        <!--                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                                                        <li class="page-item" th:class="${currentPage == totalPage} ? 'disabled' : ''">
+                                                            <a th:href="@{${currentPage < totalPage} ? ${'?page=' + (currentPage+1)} : '' }"
+                                                               class="page-link" href="#" aria-label="Next">
                                                                 <span aria-hidden="true">&raquo;</span>
                                                                 <span class="sr-only">Next</span>
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </nav>
+
                                             </div>
                                         </div>
                                             
