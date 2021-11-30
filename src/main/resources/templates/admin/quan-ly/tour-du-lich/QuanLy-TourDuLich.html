@@ -28,7 +28,7 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon">
                     <img th:src="@{/admin/img/logo/logoNice.png}">
                 </div>
@@ -91,6 +91,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý tour du lịch</h6>
                         <a class="collapse-item" href="/admin/tour-du-lich">Danh sách tour</a>
+                        <a class="collapse-item" href="/admin/travel-type">Địa điểm du lịch</a>
                     </div>
                 </div>
             </li>
@@ -192,11 +193,11 @@
 
                     <div class="row quan-ly-danh-sach-tour">
                         <!-- danh sách tour hôm nay -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-10 col-lg-7">
                             <div class="card mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Các tour trong tháng</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Thống kê</h6>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table align-items-center table-flush">
@@ -246,58 +247,29 @@
                         </div>
 
                         <!-- Danh sách tour đã xóa -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-xl-2 col-lg-5">
                             <div class="card mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tour du lịch yêu thích</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Bộ lọc thống kê</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Oblong T-Shirt
-                                            <div class="small float-right"><b>600 of 800 Items</b></div>
+                                    <form th:action="@{/admin}" method="post">
+                                        <div class="row">
+                                            <div class="col">
+                                                <input name="day" type="date" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <i class='bx bx-transfer-alt' style="font-size: 20px;"></i>
+                                            </div>
+                                            <div class="col">
+                                                <input name="end" type="date" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <button class="btn btn-primary" style="height: 100%;"><i class='bx bx-search-alt'></i> Tìm</button>
+                                            </div>
                                         </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 80%"
-                                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Gundam 90'Editions
-                                            <div class="small float-right"><b>500 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 70%"
-                                                aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Rounded Hat
-                                            <div class="small float-right"><b>455 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 55%"
-                                                aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Indomie Goreng
-                                            <div class="small float-right"><b>400 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Remote Control Car Racing
-                                            <div class="small float-right"><b>200 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 30%"
-                                                aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -310,23 +282,11 @@
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Tổng họp các tour du lịch</h6>
                                 <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button"
-                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Bộ lọc <i class="fas fa-chevron-down"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                        aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Thống kê</div>
-                                        <a class="dropdown-item" href="#">Tất cả</a>
-                                        <a class="dropdown-item" href="#">Tuần này</a>
-                                        <a class="dropdown-item" href="#">Tháng này</a>
-                                        <a class="dropdown-item" href="#">Năm này</a>
-                                    </div>
+                                    <button style="float: right" id="createBtn" type="button"
+                                        class="btn btn-success">Tạo mới</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                            <button style="float: right" id="createBtn" type="button" class="btn btn-success">Create</button>
                                 <!-- table danh sách tour du lịch -->
                                 <table class="table">
                                     <thead>
@@ -335,16 +295,11 @@
                                             <!-- click đúp để chuyển sang trang chỉnh sửa -->
                                             <th scope="col">STT</th>
                                             <th scope="col">Name</th>
-<!--                                             <th scope="col">Type</th> -->
-                                            <th scope="col">Departure place</th>
                                             <th scope="col">Place</th>
                                             <th scope="col">Price</th>
-                                            <th scope="col">Create date</th>
-                                            <th scope="col">Start date</th>
-                                            <th scope="col">End date</th>
+                                            <th scope="col" style="width: 200px;">Start date</th>
                                             <th scope="col">Quantity</th>
                                             <th scope="col">Hour</th>
-<!--                                             <th scope="col">Slug</th> -->
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
@@ -352,16 +307,11 @@
                                         <tr th:each="list,i : ${list}">
                                             <td th:text = "${i.index+1}"></th>
                                             <td th:text = "${list.name}"></td>
-                                            <!--                                             <td th:text = "${list.TravelTypes.id}"></td> -->
-                                            <td th:text = "${list.departurePlace}"></td>
                                             <td th:text = "${list.place}"></td>
                                             <td th:text = "${list.price}"></td>
-                                            <td th:text = "${list.createdDate}"></td>
                                             <td th:text = "${list.startDate}"></td>
-                                            <td th:text = "${list.endDate}"></td>
                                             <td th:text = "${list.quantityNew}"></td>
                                             <td th:text = "${list.hour}"></td>
-                                            <!--                                             <td th:text = "${list.slug}"></td> -->
                                             <td align="center">
                                                 <button th:attr="onclick='editTravel(\''+${list.id}+'\')'" class="btn btn-success" style="width: 40px">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
@@ -427,7 +377,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="inputPlace">Place</label>
                                             <input th:field="*{place}" id = "place"
-                                                   readonly="true" type="text" class="form-controls" >
+                                                   readonly="true" type="text" class="form-control" >
                                         </div>
                                     </div>
                                     <div class="form-row">
