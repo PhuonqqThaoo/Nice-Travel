@@ -140,7 +140,12 @@
                 </div>
             </li>
             <hr class="sidebar-divider">
-            <div class="version" id="version-ruangadmin"></div>
+            <li class="nav-item">
+                <a class="nav-link collapsed"href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                    <i class='bx bx-log-out-circle'></i>
+                    <span>Đăng xuất</span>
+                </a>
+            </li>
         </ul>
         <!-- Sidebar -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -157,24 +162,7 @@
                                 <img class="img-profile rounded-circle" th:src="@{${account.getPhotosImagePath()}}"
                                     style="max-width: 60px">
                                 <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" th:href="@{/admin/information-admin}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Thông tin cá nhân
-                                </a>
-                                <a class="dropdown-item" th:href="@{/admin/change-password}">
-                                    <i class="bx bxs-lock-open-alt fa-fw mr-2 text-gray-400"></i>
-                                    Đổi mật khẩu
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
-                                   data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Đăng xuất
-                                </a>
-                            </div>
+                            </a> 
                         </li>
                     </ul>
                 </nav>
