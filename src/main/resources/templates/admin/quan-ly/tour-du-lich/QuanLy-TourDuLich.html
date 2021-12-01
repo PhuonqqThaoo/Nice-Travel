@@ -28,7 +28,7 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon">
                     <img th:src="@{/admin/img/logo/logoNice.png}">
                 </div>
@@ -91,6 +91,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý tour du lịch</h6>
                         <a class="collapse-item" href="/admin/tour-du-lich">Danh sách tour</a>
+                        <a class="collapse-item" href="/admin/travel-type">Địa điểm du lịch</a>
                     </div>
                 </div>
             </li>
@@ -143,7 +144,12 @@
                 </div>
             </li>
             <hr class="sidebar-divider">
-            <div class="version" id="version-ruangadmin"></div>
+            <li class="nav-item">
+                <a class="nav-link collapsed"href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                    <i class='bx bx-log-out-circle'></i>
+                    <span>Đăng xuất</span>
+                </a>
+            </li>
         </ul>
         <!-- Sidebar -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -161,23 +167,6 @@
                                     style="max-width: 60px">
                                 <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" th:href="@{/admin/information-admin}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Thông tin cá nhân
-                                </a>
-                                <a class="dropdown-item" th:href="@{/admin/change-password}">
-                                    <i class="bx bxs-lock-open-alt fa-fw mr-2 text-gray-400"></i>
-                                    Đổi mật khẩu
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
-                                   data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Đăng xuất
-                                </a>
-                            </div>
                         </li>
                     </ul>
                 </nav>
@@ -185,6 +174,15 @@
 
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
+                    <div id="divThongBao">
+                        <div id="thongBao" style="display: none;" role="alert" align="center">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <span id="errorMessage" th:text="${errorMessage}"></span>
+                            <span id="successMessage" th:text="${successMessage}"></span>
+                        </div>
+                    </div>
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Chỉnh sửa tour du lịch</h1>
                         <ol class="breadcrumb">
@@ -195,118 +193,83 @@
 
                     <div class="row quan-ly-danh-sach-tour">
                         <!-- danh sách tour hôm nay -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-10 col-lg-7">
                             <div class="card mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Các tour trong tháng</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Thống kê</h6>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>...</th>
+                                                <th>STT</th>
+                                                <th>Hình</th>
                                                 <th>Tên chuyến đi</th>
                                                 <th>Địa điểm</th>
                                                 <th>Giá</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr th:each="p,i : ${listByTravelInMonth}">
+                                                <td th:text = "${i.index+1}"></th>
                                                 <td style="width: 17%;">
-                                                    <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100%;"
-                                                        alt="">
+                                                    <img th:src="@{|/assets/img/${p.img}|}" style="width: 100%;" alt="">
                                                 </td>
-                                                <td>
-                                                    <h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu
-                                                        Trắng - Bảo Tàng Làng Chài Xưa</h5>
-                                                </td>
-                                                <td>Sân Bay Tân Sơn Nhất</td>
-                                                <td>13,960,000 vnđ</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 17%;">
-                                                    <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100%;"
-                                                        alt="">
-                                                </td>
-                                                <td>
-                                                    <h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu
-                                                        Trắng - Bảo Tàng Làng Chài Xưa</h5>
-                                                </td>
-                                                <td>Sân Bay Tân Sơn Nhất</td>
-                                                <td>13,960,000 vnđ</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 17%;">
-                                                    <img th:src="@{|/assets/img/dalat.jpg|}" style="width: 100%;"
-                                                        alt="">
-                                                </td>
-                                                <td>
-                                                    <h5 style="font-weight: 700;">Phan Thiết - Lâu Đài Rượu Vang - Bàu
-                                                        Trắng - Bảo Tàng Làng Chài Xưa</h5>
-                                                </td>
-                                                <td>Sân Bay Tân Sơn Nhất</td>
-                                                <td>13,960,000 vnđ</td>
+                                                <td><h5 style="font-weight: 700;" th:utext="${p.name}"></h5></td>
+                                                <td th:text = "${p.departurePlace}"></td>
+                                                <td>[[${#numbers.formatCurrency(p.price)}]]</td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <nav aria-label="Page navigation example" th:if="${totalPage >1}">
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item" th:class="${currentPageLike == 1} ? 'disabled' : ''">
+                                                <a th:href="@{${currentPageLike > 1} ? ${'?page=' + (currentPageLike-1)} :''}" class="page-link" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                            <li th:each="i : ${#numbers.sequence(1,totalPage)}" class="page-item">
+                                                <a class="page-link" th:href="@{'?page='+ ${i} }" th:text="${i}"></a>
+                                            </li>
+                                            <li class="page-item" th:class="${currentPageLike == totalPage} ? 'disabled' : ''">
+                                                <a th:href="@{${currentPageLike < totalPage} ? ${'?page=' + (currentPageLike+1)} : '' }"
+                                                   class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Danh sách tour đã xóa -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-xl-2 col-lg-5">
                             <div class="card mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tour du lịch yêu thích</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Bộ lọc thống kê</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Oblong T-Shirt
-                                            <div class="small float-right"><b>600 of 800 Items</b></div>
+                                    <form th:action="@{/admin}" method="post">
+                                        <div class="row">
+                                            <div class="col">
+                                                <input name="day" type="date" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <i class='bx bx-transfer-alt' style="font-size: 20px;"></i>
+                                            </div>
+                                            <div class="col">
+                                                <input name="end" type="date" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <button class="btn btn-primary" style="height: 100%;"><i class='bx bx-search-alt'></i> Tìm</button>
+                                            </div>
                                         </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 80%"
-                                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Gundam 90'Editions
-                                            <div class="small float-right"><b>500 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 70%"
-                                                aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Rounded Hat
-                                            <div class="small float-right"><b>455 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 55%"
-                                                aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Indomie Goreng
-                                            <div class="small float-right"><b>400 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="small text-gray-500">Remote Control Car Racing
-                                            <div class="small float-right"><b>200 of 800 Items</b></div>
-                                        </div>
-                                        <div class="progress" style="height: 12px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 30%"
-                                                aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -319,23 +282,11 @@
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Tổng họp các tour du lịch</h6>
                                 <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button"
-                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Bộ lọc <i class="fas fa-chevron-down"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                        aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Thống kê</div>
-                                        <a class="dropdown-item" href="#">Tất cả</a>
-                                        <a class="dropdown-item" href="#">Tuần này</a>
-                                        <a class="dropdown-item" href="#">Tháng này</a>
-                                        <a class="dropdown-item" href="#">Năm này</a>
-                                    </div>
+                                    <button style="float: right" id="createBtn" type="button"
+                                        class="btn btn-success">Tạo mới</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                            <button style="float: right" id="createBtn" type="button" class="btn btn-success">Create</button>
                                 <!-- table danh sách tour du lịch -->
                                 <table class="table">
                                     <thead>
@@ -344,16 +295,11 @@
                                             <!-- click đúp để chuyển sang trang chỉnh sửa -->
                                             <th scope="col">STT</th>
                                             <th scope="col">Name</th>
-<!--                                             <th scope="col">Type</th> -->
-                                            <th scope="col">Departure place</th>
                                             <th scope="col">Place</th>
                                             <th scope="col">Price</th>
-                                            <th scope="col">Create date</th>
-                                            <th scope="col">Start date</th>
-                                            <th scope="col">End date</th>
+                                            <th scope="col" style="width: 200px;">Start date</th>
                                             <th scope="col">Quantity</th>
                                             <th scope="col">Hour</th>
-<!--                                             <th scope="col">Slug</th> -->
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
@@ -361,22 +307,17 @@
                                         <tr th:each="list,i : ${list}">
                                             <td th:text = "${i.index+1}"></th>
                                             <td th:text = "${list.name}"></td>
-<!--                                             <td th:text = "${list.TravelTypes.id}"></td> -->
-                                            <td th:text = "${list.departurePlace}"></td>
                                             <td th:text = "${list.place}"></td>
                                             <td th:text = "${list.price}"></td>
-                                            <td th:text = "${list.createdDate}"></td>
                                             <td th:text = "${list.startDate}"></td>
-                                            <td th:text = "${list.endDate}"></td>
                                             <td th:text = "${list.quantityNew}"></td>
                                             <td th:text = "${list.hour}"></td>
-<!--                                             <td th:text = "${list.slug}"></td> -->
                                             <td align="center">
                                                 <button th:attr="onclick='editTravel(\''+${list.id}+'\')'" class="btn btn-success" style="width: 40px">
-													<i class="fa fa-edit" aria-hidden="true"></i>                                                        	
+                                                    <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </button>
                                                 <a class="btn btn-danger" th:href="@{'/admin/tour-du-lich/delete?id=' +${list.id}}">
-                                                     <i class="fa fa-trash" aria-hidden="true"></i>  
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -384,19 +325,22 @@
                                 </table>
                             </div>
 
-                            <nav aria-label="Page navigation example">
+                            <nav aria-label="Page navigation example" th:if="${totalPage2 >1}">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
+                                    <li class="page-item" th:class="${currentPage == 1} ? 'disabled' : ''">
+                                        <a th:href="@{${currentPage > 1} ? ${'?pageList=' + (currentPage-1)} :''}" class="page-link" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
+                                    <li th:each="i : ${#numbers.sequence(1,totalPage2)}" class="page-item">
+                                        <a class="page-link" th:href="@{'?pageList='+ ${i} }" th:text="${i}"></a>
+                                    </li>
+                                    <!--                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                                    <!--                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                                    <li class="page-item" th:class="${currentPage == totalPage2} ? 'disabled' : ''">
+                                        <a th:href="@{${currentPage < totalPage2} ? ${'?pageList=' + (currentPage+1)}  : '' }"
+                                           class="page-link" href="#" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                             <span class="sr-only">Next</span>
                                         </a>
@@ -413,27 +357,27 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputName">Name</label>
-                                            <input th:field="*{name}" id = "name" 
-                                            readonly="true" type="text" class="form-control" >
+                                            <input th:field="*{name}" id = "name"
+                                                   readonly="true" type="text" class="form-control" >
                                             <input th:field="*{id}" id = "id"
                                                    readonly="false" type="text" class="form-control" hidden >
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputPrice">Price</label>
-                                            <input th:field="*{price}" id = "price" 
-                                            readonly="true" type="text" class="form-control" >
+                                            <input th:field="*{price}" id = "price"
+                                                   readonly="true" type="text" class="form-control" >
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputDeparture">Departure place</label>
-                                            <input th:field="*{departurePlace}" id = "departure_place" 
-                                             readonly="true" type="text" class="form-control">
+                                            <input th:field="*{departurePlace}" id = "departure_place"
+                                                   readonly="true" type="text" class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputPlace">Place</label>
-                                            <input th:field="*{place}" id = "place" 
-                                            readonly="true" type="text" class="form-controls" >
+                                            <input th:field="*{place}" id = "place"
+                                                   readonly="true" type="text" class="form-control" >
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -445,46 +389,29 @@
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputStartDate">Start date</label>
-                                            <input th:field="*{startDate}" id = "start_date" 
-                                            readonly="true" type="date" class="form-control">
+                                            <input th:field="*{startDate}" id = "start_date"
+                                                   readonly="true" type="date" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputEndDate">End date</label>
-                                            <input th:field="*{endDate}" id = "end_date" 
-                                            readonly="true" type="date" class="form-control">
+                                            <input th:field="*{endDate}" id = "end_date"
+                                                   readonly="true" type="date" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label for="inputQuantity">Quantity</label>
-                                            <input th:field="*{quantityNew}" id = "quantity_new" 
-                                            readonly="true" type="number" class="form-control">
+                                            <input th:field="*{quantityNew}" id = "quantity_new"
+                                                   readonly="true" type="number" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputHour">Hour</label>
-                                            <input th:field="*{hour}" id = "hour" 
-                                            readonly="true" type="number" class="form-control">
+                                            <input th:field="*{hour}" id = "hour"
+                                                   readonly="true" type="number" class="form-control">
                                         </div>
-<!--                                         <div class="form-group col-md-4"> -->
-<!--                                             <label for="inputIsDeleted">Is Deleted</label> -->
-<!--                                             <div class="form-control"> -->
-<!--                                                 <div class="form-check form-check-inline"> -->
-<!--                                                     <input class="form-check-input" type="radio" -->
-<!--                                                         name="inlineRadioOptions" id="inlineRadio1" value="option1"> -->
-<!--                                                     <label class="form-check-label" for="inlineRadio1">True</label> -->
-<!--                                                 </div> -->
-<!--                                                 <div class="form-check form-check-inline"> -->
-<!--                                                     <input class="form-check-input" type="radio" -->
-<!--                                                         name="inlineRadioOptions" id="inlineRadio2" value="option2"> -->
-<!--                                                     <label class="form-check-label" for="inlineRadio2">False</label> -->
-<!--                                                 </div> -->
-<!--                                             </div> -->
-<!--                                         </div> -->
+
                                     </div>
-<!--                                     <div class="form-group"> -->
-<!--                                         <label for="exampleSlug">Slug</label> -->
-<!--                                         <textarea class="form-control" id="exampleSlug" rows="3"></textarea> -->
-<!--                                     </div> -->
+
                                 </div>
                                 <div class="col-6 right">
                                     <div class="right-image">
@@ -496,7 +423,7 @@
                                     <div class="right-button">
                                         <button type="button" id="submitCreate" th:attr="onclick='createTravel()'" class="btn btn-success" disabled="true">Thêm</button>
                                         <button type="button" id="submitUpdate" th:attr="onclick='updateTravel()'" disabled="true" class="btn btn-primary">Chỉnh sửa</button>
-<!--                                         <button type="button" class="btn btn-danger">Xóa</button> -->
+                                        <!--                                         <button type="button" class="btn btn-danger">Xóa</button> -->
                                         <button type="button" id="submitCacel" th:attr="onclick='cacelBtn()'" class="btn btn-secondary">Làm mới</button>
                                     </div>
                                 </div>

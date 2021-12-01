@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import com.nicetravel.custom.UserServices;
 import com.nicetravel.export.UserExcelExporter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,8 @@ public class StaffController {
 
 	private final UserServices service;
 
+	private static final int SIZE = 4;
+
 	@Autowired
 	public StaffController(AccountService accountService, UserServices service) {
 		this.accountService = accountService;
@@ -43,11 +46,14 @@ public class StaffController {
 	}
 
 	@GetMapping("")
-	public String doGetIndex(HttpServletRequest request, Model model) {
+	public String doGetIndex(HttpServletRequest request, Model model,
+							 @RequestParam(name="page",defaultValue = "1") int page) {
 		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
 		model.addAttribute("account", account);
-		List<Account> list = accountService.findAllByStaff();
-		model.addAttribute("listStaff",list);
+		Page<Account> list = accountService.findAllByStaffPage(page-1, SIZE);
+		model.addAttribute("listStaff", list.getContent());
+		model.addAttribute("totalPage", list.getTotalPages());
+		model.addAttribute("currentPage", page);
 		model.addAttribute("userRequest",new Account());
 		return "/admin/nhan-vien/ThongTinNhanVien";
 	}

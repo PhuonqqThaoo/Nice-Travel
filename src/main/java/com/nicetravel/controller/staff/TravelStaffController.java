@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.nicetravel.entity.TravelTypes;
+import com.nicetravel.service.TravelTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -26,23 +29,41 @@ public class TravelStaffController {
 	@Autowired
 	private TravelService travelService;
 
+	private static final int SIZE = 4;
+
+	@Autowired
+	private TravelTypeService travelTypeService;
+
 	@GetMapping("")
-	public String quanLyTour(Model model) {
-		List<Travel> list = travelService.getFindAllByTravel();
-		model.addAttribute("list", list);
+	public String quanLyTour(Model model,
+							 @RequestParam(name="page",defaultValue = "1") int page,
+							 @RequestParam(name="pageList",defaultValue = "1") int pageList) {
+		Page<Travel> listByTravelInMonth = travelService.getTravelInMonth(page-1, SIZE);
+		model.addAttribute("listByTravelInMonth", listByTravelInMonth.getContent());
+		model.addAttribute("totalPage", listByTravelInMonth.getTotalPages());
+		model.addAttribute("currentPageLike", page);
+		Page<Travel> list = travelService.getFindAllByTravel(pageList-1, SIZE);
+		model.addAttribute("list", list.getContent());
+		model.addAttribute("totalPage2", list.getTotalPages());
+		model.addAttribute("currentPage", page);
+		List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
+		model.addAttribute("listTravelType",listTravelType);
 		model.addAttribute("travelRequest", new Travel());
 		return "staff/quan-ly/tour-du-lich/QuanLy-TourDuLich";
 	}
 
 	@GetMapping("/edit")
 	public String doGetEdit(@RequestParam("id") Integer id, Model model) {
+		List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
+		model.addAttribute("listTravelType",listTravelType);
 		Travel travelRequest = travelService.findTravelById(id);
 		model.addAttribute("travelRequest", travelRequest);
 		return "staff/quan-ly/tour-du-lich/QuanLy-TourDuLich::#form";
 	}
 
 	@PostMapping("/edit")
-	public String doPostEdit(@Valid @ModelAttribute("travelRequest") Travel travelRequest, BindingResult result,
+	public String doPostEdit(Model model,
+							 @Valid @ModelAttribute("travelRequest") Travel travelRequest, BindingResult result,
 			RedirectAttributes redirect) {
 		String errorMessage = null;
 		try {
@@ -50,6 +71,8 @@ public class TravelStaffController {
 			if (result.hasErrors()) {
 				errorMessage = "Travel is not valid";
 			} else {
+				List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
+				model.addAttribute("listTravelType",listTravelType);
 				travelService.updateTraveladmin(travelRequest);
 				String successMessage = "Travel " + travelRequest.getName() + " was update";
 				redirect.addFlashAttribute("successMessage", successMessage);

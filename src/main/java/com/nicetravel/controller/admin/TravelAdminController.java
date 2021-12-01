@@ -10,6 +10,7 @@ import com.nicetravel.entity.TravelTypes;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.TravelTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -34,6 +35,8 @@ public class TravelAdminController {
 
 	private final AccountService accountService;
 
+	private static final int SIZE = 4;
+
 	@Autowired
 	public TravelAdminController(TravelService travelService, TravelTypeService travelTypeService, AccountService accountService) {
 		this.travelService = travelService;
@@ -42,13 +45,22 @@ public class TravelAdminController {
 	}
 
 	@GetMapping("")
-	public String quanLyTour(Model model, HttpServletRequest request) {
+	public String quanLyTour(Model model, HttpServletRequest request,
+							 @RequestParam(name="page",defaultValue = "1") int page,
+							 @RequestParam(name="pageList",defaultValue = "1") int pageList) {
 		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
 		model.addAttribute("account", account);
-		List<Travel> list = travelService.getFindAllByTravel();
+		Page<Travel> listByTravelInMonth = travelService.getTravelInMonth(page-1, SIZE);
+		model.addAttribute("listByTravelInMonth", listByTravelInMonth.getContent());
+		model.addAttribute("totalPage", listByTravelInMonth.getTotalPages());
+		model.addAttribute("currentPageLike", page);
+		Page<Travel> list = travelService.getFindAllByTravel(pageList-1, SIZE);
+		System.out.println(list.getTotalPages());
+		model.addAttribute("list", list.getContent());
+		model.addAttribute("totalPage2", list.getTotalPages());
+		model.addAttribute("currentPage", page);
 		List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
 		model.addAttribute("listTravelType",listTravelType);
-		model.addAttribute("list", list);
 		model.addAttribute("travelRequest", new Travel());
 		return "admin/quan-ly/tour-du-lich/QuanLy-TourDuLich";
 	}

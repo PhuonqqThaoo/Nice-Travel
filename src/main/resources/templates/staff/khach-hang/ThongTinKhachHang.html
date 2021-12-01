@@ -17,8 +17,6 @@
     <!-- boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
-    <!-- bootstrap -->
-
     <!-- css customize -->
     <link th:href="@{/dashboard/css/admin.style.css}" rel="stylesheet">
 </head>
@@ -53,6 +51,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý tour du lịch</h6>
                         <a class="collapse-item" href="/staff/tour-du-lich">Danh sách tour</a>
+                        <a class="collapse-item" href="/staff/travel-type">Địa điểm du lịch</a>
                     </div>
                 </div>
             </li>
@@ -91,7 +90,12 @@
                 </div>
             </li>
             <hr class="sidebar-divider">
-            <div class="version" id="version-ruangadmin"></div>
+            <li class="nav-item">
+                <a class="nav-link collapsed"href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                    <i class='bx bx-log-out-circle'></i>
+                    <span>Đăng xuất</span>
+                </a>
+            </li>
         </ul>
         <!-- Sidebar -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -103,55 +107,12 @@
                     </button>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-1 small"
-                                            placeholder="What do you want to look for?" aria-label="Search"
-                                            aria-describedby="basic-addon2" style="border-color: #3f51b5;">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                        <div class="topbar-divider d-none d-sm-block"></div>
-                        <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="img-profile rounded-circle" th:src="@{/admin/img/boy.png}"
+                                <img class="img-profile rounded-circle" th:src="@{/dashboard/img/boy.png}"
                                     style="max-width: 60px">
                                 <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Thông tin cá nhân
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Cài đặt
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="bx bxs-lock-open-alt fa-fw mr-2 text-gray-400"></i>
-                                    Đổi mật khẩu
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Đăng xuất
-                                </a>
-                            </div>
+                            </a> 
                         </li>
                     </ul>
                 </nav>
@@ -357,18 +318,18 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                                    <h5 class="modal-title" id="exampleModalLabelLogout">Ohh Không!</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Are you sure you want to logout?</p>
+                                    <p>Bạn có chắc chắn bạn muốn thoát ?</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-primary"
-                                        data-dismiss="modal">Cancel</button>
-                                    <a href="login.html" class="btn btn-primary">Logout</a>
+                                        data-dismiss="modal">Trở lại</button>
+                                    <a th:href="@{/logoff}" class="btn btn-primary">Đăng xuất</a>
                                 </div>
                             </div>
                         </div>

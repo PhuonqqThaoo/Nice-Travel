@@ -2,6 +2,7 @@ package com.nicetravel.service;
 
 import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Provider;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
@@ -29,9 +30,11 @@ public interface AccountService {
 
     List<Account> findAll();
 
+    Page<Account> findAllByStaffPage(int page, int size);
+
     List<Account> findAllByStaff();
 
-    List<Account> findAllByUser();
+    Page<Account> findAllByUser(int page, int size);
 
     void update(Account account) throws Exception;
 

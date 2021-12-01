@@ -5,6 +5,8 @@ import com.nicetravel.entity.Account;
 import java.util.List;
 
 import com.nicetravel.entity.Provider;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -40,8 +42,11 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query(value ="SELECT * FROM Account WHERE is_enable = 0 and role_Id = 2", nativeQuery = true)
     List<Account> findAllByStaff();
 
+    @Query(value ="SELECT * FROM Account WHERE is_enable = 0 and role_Id = 2", nativeQuery = true)
+    Page<Account> findAllByStaffPage(Pageable page);
+
     @Query(value ="SELECT * FROM Account WHERE is_enable = 0 and role_Id = 3", nativeQuery = true)
-    List<Account> findAllByUser();
+    Page<Account> findAllByUser(Pageable page);
     
 //    List<Account> findByIsEnable (Boolean isDeleted) ;
     @Modifying(clearAutomatically =true)

@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import com.nicetravel.custom.UserServices;
 import com.nicetravel.export.UserExcelExporter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -41,12 +42,16 @@ public class UserController {
         this.service = service;
     }
 
+    private static final int SIZE = 4;
     @GetMapping("")
-    public String doGetIndex(Model model, HttpServletRequest request) {
+    public String doGetIndex(Model model, HttpServletRequest request,
+                             @RequestParam(name="page",defaultValue = "1") int page) {
         Account account = accountService.findAccountsByUsername(request.getRemoteUser());
         model.addAttribute("account", account);
-        List<Account> list = accountService.findAllByUser();
-        model.addAttribute("listUser", list);
+        Page<Account> list = accountService.findAllByUser(page-1, SIZE);
+        model.addAttribute("listUser", list.getContent());
+        model.addAttribute("totalPage", list.getTotalPages());
+        model.addAttribute("currentPage", page);
         model.addAttribute("userRequest", new Account());
         return "/admin/khach-hang/ThongTinKhachHang";
     }
@@ -135,7 +140,7 @@ public class UserController {
         String headerValue = "attachment; filename=users_" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List<Account> listUsers =accountService.findAllByUser();
+        List<Account> listUsers =accountService.findAll();
 
         UserExcelExporter excelExporter = new UserExcelExporter(listUsers);
 

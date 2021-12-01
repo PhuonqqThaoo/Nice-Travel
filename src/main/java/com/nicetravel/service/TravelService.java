@@ -49,8 +49,9 @@ public interface TravelService {
 	
 	List<Travel> getFavoriteTour();
 
-    
-    List<Travel> getFindAllByTravel();
+    Page<Travel> getTravelInMonth(int page, int size);
+
+    Page<Travel> getFindAllByTravel(int page, int size);
     
    void updateTraveladmin(Travel travel) throws Exception;
    
