@@ -44,6 +44,7 @@ public class TravelController {
 		
 		List<Travel> listFavo = travelService.getFavoriteTour();
 		model.addAttribute("favoriteItems", listFavo);
+		
 		return "travel/list";
 	}
 

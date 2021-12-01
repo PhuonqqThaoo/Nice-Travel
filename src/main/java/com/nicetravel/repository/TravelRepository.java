@@ -17,6 +17,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	
+	@Query("SELECT u FROM Travel u WHERE u.isDeleted =0")
+	List<Travel> getAll();
+	
 	@Query("SELECT count(u.id) FROM Travel u ")
 	Integer getcountTravel();
 
@@ -73,8 +76,7 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
    	@Modifying(clearAutomatically =true)
     @Query(value="UPDATE Travel SET  is_Deleted = 1 WHERE id =?1", nativeQuery = true)
     void deletedTravel(Integer id);
-   	
-   	
+
 
 
 }

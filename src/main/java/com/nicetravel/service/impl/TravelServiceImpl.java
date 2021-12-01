@@ -35,7 +35,7 @@ public class TravelServiceImpl implements TravelService {
 
     @Override
     public List<Travel> getAllTravel() {
-        return travelRepository.findAll();
+        return travelRepository.getAll();
     }
 
     @Override

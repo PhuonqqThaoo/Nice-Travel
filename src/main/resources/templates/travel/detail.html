@@ -24,15 +24,17 @@
                     <div class="travel-detail-col-6">
                         <div class="travel-detail-section1">
                             <p>Khởi hành: <span th:text="*{hour}"></span> <span>:00</span> <span th:text="*{#dates.format(startDate, 'dd/MM/yyyy')}"></span></p>
-                            <p>Số lượng: <span th:text="*{quantity}"></span></p>
-                            <p>Số ngày: <span>5</span></p>
-                            <p>Số chỗ còn nhận: <span>10</span></p>
+                           <!--  <p>Số lượng: <span th:text="*{quantity}"></span></p> -->
+                            <p>Số ngày: <span th:text="*{#dates.format(endDate, 'dd')} -
+									*{#dates.format(startDate, 'dd')}"></span></p>
+                            <p>Số chỗ còn nhận: <span th:text="*{quantityNew}"></span></p>
                             <p>Nơi khởi hành: <span th:text="*{departurePlace}"></span></p>
                         </div>
                         <a href="" class="travel-detail-btn-tu-van">Liên hệ tư vấn ngay</a>
                     </div>
                 </div>
-                <p style="margin-top: 280px; font-size: 17px;">Một ngày hòa minh giữa thiên nhiên xanh mát ở khu dự trữ sinh quyển thế giới, khám phá “ lá phổi xanh” của thành phố bằng các hoạt động tham quan tại Chiến Khu Rừng Sác, thưởng ngoạn cảnh quan sông nước hữu tình trên những chiếc ca nô khi len lỏi giữa khu rừng ngập mặn của KDL Dần Xây. Đặc biệt trong hành trình, quý khách còn được thưởng thức những món ăn đặc trưng chỉ có tại Vàm Sát – Cần Giờ như : vịt nước mặn, rau lìm kìm, cua hấp, tôm nướng, cá đối chiên xù cuốn bánh tráng, canh cá bui, chè dừa nước… Quay lại ký ức của Chiến khu xưa, nghe kể về dấu ấn lịch sử oai hùng một thời của lực lượng bộ đội đặc công rừng Sác; Trải nghiệm đi xuồng máy len lỏi vào rừng nguyên sinh ngập mặn; Hòa mình vào bức tranh thiên nhiên xanh mát ở Khu du lịch sinh thái Vàm Sát. Trải nghiệm ẩm thực đặc sắc, hấp dẫn và đặc trưng của Cần Giờ</p>
+                <br><br>
+                <p style="margin-top: 280px; font-size: 17px;">Đại Nội Huế rộng lớn nơi hoàng cung xưa của các vua chúa Triều Nguyễn. Động Phong Nha được xem như chốn thần tiên bởi hệ thống núi đá vôi và sông ngầm dài nhất thế giới. Động Thiên Đường kỳ ảo như hoàng cung dưới lòng đất. Bà Nà Hills với không gian như làng Pháp thu nhỏ đa sắc màu và Cầu Vàng mới siêu hot Phố cổ Hội An với lung linh sắc màu của đèn lồng và những trò chơi dân gian đặc sắc.</p>
             </div>
         </section>
         <!-- section end -->
