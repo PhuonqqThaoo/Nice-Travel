@@ -198,6 +198,30 @@ public class TravelServiceImpl implements TravelService {
 		return travelRepository.saveAndFlush(travelRequest);
 	}
 
+	@Override
+	public Integer countDaLatTour() {
+		// TODO Auto-generated method stub
+		return travelRepository.countDaLatTour();
+	}
+
+	@Override
+	public Integer countDaNangTour() {
+		// TODO Auto-generated method stub
+		return travelRepository.countDaNangTour();
+	}
+
+	@Override
+	public Integer countPhuQuocTour() {
+		// TODO Auto-generated method stub
+		return travelRepository.countPhuQuocTour();
+	}
+
+	@Override
+	public Integer countHaNoiTour() {
+		// TODO Auto-generated method stub
+		return travelRepository.countHaNoiTour();
+	}
+
 
 
 

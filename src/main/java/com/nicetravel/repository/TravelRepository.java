@@ -82,7 +82,20 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	@Query(value="select * from Travel where Month(created_date) = MONTH(GetDate()) and YEAR(created_date) = Year(GetDate()) and is_deleted = 0", nativeQuery = true)
 	Page<Travel> getTravelInMonth(Pageable page);
    	
-   	
+   	// lấy tổng số tour đà lạt
+	@Query(value = "{CALL sp_CountDaLatTour()}" , nativeQuery = true)
+	 Integer countDaLatTour() ;
 
+	// lấy tổng số tour Đà Nẵng
+		@Query(value = "{CALL sp_CountDaNangTour()}" , nativeQuery = true)
+		 Integer countDaNangTour() ;
+		
+		// lấy tổng số tour HàNoi
+		@Query(value = "{CALL sp_CountHaNoiTour()}" , nativeQuery = true)
+		 Integer countHaNoiTour() ;
+		
+		// lấy tổng số tour Phú Quốc
+		@Query(value = "{CALL sp_CountPhuQuocTour()}" , nativeQuery = true)
+		 Integer countPhuQuocTour() ;
 
 }

@@ -45,6 +45,18 @@ public class TravelController {
 		List<Travel> listFavo = travelService.getFavoriteTour();
 		model.addAttribute("favoriteItems", listFavo);
 		
+		Integer tourDaLat = travelService.countDaLatTour();
+		model.addAttribute("countDaLat", tourDaLat +" Tours");
+		
+		Integer tourHaNoi = travelService.countHaNoiTour();
+		model.addAttribute("countHaNoi", tourHaNoi +" Tours");
+
+		Integer tourDaNang = travelService.countDaNangTour();
+		model.addAttribute("countDaNang", tourDaNang +" Tours");
+		
+		Integer tourPhuQuoc = travelService.countPhuQuocTour();
+		model.addAttribute("countPhuQuoc", tourPhuQuoc +" Tours");
+		
 		return "travel/list";
 	}
 

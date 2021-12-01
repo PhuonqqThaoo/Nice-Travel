@@ -59,4 +59,11 @@ public interface TravelService {
    
    Travel saveTravel(Travel travelRequest);
 
+   Integer countDaLatTour();
+   
+   Integer countDaNangTour();
+   
+   Integer countPhuQuocTour();
+   
+   Integer countHaNoiTour();
 }
