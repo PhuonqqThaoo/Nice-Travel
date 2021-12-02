@@ -85,4 +85,11 @@ public class Travel implements Serializable {
     @Column(name="quantityNew",nullable = false)
     private Integer quantityNew;
 
+    @ManyToOne
+    @JoinColumn(name = "accountId")
+    private Account accountId;
+
+    @Column(name = "expirationDate", nullable = false)
+    private Boolean expirationDate = false;
+
 }

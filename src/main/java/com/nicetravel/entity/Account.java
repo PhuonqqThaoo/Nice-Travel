@@ -126,4 +126,8 @@ public class Account implements Serializable {
     @ToString.Exclude
     List<TravelLike> travelLikes;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "accountId")
+    List<Travel> travel;
+
 }
