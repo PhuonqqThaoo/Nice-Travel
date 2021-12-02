@@ -1,6 +1,7 @@
 const app = angular.module("booking-app", []);
 app.controller("booking-ctrl", function($scope, $http) {
 	/*hiển thị sản phẩm*/
+
 	$scope.load = {
 		get qtyAdult(){
 			return parseInt($('#adult').text());
@@ -52,77 +53,83 @@ app.controller("booking-ctrl", function($scope, $http) {
 		}
 	}
 	
+	
+	var qtynew = parseInt($('#qtynew').text());
+	var totalqty = parseInt($('#adult').text()) + parseInt($('#children').text()) + parseInt($('#smallchildren').text()) + parseInt($('#baby').text());
+	
+	console.log(qtynew)
 	// btn tăng giảm số lượng
 	$scope.adultPlus = function() {
-		let value = parseInt($('#adult').text());
-		if (value < 10) {
-			value++;
-			$('#adult').text(value)
+		if(totalqty == qtynew){
+			return;
 		}
+		qtynew--;
+		$('#adult').text(parseInt($('#adult').text()) + 1)
+		console.log(qtynew)
 	}
 	$scope.adultMinus = function() {
-		let value = parseInt($('#adult').text());
-		if (value <= 1) {
-			value = 1;
-			$('#adult').text(value);
+		if (parseInt($('#adult').text()) <= 1) {
+			$('#adult').text(1);
 			alert("Số lượng tối thiểu là 1");
 		} else {
-			value--;
-			$('#adult').text(value)
+			qtynew++;
+			$('#adult').text(parseInt($('#adult').text()) - 1)
+			console.log(qtynew)
 		}
 	}
-
+	
 	$scope.childrenPlus = function() {
-		let value = parseInt($('#children').text());
-		if (value < 10) {
-			value++;
-			$('#children').text(value)
+		if(totalqty == qtynew){
+			return;
 		}
+		qtynew--;
+		$('#children').text(parseInt($('#children').text()) + 1)
+		console.log(qtynew)
 	}
 	$scope.childrenMinus = function() {
-		let value = parseInt($('#children').text());
-		if (value <= 0) {
-			value = 0;
-			$('#children').text(value)
+		if (parseInt($('#children').text()) <= 0) {
+			$('#children').text(0)
 		} else {
-			value--;
-			$('#children').text(value)
+			qtynew++;
+			$('#children').text(parseInt($('#children').text()) - 1)
+			console.log(qtynew)
 		}
 	}
 
 	$scope.smallchildrenPlus = function() {
-		let value = parseInt($('#smallchildren').text());
-		if (value < 10) {
-			value++;
-			$('#smallchildren').text(value)
+		if(totalqty == qtynew){
+			return;
 		}
+		qtynew--;
+		$('#smallchildren').text(parseInt($('#smallchildren').text()) + 1)
+		console.log(qtynew)
 	}
 	$scope.smallchildrenMinus = function() {
-		let value = parseInt($('#smallchildren').text());
-		if (value <= 0) {
-			value = 0;
-			$('#smallchildren').text(value)
+		if (parseInt($('#smallchildren').text()) <= 0) {
+			$('#smallchildren').text(0)
 		} else {
-			value--;
-			$('#smallchildren').text(value)
+			qtynew++;
+			$('#smallchildren').text(parseInt($('#smallchildren').text()) - 1)
+			console.log(qtynew)
 		}
 	}
 
 	$scope.babyPlus = function() {
-		let value = parseInt($('#baby').text());
-		if (value < 10) {
-			value++;
-			$('#baby').text(value)
+		if(totalqty == qtynew){
+			return;
 		}
+		qtynew--;
+		$('#baby').text(parseInt($('#baby').text()) + 1)
+		console.log(qtynew)
 	}
 	$scope.babyMinus = function() {
-		let value = parseInt($('#baby').text());
-		if (value <= 0) {
-			value = 0;
-			$('#baby').text(value)
+		
+		if (parseInt($('#baby').text()) <= 0) {
+			$('#baby').text(0)
 		} else {
-			value--;
-			$('#baby').text(value)
+			qtynew++;
+			$('#baby').text(parseInt($('#baby').text()) - 1)
+			console.log(qtynew)
 		}
 	}
 
