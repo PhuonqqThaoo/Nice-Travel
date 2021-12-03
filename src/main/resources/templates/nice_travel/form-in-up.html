@@ -23,12 +23,12 @@
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <h2 class="title">Đăng nhập</h2>
                         <div class="input-field">
-                            <i class="fas fa-user"></i>
-                            <input type="text" name="username" id="username" placeholder="Username" />
+                            <i class="bx bxs-user"></i>
+                            <input type="text" name="username" id="username1" placeholder="Username" />
                         </div>
                         <div class="input-field">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" name="password" id="password" placeholder="Password" />
+                            <i class="bx bxs-lock"></i>
+                            <input type="password" name="password" id="password1" placeholder="Password" />
                         </div>
                         <span class="message" th:text="${message}"></span>
                         <div class="forgot">
@@ -62,7 +62,7 @@
                             <input type="email" name="email" th:field="*{email}" placeholder="Email" />
                         </div>
                         <div class="input-field">
-                            <i class='bx bxs-lock'></i>
+                            <i class='bx bxs-user'></i>
                             <input type="text" name="username" th:field="*{username}" placeholder="Username" />
                         </div>
                         <div class="input-field">

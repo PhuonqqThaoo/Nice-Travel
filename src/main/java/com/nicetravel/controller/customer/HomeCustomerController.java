@@ -28,7 +28,7 @@ public class HomeCustomerController {
 	public String getIndex(Model model, HttpServletRequest request) {
 		String username = request.getRemoteUser();
 		Account accountId = accountService.findAccountsByUsername(username);
-		
+		model.addAttribute("account", accountService.findAccountsByUsername(username));
 		List<TravelLike> items = travelLikeService.getAllTravelLikeByIdAcount(accountId);
 		model.addAttribute("items", items);
 		return "customer/index";

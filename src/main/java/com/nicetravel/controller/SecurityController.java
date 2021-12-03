@@ -100,10 +100,11 @@ public class SecurityController {
     }
 
     @GetMapping("/verify")
-    public String verifyUser(@Param("code") String code) {
+    public String verifyUser(@Param("code") String code, Model model) {
         System.out.println(code);
         if (userServices.verify(code)) {
-            return "/account/register/verify_success";
+            model.addAttribute("message", "Xác thực tài khoản thành công");
+            return "forward:/login";
         } else {
             return "/account/register/verify_fail";
         }
@@ -195,11 +196,13 @@ public class SecurityController {
         if (account == null) {
             model.addAttribute("message", "Mã Token không hợp lệ");
             return "/account/forgot/forgot_password_form";
-        } else {
+        }
+        else{
             userServices.updatePassword(account, password);
             System.out.println("updated Password: " + account.getPassword() );
 
             model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công.");
+
         }
 
         return "/account/forgot/forgot_password_form";

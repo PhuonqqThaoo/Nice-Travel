@@ -31,6 +31,7 @@ public class ManageTourCustomerController {
 	@GetMapping("/tour-da-dat")
 	public String getManageTour(Model model, HttpServletRequest request) {
 		String username = request.getRemoteUser();
+		model.addAttribute("userRequest", accountService.findAccountsByUsername(username));
 		List<Booking> items = bookingService.getAllBookingByAcId(username);
 		model.addAttribute("items", items);
 		return "customer/TourDaDat";

@@ -1,6 +1,7 @@
 package com.nicetravel.controller.staff;
 
 import com.nicetravel.custom.CustomUserDetails;
+import com.nicetravel.custom.UserServices;
 import com.nicetravel.entity.Account;
 import com.nicetravel.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ import java.io.IOException;
 @RequestMapping("/staff")
 public class InformationStaffController {
     private final AccountService accountService;
+
+    @Autowired
+    UserServices userServices;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -103,42 +107,34 @@ public class InformationStaffController {
     }
 
     @PostMapping("/change-password")
-    public String postChangePassword(HttpServletRequest request, HttpServletResponse response,
-                                     Model model, RedirectAttributes ra,
-                                     @AuthenticationPrincipal Authentication authentication,@ModelAttribute("userRequest") Account account) throws Exception {
+    public String postChangePassword(HttpServletRequest request,
+                                     Model model, RedirectAttributes ra) throws Exception {
 
-
-//        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-//        Account account = userDetails.getAccount();
+        Account acc = accountService.findAccountsByUsername(request.getRemoteUser());
 
         String oldPassword = request.getParameter("oldPassword");
         String newPassword = request.getParameter("newPassword");
-        System.out.println("new: " + newPassword);
-        String encodeOldPassword = passwordEncoder.encode(newPassword);
-        String encodeNewPassword = passwordEncoder.encode(newPassword);
-        System.out.println("encodeNew: " + encodeNewPassword);
-        System.out.println("oldPass: " + account.getPassword());
+
         model.addAttribute("pageTitle", "Thay đổi mật khẩu đã hết hạn");
 
-//        if (encodeOldPassword.equals(encodeNewPassword)) {
-//            model.addAttribute("message", "Mật khẩu mới của bạn phải khác mật khẩu cũ.");
-//
-//            return "redirect:/change-password";
-//        }
-//
-//        if (!passwordEncoder.matches(encodeOldPassword, account.getPassword())) {
-//            model.addAttribute("message", "Mật khẩu cũ của bạn không chính xác.");
-//            return "redirect:/change-password";
-//
-//        } else {
-            System.out.println(encodeNewPassword);
-            accountService.changePassword(account, newPassword, passwordEncoder);
+        if (oldPassword.equals(newPassword)) {
+            model.addAttribute("message", "Mật khẩu mới của bạn phải khác mật khẩu cũ.");
+            System.out.println("Mật khẩu mới của bạn phải khác mật khẩu cũ.");
+            return "redirect:/staff/change-password";
+        }
+
+        if (!passwordEncoder.matches(oldPassword, acc.getPassword())) {
+            model.addAttribute("message", "Mật khẩu cũ của bạn không chính xác.");
+            System.out.println("Mật khẩu cũ của bạn không chính xác.");
+            return "redirect:/staff/change-password";
+        } else {
+            userServices.changePassword(acc, passwordEncoder.encode(newPassword));
             request.logout();
             ra.addFlashAttribute("message", "Bạn đã đổi mật khẩu thành công. "
-                    + "Vui lòng thử lại.");
+                    + "Vui lòng đăng nhập lại.");
 
             return "redirect:/login";
-//        }
+        }
     }
 
 

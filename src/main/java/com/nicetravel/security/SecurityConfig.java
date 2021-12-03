@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/login", "/oauth/**").permitAll()
                 .antMatchers("/booking/**", "/travel/like/**").authenticated()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN", "STAFF")
                 .antMatchers("/staff/**").hasRole("STAFF")
                 .antMatchers("/customer/**", "/api/v2/**").hasAnyRole( "STAFF", "USER")
                 .antMatchers("/api/v1/**").hasRole("ADMIN")
@@ -77,6 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().permitAll()
                 .loginPage("/login")
                 .loginProcessingUrl("/account/login")
+                .failureUrl("/login/error")
                 .usernameParameter("username")
                 .passwordParameter("password")
 //                .successHandler(databaseLoginSuccessHandler)
@@ -90,8 +91,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutSuccessUrl("/").permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/403")
-        ;;
+                .exceptionHandling().accessDeniedPage("/403");
 
         http.rememberMe();
 

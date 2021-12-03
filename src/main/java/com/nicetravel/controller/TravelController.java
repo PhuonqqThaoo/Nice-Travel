@@ -38,7 +38,6 @@ public class TravelController {
 
 	@RequestMapping("/list")
 	public String list(Model model) {
-
 		List<Travel> list = travelService.getAllTravel();
 		model.addAttribute("items", list);
 		

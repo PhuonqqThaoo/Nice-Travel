@@ -50,8 +50,6 @@ public class InformationCustomerController {
 	
 	@GetMapping("/edit-information-customer")
 	public String getEditInformationCustomer(HttpServletRequest request, Model model) {
-		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
-		model.addAttribute("account", account);
 		String username = request.getRemoteUser();
 		Account userRequest = accountService.findAccountsByUsername(username);
 		model.addAttribute("userRequest", userRequest);

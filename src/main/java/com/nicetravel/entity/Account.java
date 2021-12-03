@@ -94,9 +94,15 @@ public class Account implements Serializable {
 
     @Column(name = "phone", nullable = false, length = 20)
     private String phone;
+
     @Transient
     public String getPhotosImagePath() {
-        if (img == null || username == null) return null;
+        if (img == null || username == null) {
+            return "/admin/img/user.png";
+        }else if(img.equals("") || img.equals("user.png")){
+            return "/admin/img/user.png";
+        }
+
         return "/user-photos/" + username + "/" + img;
     }
 

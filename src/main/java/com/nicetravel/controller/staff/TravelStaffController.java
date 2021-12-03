@@ -2,9 +2,11 @@ package com.nicetravel.controller.staff;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.nicetravel.entity.TravelTypes;
+import com.nicetravel.service.AccountService;
 import com.nicetravel.service.TravelTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,10 +36,15 @@ public class TravelStaffController {
 	@Autowired
 	private TravelTypeService travelTypeService;
 
+	@Autowired
+	AccountService accountService;
+
 	@GetMapping("")
 	public String quanLyTour(Model model,
 							 @RequestParam(name="page",defaultValue = "1") int page,
-							 @RequestParam(name="pageList",defaultValue = "1") int pageList) {
+							 @RequestParam(name="pageList",defaultValue = "1") int pageList, HttpServletRequest request) {
+		String username = request.getRemoteUser();
+		model.addAttribute("account", accountService.findAccountsByUsername(username));
 		Page<Travel> listByTravelInMonth = travelService.getTravelInMonth(page-1, SIZE);
 		model.addAttribute("listByTravelInMonth", listByTravelInMonth.getContent());
 		model.addAttribute("totalPage", listByTravelInMonth.getTotalPages());
