@@ -28,9 +28,9 @@ public class Booking implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "accountId")
-    private Account accountId;
+//    @ManyToOne
+//    @JoinColumn(name = "account_id")
+//    private Account account_id;
     
     @JsonIgnore
     @OneToMany(mappedBy = "bookingId")
@@ -54,7 +54,13 @@ public class Booking implements Serializable {
 
     @Column(name = "isDeleted", nullable = false)
     private Boolean isDeleted = false;
-    
-    
+
+
+    @Column(name = "verification_code", length = 64)
+    private String verification_code;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account booking_account_id;
 
 }

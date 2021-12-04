@@ -146,7 +146,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-secondary">Xuất excel</button>
+                                        <a th:href="@{/staff/thong-tin-khach-hang/customers/export/excel}" type="button" class="btn btn-secondary">Xuất excel</a>
                                     </div>
                                 </div>
 <!--                                 <div class="col-3"> -->
@@ -185,10 +185,10 @@
                                                         <td th:text = "${i.index+1}"></th>
                                                         <td>
 <!--                                                        	<img width="30px" th:alt="${user.username}" th:src="${'/admin/img/'+user.img}" >-->
-                                                            <img width="30px" th:alt="${user.username}" th:src="@{${userRequest.getPhotosImagePath()}}" />
+                                                            <img width="30px" height="30px" style="border-radius: 50%" th:alt="${user.username}" th:src="@{${user.getPhotosImagePath()}}" />
                                                         </td>
                                                         <td th:text = "${user.username}"></td>
-                                                        <td th:text = "${user.fullname}"></td>
+                                                        <td style="width: 60%" th:text = "${user.fullname}"></td>
                                                         <td th:text = "${user.email}"></td>
                                                         <td th:text = "${user.gender}"></td>
                                                         <td th:text = "${user.phone}"></td>

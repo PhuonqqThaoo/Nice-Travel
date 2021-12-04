@@ -1,10 +1,12 @@
 package com.nicetravel.custom;
 
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.Booking;
 import com.nicetravel.entity.Provider;
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.repository.RoleRepository;
 import com.nicetravel.service.AccountService;
+import com.nicetravel.service.BookingService;
 import com.nicetravel.service.RoleService;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -110,6 +113,91 @@ public class UserServices {
             return true;
         }
 
+    }
+//
+
+    public void cancelTour(Booking booking, String siteURL, HttpServletRequest request)
+            throws UnsupportedEncodingException, MessagingException {
+        String randomCode = RandomString.make(64);
+        booking.setVerification_code(randomCode);
+        bookingService.updateBooking(booking);
+        System.out.println(booking.getVerification_code());
+
+        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+
+        sendVerificationEmail1(booking, siteURL, account);
+    }
+
+
+    private void sendVerificationEmail1(Booking booking, String siteURL, Account account)
+            throws MessagingException, UnsupportedEncodingException {
+        String toAddress = "nicetravelcompany@gmail.com";
+        String fromAddress = account.getEmail();
+        System.out.println("Email hiện tại " + fromAddress);
+        String senderName = "Xác nhận hủy tour";
+        String subject = "Vui lòng xác minh hủy tour của tôi";
+        String content = "Thân chào <b>Nice Travel</b>,<br>"
+                + "Vui lòng xác nhận hủy tour của tôi:<br>"
+                + "<h3><a href=\"[[URL]]\" target=\"_self\">XÁC NHẬN HỦY TOUR</a></h3>"
+                + "Cảm ơn,<br>"
+                + account.getFullname();
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom(fromAddress, senderName);
+        helper.setTo(toAddress);
+        helper.setSubject(subject);
+
+        content = content.replace("[[name]]", account.getUsername());
+        String verifyURL = siteURL + "/verify-tour?code=" + account.getVerificationCode();
+
+        content = content.replace("[[URL]]", verifyURL);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
+
+        System.out.println("Email đã được gửi");
+    }
+
+    public boolean verify1(String verificationCode) {
+        Booking booking = bookingService.findByVerificationCode(verificationCode);
+
+        if (booking == null || booking.getIsDeleted()) {
+            return false;
+        } else {
+            booking.setVerification_code(null);
+            booking.setIsDeleted(true);
+            bookingService.updateBooking(booking);
+
+            return true;
+        }
+
+    }
+
+
+    //    -------------------------------------
+//    Xác nhận hủy tour
+    BookingService bookingService;
+    public void updateCancelTour(String token, int id) throws UsernameNotFoundException {
+        Booking booking = bookingService.findById(id);
+        if (booking != null) {
+            booking.setVerification_code(token);
+            bookingService.updateBooking(booking);
+        } else {
+            throw new UsernameNotFoundException("Không tìm thấy đơn hàng nào có id: " + booking);
+        }
+    }
+
+    public Booking getByUpdateTourToken(String token) {
+        return bookingService.findByVerificationCode(token);
+    }
+
+    public void updateTour(Booking booking) throws Exception {
+        booking.setVerification_code(null);
+        booking.setIsDeleted(false);
+        bookingService.updateBooking(booking);
     }
 
 //    -------------------------------------

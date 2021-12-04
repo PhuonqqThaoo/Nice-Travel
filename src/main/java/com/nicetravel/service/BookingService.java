@@ -13,6 +13,10 @@ public interface BookingService {
     
     List<Booking> getAllBookingByAcId(String id);
 
+    Booking findByVerificationCode(String code);
+
+    Booking findBookingById(int id);
+
     Booking findById(Integer id);
 
     Booking createBooking(Booking booking);

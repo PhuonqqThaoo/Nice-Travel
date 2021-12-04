@@ -13,8 +13,8 @@ import com.nicetravel.entity.TravelLike;
 
 @Repository
 public interface TravelLikeRepository extends JpaRepository<TravelLike, Integer> {
-	@Query("SELECT u FROM TravelLike u WHERE u.accountId = ?1")
-	List<TravelLike> getAllTravelLikeByIdAcount(Account id);
+//	@Query("SELECT u FROM TravelLike u WHERE u.account_id = ?1")
+//	List<TravelLike> getAllTravelLikeByIdAcount(Account id);
 	
 //	@Query("SELECT u from TravelLike u")
 //	List<TravelLike> getFindAllAdmin();

@@ -29,10 +29,12 @@ public class TravelLike implements Serializable {
     private Integer id;
 	
 	@ManyToOne
-    @JoinColumn(name = "travelId")
+    @JoinColumn(name = "travel_Id")
     private Travel travelId;
-	
-	@ManyToOne
-    @JoinColumn(name = "accountId")
-    private Account accountId;
+
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account travel_like_account_id;
+
 }

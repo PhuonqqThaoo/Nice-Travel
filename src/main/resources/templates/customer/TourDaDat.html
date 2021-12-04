@@ -19,7 +19,7 @@
 
     <!-- boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-     
+
 </head>
 
 <body id="page-top">
@@ -180,7 +180,10 @@
                                             </td>
                                             <td>
                                             	<a class="btn btn-primary"><i class='bx bx-search'></i></a>
-                                            	<a class="btn btn-danger isDelete-window button" th:href="@{|/customer/isDelete/${p.id}|}" th:if="${p.payBoolean} == false AND ${p.isDeleted} == false">Hủy</a>
+<!--                                            	<a class="btn btn-danger isDelete-window button" th:href="@{|/customer/isDelete/${p.id}|}" th:if="${p.payBoolean} == false AND ${p.isDeleted} == false">Hủy</a>-->
+                                                <form th:action="@{/customer/cancel-tour}">
+            <button>HUY</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -230,7 +233,7 @@
     <script th:src="@{/dashboard/js/ruang-admin.min.js}"></script>
     <script th:src="@{/dashboard/vendor/chart.js/Chart.min.js}"></script>
     <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
-	
+
 </body>
 
 </html>

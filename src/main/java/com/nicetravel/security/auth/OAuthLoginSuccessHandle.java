@@ -79,7 +79,7 @@ public class OAuthLoginSuccessHandle extends SavedRequestAwareAuthenticationSucc
         newAccount.setVerificationCode("");
         newAccount.setProvider(Provider.valueOf(oauth2ClientName.toUpperCase()));
         newAccount.setIsEnable(false);
-        newAccount.setTravelLikes(null);
+//        newAccount.setTravelLikes(null);
         accountService.createAccount(newAccount);
 
 

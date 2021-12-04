@@ -63,6 +63,13 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public Booking updateBooking(Booking booking) {
+		booking.setBooking_account_id(booking.getBooking_account_id());
+		booking.setCreatedDate(booking.getCreatedDate());
+		booking.setAddress(booking.getAddress());
+		booking.setPhone(booking.getPhone());
+		booking.setTotalPrice(booking.getTotalPrice());
+		booking.setPayBoolean(booking.getPayBoolean());
+		booking.setIsDeleted(booking.getIsDeleted());
 		return bookingRepository.save(booking);
 	}
 
@@ -127,6 +134,17 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public List<Booking> getAllBookingByAcId(String id) {
-		return bookingRepository.getAllBookingByAcId(id);
+//		return bookingRepository.findBookingById(id);
+		return null;
+	}
+
+	@Override
+	public Booking findByVerificationCode(String code) {
+		return bookingRepository.findByVerificationCode(code);
+	}
+
+	@Override
+	public Booking findBookingById(int id) {
+		return bookingRepository.findBookingById(id);
 	}
 }

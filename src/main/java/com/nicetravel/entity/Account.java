@@ -44,14 +44,6 @@ public class Account implements Serializable {
     @Column(name = "provider")
     private Provider provider;
 
-    public Provider getProvider() {
-        return provider;
-    }
-
-    public void setProvider(Provider provider) {
-        this.provider = provider;
-    }
-
     private static final long PASSWORD_EXPIRATION_TIME
             = 30L * 24L * 60L * 60L * 1000L;    // 30 days
     @Column(name = "password_changed_time")
@@ -128,12 +120,12 @@ public class Account implements Serializable {
     private LocalDateTime createdDate;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "accountId")
+    @OneToMany(mappedBy = "travel_like_account_id")
     @ToString.Exclude
     List<TravelLike> travelLikes;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "accountId")
-    List<Travel> travel;
+    @OneToMany(mappedBy = "travel_account_id")
+    List<Travel> travels;
 
 }

@@ -95,7 +95,7 @@ public class TravelController {
 		Travel travel = travelService.findTravelById(id);
 		
 		TravelLike like = new TravelLike();
-		like.setAccountId(account);
+//		like.setAccountIdFk(account);
 		like.setTravelId(travel);
 		travelLikeService.createTravelLike(like);
 		

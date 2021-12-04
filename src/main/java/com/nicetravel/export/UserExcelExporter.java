@@ -27,20 +27,20 @@ public class UserExcelExporter {
 
 
     private void writeHeaderLine() {
-        sheet = workbook.createSheet("Staff");
+        sheet = workbook.createSheet("Users");
 
         Row row = sheet.createRow(0);
 
         CellStyle style = workbook.createCellStyle();
         XSSFFont font = workbook.createFont();
         font.setBold(true);
-        font.setColor(IndexedColors.WHITE.getIndex());
+        font.setColor(IndexedColors.GREEN.getIndex());
         font.setFontHeight(16);
         style.setFont(font);
 
-        createCell(row, 0, "Staff ID", style);
+        createCell(row, 0, "ID", style);
         createCell(row, 1, "Username", style);
-        createCell(row, 2, "Fullname", style);
+        createCell(row, 2, "FullName", style);
         createCell(row, 3, "E-mail", style);
         createCell(row, 4, "Gender", style);
         createCell(row, 5, "Address", style);
@@ -77,24 +77,24 @@ public class UserExcelExporter {
         font.setFontHeight(14);
         style.setFont(font);
 
-        for (Account staff : listAccounts) {
+        for (Account user : listAccounts) {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
 
-            createCell(row, columnCount++, staff.getId(), style);
-            createCell(row, columnCount++, staff.getUsername(), style);
-            createCell(row, columnCount++, staff.getFullname(), style);
-            createCell(row, columnCount++, staff.getEmail(), style);
-            createCell(row, columnCount++, staff.getGender() ? "Nam" : "Nữ", style);
-            createCell(row, columnCount++, staff.getAddress(), style);
-            createCell(row, columnCount++, staff.getPhone(), style);
-            createCell(row, columnCount++, staff.getImg(), style);
-            createCell(row, columnCount++, staff.getId_Card(), style);
-            createCell(row, columnCount++, staff.getRole_Id().getRole(), style);
-            createCell(row, columnCount++, String.valueOf(staff.getCreatedDate()), style);
-            createCell(row, columnCount++, staff.getIsEnable() ? "Vô hiệu hóa" : "Kích hoạt", style);
-            createCell(row, columnCount++, staff.getProvider(), style);
-            createCell(row, columnCount++, String.valueOf(staff.getPasswordChangedTime()), style);
+            createCell(row, columnCount++, user.getId(), style);
+            createCell(row, columnCount++, user.getUsername(), style);
+            createCell(row, columnCount++, user.getFullname(), style);
+            createCell(row, columnCount++, user.getEmail(), style);
+            createCell(row, columnCount++, user.getGender() ? "Nam" : "Nữ", style);
+            createCell(row, columnCount++, user.getAddress(), style);
+            createCell(row, columnCount++, user.getPhone(), style);
+            createCell(row, columnCount++, user.getImg(), style);
+            createCell(row, columnCount++, user.getId_Card(), style);
+            createCell(row, columnCount++, user.getRole_Id().getRole(), style);
+            createCell(row, columnCount++, String.valueOf(user.getCreatedDate()), style);
+            createCell(row, columnCount++, user.getIsEnable() ? "Vô hiệu hóa" : "Kích hoạt", style);
+            createCell(row, columnCount++, String.valueOf(user.getProvider()), style);
+            createCell(row, columnCount++, String.valueOf(user.getPasswordChangedTime()), style);
 
 
         }

@@ -1,9 +1,15 @@
 package com.nicetravel.controller.staff;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.nicetravel.export.UserExcelExporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -106,5 +112,25 @@ public class InformationUserController {
 		}
 		
 		return "redirect:/staff/thong-tin-khach-hang";
+	}
+
+
+	@GetMapping("/customers/export/excel")
+	public void exportToExcel(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+		String currentDateTime = dateFormatter.format(new Date());
+
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename=customers_" + currentDateTime + ".xlsx";
+		response.setHeader(headerKey, headerValue);
+
+		List<Account> listUsers = accountService.findByUser();
+
+//		List<Account> list = accountService.findAllByStaff();
+
+		UserExcelExporter excelExporter = new UserExcelExporter(listUsers);
+
+		excelExporter.export(response);
 	}
 }

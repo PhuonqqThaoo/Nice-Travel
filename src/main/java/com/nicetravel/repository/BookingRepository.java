@@ -16,6 +16,12 @@ import com.nicetravel.entity.BookingDetail;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
+	@Query("SELECT u FROM Booking u WHERE u.id = ?1")
+	Booking findBookingById(int id);
+
+	@Query("SELECT u FROM Booking u WHERE u.verification_code = ?1")
+	public Booking findByVerificationCode(String code);
+
 	@Query(value = "{CALL sp_getOrderInDay()}", nativeQuery = true)
 	Integer getOrderInDay();
 
@@ -35,6 +41,6 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 	String[][] getTotalPriceFromTo(String from, String to);
 
 	// Fix sau
-	@Query("SELECT u FROM Booking u WHERE u.accountId.username = ?1")
-	List<Booking> getAllBookingByAcId(String id);
+//	@Query("SELECT u FROM Booking u WHERE u.booking_account_id = ?1")
+//	List<Booking> getAllBookingByAcId(String id);
 }

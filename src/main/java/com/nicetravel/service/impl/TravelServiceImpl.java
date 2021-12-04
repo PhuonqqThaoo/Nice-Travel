@@ -126,7 +126,7 @@ public class TravelServiceImpl implements TravelService {
 			if(ObjectUtils.isEmpty(sd)) {
 				return travelRepository.searchTourMinMaxNoDate2(depart, desti, pmin, pmax, pageable);
 			}
-					return travelRepository.searchTour2(depart, desti, sd, pmin, pmax, pageable);
+			return travelRepository.searchTour2(depart, desti, sd, pmin, pmax, pageable);
 	}
 	
 	@Override
@@ -143,7 +143,6 @@ public class TravelServiceImpl implements TravelService {
 
 	@Override
 	public List<Travel> getFavoriteTour() {
-		
 		return travelRepository.getTourFavorite();
 	}
 

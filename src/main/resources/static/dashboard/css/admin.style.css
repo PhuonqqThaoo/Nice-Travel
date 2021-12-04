@@ -8,6 +8,10 @@
     margin-bottom: 30px;
 }
 
+.img-profile{
+    border: none;
+}
+
 /* chỉnh sửa tour du lịch */
 .chinh-sua-tour {
     min-height: 35rem;

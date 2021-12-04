@@ -33,6 +33,7 @@ public interface AccountService {
     Page<Account> findAllByStaffPage(int page, int size);
 
     List<Account> findAllByStaff();
+    List<Account> findByUser();
 
     Page<Account> findAllByUser(int page, int size);
 

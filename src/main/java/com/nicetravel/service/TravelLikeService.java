@@ -13,7 +13,7 @@ public interface TravelLikeService {
 	
 	void deleteTravelLike(Integer id);
 	
-	List<TravelLike> getAllTravelLikeByIdAcount(Account accountId);
+	List<TravelLike> getAllTravelLikeByIdAcount(Account account_id);
 	
 
 

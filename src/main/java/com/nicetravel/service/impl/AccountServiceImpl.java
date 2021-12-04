@@ -102,6 +102,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public List<Account> findByUser() {
+        return accountRepository.findByUser();
+    }
+
+    @Override
     @Transactional
     public Page<Account> findAllByUser(int page, int size) {
         return accountRepository.findAllByUser(PageRequest.of(page, size));

@@ -169,7 +169,11 @@
 									</li>
 									<li th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('STAFF')}"
 										class="header__navbar_user-item">
-										<a th:href="@{/admin}">Quản lý</a>
+										<a th:href="@{/admin}">Quản lý Admin</a>
+									</li>
+									<li th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('STAFF')}"
+										class="header__navbar_user-item">
+										<a th:href="@{/staff}">Quản lý Staff</a>
 									</li>
 									<li class="header__navbar_user-item header__navbar_user-item--separate">
 										<a th:href="@{/logoff}">Đăng xuất</a>
