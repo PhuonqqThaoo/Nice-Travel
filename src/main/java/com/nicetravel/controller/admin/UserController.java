@@ -48,11 +48,40 @@ public class UserController {
                              @RequestParam(name="page",defaultValue = "1") int page) {
         Account account = accountService.findAccountsByUsername(request.getRemoteUser());
         model.addAttribute("account", account);
-        Page<Account> list = accountService.findAllByUser(page-1, SIZE);
+        Page<Account> list = accountService.findAllByUserActivate(page-1, SIZE);
         model.addAttribute("listUser", list.getContent());
         model.addAttribute("totalPage", list.getTotalPages());
         model.addAttribute("currentPage", page);
         model.addAttribute("userRequest", new Account());
+        model.addAttribute("text", "Thông tin khách hàng đang hoạt động");
+        return "/admin/khach-hang/ThongTinKhachHang";
+    }
+
+    @GetMapping("/all")
+    public String getAllUser(Model model, HttpServletRequest request,
+                             @RequestParam(name="page",defaultValue = "1") int page){
+        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+        model.addAttribute("account", account);
+        Page<Account> list = accountService.getAllUser(page-1, SIZE);
+        model.addAttribute("listUser", list.getContent());
+        model.addAttribute("totalPage", list.getTotalPages());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("userRequest", new Account());
+        model.addAttribute("text", "Tất cả thông tin khách hàng");
+        return "/admin/khach-hang/ThongTinKhachHang";
+    }
+
+    @GetMapping("/noActive")
+    public String getAllUserNoActive(Model model, HttpServletRequest request,
+                             @RequestParam(name="page",defaultValue = "1") int page){
+        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+        model.addAttribute("account", account);
+        Page<Account> list = accountService.findAllByUserNoActivate(page-1, SIZE);
+        model.addAttribute("listUser", list.getContent());
+        model.addAttribute("totalPage", list.getTotalPages());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("userRequest", new Account());
+        model.addAttribute("text", "Thông tin khách hàng không hoạt động");
         return "/admin/khach-hang/ThongTinKhachHang";
     }
 
@@ -146,4 +175,6 @@ public class UserController {
 
         excelExporter.export(response);
     }
+
+
 }

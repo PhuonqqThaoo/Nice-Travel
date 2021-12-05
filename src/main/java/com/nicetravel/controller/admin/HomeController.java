@@ -65,7 +65,7 @@ public class HomeController {
 		model.addAttribute("account", account);
 		List<Account> list = accountService.findAll();
 		model.addAttribute("listUser",list);
-		Page<Account> listByUser = accountService.findAllByUser(page-1, SIZE);
+		Page<Account> listByUser = accountService.findAllByUserActivate(page-1, SIZE);
 		model.addAttribute("listUser1", listByUser.getContent());
 		model.addAttribute("totalPage", listByUser.getTotalPages());
 		model.addAttribute("currentPage", page);

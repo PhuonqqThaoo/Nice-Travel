@@ -108,9 +108,20 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional
-    public Page<Account> findAllByUser(int page, int size) {
-        return accountRepository.findAllByUser(PageRequest.of(page, size));
+    public Page<Account> findAllByUserActivate(int page, int size) {
+        return accountRepository.findAllByUserActivate(PageRequest.of(page, size));
     }
+
+    @Override
+    public Page<Account> getAllUser(int page, int size) {
+        return accountRepository.getAllUserAdmin(PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Account> findAllByUserNoActivate(int page, int size) {
+        return accountRepository.findAllByUserNoActivate(PageRequest.of(page, size));
+    }
+
     @Override
     @Transactional
     public void update(Account account) throws Exception {

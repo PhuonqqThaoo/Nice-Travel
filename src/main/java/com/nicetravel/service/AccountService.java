@@ -35,7 +35,14 @@ public interface AccountService {
     List<Account> findAllByStaff();
     List<Account> findByUser();
 
-    Page<Account> findAllByUser(int page, int size);
+    // user đang hoạt động
+    Page<Account> findAllByUserActivate(int page, int size);
+
+    // user tất cả
+    Page<Account> getAllUser(int page, int size);
+
+    // user khong hoạt động
+    Page<Account> findAllByUserNoActivate(int page, int size);
 
     void update(Account account) throws Exception;
 

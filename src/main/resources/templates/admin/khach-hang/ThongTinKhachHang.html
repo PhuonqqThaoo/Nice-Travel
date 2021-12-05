@@ -186,10 +186,10 @@
                 		</div>
                 	</div>
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Thông tin khách hàng</h1>
+                        <h1 class="h3 mb-0 text-gray-800" th:utext="${text}">Thông tin khách hàng</h1>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Thông tin khách hàng</li>
+                            <li class="breadcrumb-item active" aria-current="page" th:utext="${text}" >Thông tin khách hàng</li>
                         </ol>
                     </div>
 					
@@ -200,23 +200,23 @@
                                     <div class="tab-content" id="v-pills-tabContent">
                                         <div class="row" style="margin-bottom: 20px;">
                                             <div class="col-xl-2">
-                                                <div class="card">
+                                                <div class="card" >
                                                     <h5 class="card-header" style="font-weight: 700; text-transform: uppercase; font-size: 14px; background-color: #4c60da; color: #ffffff;">Bộ lọc</h5>
                                                     <div class="card-body">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onclick="getAll()">
                                                             <label class="form-check-label" for="exampleRadios1">
                                                                 Tất cả
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onclick="getByUserActive()">
                                                             <label class="form-check-label" for="exampleRadios2">
                                                                 Đang hoạt động
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" onclick="getAllUserNoActive()">
                                                             <label class="form-check-label" for="exampleRadios3">
                                                                 Ngưng hoạt động
                                                             </label>
@@ -226,8 +226,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-10">
-                                                <div class="card" style="margin-bottom: 15px;">
-                                                    <table class="table">
+                                                <div class="card" style="margin-bottom: 15px;" id="result">
+                                                    <table class="table" id="table">
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">STT</th>
@@ -448,7 +448,7 @@
     			$("#submitUpdate").prop('disabled',false);
     		})
 		};
-    	
+
     	$("#createBtn").click(function() {
 			$('html,body').animate({
 				scrollTop: $("#form").offset().top
@@ -459,7 +459,23 @@
 			$("#form").prop('action','/admin/thong-tin-khach-hang/create');
 			$("#submitCreate").prop('disabled',false);
 		});
-    	
+
+
+        function getAll() {
+            window.location.assign('/admin/thong-tin-khach-hang/all')
+<!--            document.getElementById("exampleRadios1").checked = true;-->
+            document.getElementById("exampleRadios1").setAttribute("checked", "checked")
+        };
+        function getByUserActive(){
+            window.location.assign('/admin/thong-tin-khach-hang')
+            document.getElementById("exampleRadios2").checked = true;
+        };
+
+        function getAllUserNoActive(){
+            window.location.assign('/admin/thong-tin-khach-hang/noActive')
+            document.getElementById("exampleRadios3").checked = true;
+        };
+
     	function cacelBtn() {
 			$('#username').val('');
 			$('#email').val('');
