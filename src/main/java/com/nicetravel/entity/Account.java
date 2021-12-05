@@ -128,4 +128,5 @@ public class Account implements Serializable {
     @OneToMany(mappedBy = "travel_account_id")
     List<Travel> travels;
 
+
 }
