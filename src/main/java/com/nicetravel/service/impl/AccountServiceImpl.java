@@ -230,6 +230,10 @@ public class AccountServiceImpl implements AccountService {
 //        accountRepository.save(account);
     }
 
+    @Override
+    public Account getIdByUser(String user) {
+        return accountRepository.getIdByUser(user);
+    }
 
 
 }

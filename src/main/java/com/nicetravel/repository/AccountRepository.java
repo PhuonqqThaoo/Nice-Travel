@@ -90,4 +90,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query("UPDATE Account u SET u.password = ?1 WHERE u.username = ?2")
     public void changePassword(String newPass, String username);
 
+    @Query("SELECT u FROM  Account u WHERE u.username = ?1")
+    Account getIdByUser(String username);
+
 } 

@@ -121,13 +121,15 @@ public class TravelAdminController {
 
 	@PostMapping("/create")
 	public String doPostCreate(@Valid @ModelAttribute("travelRequest") Travel travelRequest, BindingResult result,
-			RedirectAttributes redirect) {
+			RedirectAttributes redirect, HttpServletRequest request) {
 		String errorMessage = null;
 		try {
 			// check if userRequest is not valid
 			if (result.hasErrors()) {
 				errorMessage = "Travel is not valid";
 			} else {
+				Account id = accountService.getIdByUser(request.getRemoteUser());
+				travelRequest.setTravel_account_id(id);
 				travelService.saveTravel(travelRequest);
 				String successMessage = "Travel " + travelRequest.getName() + " was created!";
 				redirect.addFlashAttribute("successMessage", successMessage);
