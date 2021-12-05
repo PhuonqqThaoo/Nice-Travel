@@ -92,8 +92,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public Page<Account> findAllByStaffPageActive(int page, int size) {
+        return accountRepository.findAllByStaffPageActive(PageRequest.of(page, size));
+    }
+
+    @Override
     public Page<Account> findAllByStaffPage(int page, int size) {
         return accountRepository.findAllByStaffPage(PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Account> findAllByStaffPageNoActive(int page, int size) {
+        return accountRepository.findAllByStaffPageNoActive(PageRequest.of(page, size));
     }
 
     @Override

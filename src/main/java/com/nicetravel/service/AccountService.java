@@ -30,9 +30,14 @@ public interface AccountService {
 
     List<Account> findAll();
 
+    Page<Account> findAllByStaffPageActive(int page, int size);
+
     Page<Account> findAllByStaffPage(int page, int size);
 
+    Page<Account> findAllByStaffPageNoActive(int page, int size);
+
     List<Account> findAllByStaff();
+
     List<Account> findByUser();
 
     // user đang hoạt động

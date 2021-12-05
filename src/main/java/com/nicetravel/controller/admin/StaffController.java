@@ -50,14 +50,43 @@ public class StaffController {
 							 @RequestParam(name="page",defaultValue = "1") int page) {
 		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
 		model.addAttribute("account", account);
+		Page<Account> list = accountService.findAllByStaffPageActive(page-1, SIZE);
+		model.addAttribute("listStaff", list.getContent());
+		model.addAttribute("totalPage", list.getTotalPages());
+		model.addAttribute("currentPage", page);
+		model.addAttribute("userRequest",new Account());
+		model.addAttribute("text", "Tất cả thông tin nhân viên");
+		return "/admin/nhan-vien/ThongTinNhanVien";
+	}
+
+	@GetMapping("/all")
+	public String getAllUser(Model model, HttpServletRequest request,
+							 @RequestParam(name="page",defaultValue = "1") int page){
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+		model.addAttribute("account", account);
 		Page<Account> list = accountService.findAllByStaffPage(page-1, SIZE);
 		model.addAttribute("listStaff", list.getContent());
 		model.addAttribute("totalPage", list.getTotalPages());
 		model.addAttribute("currentPage", page);
 		model.addAttribute("userRequest",new Account());
+		model.addAttribute("text", "Tất cả thông tin khách hàng");
 		return "/admin/nhan-vien/ThongTinNhanVien";
 	}
-	
+
+	@GetMapping("/noActive")
+	public String getAllUserNoActive(Model model, HttpServletRequest request,
+									 @RequestParam(name="page",defaultValue = "1") int page){
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+		model.addAttribute("account", account);
+		Page<Account> list = accountService.findAllByStaffPageNoActive(page-1, SIZE);
+		model.addAttribute("listStaff", list.getContent());
+		model.addAttribute("totalPage", list.getTotalPages());
+		model.addAttribute("currentPage", page);
+		model.addAttribute("userRequest",new Account());
+		model.addAttribute("text", "Thông tin nhân viên không hoạt động");
+		return "/admin/nhan-vien/ThongTinNhanVien";
+	}
+
 	@GetMapping("/edit")
 	public String doGetEdit(@RequestParam("username") String username, Model model) {
 		Account userRequest = accountService.findAccountsByUsername(username);

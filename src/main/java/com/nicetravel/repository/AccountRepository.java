@@ -43,7 +43,13 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     List<Account> findAllByStaff();
 
     @Query(value ="SELECT * FROM Account WHERE is_enable = 0 and role_Id = 2", nativeQuery = true)
+    Page<Account> findAllByStaffPageActive(Pageable page);
+
+    @Query(value ="SELECT * FROM Account WHERE role_Id = 2", nativeQuery = true)
     Page<Account> findAllByStaffPage(Pageable page);
+
+    @Query(value ="SELECT * FROM Account WHERE is_enable = 1 and role_Id = 2", nativeQuery = true)
+    Page<Account> findAllByStaffPageNoActive(Pageable page);
 
     @Query(value ="SELECT * FROM Account WHERE is_enable = 0 and role_Id = 3", nativeQuery = true)
     Page<Account> findAllByUserActivate(Pageable page);
