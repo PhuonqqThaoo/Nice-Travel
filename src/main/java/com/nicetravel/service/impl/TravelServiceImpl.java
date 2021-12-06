@@ -151,9 +151,25 @@ public class TravelServiceImpl implements TravelService {
 		return travelRepository.getTravelInMonth(PageRequest.of(page, size));
 	}
 
-	public Page<Travel> getFindAllByTravel(int page, int size) {
+	@Override
+	public Page<Travel> getFindAllByTravelActive(int page, int size) {
 
+		return travelRepository.findAllByTravelActive(PageRequest.of(page, size));
+	}
+
+	@Override
+	public Page<Travel> getFindAllByTravel(int page, int size) {
 		return travelRepository.findAllByTravel(PageRequest.of(page, size));
+	}
+
+	@Override
+	public Page<Travel> getFindAllByTravelExpires(int page, int size) {
+		return  travelRepository.findAllByTravelExpires(PageRequest.of(page, size));
+	}
+
+	@Override
+	public Page<Travel> getFindAllByTravelNonActive(int page, int size) {
+		return  travelRepository.findAllByTravelNonActive(PageRequest.of(page, size));
 	}
 
 //	@Override
