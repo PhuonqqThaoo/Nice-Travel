@@ -56,19 +56,19 @@ public class SecurityController {
 
     @RequestMapping("/login/success")
     public String loginSuccess(Model model) {
-        model.addAttribute("message", "Login success");
+        model.addAttribute("message", "Đăng nhập thành công");
         return "forward:/login";
     }
 
     @RequestMapping("/login/error")
     public String loginError(Model model) {
-        model.addAttribute("message", "Login fail");
+        model.addAttribute("message", "Đăng nhập không thành công");
         return "forward:/login";
     }
 
     @RequestMapping("/unauthorized")
     public String unauthoried(Model model) {
-        model.addAttribute("message", "You're unauthorized");
+        model.addAttribute("message", "Bạn không có quyền");
         return "forward:/login";
     }
 
@@ -76,7 +76,7 @@ public class SecurityController {
 
     @RequestMapping("/logoff/success")
     public String logoffSuccess(Model model) {
-        model.addAttribute("message", "Logout success");
+        model.addAttribute("message", "Đăng xuất thành công");
         return "forward:/login";
     }
 
