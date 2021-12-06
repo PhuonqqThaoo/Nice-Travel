@@ -64,9 +64,21 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
     @Query(value = "{CALL sp_getTourFavorite()}" , nativeQuery = true)
 	  List<Travel> getTourFavorite() ;
 
-	// list tour admin
-	@Query(value ="SELECT * FROM Travel WHERE is_deleted = 0 and expiration_date = 0 ", nativeQuery = true)
+	// list tour admin tất cả
+	@Query(value ="SELECT * FROM Travel", nativeQuery = true)
 	Page<Travel> findAllByTravel(Pageable page);
+
+	// list tour admin đang hoạt động
+	@Query(value ="SELECT * FROM Travel WHERE is_deleted = 0 and expiration_date = 0 ", nativeQuery = true)
+	Page<Travel> findAllByTravelActive(Pageable page);
+
+	// list tour admin ngừng hđ
+	@Query(value ="SELECT * FROM Travel WHERE is_deleted = 1 ", nativeQuery = true)
+	Page<Travel> findAllByTravelNonActive(Pageable page);
+
+	// list tour admin hết hạn
+	@Query(value ="SELECT * FROM Travel WHERE expiration_date = 1 ", nativeQuery = true)
+	Page<Travel> findAllByTravelExpires(Pageable page);
    	
 //   	@Query("SELECT u FROM Travel u WHERE u.id =?1")
 //   	Travel findTravelById(Integer id);
