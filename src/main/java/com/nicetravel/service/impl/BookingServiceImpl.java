@@ -133,9 +133,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public List<Booking> getAllBookingByAcId(String id) {
-//		return bookingRepository.findBookingById(id);
-		return null;
+	public List<Booking> getAllBookingByAcId(String username) {
+		return bookingRepository.getAllBookingByAcId(username);
 	}
 
 	@Override
