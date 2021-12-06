@@ -1,5 +1,8 @@
 package com.nicetravel.controller.admin;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -85,6 +88,7 @@ public class TravelAdminController {
 			} else {
 				List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
 				model.addAttribute("listTravelType",listTravelType);
+
 				travelService.updateTraveladmin(travelRequest);
 				String successMessage = "Travel " + travelRequest.getName() + " was update";
 				redirect.addFlashAttribute("successMessage", successMessage);

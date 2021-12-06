@@ -294,12 +294,16 @@
                                         	
                                             <!-- click đúp để chuyển sang trang chỉnh sửa -->
                                             <th scope="col">STT</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Place</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col" style="width: 200px;">Start date</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="col">Hour</th>
+                                            <th scope="col">Tên tour</th>
+                                            <th scope="col">Địa điểm tập trung</th>
+                                            <th scope="col">Địa điểm xuất phát</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col" >Ngày bắt đầu tour</th>
+                                            <th scope="col" >Ngày kết thúc tour</th>
+                                            <th scope="col">Số lượng</th>
+                                            <th scope="col">Giờ xuất phát</th>
+                                            <th scope="col">Loại tour</th>
+                                            <th scope="col">Người tạo tour</th>
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
@@ -308,10 +312,14 @@
                                             <td th:text = "${i.index+1}"></th>
                                             <td th:text = "${list.name}"></td>
                                             <td th:text = "${list.place}"></td>
+                                            <td th:text = "${list.departurePlace}"></td>
                                             <td th:text = "${list.price}"></td>
                                             <td th:text = "${list.startDate}"></td>
+                                            <td th:text = "${list.endDate}"></td>
                                             <td th:text = "${list.quantityNew}"></td>
                                             <td th:text = "${list.hour}"></td>
+                                            <td th:text = "${list.typeId.type}"></td>
+                                            <td th:text = "${list.travel_account_id.fullname}"></td>
                                             <td align="center">
                                                 <button th:attr="onclick='editTravel(\''+${list.id}+'\')'" class="btn btn-success" style="width: 40px">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
@@ -356,56 +364,56 @@
                                 <div class="col-6 left">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="inputName">Name</label>
+                                            <label for="inputName">Tên tour</label>
                                             <input th:field="*{name}" id = "name"
                                                    readonly="true" type="text" class="form-control" >
                                             <input th:field="*{id}" id = "id"
                                                    readonly="false" type="text" class="form-control" hidden >
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputPrice">Price</label>
+                                            <label for="inputPrice">Giá</label>
                                             <input th:field="*{price}" id = "price"
                                                    readonly="true" type="text" class="form-control" >
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="inputDeparture">Departure place</label>
+                                            <label for="inputDeparture">Địa điểm xuất phát</label>
                                             <input th:field="*{departurePlace}" id = "departure_place"
                                                    readonly="true" type="text" class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputPlace">Place</label>
+                                            <label for="inputPlace">Địa điểm tập trung</label>
                                             <input th:field="*{place}" id = "place"
                                                    readonly="true" type="text" class="form-control" >
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
-                                            <label for="travel_type">Travel Type</label>
+                                            <label for="travel_type">Loại tour</label>
                                             <select id="travel_type" class="form-control" th:field="*{typeId}">
                                                 <option  th:each="item : ${listTravelType}" th:value="${item.id}" th:utext="${item.type}" ></option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="inputStartDate">Start date</label>
+                                            <label for="inputStartDate">Ngày bắt đầu</label>
                                             <input th:field="*{startDate}" id = "start_date"
                                                    readonly="true" type="date" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="inputEndDate">End date</label>
+                                            <label for="inputEndDate">Ngày kết thúc</label>
                                             <input th:field="*{endDate}" id = "end_date"
                                                    readonly="true" type="date" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
-                                            <label for="inputQuantity">Quantity</label>
+                                            <label for="inputQuantity">Số lượng</label>
                                             <input th:field="*{quantityNew}" id = "quantity_new"
                                                    readonly="true" type="number" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="inputHour">Hour</label>
+                                            <label for="inputHour">Giờ tập trung</label>
                                             <input th:field="*{hour}" id = "hour"
                                                    readonly="true" type="number" class="form-control">
                                         </div>

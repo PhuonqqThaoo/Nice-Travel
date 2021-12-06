@@ -57,14 +57,15 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
     @Query(value = "{CALL sp_getTotalSold()}", nativeQuery = true)
    	List<String[][]> getTotalSold();
    	
-   	@Query("SELECT new com.nicetravel.entity.Total(u.name, (100- ((convert(float,u.quantityNew) / convert(float,u.quantity)) * 100)),u.quantity, (u.quantity- u.quantityNew) ) From Travel u ")
+   	@Query("SELECT new com.nicetravel.entity.Total (u.name, (100- ((convert(float,u.quantityNew) / convert(float,u.quantity)) * 100)),u.quantity, (u.quantity- u.quantityNew) ) From Travel u order by (100- ((convert(float,u.quantityNew) / convert(float,u.quantity)) * 100)) desc ")
    	List<Total> getTotal();
    	
 
     @Query(value = "{CALL sp_getTourFavorite()}" , nativeQuery = true)
 	  List<Travel> getTourFavorite() ;
 
-	@Query(value ="SELECT * FROM Travel WHERE is_deleted = 0 ", nativeQuery = true)
+	// list tour admin
+	@Query(value ="SELECT * FROM Travel WHERE is_deleted = 0 and expiration_date = 0 ", nativeQuery = true)
 	Page<Travel> findAllByTravel(Pageable page);
    	
 //   	@Query("SELECT u FROM Travel u WHERE u.id =?1")
@@ -79,7 +80,7 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 
 
 	// danh sách tour trong tháng
-	@Query(value="select * from Travel where Month(created_date) = MONTH(GetDate()) and YEAR(created_date) = Year(GetDate()) and is_deleted = 0", nativeQuery = true)
+	@Query(value="select * from Travel where Month(created_date) = MONTH(GetDate()) and YEAR(created_date) = Year(GetDate()) and is_deleted = 0 and expiration_date =0", nativeQuery = true)
 	Page<Travel> getTravelInMonth(Pageable page);
    	
    	// lấy tổng số tour đà lạt
