@@ -87,16 +87,22 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	@Query(value = "{CALL sp_CountDaLatTour()}" , nativeQuery = true)
 	 Integer countDaLatTour() ;
 
+	// update set nếu chỉnh start date thì không hết hạn
+	@Modifying(clearAutomatically =true)
+	@Query(value = "{CALL sp_updateEXD2()}" , nativeQuery = true)
+	void sp_updateEXD2() ;
+
 	// lấy tổng số tour Đà Nẵng
-		@Query(value = "{CALL sp_CountDaNangTour()}" , nativeQuery = true)
-		 Integer countDaNangTour() ;
+	@Query(value = "{CALL sp_CountDaNangTour()}" , nativeQuery = true)
+	Integer countDaNangTour() ;
 		
-		// lấy tổng số tour HàNoi
-		@Query(value = "{CALL sp_CountHaNoiTour()}" , nativeQuery = true)
-		 Integer countHaNoiTour() ;
+	// lấy tổng số tour HàNoi
+	@Query(value = "{CALL sp_CountHaNoiTour()}" , nativeQuery = true)
+	Integer countHaNoiTour() ;
 		
-		// lấy tổng số tour Phú Quốc
-		@Query(value = "{CALL sp_CountPhuQuocTour()}" , nativeQuery = true)
-		 Integer countPhuQuocTour() ;
+	// lấy tổng số tour Phú Quốc
+	@Query(value = "{CALL sp_CountPhuQuocTour()}" , nativeQuery = true)
+	Integer countPhuQuocTour() ;
+
 
 }

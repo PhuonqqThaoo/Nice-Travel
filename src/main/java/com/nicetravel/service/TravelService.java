@@ -54,6 +54,8 @@ public interface TravelService {
     Page<Travel> getFindAllByTravel(int page, int size);
     
    void updateTraveladmin(Travel travel) throws Exception;
+
+   void sp_updateEXD2() ;
    
    void deleteTravelAdmin(Integer id) throws Exception;
    

@@ -181,6 +181,12 @@ public class TravelServiceImpl implements TravelService {
 
 	@Override
 	@Transactional
+	public void sp_updateEXD2() {
+		 travelRepository.sp_updateEXD2();
+	}
+
+	@Override
+	@Transactional
 	public void deleteTravelAdmin(Integer id) throws Exception {
 		if (ObjectUtils.isEmpty(id)) {
 			throw new Exception("Travel cannot be empty");

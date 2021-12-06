@@ -123,6 +123,21 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public Page<Account> findAllByUserActivateInGetDate(int page, int size) {
+        return accountRepository.findAllByUserActivateInGetDate(PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Account> findAllByUserActivateInMonth(int page, int size) {
+        return accountRepository.findAllByUserActivateInMonth(PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Account> findAllByUserActivateInYear(int page, int size) {
+        return accountRepository.findAllByUserActivateInYear(PageRequest.of(page, size));
+    }
+
+    @Override
     public Page<Account> getAllUser(int page, int size) {
         return accountRepository.getAllUserAdmin(PageRequest.of(page, size));
     }

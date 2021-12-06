@@ -90,6 +90,7 @@ public class TravelAdminController {
 				model.addAttribute("listTravelType",listTravelType);
 
 				travelService.updateTraveladmin(travelRequest);
+				travelService.sp_updateEXD2();
 				String successMessage = "Travel " + travelRequest.getName() + " was update";
 				redirect.addFlashAttribute("successMessage", successMessage);
 				System.out.println(travelRequest.getDeparturePlace());
