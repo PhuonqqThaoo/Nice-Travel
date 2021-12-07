@@ -57,7 +57,7 @@ public class TravelAdminController {
 		model.addAttribute("listByTravelInMonth", listByTravelInMonth.getContent());
 		model.addAttribute("totalPage", listByTravelInMonth.getTotalPages());
 		model.addAttribute("currentPageLike", page);
-		Page<Travel> list = travelService.getFindAllByTravel(pageList-1, SIZE);
+		Page<Travel> list = travelService.getFindAllByTravelActive(pageList-1, SIZE);
 //		Boolean isDeleted = travelRequest.getIsDeleted();
 //		Boolean expires = travelRequest.getExpirationDate();
 //		if (isDeleted == false && expires == false){
