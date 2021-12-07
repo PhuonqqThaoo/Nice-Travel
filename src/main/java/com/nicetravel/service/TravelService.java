@@ -66,4 +66,6 @@ public interface TravelService {
    Integer countPhuQuocTour();
    
    Integer countHaNoiTour();
+   
+   void updateEX();
 }

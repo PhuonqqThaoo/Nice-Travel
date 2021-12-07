@@ -56,6 +56,8 @@ public class TravelController {
 		Integer tourPhuQuoc = travelService.countPhuQuocTour();
 		model.addAttribute("countPhuQuoc", tourPhuQuoc +" Tours");
 		
+		travelService.updateEX();
+		
 		return "travel/list";
 	}
 
@@ -77,6 +79,7 @@ public class TravelController {
 		//	List<Travel> list = travelService.findByTypeId(tid.get());
 			Pageable pageable = PageRequest.of(p-1, 6);
 			Page<Travel> list = travelService.findByTypeId(tid.get(),pageable);
+			
 			model.addAttribute("currentURL", request.getQueryString().toString());
 			model.addAttribute("items", list);
 			int n =2;

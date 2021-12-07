@@ -221,6 +221,15 @@ public class TravelServiceImpl implements TravelService {
 		return travelRepository.countHaNoiTour();
 	}
 
+	@Override
+	@Transactional
+	public void updateEX() {
+		// TODO Auto-generated method stub
+		  travelRepository.updateEX();
+	}
+
+
+
 
 
 

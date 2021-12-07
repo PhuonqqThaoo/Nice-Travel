@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	
-	@Query("SELECT u FROM Travel u WHERE u.isDeleted = false")
+	@Query("SELECT u FROM Travel u WHERE u.isDeleted = false AND u.expirationDate = false")
 	List<Travel> getAll();
 	
 	@Query("SELECT count(u.id) FROM Travel u ")
@@ -27,16 +27,16 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
     Travel findTravelBySlug(String slug); 
     
 	
-	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.startDate = CONVERT(DATETIME, ?3 ,103) and price between ?4 and ?5" )
+	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.startDate = CONVERT(DATETIME, ?3 ,103) and price between ?4 and ?5 and t.isDeleted = false AND t.expirationDate = false" )
 	  List<Travel> searchTour(String depart, String desti, String sd, BigDecimal pmin, BigDecimal pmax) ;
 	  
-	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.startDate = CONVERT(DATETIME, ?3 ,103) and price between ?4 and ?5" )
+	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.startDate = CONVERT(DATETIME, ?3 ,103) and price between ?4 and ?5 and t.isDeleted = false AND t.expirationDate = false" )
 	  Page<Travel> searchTour2(String depart, String desti, String sd, BigDecimal pmin, BigDecimal pmax, Pageable pageable) ;
 	  
-	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.price between ?3 and ?4" )
+	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.price between ?3 and ?4 and t.isDeleted = false AND t.expirationDate = false" )
 	  List<Travel> searchTourMinMaxNoDate(String depart, String desti,BigDecimal pmin, BigDecimal pmax);
 	  
-	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.price between ?3 and ?4" )
+	  @Query("SELECT t FROM Travel t WHERE t.place LIKE %?1% and t.name LIKE %?2% and t.price between ?3 and ?4 and t.isDeleted = false AND t.expirationDate = false" )
 	  Page<Travel> searchTourMinMaxNoDate2(String depart, String desti,BigDecimal pmin, BigDecimal pmax, Pageable pageable);
 	  
 	/*
@@ -45,10 +45,10 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	 */
 	  
 	  
-	    @Query("SELECT t FROM Travel t WHERE t.typeId.id=?1")
+	    @Query("SELECT t FROM Travel t WHERE t.typeId.id=?1 AND t.isDeleted = false AND t.expirationDate = false")
 		Page<Travel> findByTypeId(Integer tid,Pageable pageable);
     
-	    @Query("SELECT t FROM Travel t")
+	    @Query("SELECT t FROM Travel t WHERE t.isDeleted = false AND t.expirationDate = false")
 	    Page<Travel> getAll(Pageable pageable);
 //    // số lượng bán ra 
 //    @Query(value = "{CALL sp_getTotalSold()}", nativeQuery = true)
@@ -98,4 +98,8 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 		@Query(value = "{CALL sp_CountPhuQuocTour()}" , nativeQuery = true)
 		 Integer countPhuQuocTour() ;
 
+		//Update ngay het han
+		@Modifying(clearAutomatically = true)
+		@Query(value = "{CALL sp_updateEXD()}" , nativeQuery = true)
+		 void updateEX();
 }
