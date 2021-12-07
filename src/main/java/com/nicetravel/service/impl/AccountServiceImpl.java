@@ -26,7 +26,7 @@ import javax.transaction.Transactional;
 @Service
 public class AccountServiceImpl implements AccountService {
 
-    AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
     private BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 
     @Autowired

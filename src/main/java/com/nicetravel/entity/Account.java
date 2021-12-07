@@ -90,9 +90,9 @@ public class Account implements Serializable {
     @Transient
     public String getPhotosImagePath() {
         if (img == null || username == null) {
-            return "/admin/img/user.png";
+            return "/dashboard/img/user.png";
         }else if(img.equals("") || img.equals("user.png")){
-            return "/admin/img/user.png";
+            return "/dashboard/img/user.png";
         }
 
         return "/user-photos/" + username + "/" + img;

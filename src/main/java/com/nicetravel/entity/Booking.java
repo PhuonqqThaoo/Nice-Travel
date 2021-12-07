@@ -23,6 +23,22 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Booking implements Serializable {
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", bookingDetails=" + bookingDetails +
+                ", createdDate=" + createdDate +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", payBoolean=" + payBoolean +
+                ", isDeleted=" + isDeleted +
+                ", verification_code='" + verification_code + '\'' +
+                ", booking_account_id=" + booking_account_id +
+                '}';
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -38,6 +54,7 @@ public class Booking implements Serializable {
 
     @Column(name = "createdDate", nullable = false)
     @CreationTimestamp // defaut getDate()
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdDate;
 
     @Column(name = "address", length = 225)

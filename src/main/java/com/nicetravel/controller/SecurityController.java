@@ -101,11 +101,16 @@ public class SecurityController {
 
     @GetMapping("/verify")
     public String verifyUser(@Param("code") String code, Model model) {
-        System.out.println(code);
+        System.out.println("account code: " + code);
         if (userServices.verify(code)) {
             model.addAttribute("message", "Xác thực tài khoản thành công");
             return "forward:/login";
-        } else {
+        }
+        if(userServices.verifyCancelTour(code)){
+            model.addAttribute("message", "Xác nhận hủy tour thành công");
+            return "forward:/login";
+        }
+        else {
             return "/account/register/verify_fail";
         }
     }

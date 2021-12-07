@@ -168,7 +168,7 @@
                                             </td>
                                             <td>[[${#dates.format(p.createdDate, 'dd-MM-yyyy')}]]</td>
                                             <td>[[${p.address}]]</td>
-                                            <td>[[${p.totalPrice}]] vnđ</td>
+                                            <td>[[${#numbers.formatDecimal(p.totalPrice, 0, 'COMMA', 0, 'POINT')}]] VNĐ</td>
                                             <td th:if="${p.payBoolean} == false AND ${p.isDeleted} == false">
                                             	<span class="badge badge-danger">Chưa thanh toán</span>
                                             </td>
@@ -181,20 +181,24 @@
                                             <td>
                                             	<a class="btn btn-primary"><i class='bx bx-search'></i></a>
 <!--                                            	<a class="btn btn-danger isDelete-window button" th:href="@{|/customer/isDelete/${p.id}|}" th:if="${p.payBoolean} == false AND ${p.isDeleted} == false">Hủy</a>-->
-                                                <form th:action="@{/customer/cancel-tour}">
-            <button>HUY</button>
-                                                </form>
+                                                <a class="btn btn-danger isDelete-window button" th:href="@{|/customer/cancel-tour/${p.id}|}" th:if="${p.payBoolean} == false AND ${p.isDeleted} == false">Hủy</a>
+
+<!--                                                <form th:action="@{/customer/cancel-tour}">-->
+<!--            <button>HUY</button>-->
+<!--                                                </form>-->
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+
+
                             </div>
                         </div>
                     </div>
                     <!--Row-->
 
                     <!-- Modal Logout -->
-                    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+                    <div class="modal fade" id="logoutModal1" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">

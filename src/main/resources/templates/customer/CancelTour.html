@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cancel Tour</title>
+</head>
+<body>
+<h1>Cancel Tour</h1>
+
+<form th:action="@{/customer/process-cancel-tour}" th:object="${booking}" method="post">
+    <label>
+        <input type="text" th:field="*{id}" placeholder="Lý do hủy">
+    </label>
+    <label>
+        <input type="text" th:field="*{address}" placeholder="Mô tả"/>
+    </label>
+    <label>
+        <input type="text" th:field="*{createdDate}" placeholder="Mô tả"/>
+    </label>
+    <label>
+        <input type="text" th:field="*{isDeleted}" placeholder="Mô tả"/>
+    </label>
+    <label>
+        <input type="text" th:field="*{phone}" placeholder="Mô tả"/>
+    </label>
+    <label>
+        <input type="text" th:field="*{totalPrice}" placeholder="Mô tả"/>
+    </label>
+    <label>
+        <input type="text" th:field="*{booking_account_id}" placeholder="Mô tả"/>
+    </label>
+    <label>
+        <input type="text" th:field="*{verification_code}" placeholder="Mô tả"/>
+    </label>
+
+    <span class="message" th:text="${message}"></span>
+
+    <button type="submit" value="Gửi">Xác nhận</button>
+</form>
+
+<!--<form th:action="@{/customer/process-cancel-tour}"  th:object="${events}" method="post">-->
+<!--    <label>-->
+<!--        <input type="text" th:field="*{title}" placeholder="Lý do hủy">-->
+<!--    </label>-->
+<!--    <label>-->
+<!--        <input type="text" th:field="*{description}" placeholder="Mô tả"/>-->
+<!--    </label>-->
+
+<!--    <span class="message" th:text="${message}"></span>-->
+
+<!--    <button type="submit" value="Gửi">Gửi</button>-->
+<!--</form>-->
+</body>
+</html>

@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.lowagie.text.DocumentException;
 import com.nicetravel.custom.UserServices;
 import com.nicetravel.export.UserExcelExporter;
+import com.nicetravel.export.UserPDFExporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -178,6 +180,23 @@ public class StaffController {
 		UserExcelExporter excelExporter = new UserExcelExporter(listUsers);
 
 		excelExporter.export(response);
+	}
+
+	@GetMapping("/staff/export/pdf")
+	public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+		response.setContentType("application/pdf");
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+		String currentDateTime = dateFormatter.format(new Date());
+
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename=staff_" + currentDateTime + ".pdf";
+		response.setHeader(headerKey, headerValue);
+
+		List<Account> listUsers = service.listAll();
+
+		UserPDFExporter exporter = new UserPDFExporter(listUsers);
+		exporter.export(response);
+
 	}
 
 }

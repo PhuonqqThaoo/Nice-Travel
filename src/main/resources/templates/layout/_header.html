@@ -167,11 +167,11 @@
 									<li th:if="${#request.isUserInRole('USER')}" class="header__navbar_user-item">
 										<a th:href="@{/customer/tour-da-dat}">Tour đã đặt</a>
 									</li>
-									<li th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('STAFF')}"
+									<li th:if="${#request.isUserInRole('ADMIN')}"
 										class="header__navbar_user-item">
 										<a th:href="@{/admin}">Quản lý Admin</a>
 									</li>
-									<li th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('STAFF')}"
+									<li th:if="${#request.isUserInRole('STAFF')}"
 										class="header__navbar_user-item">
 										<a th:href="@{/staff}">Quản lý Staff</a>
 									</li>
