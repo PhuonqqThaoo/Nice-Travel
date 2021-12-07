@@ -51,9 +51,18 @@ public interface TravelService {
 
     Page<Travel> getTravelInMonth(int page, int size);
 
+    Page<Travel> getFindAllByTravelActive(int page, int size);
+
     Page<Travel> getFindAllByTravel(int page, int size);
+
+    Page<Travel> getFindAllByTravelExpires(int page, int size);
+
+    Page<Travel> getFindAllByTravelNonActive(int page, int size);
+
     
    void updateTraveladmin(Travel travel) throws Exception;
+
+   void sp_updateEXD2() ;
    
    void deleteTravelAdmin(Integer id) throws Exception;
    

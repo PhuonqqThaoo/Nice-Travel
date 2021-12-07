@@ -151,9 +151,25 @@ public class TravelServiceImpl implements TravelService {
 		return travelRepository.getTravelInMonth(PageRequest.of(page, size));
 	}
 
-	public Page<Travel> getFindAllByTravel(int page, int size) {
+	@Override
+	public Page<Travel> getFindAllByTravelActive(int page, int size) {
 
+		return travelRepository.findAllByTravelActive(PageRequest.of(page, size));
+	}
+
+	@Override
+	public Page<Travel> getFindAllByTravel(int page, int size) {
 		return travelRepository.findAllByTravel(PageRequest.of(page, size));
+	}
+
+	@Override
+	public Page<Travel> getFindAllByTravelExpires(int page, int size) {
+		return  travelRepository.findAllByTravelExpires(PageRequest.of(page, size));
+	}
+
+	@Override
+	public Page<Travel> getFindAllByTravelNonActive(int page, int size) {
+		return  travelRepository.findAllByTravelNonActive(PageRequest.of(page, size));
 	}
 
 //	@Override
@@ -177,6 +193,12 @@ public class TravelServiceImpl implements TravelService {
 			travel.setSlug(slug);
 			travelRepository.updateTravelAdmin(travel.getName(), travel.getDeparturePlace(),travel.getPlace(),travel.getPrice(),travel.getStartDate(),travel.getEndDate(), travel.getQuantity(),travel.getQuantityNew(),travel.getHour(),travel.getSlug(),travel.getId());
 		
+	}
+
+	@Override
+	@Transactional
+	public void sp_updateEXD2() {
+		 travelRepository.sp_updateEXD2();
 	}
 
 	@Override

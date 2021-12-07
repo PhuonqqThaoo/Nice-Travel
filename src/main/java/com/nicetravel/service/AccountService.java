@@ -43,6 +43,15 @@ public interface AccountService {
     // user đang hoạt động
     Page<Account> findAllByUserActivate(int page, int size);
 
+    // user đang hoạt động hôm nay
+    Page<Account> findAllByUserActivateInGetDate(int page, int size);
+
+    //  user đang hoạt động tháng này
+    Page<Account> findAllByUserActivateInMonth(int page, int size);
+
+    //  user đang hoạt động năm nay
+    Page<Account> findAllByUserActivateInYear(int page, int size);
+
     // user tất cả
     Page<Account> getAllUser(int page, int size);
 

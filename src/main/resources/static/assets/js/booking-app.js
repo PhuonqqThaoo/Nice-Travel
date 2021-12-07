@@ -31,7 +31,7 @@ app.controller("booking-ctrl", function($scope, $http) {
 		},
 		payBoolean : false,
 		isDeleted : false,
-		accountId : {id : Number($("#accountId").text())},
+		booking_account_id : {id : Number($("#accountId").text())},
 		get bookingDetails(){
 			return {
 				travelId : {id : Number($('#travelId').text())},

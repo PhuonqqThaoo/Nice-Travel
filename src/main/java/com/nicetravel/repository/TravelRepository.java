@@ -57,15 +57,28 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
     @Query(value = "{CALL sp_getTotalSold()}", nativeQuery = true)
    	List<String[][]> getTotalSold();
    	
-   	@Query("SELECT new com.nicetravel.entity.Total(u.name, (100- ((convert(float,u.quantityNew) / convert(float,u.quantity)) * 100)),u.quantity, (u.quantity- u.quantityNew) ) From Travel u ")
+   	@Query("SELECT new com.nicetravel.entity.Total (u.name, (100- ((convert(float,u.quantityNew) / convert(float,u.quantity)) * 100)),u.quantity, (u.quantity- u.quantityNew) ) From Travel u order by (100- ((convert(float,u.quantityNew) / convert(float,u.quantity)) * 100)) desc ")
    	List<Total> getTotal();
    	
 
     @Query(value = "{CALL sp_getTourFavorite()}" , nativeQuery = true)
 	  List<Travel> getTourFavorite() ;
 
-	@Query(value ="SELECT * FROM Travel WHERE is_deleted = 0 ", nativeQuery = true)
+	// list tour admin tất cả
+	@Query(value ="SELECT * FROM Travel", nativeQuery = true)
 	Page<Travel> findAllByTravel(Pageable page);
+
+	// list tour admin đang hoạt động
+	@Query(value ="SELECT * FROM Travel WHERE is_deleted = 0 and expiration_date = 0 ", nativeQuery = true)
+	Page<Travel> findAllByTravelActive(Pageable page);
+
+	// list tour admin ngừng hđ
+	@Query(value ="SELECT * FROM Travel WHERE is_deleted = 1 ", nativeQuery = true)
+	Page<Travel> findAllByTravelNonActive(Pageable page);
+
+	// list tour admin hết hạn
+	@Query(value ="SELECT * FROM Travel WHERE expiration_date = 1 ", nativeQuery = true)
+	Page<Travel> findAllByTravelExpires(Pageable page);
    	
 //   	@Query("SELECT u FROM Travel u WHERE u.id =?1")
 //   	Travel findTravelById(Integer id);
@@ -79,24 +92,30 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 
 
 	// danh sách tour trong tháng
-	@Query(value="select * from Travel where Month(created_date) = MONTH(GetDate()) and YEAR(created_date) = Year(GetDate()) and is_deleted = 0", nativeQuery = true)
+	@Query(value="select * from Travel where Month(created_date) = MONTH(GetDate()) and YEAR(created_date) = Year(GetDate()) and is_deleted = 0 and expiration_date =0", nativeQuery = true)
 	Page<Travel> getTravelInMonth(Pageable page);
    	
    	// lấy tổng số tour đà lạt
 	@Query(value = "{CALL sp_CountDaLatTour()}" , nativeQuery = true)
 	 Integer countDaLatTour() ;
 
+	// update set nếu chỉnh start date thì không hết hạn
+	@Modifying(clearAutomatically =true)
+	@Query(value = "{CALL sp_updateEXD2()}" , nativeQuery = true)
+	void sp_updateEXD2() ;
+
 	// lấy tổng số tour Đà Nẵng
-		@Query(value = "{CALL sp_CountDaNangTour()}" , nativeQuery = true)
-		 Integer countDaNangTour() ;
+	@Query(value = "{CALL sp_CountDaNangTour()}" , nativeQuery = true)
+	Integer countDaNangTour() ;
 		
-		// lấy tổng số tour HàNoi
-		@Query(value = "{CALL sp_CountHaNoiTour()}" , nativeQuery = true)
-		 Integer countHaNoiTour() ;
+	// lấy tổng số tour HàNoi
+	@Query(value = "{CALL sp_CountHaNoiTour()}" , nativeQuery = true)
+	Integer countHaNoiTour() ;
 		
-		// lấy tổng số tour Phú Quốc
-		@Query(value = "{CALL sp_CountPhuQuocTour()}" , nativeQuery = true)
-		 Integer countPhuQuocTour() ;
+	// lấy tổng số tour Phú Quốc
+	@Query(value = "{CALL sp_CountPhuQuocTour()}" , nativeQuery = true)
+	Integer countPhuQuocTour() ;
+
 
 		//Update ngay het han
 		@Modifying(clearAutomatically = true)
