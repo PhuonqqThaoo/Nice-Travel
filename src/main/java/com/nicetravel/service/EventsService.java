@@ -1,18 +1,22 @@
 package com.nicetravel.service;
 
-import com.nicetravel.entity.EventTour;
+import com.nicetravel.entity.Event;
 
 import java.util.List;
 
 public interface EventsService {
 
-    List<EventTour> getAllEvents();
+    List<Event> getAllEvents();
 
-    EventTour getEventById(Integer id);
+    Event getEventById(Integer id);
 
-    EventTour createEvent(EventTour events);
+    Event createEvent(Event event);
 
-    EventTour updateEvent(EventTour events);
+    Event updateEvent(Event event);
 
     void deleteEvent(int id);
+
+    Event findEventByBookingId(int id);
+
+    Event findEventByAccountId(int id);
 }

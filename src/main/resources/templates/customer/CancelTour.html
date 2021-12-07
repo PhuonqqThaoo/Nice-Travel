@@ -7,48 +7,45 @@
 <body>
 <h1>Cancel Tour</h1>
 
-<form th:action="@{/customer/process-cancel-tour}" th:object="${booking}" method="post">
+<form th:action="@{/customer/process-cancel-tour}" th:object="${booking}"  method="post">
     <label>
-        <input type="text" th:field="*{id}" placeholder="Lý do hủy">
+        <input type="text" th:field="*{id}" placeholder="id">
     </label>
     <label>
-        <input type="text" th:field="*{address}" placeholder="Mô tả"/>
+        <input type="text" th:field="*{address}" placeholder="địa chỉ"/>
     </label>
     <label>
-        <input type="text" th:field="*{createdDate}" placeholder="Mô tả"/>
+        <input type="text" th:field="*{createdDate}" placeholder="ngày tạo"/>
     </label>
     <label>
-        <input type="text" th:field="*{isDeleted}" placeholder="Mô tả"/>
+        <input type="text" th:field="*{isDeleted}" placeholder="is delete"/>
     </label>
     <label>
-        <input type="text" th:field="*{phone}" placeholder="Mô tả"/>
+        <input type="text" th:field="*{phone}" placeholder="phone"/>
     </label>
     <label>
-        <input type="text" th:field="*{totalPrice}" placeholder="Mô tả"/>
+        <input type="text" th:field="*{totalPrice}" placeholder="total price"/>
     </label>
     <label>
-        <input type="text" th:field="*{booking_account_id}" placeholder="Mô tả"/>
+        <input type="text" th:field="*{booking_account_id}" placeholder="account id"/>
     </label>
     <label>
-        <input type="text" th:field="*{verification_code}" placeholder="Mô tả"/>
+        <input type="text" th:field="*{verification_code}" placeholder="Verify code"/>
     </label>
+    <form th:object="${events}" method="post">
+        <label>
+            <input type="text" th:field="*{title}" placeholder="Lý do hủy">
+        </label>
+        <label>
+            <input type="text" th:field="*{description}" placeholder="Mô tả lý do"/>
+        </label>
 
-    <span class="message" th:text="${message}"></span>
+        <span class="message" th:text="${message}"></span>
 
-    <button type="submit" value="Gửi">Xác nhận</button>
+        <button type="submit" value="Gửi">Gửi</button>
+    </form>
 </form>
 
-<!--<form th:action="@{/customer/process-cancel-tour}"  th:object="${events}" method="post">-->
-<!--    <label>-->
-<!--        <input type="text" th:field="*{title}" placeholder="Lý do hủy">-->
-<!--    </label>-->
-<!--    <label>-->
-<!--        <input type="text" th:field="*{description}" placeholder="Mô tả"/>-->
-<!--    </label>-->
 
-<!--    <span class="message" th:text="${message}"></span>-->
-
-<!--    <button type="submit" value="Gửi">Gửi</button>-->
-<!--</form>-->
 </body>
 </html>

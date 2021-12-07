@@ -2,10 +2,9 @@ package com.nicetravel.custom;
 
 import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Booking;
-import com.nicetravel.entity.EventTour;
+import com.nicetravel.entity.Event;
 import com.nicetravel.entity.Provider;
 import com.nicetravel.repository.AccountRepository;
-import com.nicetravel.repository.BookingRepository;
 import com.nicetravel.repository.RoleRepository;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.BookingService;
@@ -55,6 +54,9 @@ public class UserServices {
 
     @Autowired
     private EventsService eventsService;
+
+    @Autowired
+    HttpServletRequest request;
 
     public List<Account> listAll() {
         return accountService.getAllAccount();
@@ -162,7 +164,7 @@ public void updateResetPasswordToken(String token, String email) throws Username
 
 
 // HỦY TOUR
-    public void cancelTour(Booking booking, EventTour eventTour, String siteURL) throws UnsupportedEncodingException, MessagingException{
+    public void cancelTour(Booking booking, Event event, String siteURL) throws UnsupportedEncodingException, MessagingException{
         System.out.println("booking: " + booking);
 //        eventsService.createEvent(eventTour);
         String random = RandomString.make(64);
@@ -174,9 +176,18 @@ public void updateResetPasswordToken(String token, String email) throws Username
         booking.setTotalPrice(booking.getTotalPrice());
         booking.setIsDeleted(false);
         bookingService.updateBooking(booking);
-        System.out.println("booking1: " + booking);
-        senMailCancelTour(booking, siteURL);
 
+        event.setBooking(booking);
+        event.setAccount(booking.getBooking_account_id());
+        event.setTitle(event.getTitle());
+        event.setDescription(event.getDescription());
+        event.setIs_delete(false);
+        eventsService.updateEvent(event);
+
+
+        System.out.println("booking1: " + booking);
+
+        senMailCancelTour(booking, siteURL);
     }
 
 
@@ -211,14 +222,18 @@ public void updateResetPasswordToken(String token, String email) throws Username
         System.out.println("Email đã được gửi");
     }
 
+    public Account getUsername(){
+        return accountService.findAccountsByUsername(request.getRemoteUser());
+    }
+
     public boolean verifyCancelTour(String verificationCode) {
         System.out.println("verifyCancel");
         Booking booking = bookingService.findByVerificationCode(verificationCode);
-//        System.out.println("verify code: " + booking);
         if (booking == null) {
             System.out.println("update fail");
             return false;
         } else {
+//            booking
             booking.setVerification_code(null);
             booking.setCreatedDate(booking.getCreatedDate());
             booking.setTotalPrice(booking.getTotalPrice());

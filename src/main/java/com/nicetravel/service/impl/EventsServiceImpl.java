@@ -1,6 +1,6 @@
 package com.nicetravel.service.impl;
 
-import com.nicetravel.entity.EventTour;
+import com.nicetravel.entity.Event;
 import com.nicetravel.repository.EventsRepository;
 import com.nicetravel.service.EventsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +14,22 @@ public class EventsServiceImpl implements EventsService {
     private EventsRepository eventsRepository;
 
     @Override
-    public List<EventTour> getAllEvents() {
+    public List<Event> getAllEvents() {
         return eventsRepository.findAll();
     }
 
     @Override
-    public EventTour getEventById(Integer id) {
+    public Event getEventById(Integer id) {
         return eventsRepository.findById(id).get();
     }
 
     @Override
-    public EventTour createEvent(EventTour events) {
+    public Event createEvent(Event events) {
         return eventsRepository.save(events);
     }
 
     @Override
-    public EventTour updateEvent(EventTour events) {
+    public Event updateEvent(Event events) {
         return eventsRepository.save(events);
     }
 
@@ -37,5 +37,15 @@ public class EventsServiceImpl implements EventsService {
     public void deleteEvent(int id) {
         eventsRepository.deleteById(id);
 
+    }
+
+    @Override
+    public Event findEventByBookingId(int id) {
+        return eventsRepository.findEventByBookingId(id);
+    }
+
+    @Override
+    public Event findEventByAccountId(int id) {
+        return eventsRepository.findEventByAccountId(id);
     }
 }

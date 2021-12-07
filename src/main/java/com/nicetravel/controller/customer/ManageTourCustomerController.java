@@ -1,34 +1,26 @@
 package com.nicetravel.controller.customer;
 
-import java.awt.print.Book;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.nicetravel.custom.UserServices;
-import com.nicetravel.custom.Utility;
-import com.nicetravel.entity.EventTour;
-import net.bytebuddy.utility.RandomString;
+import com.nicetravel.entity.Account;
+import com.nicetravel.entity.Event;
+import com.nicetravel.service.EventsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Booking;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.BookingDetailService;
 import com.nicetravel.service.BookingService;
-
-import static com.nicetravel.custom.Utility.getSiteURL;
 
 @Controller
 @RequestMapping("/customer")
@@ -42,6 +34,9 @@ public class ManageTourCustomerController {
 
 	@Autowired
 	UserServices userServices;
+
+	@Autowired
+	EventsService eventsService;
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -73,17 +68,37 @@ public class ManageTourCustomerController {
 		Booking booking = bookingService.findById(id);
 		model.addAttribute("booking", booking);
 		model.addAttribute("message", "Bạn có chắc muốn hủy tour");
-//		model.addAttribute("events", new EventTour());
+		model.addAttribute("events", new Event());
 		return "/customer/CancelTour";
 	}
 
 	@PostMapping("/process-cancel-tour")
-	public String processCancelTour(Booking booking, EventTour eventTour, HttpServletRequest request)
+	public String processCancelTour(Booking booking,@ModelAttribute("events") Event event, HttpServletRequest request, Model model)
 			throws UnsupportedEncodingException, MessagingException {
-
-		userServices.cancelTour(booking, eventTour, getSiteURLBooking(request));
-		return "/customer/CancelTour";
+		userServices.cancelTour(booking, event, getSiteURLBooking(request));
+		model.addAttribute("notify", "Vui lòng kiểm tra email để xác nhận hủy tour");
+		return "redirect:/customer/tour-da-dat";
 	}
+
+//	@GetMapping("/cancel-detail")
+//	public String cancelTourDetail(Model model) {
+//		model.addAttribute("message", "Nhằm phục vụ tốt hơn. Hãy cho chúng tôi biết lý do bạn hủy chuyến đi này.");
+//		model.addAttribute("events", new Event());
+//
+//		return "/customer/CancelDetail";
+//	}
+//
+//
+//	@PostMapping("/process-cancel-detail")
+//	public String processCancelTourDetail(Event event, HttpServletRequest request) {
+//		String user = request.getRemoteUser();
+//		Account account = accountService.findAccountsByUsername(user);
+////		event.setBooking(booking);
+//		event.setAccount(account);
+//		eventsService.createEvent(event);
+//		return "redirect:/customer/tour-da-dat";
+//	}
+
 
 	private String getSiteURLBooking(HttpServletRequest request) {
 		String siteURL = request.getRequestURL().toString();
