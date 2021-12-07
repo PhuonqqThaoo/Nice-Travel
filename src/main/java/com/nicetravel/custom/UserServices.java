@@ -196,10 +196,11 @@ public void updateResetPasswordToken(String token, String email) throws Username
         String toAddress = booking.getBooking_account_id().getEmail();;
         String fromAddress = "nicetravelcompany@gmail.com";
         String senderName = "Nice Travel Company";
-        String subject = "Yêu cầu hủy tour từ bạn";
+        String subject = "Xác nhận hủy tour đã đặt";
         String content = "Thân chào <b>[[name]]</b>,<br>"
                 + "Bạn có chắc muốn hủy tour đã chọn:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">XÁC NHẬN</a></h3>"
+                + "Bỏ qua email nếu bạn không muốn hủy<br>"
                 + "Cảm ơn bạn,<br>"
                 + "Nice Travel.";
 

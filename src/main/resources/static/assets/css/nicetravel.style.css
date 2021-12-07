@@ -360,4 +360,9 @@ footer {
 .footer .col-xs-12 i:hover {
     color: #fd2d34;
 }
+
+.col-xs-5{
+    width: 65%;
+}
 /* end footer */
+
