@@ -43,7 +43,9 @@ public interface TravelService {
     Page<Travel> search(String depart,String desti, String sd,BigDecimal pmin, BigDecimal pmax, int pageNumber);
     
     List<Total> getTotal();
-
+    
+    //Lọc admin
+    Page<Travel> filterStartDate(String day, String end, Pageable pageable);
 
 	Page<Travel> getAll(Pageable pageable);
 	

@@ -250,6 +250,12 @@ public class TravelServiceImpl implements TravelService {
 		  travelRepository.updateEX();
 	}
 
+	@Override
+	public Page<Travel> filterStartDate(String day, String end, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return travelRepository.filterStartDate(day, end, pageable);
+	}
+
 
 
 
