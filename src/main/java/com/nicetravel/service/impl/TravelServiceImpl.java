@@ -251,7 +251,7 @@ public class TravelServiceImpl implements TravelService {
 	}
 
 	@Override
-	public Page<Travel> filterStartDate(String day, String end, Pageable pageable) {
+	public Page<Travel> filterStartDate(Date day, Date end, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return travelRepository.filterStartDate(day, end, pageable);
 	}

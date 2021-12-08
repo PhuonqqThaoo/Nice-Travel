@@ -45,7 +45,7 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	 */
 	  //Bộ lọc admin
 	  @Query("SELECT t FROM Travel t WHERE t.startDate BETWEEN ?1 AND ?2")
-	  Page<Travel> filterStartDate(String day,String end, Pageable pageable);
+	  Page<Travel> filterStartDate(Date day,Date end, Pageable pageable);
 	  
 	    @Query("SELECT t FROM Travel t WHERE t.typeId.id=?1 AND t.isDeleted = false AND t.expirationDate = false")
 		Page<Travel> findByTypeId(Integer tid,Pageable pageable);

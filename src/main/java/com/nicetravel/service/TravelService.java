@@ -45,7 +45,7 @@ public interface TravelService {
     List<Total> getTotal();
     
     //Lọc admin
-    Page<Travel> filterStartDate(String day, String end, Pageable pageable);
+    Page<Travel> filterStartDate(Date day, Date end, Pageable pageable);
 
 	Page<Travel> getAll(Pageable pageable);
 	
