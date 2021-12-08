@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.nicetravel.entity.Booking;
 import com.nicetravel.entity.BookingDetail;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.BookingDetailService;
@@ -45,17 +46,16 @@ public class PayController {
 	}
 	
 	@PostMapping("/pay")
-	public String pay(HttpServletRequest request,@RequestParam("id") String id){
+	public String pay(HttpServletRequest request,@RequestParam("idBooking") String idBooking, @RequestParam("price") Double price){
 		String cancelUrl = "http://localhost:8081/" + URL_PAYPAL_CANCEL;
 		String successUrl = "http://localhost:8081/" + URL_PAYPAL_SUCCESS;
-		Double price = Double.parseDouble(request.getParameter("price"));
 		try {
 			Payment payment = paymentService.createPayment(
 					price,
 					"USD",
 					"paypal",
 					"sale",
-					id,
+					idBooking,
 					cancelUrl,
 					successUrl);
 			for(Links links : payment.getLinks()){
@@ -70,16 +70,21 @@ public class PayController {
 	}
 	@GetMapping(URL_PAYPAL_CANCEL)
 	public String cancelPay(){
-		return "paypal/cancel";
+		return "pay/cancel";
 	}
 	@GetMapping(URL_PAYPAL_SUCCESS)
 	public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId){
 		try {
 			Payment payment = paymentService.executePayment(paymentId, payerId);
-			System.out.println(payment.toJSON());
-			//getTransactions().get(0).getAmount().getTotal()
+			System.out.println("id booking " + payment.getTransactions().get(0).getDescription());
+			System.out.println("price " + payment.getTransactions().get(0).getAmount().getTotal());
+			//upadate booking
+			Booking booking = bookingService.findById(Integer.parseInt(payment.getTransactions().get(0).getDescription()));
+			booking.setPayBoolean(true);
+			bookingService.updateBooking(booking);
+			//thiếu lưu vào payment
 			if(payment.getState().equals("approved")){
-				return "paypal/success";
+				return "pay/success";
 			}
 		} catch (PayPalRESTException e) {
 			log.error(e.getMessage());

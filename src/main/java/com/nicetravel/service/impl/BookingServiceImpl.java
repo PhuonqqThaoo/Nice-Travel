@@ -107,7 +107,7 @@ public class BookingServiceImpl implements BookingService {
 
 		// cập nhật số lượng quantity
 		Travel travel = travelRepository.findById(bookingDetail.getTravelId().getId()).get();
-		int qtynew = travel.getQuantityNew() - bookingDetail.getQuantity();
+		int qtynew = travel.getQuantityNew() - bookingDetail.getTotalQuantity();
 		travel.setQuantityNew(qtynew);
 		travelRepository.save(travel);
 

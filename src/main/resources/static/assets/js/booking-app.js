@@ -36,7 +36,11 @@ app.controller("booking-ctrl", function($scope, $http) {
 			return {
 				travelId : {id : Number($('#travelId').text())},
 				price : Number($('#total').text()),
-				quantity : ($scope.load.qtyAdult + $scope.load.qtyChildren + $scope.load.qtySmallchildren + $scope.load.qtyBaby)
+				qtyNl : Number($scope.load.qtyAdult),
+				qtyTe : Number($scope.load.qtyChildren),
+				qtyTn : Number($scope.load.qtySmallchildren),
+				qtyEb : Number($scope.load.qtyBaby),
+				totalQuantity : Number($scope.load.qtyAdult + $scope.load.qtyChildren + $scope.load.qtySmallchildren + $scope.load.qtyBaby)
 			}
 		},
 		purchaser(){
@@ -45,7 +49,7 @@ app.controller("booking-ctrl", function($scope, $http) {
 			//thực hiện đặt hàng
 			$http.post("/api/v2/booking", booking).then(resp => {
 				alert("Đặt hàng thành công")
-				location.href = "/"; 
+				location.href = "/thanhtoan/" + resp.data.id; 
 			}).catch(error => {
 				alert("Đặt hàng lỗi!")
 				console.log(error)
@@ -56,8 +60,6 @@ app.controller("booking-ctrl", function($scope, $http) {
 	
 	var qtynew = parseInt($('#qtynew').text());
 	var totalqty = parseInt($('#adult').text()) + parseInt($('#children').text()) + parseInt($('#smallchildren').text()) + parseInt($('#baby').text());
-	
-	console.log(qtynew)
 	// btn tăng giảm số lượng
 	$scope.adultPlus = function() {
 		if(totalqty == qtynew){
@@ -65,7 +67,6 @@ app.controller("booking-ctrl", function($scope, $http) {
 		}
 		qtynew--;
 		$('#adult').text(parseInt($('#adult').text()) + 1)
-		console.log(qtynew)
 	}
 	$scope.adultMinus = function() {
 		if (parseInt($('#adult').text()) <= 1) {
@@ -74,7 +75,6 @@ app.controller("booking-ctrl", function($scope, $http) {
 		} else {
 			qtynew++;
 			$('#adult').text(parseInt($('#adult').text()) - 1)
-			console.log(qtynew)
 		}
 	}
 	
@@ -84,7 +84,6 @@ app.controller("booking-ctrl", function($scope, $http) {
 		}
 		qtynew--;
 		$('#children').text(parseInt($('#children').text()) + 1)
-		console.log(qtynew)
 	}
 	$scope.childrenMinus = function() {
 		if (parseInt($('#children').text()) <= 0) {
@@ -92,7 +91,6 @@ app.controller("booking-ctrl", function($scope, $http) {
 		} else {
 			qtynew++;
 			$('#children').text(parseInt($('#children').text()) - 1)
-			console.log(qtynew)
 		}
 	}
 
@@ -102,7 +100,6 @@ app.controller("booking-ctrl", function($scope, $http) {
 		}
 		qtynew--;
 		$('#smallchildren').text(parseInt($('#smallchildren').text()) + 1)
-		console.log(qtynew)
 	}
 	$scope.smallchildrenMinus = function() {
 		if (parseInt($('#smallchildren').text()) <= 0) {
@@ -110,7 +107,6 @@ app.controller("booking-ctrl", function($scope, $http) {
 		} else {
 			qtynew++;
 			$('#smallchildren').text(parseInt($('#smallchildren').text()) - 1)
-			console.log(qtynew)
 		}
 	}
 
@@ -120,7 +116,6 @@ app.controller("booking-ctrl", function($scope, $http) {
 		}
 		qtynew--;
 		$('#baby').text(parseInt($('#baby').text()) + 1)
-		console.log(qtynew)
 	}
 	$scope.babyMinus = function() {
 		
@@ -129,7 +124,6 @@ app.controller("booking-ctrl", function($scope, $http) {
 		} else {
 			qtynew++;
 			$('#baby').text(parseInt($('#baby').text()) - 1)
-			console.log(qtynew)
 		}
 	}
 

@@ -5,6 +5,9 @@
     <main>
     <!-- pay -->
         <div class="payment">
+        <form method="post" action="/pay" th:object="${item}">
+        <input type="hidden" th:value="${item.bookingId.id}" name="idBooking">
+        <input type="hidden" th:value="${item.price / 23000}" name="price">
             <div class="payment-container">
                 <ol class="breadcrumb">
                     <li><a href="#">Đặt tour</a></li>
@@ -12,7 +15,7 @@
                     <li><a href="#">Thanh toán</a></li>
                 </ol>
 
-                <div class="row" style="margin-top: 50px;" th:object="${item}">
+                <div class="row" style="margin-top: 50px;">
                     <div class="col-md-4">
                         <h5 class="big-heading">Thông tin cá nhân</h5>
                         <div class="headingform">Là thông tin cần thiết để công ty liên hệ khách hàng.</div>
@@ -69,35 +72,36 @@
                                 <tbody>
                                     <tr>
                                         <td>Người lớn</td>
-                                        <td class="t-price text-right" id="AdultPrice">1</td>
+                                        <td class="t-price text-right" id="AdultPrice">[[${item.qtyNl}]]</td>
                                     </tr>
                                     <tr>
                                         <td>Trẻ em</td>
-                                        <td class="t-price text-right" id="ChildrenPrice">0</td>
+                                        <td class="t-price text-right" id="ChildrenPrice">[[${item.qtyTe}]]</td>
                                     </tr>
                                     <tr>
                                         <td>Trẻ nhỏ</td>
-                                        <td class="t-price text-right" id="SmallChildrenPrice">0</td>
+                                        <td class="t-price text-right" id="SmallChildrenPrice">[[${item.qtyTn}]]</td>
                                     </tr>
                                     <tr>
                                         <td>Em bé</td>
-                                        <td class="t-price text-right" id="BabyPrice">0</td>
+                                        <td class="t-price text-right" id="BabyPrice">[[${item.qtyEb}]]</td>
                                     </tr>
                                     <tr class="total">
                                         <td>Tổng cộng</td>
-                                        <td class="t-price text-right" id="TotalPrice">[[${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')}]] VNĐ</td>
+                                        <td class="t-price text-right" id="TotalPrice">[[${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')}]] VNĐ</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div>
-                                <button class="btn btn-danger" style="width:100%; height: 50px;">
+                                <button type="submit" class="btn btn-danger" style="width:100%; height: 50px;">
                                     Thanh toán
                                 </button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>  
             </div>
+            </form>
         </div>
         <!-- end pay -->
     </main>  
