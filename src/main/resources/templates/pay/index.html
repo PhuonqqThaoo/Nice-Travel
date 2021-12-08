@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+    <main>
+    <!-- pay -->
+        <div class="payment">
+            <div class="payment-container">
+                <ol class="breadcrumb">
+                    <li><a href="#">Đặt tour</a></li>
+                    <li><a href="#">Nhập thông tin</a></li>
+                    <li><a href="#">Thanh toán</a></li>
+                </ol>
+
+                <div class="row" style="margin-top: 50px;" th:object="${item}">
+                    <div class="col-md-4">
+                        <h5 class="big-heading">Thông tin cá nhân</h5>
+                        <div class="headingform">Là thông tin cần thiết để công ty liên hệ khách hàng.</div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="headingbook">Họ tên:</div>
+                                <div>[[${item.bookingId.booking_account_id.fullname}]]</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="headingbook">Số điện thoại:</div>
+                                <div>[[${item.bookingId.booking_account_id.phone}]]</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="headingbook">Email:</div>
+                                <div>[[${item.bookingId.booking_account_id.email}]]</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="headingbook">CMND/CCCD:</div>
+                                <div>[[${item.bookingId.booking_account_id.id_Card}]]</div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="headingbook">Địa chỉ:</div>
+                                <div>[[${item.bookingId.booking_account_id.address}]]</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="big-heading">Thông tin chuyến đi</h5>
+                        <div class="headingform">Là thông tin tóm tắt về chuyến đi khách hàng đã đặt.</div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img alt="imageportofolio" class="img-responsive h-img-309"
+                                    src="http://on3-step.com/tf/plesire/img/gallery-home/img1.jpg">
+                            </div>
+                            <div class="col-md-6">
+                                <p style="font-size: 2.5rem; margin-bottom: 17px;">[[${item.travelId.name}]]</p>
+                                <p>
+                            </div>
+                        </div>
+                        <div class="travel-detail-section1">
+                            <p>Ngày khởi hành: <span> [[${item.travelId.hour}]]:00 [[${#dates.format(item.travelId.startDate, 'dd-MM-yyyy')}]]</span></p>
+                            <p>Số Ngày: <span>[[${#dates.format(item.travelId.endDate, 'dd')} - ${#dates.format(item.travelId.startDate, 'dd')}]] Ngày</span></p>
+                            <p>Nơi khởi hành: <span>[[${item.travelId.departurePlace}]]</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="big-heading">Thông tin thanh toán</h5>
+                        <div class="headingform">Tóm tắt số tiền và số hàng khách.</div>
+                        <hr>
+                        <div class="detail">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Người lớn</td>
+                                        <td class="t-price text-right" id="AdultPrice">1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trẻ em</td>
+                                        <td class="t-price text-right" id="ChildrenPrice">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trẻ nhỏ</td>
+                                        <td class="t-price text-right" id="SmallChildrenPrice">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Em bé</td>
+                                        <td class="t-price text-right" id="BabyPrice">0</td>
+                                    </tr>
+                                    <tr class="total">
+                                        <td>Tổng cộng</td>
+                                        <td class="t-price text-right" id="TotalPrice">[[${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')}]] VNĐ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div>
+                                <button class="btn btn-danger" style="width:100%; height: 50px;">
+                                    Thanh toán
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end pay -->
+    </main>  
+    </body>
+</html>
