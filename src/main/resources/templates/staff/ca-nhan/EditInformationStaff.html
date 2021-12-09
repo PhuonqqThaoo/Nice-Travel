@@ -135,12 +135,12 @@
 
                     <!-- edit information -->
                     <div class="row box box-border">
-                        <form th:action="@{/staff/edit-information-customer}" th:object="${userRequest}" id="form"
+                        <form th:action="@{/staff/edit-information-staff}" th:object="${userRequest}" id="form"
                               method="POST" enctype="multipart/form-data" style="width: 100%; border-radius: 10px; padding: 20px">
                             <div class="row box">
                                 <div class="col-6">
-                                    <h5 style="font-weight: 600;">Tài khoản khách hàng: <span th:text="*{username}"></span></h5>
-                                    <p>
+                                    <h4 class="title-edit" style="font-weight: 600;">Tài khoản khách hàng: <span th:text="*{username}"></span></h4>
+                                    <p style="font-size: 1.2rem" class="description-edit">
                                         Thông tin cá nhân và các tùy chọn giúp quản lý thông tin đó. Bạn có thể tùy
                                         chỉnh
                                         thông tin cá nhân. Các thông tin cá nhân phải chính xác, thuận lợi cho giao dịch

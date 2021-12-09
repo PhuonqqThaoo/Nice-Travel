@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import com.nicetravel.custom.UserServices;
+import com.nicetravel.entity.Provider;
 import com.nicetravel.export.UserExcelExporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,14 +41,12 @@ public class UserController {
 
     private final BCryptPasswordEncoder passwordEncoder;
 
-    private final PasswordEncoder passwordEncoder1;
 
     @Autowired
-    public UserController(AccountService accountService, UserServices service, BCryptPasswordEncoder passwordEncoder, PasswordEncoder passwordEncoder1) {
+    public UserController(AccountService accountService, UserServices service, BCryptPasswordEncoder passwordEncoder) {
         this.accountService = accountService;
         this.service = service;
         this.passwordEncoder = passwordEncoder;
-        this.passwordEncoder1 = passwordEncoder1;
     }
 
     private static final int SIZE = 4;
@@ -105,7 +104,7 @@ public class UserController {
     @PostMapping("/edit")
     public String doPostEdit(@Valid @ModelAttribute("userRequest") Account userRequest,
                              BindingResult result,
-                             RedirectAttributes redirect, HttpServletRequest request) {
+                             RedirectAttributes redirect) {
         String errorMessage = null;
         Account account = accountService.findAccountsByUsername(userRequest.getUsername());
 
@@ -113,7 +112,7 @@ public class UserController {
             // check if userRequest is not valid
             if (result.hasErrors()) {
                 System.out.println(result.hasErrors());
-                errorMessage = "User is not valid";
+                errorMessage = "Người dùng không hợp lệ";
                 redirect.addFlashAttribute("errorMessage", errorMessage);
             } else {
 
@@ -127,12 +126,12 @@ public class UserController {
                     userRequest.setPasswordChangedTime(new Date());
                     userRequest.setTravels(userRequest.getTravels());
                     accountService.update(userRequest);
-                    String successMessage = "User " + userRequest.getFullname() + " was update";
+                    String successMessage = "Người dùng " + userRequest.getFullname() + " đã cập nhật thành công";
                     redirect.addFlashAttribute("successMessage", successMessage);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            errorMessage = "Cannot update user " + userRequest.getFullname() + " , please try again!";
+            errorMessage = "Không thể cập nhật người dùng " + userRequest.getFullname() + ", vui long thử lại sau!";
         }
 
         if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
@@ -146,11 +145,11 @@ public class UserController {
                                RedirectAttributes redirect) {
         try {
             accountService.delete(username);
-            String successMessage = "User " + username + " was deleted!";
+            String successMessage = "Người dùng " + username + " đã được xóa thành công!";
             redirect.addFlashAttribute("successMessage", successMessage);
         } catch (Exception e) {
             e.printStackTrace();
-            redirect.addFlashAttribute("errorMessage ", "Cannot delete user, please try again!");
+            redirect.addFlashAttribute("errorMessage ", "Không thể xóa người dùng, vui lòng thử lại sau!");
         }
         return "redirect:/admin/thong-tin-khach-hang";
     }
@@ -163,15 +162,18 @@ public class UserController {
         try {
             // check if userRequest is not valid
             if (result.hasErrors()) {
-                errorMessage = "User is not valid";
+                errorMessage = "Người dùng không hợp lệ";
             } else {
+                userRequest.setImg("user.png");
+                userRequest.setProvider(Provider.DATABASE);
+                userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
                 accountService.save(userRequest);
-                String successMessage = "User " + userRequest.getFullname() + " was created!";
+                String successMessage = "Người dùng " + userRequest.getFullname() + " đã được tạo thành công!";
                 redirect.addFlashAttribute("successMessage", successMessage);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            errorMessage = "Cannot create user, please try again!";
+            errorMessage = "Không thể tạo người dùng, vui lòng thử lại sau!";
         }
 
         if (!ObjectUtils.isEmpty(errorMessage)) { // khong null

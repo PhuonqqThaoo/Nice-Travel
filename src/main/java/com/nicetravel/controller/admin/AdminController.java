@@ -103,11 +103,6 @@ public class AdminController {
 
                 accountService.update(account);
                 accountService.update(userRequest);
-                System.out.println("image: " + userRequest.getImg());
-
-                System.out.println("userRequest: " + userRequest);
-
-                System.out.println("request: " + accountService.findAccountsByUsername(request.getRemoteUser()));
 
                 String uploadDir = "photos/" + "accounts/"  + userRequest.getUsername();
 

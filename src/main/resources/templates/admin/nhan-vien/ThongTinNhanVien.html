@@ -242,10 +242,17 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr th:each="user,i : ${listStaff}" >
-                                                                <td th:text = "${i.index+1}"></th>
-                                                                <td>
-                                                                    <img width="30px" th:alt="${user.username}" th:src="${'/admin/img/'+user.img}" >
+                                                                <td th:text = "${i.index+1}"></td>
+                                                                <td th:if="${user.img != null}">
+                                                                    <img width="30px" class="img-account" th:alt="${user.username}" th:src="${'/photos/accounts/'+ user.username +'/'+user.img}" >
                                                                 </td>
+                                                                <td th:if="${user.img == null}">
+                                                                    <img width="30px" class="img-account" th:alt="${user.username}" th:src="${'/dashboard/img/user.png'}" >
+                                                                </td>
+                                                                <td th:if="${user.img == 'user.png'}">
+                                                                    <img width="30px" class="img-account" th:alt="${user.username}" th:src="${'/dashboard/img/user.png'}" >
+                                                                </td>
+
                                                                 <td th:text = "${user.username}"></td>
                                                                 <td th:text = "${user.fullname}"></td>
                                                                 <td th:text = "${user.email}"></td>

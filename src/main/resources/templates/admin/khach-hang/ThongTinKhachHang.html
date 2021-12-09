@@ -244,7 +244,7 @@
                                                         </thead>
                                                         <tbody>
                                                         <tr th:each="user,i : ${listUser}" >
-                                                            <td th:text = "${i.index+1}"></th>
+                                                            <td th:text = "${i.index+1}"></td>
                                                             <td th:if="${user.img != null}">
                                                                 <img width="30px" class="img-account" th:alt="${user.username}" th:src="${'/photos/accounts/'+ user.username +'/'+user.img}" >
                                                             </td>
@@ -297,10 +297,6 @@
                                             </div>
                                         </div>
                                         <form th:object= "${userRequest}" id="form" method="POST">
-<!--                                            <input type="hidden" th:field="*{passwordChangedTime}" id ="passwordChangedTime"-->
-<!--                                            readonly="true"  >-->
-<!--                                            <input th:field="*{img}" id ="img"-->
-<!--                                                   readonly="true"  >-->
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <label for="username">Tài khoản</label>

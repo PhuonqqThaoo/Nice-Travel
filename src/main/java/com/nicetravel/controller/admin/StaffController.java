@@ -12,11 +12,12 @@ import javax.validation.Valid;
 
 import com.lowagie.text.DocumentException;
 import com.nicetravel.custom.UserServices;
+import com.nicetravel.entity.Provider;
 import com.nicetravel.export.UserExcelExporter;
 import com.nicetravel.export.UserPDFExporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -39,12 +40,15 @@ public class StaffController {
 
 	private final UserServices service;
 
+	private final BCryptPasswordEncoder passwordEncoder;
+
 	private static final int SIZE = 4;
 
 	@Autowired
-	public StaffController(AccountService accountService, UserServices service) {
+	public StaffController(AccountService accountService, UserServices service, BCryptPasswordEncoder passwordEncoder) {
 		this.accountService = accountService;
 		this.service = service;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@GetMapping("")
@@ -101,18 +105,29 @@ public class StaffController {
 							 BindingResult result,
 							 RedirectAttributes redirect) {
 		String errorMessage = null;
+		Account account = accountService.findAccountsByUsername(userRequest.getUsername());
+
 		try {
 			// check if userRequest is not valid
 			if (result.hasErrors()) {
-				errorMessage ="User is not valid";
+				errorMessage ="Người dùng không hợp lệ";
 			}else {
+				if(!passwordEncoder.matches(account.getPassword(), userRequest.getPassword())){
+					account.setPasswordChangedTime(new Date());
+				}else {
+					account.setPasswordChangedTime(account.getPasswordChangedTime());
+				}
+				userRequest.setImg(account.getImg());
+				userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+				userRequest.setPasswordChangedTime(new Date());
+				userRequest.setTravels(userRequest.getTravels());
 				accountService.update(userRequest);
-				String successMessage = "User " + userRequest.getFullname() + " was update";
+				String successMessage = "Người dùng " + userRequest.getFullname() + " đã cập nhật thành công";
 				redirect.addFlashAttribute("successMessage", successMessage);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			errorMessage = "Cannot update user" + userRequest.getUsername()+", please try again!";
+			errorMessage = "Không thể cập nhật người dùng " + userRequest.getFullname() + ", vui long thử lại sau!";
 		}
 		
 		if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
@@ -126,11 +141,11 @@ public class StaffController {
 			RedirectAttributes redirect) {
 		try {
 			accountService.delete(username);
-			String successMessage = "User " +username + " was deleted!";
+			String successMessage = "Người dùng " + username + " đã được xóa thành công!";
 			redirect.addFlashAttribute("successMessage", successMessage);
 		} catch (Exception e) {
 			e.printStackTrace();
-			redirect.addFlashAttribute("errorMessage", "Cannot delete user, please try again!");
+			redirect.addFlashAttribute("errorMessage ", "Không thể xóa người dùng, vui lòng thử lại sau!");
 		}
 		return "redirect:/admin/thong-tin-nhan-vien";
 	}
@@ -143,10 +158,13 @@ public class StaffController {
 		try {
 			// check if userRequest is not valid
 			if (result.hasErrors()) {
-				errorMessage ="User is not valid";
+				errorMessage ="Người dùng không hợp lệ";
 			}else {
+				userRequest.setImg("user.png");
+				userRequest.setProvider(Provider.DATABASE);
+				userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
 				accountService.saveStaff(userRequest);
-				String successMessage = "User " + userRequest.getFullname() + " was created!";
+				String successMessage = "Người dùng " + userRequest.getFullname() + " đã được tạo thành công!";
 				redirect.addFlashAttribute("successMessage", successMessage);
 			}
 		} catch (Exception e) {
