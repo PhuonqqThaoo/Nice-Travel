@@ -5,7 +5,7 @@
     <main>
     <!-- pay -->
         <div class="payment">
-        <form method="post" action="/pay" th:object="${item}">
+        <form method="post" action="/thanh-toan" th:object="${item}">
         <input type="hidden" th:value="${item.bookingId.id}" name="idBooking">
         <input type="hidden" th:value="${item.price / 23000}" name="price">
             <div class="payment-container">

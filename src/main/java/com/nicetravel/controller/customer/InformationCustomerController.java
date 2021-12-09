@@ -3,8 +3,10 @@ package com.nicetravel.controller.customer;
 import com.nicetravel.controller.admin.FileUploadUtil;
 import com.nicetravel.custom.UserServices;
 import com.nicetravel.entity.Account;
+import com.nicetravel.security.auth.CustomOAuth2User;
 import com.nicetravel.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +36,7 @@ public class InformationCustomerController {
 
 	private final PasswordEncoder passwordEncoder;
 
+
 	@Autowired
 	public InformationCustomerController(AccountService accountService, UserServices userServices, PasswordEncoder passwordEncoder) {
 		this.accountService = accountService;
@@ -42,15 +45,39 @@ public class InformationCustomerController {
 	}
 
 	@GetMapping("/information-customer")
-	public String getInformationCustomer(Model model, HttpServletRequest request) {
-		String username = request.getRemoteUser();
+	public String getInformationCustomer(Model model, HttpServletRequest request, Authentication authentication) {
+
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser()); // remote
+
+		String username = null;
+
+		if (account == null){
+			CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
+			Account accountOauth = accountService.findByEmail(oauth2User.getEmail());
+			username = accountOauth.getUsername();
+		}
+		else {
+			username = account.getUsername();
+		}
+
 		model.addAttribute("account", accountService.findAccountsByUsername(username));
 		return "customer/InformationCustomer";
 	}
 	
 	@GetMapping("/edit-information-customer")
-	public String getEditInformationCustomer(HttpServletRequest request, Model model) {
-		String username = request.getRemoteUser();
+	public String getEditInformationCustomer(HttpServletRequest request, Model model, Authentication authentication) {
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser()); // remote
+
+		String username = null;
+
+		if (account == null){
+			CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
+			Account accountOauth = accountService.findByEmail(oauth2User.getEmail());
+			username = accountOauth.getUsername();
+		}
+		else {
+			username = account.getUsername();
+		}
 		Account userRequest = accountService.findAccountsByUsername(username);
 		model.addAttribute("userRequest", userRequest);
 		return "/customer/EditInformationCustomer";
@@ -59,12 +86,25 @@ public class InformationCustomerController {
 	@PostMapping("/edit-information-customer")
 	public String update(@Valid @ModelAttribute(name = "userRequest") Account userRequest,
 						 BindingResult result,
-						 RedirectAttributes redirect, @RequestParam("fileImage") MultipartFile multipartFile, HttpServletRequest request) {
+						 RedirectAttributes redirect, @RequestParam("fileImage") MultipartFile multipartFile, HttpServletRequest request, Authentication authentication) {
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser()); // remote
+
+		String username = null;
+
+		if (account == null){
+			CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
+			Account accountOauth = accountService.findByEmail(oauth2User.getEmail());
+			username = accountOauth.getUsername();
+		}
+		else {
+			username = account.getUsername();
+		}
+
 		String errorMessage = null;
 
-		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
-		String password = account.getPassword();
-		System.out.println("password: " + account.getPassword());
+		Account account1 = accountService.findAccountsByUsername(username);
+		String password = account1.getPassword();
+		System.out.println("password: " + account1.getPassword());
 
 		try {
 			// check if userRequest is not valid
@@ -74,7 +114,6 @@ public class InformationCustomerController {
 				redirect.addFlashAttribute("errorMessage", errorMessage);
 			} else {
 				String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-				System.out.println(fileName);
 				if (fileName.equals("") || fileName.length() == 0 || fileName == null){
 					System.out.println("accountImg: " + account.getImg());
 					account.setImg(account.getImg());
@@ -82,17 +121,12 @@ public class InformationCustomerController {
 				}
 				else {
 					account.setImg(fileName);
-//                    userRequest.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));
 				}
-				System.out.println("getImg: " + userRequest.getImg());
 
 				accountService.update(account);
 				accountService.update(userRequest);
-				System.out.println("image: " + userRequest.getImg());
 
-				System.out.println("userRequest: " + userRequest);
-
-				System.out.println("request: " + accountService.findAccountsByUsername(request.getRemoteUser()));
+				System.out.println("Account update: " + account1);
 
 				String uploadDir = "photos/" + "accounts/" + userRequest.getUsername();
 
@@ -127,8 +161,20 @@ public class InformationCustomerController {
 	}
 
 	@GetMapping("/change-password")
-	public String getChangePassword(HttpServletRequest request, Model model) {
-		String username = request.getRemoteUser();
+	public String getChangePassword(HttpServletRequest request, Model model, Authentication authentication) {
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser()); // remote
+
+		String username = null;
+
+		if (account == null){
+			CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
+			Account accountOauth = accountService.findByEmail(oauth2User.getEmail());
+			username = accountOauth.getUsername();
+		}
+		else {
+			username = account.getUsername();
+		}
+
 		Account userRequest = accountService.findAccountsByUsername(username);
 		model.addAttribute("userRequest", userRequest);
 		return "/customer/ChangePassword";
@@ -136,9 +182,23 @@ public class InformationCustomerController {
 
 	@PostMapping("/change-password")
 	public String postChangePassword(HttpServletRequest request,
-									 Model model, RedirectAttributes ra) throws Exception {
+									 Model model, RedirectAttributes ra, Authentication authentication) throws Exception {
 
-		Account acc = accountService.findAccountsByUsername(request.getRemoteUser());
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser()); // remote
+
+		String username = null;
+
+		if (account == null){
+			CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
+			Account accountOauth = accountService.findByEmail(oauth2User.getEmail());
+			username = accountOauth.getUsername();
+		}
+		else {
+			username = account.getUsername();
+		}
+
+
+		Account acc = accountService.findAccountsByUsername(username);
 
 		String oldPassword = request.getParameter("oldPassword");
 		String newPassword = request.getParameter("newPassword");

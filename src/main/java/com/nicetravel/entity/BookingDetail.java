@@ -33,7 +33,7 @@ public class BookingDetail implements Serializable {
     @JoinColumn(name = "travelId")
     private Travel travelId;
 
-    @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,###.###")
+//    @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,###.###")
     @Column(name = "price", nullable = false, precision = 12, scale = 3)
     private BigDecimal price;
     

@@ -33,7 +33,7 @@ public class Payment implements Serializable {
     @Column(name = "payTime", nullable = false)
     private Instant payTime;
 
-    @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,###.###")
+//    @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,###.###")
     @Column(name = "totalPrice", nullable = false, precision = 12, scale = 3)
     private BigDecimal totalPrice;
 

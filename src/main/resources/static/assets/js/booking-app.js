@@ -49,7 +49,7 @@ app.controller("booking-ctrl", function($scope, $http) {
 			//thực hiện đặt hàng
 			$http.post("/api/v2/booking", booking).then(resp => {
 				alert("Đặt hàng thành công")
-				location.href = "/thanhtoan/" + resp.data.id; 
+				location.href = "/thanh-toan/" + resp.data.id;
 			}).catch(error => {
 				alert("Đặt hàng lỗi!")
 				console.log(error)

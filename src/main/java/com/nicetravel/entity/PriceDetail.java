@@ -25,7 +25,7 @@ public class PriceDetail implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,###.###")
+//    @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,###.###")
     @Column(name = "price", nullable = false, precision = 12, scale = 3)
     private BigDecimal price;
 

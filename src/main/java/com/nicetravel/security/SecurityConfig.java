@@ -68,11 +68,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/login", "/oauth/**").permitAll()
                 .antMatchers("/booking/**", "/travel/like/**").authenticated()
-                .antMatchers("/thanh-toan/**").authenticated()
+                .antMatchers("/thanh-toan/**").hasRole("USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/staff/**").hasRole("STAFF")
                 .antMatchers("/customer/**").hasRole( "USER")
-                .antMatchers("/api/v1/**", "/api/v2/**").hasAnyRole("ADMIN", "STAFF")
+                .antMatchers("/api/v2/**").hasRole("USER")
+                .antMatchers("/api/v1/**").hasAnyRole("ADMIN", "STAFF")
                 .anyRequest().permitAll();
 
         http.formLogin().permitAll()
@@ -112,6 +113,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authProvider.setPasswordEncoder(getPasswordEncoder());
 
         return authProvider;
+
     }
 
     @Override
