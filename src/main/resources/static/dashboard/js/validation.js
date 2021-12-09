@@ -22,17 +22,10 @@ function Validator(options) {
         // Lặp qua từng rule & kiểm tra
         // Nếu có lỗi thì dừng việc kiểm
         for (var i = 0; i < rules.length; ++i) {
-            switch (inputElement.type) {
-                case 'radio':
-                case 'checkbox':
-                    errorMessage = rules[i](
-                        formElement.querySelector(rule.selector + ':checked')
-                    );
-                    break;
-                default:
-                    errorMessage = rules[i](inputElement.value);
-            }
+
+            errorMessage = rules[i](inputElement.value);
             if (errorMessage) break;
+
         }
 
         if (errorMessage) {
@@ -51,7 +44,7 @@ function Validator(options) {
     if (formElement) {
         // Khi submit form
         formElement.onsubmit = function (e) {
-            // e.preventDefault();
+            e.preventDefault()
 
             var isFormValid = true;
 
@@ -70,26 +63,7 @@ function Validator(options) {
                     var enableInputs = formElement.querySelectorAll('[name]');
                     var formValues = Array.from(enableInputs).reduce(function (values, input) {
 
-                        switch (input.type) {
-                            case 'radio':
-                                values[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value;
-                                break;
-                            case 'checkbox':
-                                if (!input.matches(':checked')) {
-                                    values[input.name] = '';
-                                    return values;
-                                }
-                                if (!Array.isArray(values[input.name])) {
-                                    values[input.name] = [];
-                                }
-                                values[input.name].push(input.value);
-                                break;
-                            case 'file':
-                                values[input.name] = input.files;
-                                break;
-                            default:
-                                values[input.name] = input.value;
-                        }
+                        values[input.name] = input.value;
 
                         return values;
                     }, {});
@@ -133,7 +107,6 @@ function Validator(options) {
 }
 
 
-
 // Định nghĩa rules
 // Nguyên tắc của các rules:
 // 1. Khi có lỗi => Trả ra message lỗi
@@ -147,17 +120,40 @@ Validator.isRequired = function (selector, message) {
     };
 }
 
+function removeAscent(str) {
+    if (str === null || str === undefined) return str;
+    str = str.toLowerCase();
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+    return str;
+}
+
+Validator.isFullName = function (selector, message) {
+
+    return {
+        selector: selector,
+        test: function (value) {
+            var regexName = /^[a-zA-Z ]{2,}$/g;
+            return regexName.test(removeAscent(value)) ? undefined : message || 'Fullname không hợp lệ';
+        }
+    }
+}
+
 Validator.isUsername = function (selector, message) {
     return {
         selector: selector,
-        test: function (value){
+        test: function (value) {
             var usernameRegex = /^[a-zA-Z0-9_]{5,}[a-zA-Z]+[0-9]*$/;
 
-            if (value.length <= 5 ){
-                return usernameRegex.test(value) ?  undefined : message || 'Username phải từ 6 ký tự';
-            }
-            else {
-                return usernameRegex.test(value) ?  undefined : message || 'Username không hợp lệ';
+            if (value.length <= 5) {
+                return usernameRegex.test(value) ? undefined : message || 'Username phải từ 6 ký tự';
+            } else {
+                return usernameRegex.test(value) ? undefined : message || 'Username không hợp lệ';
             }
         }
     };
@@ -189,4 +185,40 @@ Validator.isConfirmed = function (selector, getConfirmValue, message) {
             return value === getConfirmValue() ? undefined : message || 'Giá trị nhập vào không chính xác';
         }
     }
+}
+
+Validator.isPassword = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value.length < 6) {
+                return ("Mật khẩu ít quá ngắn");
+            } else if (value.length > 50) {
+                return ("Mật khẩu ít quá dài");
+            } else if (value.search(/\d/) == -1) {
+                return ("Mật khẩu phải có ít nhất một số");
+            } else if (value.search(/[a-zA-Z]/) == -1) {
+                return ("Mật khẩu phải có ít nhất một chữ");
+            } else if (value.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]/) != -1) {
+                return ("Mật khẩu nên có ít nhất một ký tự đặc biệt");
+            }
+            // return("ok");
+            return checkPwd(value) ? undefined : message;
+        }
+    }
+}
+
+function checkPwd(str) {
+    if (str.length < 6) {
+        return ("too_short");
+    } else if (str.length > 50) {
+        return ("too_long");
+    } else if (str.search(/\d/) == -1) {
+        return ("no_num");
+    } else if (str.search(/[a-zA-Z]/) == -1) {
+        return ("no_letter");
+    } else if (str.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]/) != -1) {
+        return ("bad_char");
+    }
+    return ("ok");
 }

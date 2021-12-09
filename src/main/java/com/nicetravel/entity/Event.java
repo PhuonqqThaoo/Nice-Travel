@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
@@ -28,8 +29,10 @@ public class Event {
     private Account account;
 
     @Column(name = "title", nullable = false, length = 200)
+    @NotBlank(message = "Không để trống title")
     private String title;
 
+    @NotBlank(message = "Không để trống description")
     @Column(name = "description", nullable = false, length = 500)
     private String description;
 

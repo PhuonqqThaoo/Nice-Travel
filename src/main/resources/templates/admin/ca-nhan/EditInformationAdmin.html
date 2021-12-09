@@ -357,7 +357,7 @@
         $.get(url).done(function (fragment) {
             $("#form").replaceWith(fragment);
             $("#form").prop('action', '/admin/edit-information-admin');
-            var imgUrl = $('#hiddenImgUrl').val();
+            // var imgUrl = $('#hiddenImgUrl').val();
 //     			$('#userImgUpload').prop('src','/admin/img/'+imgUrl);
             $('html,body').animate({
                 scrollTop: $("#form").offset().top

@@ -34,7 +34,7 @@
                     <a class="forgot_password" th:href="@{/forgot_password}">Forgot your password?</a>
                 </div>
 
-                <input type="submit" value="Login" class="btn solid"/>
+                <input type="submit" value="Login" id="btnLogin" class="btn solid"/>
                 <p class="social-text">Hoặc Đăng nhập bằng các nền tảng xã hội</p>
                 <div class="social-media">
                     <a th:href="@{/oauth2/authorization/facebook}" class="social-icon">
@@ -140,7 +140,6 @@
         container.classList.remove("sign-up-mode");
     });
 </script>
-<script th:src="@{/dashboard/js/validation.js}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Mong muốn của chúng ta
@@ -174,9 +173,9 @@
             formGroupSelector: '.signin-signup',
             errorSelector: '.message',
             rules: [
-                Validator.isRequired('#username1'),
-                Validator.isUsername('#username1'),
-                Validator.isRequired('#password1'),
+                Validator.isRequired('#username1', 'Vui lòng nhập usename'),
+                // Validator.isUsername('#username1', 'Username không hợp lệ'),
+                Validator.isRequired('#password1', 'Vui lòng nhập password'),
                 // Validator.minLength('#password1', 6)
             ],
             onSubmit: function (data) {
@@ -243,12 +242,14 @@
             // Khi submit form
             formElement.onsubmit = function (e) {
                 // e.preventDefault()
-
+                console.log(e)
                 var isFormValid = true;
 
+                var btnLogin = document.getElementById("btnLogin");
                 // Lặp qua từng rules và validate
                 options.rules.forEach(function (rule) {
                     var inputElement = formElement.querySelector(rule.selector);
+                    console.log(inputElement)
                     var isValid = validate(inputElement, rule);
                     if (!isValid) {
                         isFormValid = false;
@@ -259,28 +260,11 @@
                     // Trường hợp submit với javascript
                     if (typeof options.onSubmit === 'function') {
                         var enableInputs = formElement.querySelectorAll('[name]');
+                        console.log(enableInputs)
                         var formValues = Array.from(enableInputs).reduce(function (values, input) {
 
-                            switch (input.type) {
-                                case 'radio':
-                                    values[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value;
-                                    break;
-                                case 'checkbox':
-                                    if (!input.matches(':checked')) {
-                                        values[input.name] = '';
-                                        return values;
-                                    }
-                                    if (!Array.isArray(values[input.name])) {
-                                        values[input.name] = [];
-                                    }
-                                    values[input.name].push(input.value);
-                                    break;
-                                case 'file':
-                                    values[input.name] = input.files;
-                                    break;
-                                default:
                                     values[input.name] = input.value;
-                            }
+
 
                             return values;
                         }, {});
@@ -289,6 +273,7 @@
                     // Trường hợp submit với hành vi mặc định
                     else {
                         formElement.submit();
+                        console.log(typeof formElement.submit())
                     }
                 }
             }

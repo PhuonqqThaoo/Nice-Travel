@@ -109,7 +109,7 @@ public class AdminController {
 
                 System.out.println("request: " + accountService.findAccountsByUsername(request.getRemoteUser()));
 
-                String uploadDir = "user-photos/" + userRequest.getUsername();
+                String uploadDir = "photos/" + "accounts/"  + userRequest.getUsername();
 
                 Path uploadPath = Paths.get(uploadDir);
 

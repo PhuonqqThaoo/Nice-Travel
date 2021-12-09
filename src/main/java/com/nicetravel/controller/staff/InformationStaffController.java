@@ -44,7 +44,7 @@ public class InformationStaffController {
     public String getInformationAdmin(Model model, HttpServletRequest request) {
         String username = request.getRemoteUser();
         model.addAttribute("account", accountService.findAccountsByUsername(username));
-        return "staff/ca-nhan/InformationStaff";
+        return "/staff/ca-nhan/InformationStaff";
     }
 
     @GetMapping("/edit-information-staff")
@@ -52,7 +52,7 @@ public class InformationStaffController {
         String username = request.getRemoteUser();
         Account userRequest = accountService.findAccountsByUsername(username);
         model.addAttribute("userRequest", userRequest);
-        return "staff/ca-nhan/EditInformationStaff";
+        return "/staff/ca-nhan/EditInformationStaff";
     }
 
     @PostMapping("/edit-information-staff")
@@ -76,7 +76,7 @@ public class InformationStaffController {
 
                 System.out.println(userRequest);
 
-                String uploadDir = "user-photos/" + userRequest.getUsername();
+                String uploadDir = "photos/" + "accounts/"  + userRequest.getUsername();
 
                 FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 //				accountService.update(userRequest);

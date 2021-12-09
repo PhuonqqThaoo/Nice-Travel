@@ -95,7 +95,7 @@ public class Account implements Serializable {
             return "/dashboard/img/user.png";
         }
 
-        return "/user-photos/" + username + "/" + img;
+        return "/photos/accounts/" + username + "/" + img;
     }
 
     @Column(name = "img", length = 225)

@@ -132,6 +132,15 @@
 
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
+                    <div id="divThongBao">
+                        <div id="thongBao" style="display: none;" role="alert" align="center">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <span id="errorMessage" th:text="${errorMessage}"></span>
+                            <span id="successMessage" th:text="${successMessage}"></span>
+                        </div>
+                    </div>
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Quản lý</h1>
                         <ol class="breadcrumb">
@@ -237,6 +246,31 @@
     <script th:src="@{/dashboard/js/ruang-admin.min.js}"></script>
     <script th:src="@{/dashboard/vendor/chart.js/Chart.min.js}"></script>
     <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
+
+    <script >
+        $(document).ready(function () {
+            var err = $('#errorMessage').text();
+            var success = $('#successMessage').text();
+            if (err.length > 0) {
+                $('#thongBao').addClass("alert alert-danger");
+                $('#thongBao').css("display","block");
+                setTimeout(function(){
+                    $('#thongBao').fadeOut("slow");
+                },4000);
+                return;
+            }
+            if (success.length > 0) {
+                $('#thongBao').addClass("alert alert-success");
+                $('#thongBao').css("display","block");
+                setTimeout(function(){
+                    $('#thongBao').fadeOut("slow");
+                },2000);
+                return;
+
+            }
+        });
+
+    </script>
 
 </body>
 

@@ -7,45 +7,65 @@
 <body>
 <h1>Cancel Tour</h1>
 
-<form th:action="@{/customer/process-cancel-tour}" th:object="${booking}"  method="post">
+<form th:action="@{/customer/process-cancel-tour}" onsubmit="return validateForm()" name="formCancel" id="form-cancel"  th:object="${booking}"  method="post">
     <label>
-        <input type="text" th:field="*{id}" placeholder="id">
+        <input type="text" th:field="*{id}" readonly placeholder="id">
     </label>
     <label>
-        <input type="text" th:field="*{address}" placeholder="địa chỉ"/>
+        <input type="text" th:field="*{address}" readonly placeholder="địa chỉ"/>
     </label>
     <label>
-        <input type="text" th:field="*{createdDate}" placeholder="ngày tạo"/>
+        <input type="text" th:field="*{createdDate}" readonly placeholder="ngày tạo"/>
     </label>
     <label>
-        <input type="text" th:field="*{isDeleted}" placeholder="is delete"/>
+        <input type="text" th:field="*{isDeleted}" readonly placeholder="is delete"/>
     </label>
     <label>
-        <input type="text" th:field="*{phone}" placeholder="phone"/>
+        <input type="text" th:field="*{phone}" readonly placeholder="phone"/>
     </label>
     <label>
-        <input type="text" th:field="*{totalPrice}" placeholder="total price"/>
+        <input type="text" th:field="*{totalPrice}" readonly placeholder="total price"/>
     </label>
     <label>
-        <input type="text" th:field="*{booking_account_id}" placeholder="account id"/>
+        <input type="text" th:field="*{booking_account_id}" readonly placeholder="account id"/>
     </label>
     <label>
-        <input type="text" th:field="*{verification_code}" placeholder="Verify code"/>
+        <input type="text" th:field="*{verification_code}" readonly placeholder="Verify code"/>
     </label>
-    <form th:object="${events}" method="post">
-        <label>
-            <input type="text" th:field="*{title}" placeholder="Lý do hủy">
-        </label>
-        <label>
-            <input type="text" th:field="*{description}" placeholder="Mô tả lý do"/>
-        </label>
+    <div class="cancel-tour">
+        <form th:object="${events}" method="post">
+            <label>
+                <input type="text" id="title" name="title" th:field="*{title}" placeholder="Lý do hủy">
+            </label>
+            <label>
+                <input type="text" id="description" name="description" th:field="*{description}" placeholder="Mô tả lý do"/>
+            </label>
 
-        <span class="message" th:text="${message}"></span>
+            <span class="message" id="msg" th:text="${message}"></span>
 
-        <button type="submit" value="Gửi">Gửi</button>
-    </form>
+            <button type="submit" value="Gửi">Gửi</button>
+        </form>
+    </div>
 </form>
 
+<script>
+    function validateForm(){
+        var title = document.formCancel.title.value;
+        var description = document.formCancel.description.value;
+        var message = document.getElementById("msg");
+
+        if (title==null || title==""){
+            message.innerText = "Không được để trống tiêu đề";
+            return false;
+        }else if(description==null || description==""){
+            message.innerText = "Không được để trống miêu tả";
+            return false;
+        }else {
+            // message.innerText = "";
+            return true;
+        }
+    }
+</script>
 
 </body>
 </html>
