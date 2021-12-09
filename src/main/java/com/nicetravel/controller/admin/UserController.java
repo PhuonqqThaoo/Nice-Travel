@@ -14,6 +14,8 @@ import com.nicetravel.custom.UserServices;
 import com.nicetravel.export.UserExcelExporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -36,10 +38,16 @@ public class UserController {
 
     private final UserServices service;
 
+    private final BCryptPasswordEncoder passwordEncoder;
+
+    private final PasswordEncoder passwordEncoder1;
+
     @Autowired
-    public UserController(AccountService accountService, UserServices service) {
+    public UserController(AccountService accountService, UserServices service, BCryptPasswordEncoder passwordEncoder, PasswordEncoder passwordEncoder1) {
         this.accountService = accountService;
         this.service = service;
+        this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder1 = passwordEncoder1;
     }
 
     private static final int SIZE = 4;
@@ -47,6 +55,7 @@ public class UserController {
     public String doGetIndex(Model model, HttpServletRequest request,
                              @RequestParam(name="page",defaultValue = "1") int page) {
         Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+//        List<Account> account1 = accountService.getAllAccount();
         model.addAttribute("account", account);
         Page<Account> list = accountService.findAllByUserActivate(page-1, SIZE);
         model.addAttribute("listUser", list.getContent());
@@ -96,17 +105,30 @@ public class UserController {
     @PostMapping("/edit")
     public String doPostEdit(@Valid @ModelAttribute("userRequest") Account userRequest,
                              BindingResult result,
-                             RedirectAttributes redirect) {
+                             RedirectAttributes redirect, HttpServletRequest request) {
         String errorMessage = null;
+        Account account = accountService.findAccountsByUsername(userRequest.getUsername());
+
         try {
             // check if userRequest is not valid
             if (result.hasErrors()) {
+                System.out.println(result.hasErrors());
                 errorMessage = "User is not valid";
                 redirect.addFlashAttribute("errorMessage", errorMessage);
             } else {
-                accountService.update(userRequest);
-                String successMessage = "User " + userRequest.getFullname() + " was update";
-                redirect.addFlashAttribute("successMessage", successMessage);
+
+                if(!passwordEncoder.matches(account.getPassword(), userRequest.getPassword())){
+                    account.setPasswordChangedTime(new Date());
+                }else {
+                    account.setPasswordChangedTime(account.getPasswordChangedTime());
+                }
+                    userRequest.setImg(account.getImg());
+                    userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+                    userRequest.setPasswordChangedTime(new Date());
+                    userRequest.setTravels(userRequest.getTravels());
+                    accountService.update(userRequest);
+                    String successMessage = "User " + userRequest.getFullname() + " was update";
+                    redirect.addFlashAttribute("successMessage", successMessage);
             }
         } catch (Exception e) {
             e.printStackTrace();

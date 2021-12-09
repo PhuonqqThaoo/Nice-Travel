@@ -38,14 +38,14 @@ public class PayController {
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
-	@GetMapping("/thanhtoan/{id}")
+	@GetMapping("/thanh-toan/{id}")
 	public String index(@PathVariable("id") Integer id,Model model){
 		BookingDetail detail = bookingDetailService.findByIdBooking(id);
 		model.addAttribute("item", detail);
 		return "pay/index";
 	}
 	
-	@PostMapping("/pay")
+	@PostMapping("/thanh-toan")
 	public String pay(HttpServletRequest request,@RequestParam("idBooking") String idBooking, @RequestParam("price") Double price){
 		String cancelUrl = "http://localhost:8081/" + URL_PAYPAL_CANCEL;
 		String successUrl = "http://localhost:8081/" + URL_PAYPAL_SUCCESS;

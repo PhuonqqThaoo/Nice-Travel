@@ -126,6 +126,7 @@ public class Account implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "travel_account_id")
+    @ToString.Exclude
     List<Travel> travels;
 
 

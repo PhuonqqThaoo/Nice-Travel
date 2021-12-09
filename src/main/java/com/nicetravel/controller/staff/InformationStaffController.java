@@ -103,7 +103,7 @@ public class InformationStaffController {
         model.addAttribute("pageTitle", "Change Expired Password");
         model.addAttribute("userRequest", userRequest);
 
-        return "staff/ca-nhan/ChangePassword";
+        return "/staff/ca-nhan/ChangePassword";
     }
 
     @PostMapping("/change-password")

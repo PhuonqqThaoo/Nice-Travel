@@ -245,8 +245,14 @@
                                                         <tbody>
                                                         <tr th:each="user,i : ${listUser}" >
                                                             <td th:text = "${i.index+1}"></th>
-                                                            <td>
-                                                                <img width="30px" th:alt="${user.username}" th:src="${'/admin/img/'+user.img}" >
+                                                            <td th:if="${user.img != null}">
+                                                                <img width="30px" class="img-account" th:alt="${user.username}" th:src="${'/photos/accounts/'+ user.username +'/'+user.img}" >
+                                                            </td>
+                                                            <td th:if="${user.img == null}">
+                                                                <img width="30px" class="img-account" th:alt="${user.username}" th:src="${'/dashboard/img/user.png'}" >
+                                                            </td>
+                                                            <td th:if="${user.img == 'user.png'}">
+                                                                <img width="30px" class="img-account" th:alt="${user.username}" th:src="${'/dashboard/img/user.png'}" >
                                                             </td>
                                                             <td th:text = "${user.username}"></td>
                                                             <td th:text = "${user.fullname}"></td>
@@ -291,47 +297,51 @@
                                             </div>
                                         </div>
                                         <form th:object= "${userRequest}" id="form" method="POST">
+<!--                                            <input type="hidden" th:field="*{passwordChangedTime}" id ="passwordChangedTime"-->
+<!--                                            readonly="true"  >-->
+<!--                                            <input th:field="*{img}" id ="img"-->
+<!--                                                   readonly="true"  >-->
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputUsername">Tài khoản</label>
+                                                    <label for="username">Tài khoản</label>
                                                     <input th:field="*{username}" id = "username" 
                                                         readonly="true" type="text" class="form-control" >
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputFullname">Mật khẩu</label>
-                                                    <input type="password" class="form-control" th:field="*{password}"
+                                                    <label for="password">Mật khẩu</label>
+                                                    <input type="password" name="password" class="form-control" th:field="*{password}"
                                                         id="password" readonly="true">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputFullname">Nhập lại mật khẩu</label>
+                                                    <label for="confirmPass">Nhập lại mật khẩu</label>
                                                     <input type="password" class="form-control" 
                                                         id="confirmPass" readonly="true">
                                                 </div>
                                                 
                                             </div>
                                             <div class="form-group">
-                                                <label for="inputAddress">Địa chỉ</label>
+                                                <label for="address">Địa chỉ</label>
                                                 <input type="text" th:field="*{address}" id = "address" 
                                                 readonly="true" class="form-control" >
                                             </div>
                                             <div class="form-group">
-                                                    <label for="inputIdCard">Họ và tên</label>
+                                                    <label for="fullname">Họ và tên</label>
                                                     <input type="text" th:field="*{fullname}" 
                                                         id = "fullname" readonly="true" class="form-control" >
                                                 </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputEmail">Email</label>
+                                                    <label for="email">Email</label>
                                                     <input type="email" th:field="*{email}" 
                                                     id = "email" readonly="true" class="form-control" >
                                                     <i th:errors="*{email}"></i>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputPhone">Điện thoại</label>
+                                                    <label for="phone">Điện thoại</label>
                                                     <input type="text" th:field="*{phone}" id = "phone" readonly="true" class="form-control" >
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputGender">Giới tính</label>
+                                                    <label for="gender">Giới tính</label>
                                                     <div class="form-control">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio"
@@ -353,7 +363,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group ">
-                                                    <label for="inputIdCard">CMND/CCCD</label>
+                                                    <label for="id_Card">CMND/CCCD</label>
                                                     <input type="text" th:field="*{id_Card}" id ="id_Card" 
                                                     readonly="true" class="form-control" >
                                             </div>

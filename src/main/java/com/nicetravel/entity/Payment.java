@@ -3,6 +3,7 @@ package com.nicetravel.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -32,6 +33,7 @@ public class Payment implements Serializable {
     @Column(name = "payTime", nullable = false)
     private Instant payTime;
 
+    @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,###.###")
     @Column(name = "totalPrice", nullable = false, precision = 12, scale = 3)
     private BigDecimal totalPrice;
 

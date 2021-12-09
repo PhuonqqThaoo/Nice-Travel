@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -58,6 +59,7 @@ public class Booking implements Serializable {
     @Column(name = "phone", nullable = false, length = 20)
     private String phone;
 
+//    @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,###.###")
     @Column(name = "totalPrice", nullable = false, precision = 12, scale = 3)
     private BigDecimal totalPrice;
 

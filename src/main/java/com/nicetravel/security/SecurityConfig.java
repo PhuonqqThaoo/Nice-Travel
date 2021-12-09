@@ -68,10 +68,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/login", "/oauth/**").permitAll()
                 .antMatchers("/booking/**", "/travel/like/**").authenticated()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN", "STAFF")
+                .antMatchers("/thanh-toan/**").authenticated()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/staff/**").hasRole("STAFF")
-                .antMatchers("/customer/**", "/api/v2/**").hasAnyRole( "STAFF", "USER")
-                .antMatchers("/api/v1/**").hasRole("ADMIN")
+                .antMatchers("/customer/**").hasRole( "USER")
+                .antMatchers("/api/v1/**", "/api/v2/**").hasAnyRole("ADMIN", "STAFF")
                 .anyRequest().permitAll();
 
         http.formLogin().permitAll()

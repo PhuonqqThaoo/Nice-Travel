@@ -67,10 +67,10 @@ public class Travel implements Serializable {
     public String getTravelPhotosImagePath() {
         if (img == null || name == null) {
             System.out.println("không có ảnh");
-            return "/admin/img/logo/logoNiceTravel.png";
+            return "/dashboard/img/logo/logoNiceTravel.png";
         }else if(img.equals("") || img.equals("logoNiceTravel.png")){
             System.out.println("ảnh không có giá trị");
-            return "/admin/img/logo/logoNiceTravel.png";
+            return "/dashboard/img/logo/logoNiceTravel.png";
         }
 
         System.out.println("/photos/travels/" + id + img);

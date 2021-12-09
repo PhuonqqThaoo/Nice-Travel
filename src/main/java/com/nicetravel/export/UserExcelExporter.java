@@ -93,9 +93,8 @@ public class UserExcelExporter {
             createCell(row, columnCount++, user.getRole_Id().getRole(), style);
             createCell(row, columnCount++, String.valueOf(user.getCreatedDate()), style);
             createCell(row, columnCount++, user.getIsEnable() ? "Vô hiệu hóa" : "Kích hoạt", style);
-            createCell(row, columnCount++, String.valueOf(user.getProvider()), style);
+            createCell(row, columnCount++, user.getProvider(), style);
             createCell(row, columnCount++, String.valueOf(user.getPasswordChangedTime()), style);
-
 
         }
     }

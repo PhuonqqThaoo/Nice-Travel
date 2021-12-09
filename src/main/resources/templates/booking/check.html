@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}" lang="en">
 
 <body>
     <main>
@@ -27,28 +27,28 @@
                         <div class="col-12">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Họ và tên</label>
-                                    <input type="text" class="form-control" th:placeholder="${account.fullname}" disabled>
+                                    <label for="fullname">Họ và tên</label>
+                                    <input type="text" class="form-control" id="fullname" th:placeholder="${account.fullname}" disabled>
                                     <div id="accountId" style="display: none">[[${account.id}]]</div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Địa chỉ email</label>
-                                    <input type="text" class="form-control" th:value="${account.email}" disabled>
+                                    <label for="email">Địa chỉ email</label>
+                                    <input type="text" id="email" class="form-control" th:value="${account.email}" disabled>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Số điện thoại</label>
+                                    <label for="phone">Số điện thoại</label>
                                     <input type="text" class="form-control" id="phone" th:value="${account.phone}" disabled>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Địa chỉ</label>
+                                    <label for="address">Địa chỉ</label>
                                     <input type="text" class="form-control" id="address" th:value="${account.address}">
 
                                 </div>

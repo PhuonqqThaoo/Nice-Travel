@@ -113,3 +113,11 @@
 }
 
 /* end Staff quản lý */
+
+
+
+.img-account{
+    border-radius: 50%;
+    height: 34px;
+    width: 34px;
+}
