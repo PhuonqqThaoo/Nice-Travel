@@ -30,12 +30,12 @@
                             <i class="bx bxs-lock"></i>
                             <input type="password" name="password" id="password1" placeholder="Password" />
                         </div>
-                        <span class="message" th:text="${message}"></span>
+                        <span class="message" th:text="${message}" style="margin-bottom: 10px;"></span>
                         <div class="forgot">
                             <a class="forgot_password" th:href="@{/forgot_password}">Forgot your password?</a>
                         </div>
-
                         <input type="submit" value="Login" class="btn solid" />
+                        <a href="/">Trang chủ</a>
                         <p class="social-text">Hoặc Đăng nhập bằng các nền tảng xã hội</p>
                         <div class="social-media">
                             <a th:href="@{/oauth2/authorization/facebook}" class="social-icon">

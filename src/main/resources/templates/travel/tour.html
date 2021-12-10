@@ -1,161 +1,157 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
 
 <body>
-<main th:object="${item}"> <!-- subheader -->
-	<section id="subheader"></section>
-	<!-- subheader end -->
-	<section aria-label="section-blog" id="content">
-		<div class="container-fluid m-5-hor">
-			<div class="row">
+	<main th:object="${item}">
+		<!-- subheader -->
+		<section id="subheader"></section>
+		<!-- subheader end -->
+		<section aria-label="section-blog" id="content">
+			<div class="container-fluid m-5-hor">
+				<div class="row">
 
-				<!-- left content -->
-				<div class="col-md-3">
-					<div class="frm-search"
-						style="background: url('http://on3-step.com/tf/plesire/img/bg-search-ver.jpg');">
-						<div class="container-fluid m-5-hor m-5-hor-dev">
-							<div class="row">
+					<!-- left content -->
+					<div class="col-md-3">
+						<div class="frm-search"
+							style="background: url('http://on3-step.com/tf/plesire/img/bg-search-ver.jpg');">
+							<div class="container-fluid m-5-hor m-5-hor-dev">
+								<div class="row">
 
-								<form class="form-inline" id="sform" th:action="@{/tour/search/p=1}">
-									<div class="form-group">
-										<h3 class="big-heading">Tìm kiếm</h3>
-										<span class="result"></span>
-									</div>
-									<div class="form-group search-icn">
-										<label><span class="ti-menu-alt color"></span> Điểm đi</label>
-										<select class="cust-select" name="departurePlace" id="departurePlace">
-										<option value="" >Tất cả</option>
-											<option value="Hồ Chí Minh">Hồ Chí Minh</option>
-											<option value="Hà Nội">Hà Nội</option>
-											<option value="Đà Lạt">Đà Lạt</option>
-											<option value="Đà Nẵng">Đà Nẵng</option>
-											<option value="Phú Quốc">Phú Quốc</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label><span class="ti-menu-alt color"></span> Điểm
-											đến</label> <select class="cust-select" name="destinationPlace" id="destinationPlace"
-											>
-											<option value="" >Tất cả</option>
-											<option value="Phan Thiết">Phan Thiết</option>
-											<option value="Cần Thơ">Cần Thơ</option>
-											<option value="Đà Lạt">Đà Lạt</option>
-											<option value="Vũng Tàu">Vũng Tàu</option>
-											<option value="Phú Yên">Phú Yên</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label><span class="ti-calendar color"></span> Date</label>
-										<div id="filterDate2">
-											<!-- Datepicker as text field -->
-											<div class="input-group date" data-date-format="dd/mm/yyyy">
-												<input name="startDate" id="startDate" type="text" class="form-control"
-													placeholder="dd/mm/yyyy">
-												<div class="input-group-addon">
-													<span class="fa fa-calendar"></span>
+									<form class="form-inline" id="sform" th:action="@{/tour/search/p=1}">
+										<div class="form-group">
+											<h3 class="big-heading">Tìm kiếm</h3>
+											<span class="result"></span>
+										</div>
+										<div class="form-group search-icn">
+											<label><span class="ti-menu-alt color"></span> Điểm đi</label>
+											<select class="cust-select" name="departurePlace" id="departurePlace">
+												<option value="">Tất cả</option>
+												<option value="Hồ Chí Minh">Hồ Chí Minh</option>
+												<option value="Hà Nội">Hà Nội</option>
+												<option value="Đà Lạt">Đà Lạt</option>
+												<option value="Đà Nẵng">Đà Nẵng</option>
+												<option value="Phú Quốc">Phú Quốc</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label><span class="ti-menu-alt color"></span> Điểm
+												đến</label> <select class="cust-select" name="destinationPlace"
+												id="destinationPlace">
+												<option value="">Tất cả</option>
+												<option value="Phan Thiết">Phan Thiết</option>
+												<option value="Cần Thơ">Cần Thơ</option>
+												<option value="Đà Lạt">Đà Lạt</option>
+												<option value="Vũng Tàu">Vũng Tàu</option>
+												<option value="Phú Yên">Phú Yên</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label><span class="ti-calendar color"></span> Date</label>
+											<div id="filterDate2">
+												<!-- Datepicker as text field -->
+												<div class="input-group date" data-date-format="dd/mm/yyyy">
+													<input name="startDate" id="startDate" type="text"
+														class="form-control" placeholder="dd/mm/yyyy">
+													<div class="input-group-addon">
+														<span class="fa fa-calendar"></span>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<label><span class="ti-money color"></span> Giá thấp
-											nhất</label> <select name="price-min" id="price-min" class="cust-select">
-											<option value="0">Tất cả</option>
-											<option value="2000000">2 triệu</option>
-											<option value="5000000">5 triệu</option>
-											<option value="10000000">10 triệu</option>
-											<option value="15000000">15 triệu</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label><span class="ti-money color"></span> Giá cao
-											nhất</label> <select name="price-max" id="price-max" class="cust-select">
-											<option value="50000000">Tất cả</option>
-											<option value="5000000">5 triệu</option>
-											<option value="10000000">10 triệu</option>
-											<option value="15000000">15 triệu</option>
-											<option value="20000000">20 triệu</option>
-											<option value="25000000">25 triệu</option>
-										</select>
-									</div>
-									<button class="btn-frm-search">Tìm kiếm</button>
-								</form>
-
-							</div>
-						</div>
-					</div>
-					<!-- section search end -->
-				</div>
-				<!-- left content end -->
-
-				<!-- right content -->
-							
-				<div class="col-md-9">	
-					<h4 class="text-center">Chúng tôi tìm thấy <span style="color: red;font-weight: 900;">[[${items.totalElements}]]</span> tour cho Quý khách.</h4>	
-				
-					<div class="row">
-
-						<div class="col-md-6 col-lg-4" th:each="p: ${items}">
-							<div class="gal-home travel-box">
-								<a th:href="@{|/travel/detail/${p.slug}|}">
-									<div class="hovereffect">
-										<img alt="imageportofolio" class="img-responsive"
-											th:src="@{|/assets/img/${p.img}|}">
-									</div>
-									<div class="gal-home-content travel-box-content">
-										<p>[[${#dates.format(p.startDate, 'dd-MM-yyyy')}]]</p>
-										<h5 style="min-height: 42px;">
-											<a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}"></a>
-										</h5>
-										
-										<p>Số lượng: [[${p.quantity}]]</p>
-										<p>Nơi khởi hành: [[${p.departurePlace}]]</p>
-										<p>
-											<h5 style="display: inline-block; color: rgba(238, 82, 83, 1.0);">[[${#numbers.formatCurrency(p.price)}]]</h5>/ người
-										</p>
-										<div>
-											<a th:href="@{|/booking/check?tour=${p.slug}|}"
-												class="travel-btn"><i class='bx bxs-cart-alt'></i> Đặt
-												ngay</a> <a href="" class="travel-btn"
-												style="padding: .8rem 1.8rem; background-color: rgb(9, 184, 253);"><i
-												class='bx bxs-heart'></i></a> <a
-												th:href="@{|/travel/detail/${p.slug}|}"
-												style="float: right;">Xem chi tiết</a>
+										<div class="form-group">
+											<label><span class="ti-money color"></span> Giá thấp
+												nhất</label> <select name="price-min" id="price-min"
+												class="cust-select">
+												<option value="0">Tất cả</option>
+												<option value="2000000">2 triệu</option>
+												<option value="5000000">5 triệu</option>
+												<option value="10000000">10 triệu</option>
+												<option value="15000000">15 triệu</option>
+											</select>
 										</div>
-									</div>
-								</a>
+										<div class="form-group">
+											<label><span class="ti-money color"></span> Giá cao
+												nhất</label> <select name="price-max" id="price-max"
+												class="cust-select">
+												<option value="50000000">Tất cả</option>
+												<option value="5000000">5 triệu</option>
+												<option value="10000000">10 triệu</option>
+												<option value="15000000">15 triệu</option>
+												<option value="20000000">20 triệu</option>
+												<option value="25000000">25 triệu</option>
+											</select>
+										</div>
+										<button class="btn-frm-search">Tìm kiếm</button>
+									</form>
+
+								</div>
+							</div>
+						</div>
+						<!-- section search end -->
+					</div>
+					<!-- left content end -->
+
+					<!-- right content -->
+
+					<div class="col-md-9">
+						<h4 class="text-center">Chúng tôi tìm thấy <span
+								style="color: red;font-weight: 900;">[[${items.totalElements}]]</span> tour cho Quý
+							khách.</h4>
+
+						<div class="row">
+							<div class="col-md-6 col-lg-4" th:each="p: ${items}">
+								<div class="gal-home travel-box">
+									<a th:href="@{|/travel/detail/${p.slug}|}">
+										<div class="hovereffect">
+											<img alt="imageportofolio" class="img-responsive"
+												th:src="@{|/assets/img/${p.img}|}">
+										</div>
+										<div class="gal-home-content travel-box-content">
+											<p>[[${#dates.format(p.startDate, 'dd-MM-yyyy')}]]</p>
+											<h5 style="min-height: 60px;">
+												<a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}"></a>
+											</h5>
+
+											<p>Số lượng: [[${p.quantity}]]</p>
+											<p>Nơi khởi hành: [[${p.departurePlace}]]</p>
+											<p>
+											<h5 style="display: inline-block; color: rgba(238, 82, 83, 1.0);">
+												[[${#numbers.formatCurrency(p.price)}]]</h5>/ người
+											</p>
+											<div>
+												<a th:href="@{|/booking/check?tour=${p.slug}|}" class="travel-btn"><i
+														class='bx bxs-cart-alt'></i> Đặt
+													ngay</a>
+												<a href="" class="travel-btn"
+													style="padding: .8rem 1.8rem; background-color: rgb(9, 184, 253);"><i
+														class='bx bxs-heart'></i></a>
+												<a th:href="@{|/travel/detail/${p.slug}|}" style="float: right;">Xem
+													chi tiết</a>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="xem-them">
+							<div class="pagination">
+								<a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p=1' : '?p=1'}">&laquo;</a>
+								<span th:each="i: ${#numbers.sequence(1,items.totalPages)}">
+									<a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p='+${i} : '?p='+${i}}">[[${i}]]</a>
+								</span>
+								<a
+									th:href="@{${n > 1} ? '?' + ${currentURL} +'&p='+${items.totalPages} : '?p='+${items.totalPages}}">&raquo;</a>
 							</div>
 						</div>
 					</div>
-					<div class="xem-them">
-						<!--  <button class="btn btn-primary btn-xem-them">
-							Xem thêm
-						</button> -->
-<!-- 						<ul>
-	 	<li>Số thực thể hiện tại: [[${items.numberOfElements}]]</li>
-		<li>Trang số: [[${items.number}]]</li>
-		<li>Kích thước trang: [[${items.size}]]</li>
-		<li>Tổng số thực thể: [[${items.totalElements}]]</li>
-		<li>Tổng số trang: [[${items.totalPages}]]</li>
-	</ul> -->
-		<div class="pagination">
-			<a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p=1' : '?p=1'}">&laquo;</a>
-			<span th:each="i: ${#numbers.sequence(1,items.totalPages)}">
-		  		<a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p='+${i} : '?p='+${i}}">[[${i}]]</a>
-		 	 </span>
-		  	<a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p='+${items.totalPages} : '?p='+${items.totalPages}}">&raquo;</a>
-	</div>
+					<!-- right content end -->
 
-					</div>
 				</div>
-				<!-- right content end -->
-
 			</div>
-		</div>
-	</section>
+		</section>
 	</main>
 	<script>
 	</script>
 </body>
+
 </html>
