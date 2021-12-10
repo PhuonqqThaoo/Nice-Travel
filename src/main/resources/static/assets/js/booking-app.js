@@ -44,12 +44,25 @@ app.controller("booking-ctrl", function($scope, $http) {
 			}
 		},
 		purchaser(){
+			if(document.getElementById("fullname").value == ""){
+				alert("Chưa nhập họ và tên")
+				return;
+			}if(document.getElementById("phone").value == ""){
+				alert("Chưa nhập số điện thoại")
+				return;
+			}if(document.getElementById("address").value == ""){
+				alert("Chưa nhập địa chỉ")
+				return;
+			}if(document.getElementById("email").value == ""){
+				alert("Chưa nhập email")
+				return;
+			}
 			var booking = angular.copy(this);
 			console.log(booking)
 			//thực hiện đặt hàng
 			$http.post("/api/v2/booking", booking).then(resp => {
 				alert("Đặt hàng thành công")
-				location.href = "/thanh-toan/" + resp.data.id;
+				location.href = "/detail-booking/" + resp.data.id;
 			}).catch(error => {
 				alert("Đặt hàng lỗi!")
 				console.log(error)

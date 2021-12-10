@@ -9,10 +9,14 @@
         <input type="hidden" th:value="${item.bookingId.id}" name="idBooking">
         <input type="hidden" th:value="${item.price / 23000}" name="price">
             <div class="payment-container">
-                <ol class="breadcrumb">
+                <ol class="breadcrumb" th:if="${item.bookingId.payBoolean == false}">
                     <li><a href="#">Đặt tour</a></li>
                     <li><a href="#">Nhập thông tin</a></li>
                     <li><a href="#">Thanh toán</a></li>
+                </ol>
+                <ol class="breadcrumb" th:if="${item.bookingId.payBoolean == true}">
+                    <li><a href="#">Đặt tour</a></li>
+                    <li><a href="#">chi tiết đơn hàng</a></li>
                 </ol>
 
                 <div class="row" style="margin-top: 50px;">
@@ -93,7 +97,13 @@
                                 </tbody>
                             </table>
                             <div>
-                                <button type="submit" class="btn btn-danger" style="width:100%; height: 50px;">
+                            	<a class="btn btn-danger" style="width:35%; height: 50px; margin-right: 3%; float: left;" href="/">
+                                    Trở về trang chủ
+                                </a>
+                                <button type="submit" disabled="disabled" class="btn btn-danger" style="width:62%; height: 50px;" th:if="${item.bookingId.payBoolean == true}">
+                                    Đã Thanh toán
+                                </button>
+                                <button type="submit" class="btn btn-danger" style="width:62%; height: 50px;" th:if="${item.bookingId.payBoolean == false}">
                                     Thanh toán
                                 </button>
                             </div>

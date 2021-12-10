@@ -38,7 +38,7 @@ public class PayController {
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
-	@GetMapping("/thanh-toan/{id}")
+	@GetMapping("/detail-booking/{id}")
 	public String index(@PathVariable("id") Integer id,Model model){
 		BookingDetail detail = bookingDetailService.findByIdBooking(id);
 		model.addAttribute("item", detail);
