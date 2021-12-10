@@ -34,84 +34,6 @@
                     <a class="forgot_password" th:href="@{/forgot_password}">Forgot your password?</a>
                 </div>
 
-<<<<<<< HEAD
-    <body>
-        <div class="container">
-            <div class="forms-container">
-                <!-- sign in -->
-                <div class="signin-signup">
-                    <form th:action="@{/account/login}" method="POST" class="sign-in-form">
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                        <h2 class="title">Đăng nhập</h2>
-                        <div class="input-field">
-                            <i class="bx bxs-user"></i>
-                            <input type="text" name="username" id="username1" placeholder="Username" />
-                        </div>
-                        <div class="input-field">
-                            <i class="bx bxs-lock"></i>
-                            <input type="password" name="password" id="password1" placeholder="Password" />
-                        </div>
-                        <span class="message" th:text="${message}" style="margin-bottom: 10px;"></span>
-                        <div class="forgot">
-                            <a class="forgot_password" th:href="@{/forgot_password}">Forgot your password?</a>
-                        </div>
-                        <input type="submit" value="Login" class="btn solid" />
-                        <a href="/">Trang chủ</a>
-                        <p class="social-text">Hoặc Đăng nhập bằng các nền tảng xã hội</p>
-                        <div class="social-media">
-                            <a th:href="@{/oauth2/authorization/facebook}" class="social-icon">
-                                <i class='bx bxl-facebook-circle' ></i>
-                            </a>
-                            <!--                            <a href="#" class="social-icon">-->
-                            <!--                                <i class="fab fa-twitter"></i>-->
-                            <!--                            </a>-->
-                            <a th:href="@{/oauth2/authorization/google}" class="social-icon">
-                                <i class='bx bxl-google' ></i>
-                            </a>
-                            <a th:href="@{/oauth2/authorization/github}" class="social-icon">
-                                <i class='bx bxl-github'></i>
-                            </a>
-                        </div>
-                    </form>
-
-                    <!-- register -->
-                    <form th:action="@{/process-register}" th:object="${account}" method="post"
-                        class="sign-up-form">
-                        <h2 class="title">Đăng ký</h2>
-                        <div class="input-field">
-                            <i class='bx bxs-envelope'></i>
-                            <input type="email" name="email" th:field="*{email}" placeholder="Email" />
-                        </div>
-                        <div class="input-field">
-                            <i class='bx bxs-user'></i>
-                            <input type="text" name="username" th:field="*{username}" placeholder="Username" />
-                        </div>
-                        <div class="input-field">
-                            <i class='bx bxs-lock'></i>
-                            <input type="password" name="password" th:field="*{password}" placeholder="Password" />
-                        </div>
-                        <div class="input-field">
-                            <i class='bx bxs-user-pin'></i>
-                            <input type="text" name="fullname" th:field="*{fullname}" placeholder="Fullname" />
-                        </div>
-                        <input type="submit" class="btn" value="Sign up" />
-                        <p class="social-text">Hoặc Đăng ký với các nền tảng xã hội</p>
-                        <div class="social-media">
-                            <a th:href="@{/oauth2/authorization/facebook}" class="social-icon">
-                                <i class='bx bxl-facebook-circle' ></i>
-                            </a>
-                            <!--                            <a href="#" class="social-icon">-->
-                            <!--                                <i class="fab fa-twitter"></i>-->
-                            <!--                            </a>-->
-                            <a th:href="@{/oauth2/authorization/google}" class="social-icon">
-                                <i class='bx bxl-google' ></i>
-                            </a>
-                            <a th:href="@{/oauth2/authorization/github}" class="social-icon">
-                                <i class='bx bxl-github'></i>
-                            </a>
-                        </div>
-                    </form>
-=======
                 <input type="submit" value="Login" id="btnLogin" class="btn solid"/>
                 <p class="social-text">Hoặc Đăng nhập bằng các nền tảng xã hội</p>
                 <div class="social-media">
@@ -127,7 +49,6 @@
                     <a th:href="@{/oauth2/authorization/github}" class="social-icon">
                         <i class='bx bxl-github'></i>
                     </a>
->>>>>>> abd5dbd179b70c4cc9cefb4de5ad924a5ee868ab
                 </div>
             </form>
 
