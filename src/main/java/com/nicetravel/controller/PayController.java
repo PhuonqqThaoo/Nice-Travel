@@ -1,5 +1,7 @@
 package com.nicetravel.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nicetravel.entity.Booking;
 import com.nicetravel.entity.BookingDetail;
-import com.nicetravel.service.AccountService;
 import com.nicetravel.service.BookingDetailService;
 import com.nicetravel.service.BookingService;
 import com.nicetravel.service.PaymentService;
@@ -83,6 +84,11 @@ public class PayController {
 			booking.setPayBoolean(true);
 			bookingService.updateBooking(booking);
 			//thiếu lưu vào payment
+			com.nicetravel.entity.Payment pay = new  com.nicetravel.entity.Payment();
+			pay.setBookingId(booking);
+			pay.setPayTime(new Date());
+			pay.setTotalPrice(booking.getTotalPrice());
+			paymentService.createPayment(pay);
 			if(payment.getState().equals("approved")){
 				return "pay/success";
 			}

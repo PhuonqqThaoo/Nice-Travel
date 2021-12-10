@@ -1,33 +1,25 @@
 package com.nicetravel.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.nicetravel.custom.UserServices;
-import com.nicetravel.security.auth.CustomOAuth2User;
-import org.apache.commons.collections4.Get;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.nicetravel.custom.UserServices;
 import com.nicetravel.entity.Account;
-import com.nicetravel.entity.Booking;
-import com.nicetravel.entity.BookingDetail;
 import com.nicetravel.entity.Travel;
+import com.nicetravel.security.auth.CustomOAuth2User;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.BookingDetailService;
 import com.nicetravel.service.BookingService;
 import com.nicetravel.service.TravelService;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("booking")
