@@ -30,12 +30,33 @@ public interface AccountService {
 
     List<Account> findAll();
 
+    Page<Account> findAllByStaffPageActive(int page, int size);
+
     Page<Account> findAllByStaffPage(int page, int size);
 
+    Page<Account> findAllByStaffPageNoActive(int page, int size);
+
     List<Account> findAllByStaff();
+
     List<Account> findByUser();
 
-    Page<Account> findAllByUser(int page, int size);
+    // user đang hoạt động
+    Page<Account> findAllByUserActivate(int page, int size);
+
+    // user đang hoạt động hôm nay
+    Page<Account> findAllByUserActivateInGetDate(int page, int size);
+
+    //  user đang hoạt động tháng này
+    Page<Account> findAllByUserActivateInMonth(int page, int size);
+
+    //  user đang hoạt động năm nay
+    Page<Account> findAllByUserActivateInYear(int page, int size);
+
+    // user tất cả
+    Page<Account> getAllUser(int page, int size);
+
+    // user khong hoạt động
+    Page<Account> findAllByUserNoActivate(int page, int size);
 
     void update(Account account) throws Exception;
 
@@ -53,4 +74,6 @@ public interface AccountService {
     void updateProviderType(String username, Provider provider);
 
     void changePassword(Account account, String newPassword, PasswordEncoder passwordEncoder) throws Exception;
+
+    Account getIdByUser(String user);
 }

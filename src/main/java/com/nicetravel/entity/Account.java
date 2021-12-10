@@ -90,12 +90,12 @@ public class Account implements Serializable {
     @Transient
     public String getPhotosImagePath() {
         if (img == null || username == null) {
-            return "/admin/img/user.png";
+            return "/dashboard/img/user.png";
         }else if(img.equals("") || img.equals("user.png")){
-            return "/admin/img/user.png";
+            return "/dashboard/img/user.png";
         }
 
-        return "/user-photos/" + username + "/" + img;
+        return "/photos/accounts/" + username + "/" + img;
     }
 
     @Column(name = "img", length = 225)
@@ -126,6 +126,8 @@ public class Account implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "travel_account_id")
+    @ToString.Exclude
     List<Travel> travels;
+
 
 }

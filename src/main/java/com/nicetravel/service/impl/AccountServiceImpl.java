@@ -26,7 +26,7 @@ import javax.transaction.Transactional;
 @Service
 public class AccountServiceImpl implements AccountService {
 
-    AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
     private BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 
     @Autowired
@@ -92,8 +92,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public Page<Account> findAllByStaffPageActive(int page, int size) {
+        return accountRepository.findAllByStaffPageActive(PageRequest.of(page, size));
+    }
+
+    @Override
     public Page<Account> findAllByStaffPage(int page, int size) {
         return accountRepository.findAllByStaffPage(PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Account> findAllByStaffPageNoActive(int page, int size) {
+        return accountRepository.findAllByStaffPageNoActive(PageRequest.of(page, size));
     }
 
     @Override
@@ -108,9 +118,35 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional
-    public Page<Account> findAllByUser(int page, int size) {
-        return accountRepository.findAllByUser(PageRequest.of(page, size));
+    public Page<Account> findAllByUserActivate(int page, int size) {
+        return accountRepository.findAllByUserActivate(PageRequest.of(page, size));
     }
+
+    @Override
+    public Page<Account> findAllByUserActivateInGetDate(int page, int size) {
+        return accountRepository.findAllByUserActivateInGetDate(PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Account> findAllByUserActivateInMonth(int page, int size) {
+        return accountRepository.findAllByUserActivateInMonth(PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Account> findAllByUserActivateInYear(int page, int size) {
+        return accountRepository.findAllByUserActivateInYear(PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Account> getAllUser(int page, int size) {
+        return accountRepository.getAllUserAdmin(PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Account> findAllByUserNoActivate(int page, int size) {
+        return accountRepository.findAllByUserNoActivate(PageRequest.of(page, size));
+    }
+
     @Override
     @Transactional
     public void update(Account account) throws Exception {
@@ -209,6 +245,10 @@ public class AccountServiceImpl implements AccountService {
 //        accountRepository.save(account);
     }
 
+    @Override
+    public Account getIdByUser(String user) {
+        return accountRepository.getIdByUser(user);
+    }
 
 
 }

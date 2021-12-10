@@ -29,7 +29,20 @@ public class StatsServiceImpl implements StatsService{
 		return result;
 	}
 
-	
-	
-	
+	@Override
+	public String[][] sp_getTotalTravelOneMonth() {
+		String[][] result = new String [2][12];
+
+		YearMonth now = YearMonth.now();
+		for(int i = 0 ; i < 12; i++) {
+			String month = i +1+"";
+
+			String year = now.getYear() + "";
+			result[0][i] = month + "-" + year;
+			result[1][i] = repo.sp_getTotalTravelOneMonth(month, year);
+		}
+		return result;
+	}
+
+
 }

@@ -43,7 +43,9 @@ public interface TravelService {
     Page<Travel> search(String depart,String desti, String sd,BigDecimal pmin, BigDecimal pmax, int pageNumber);
     
     List<Total> getTotal();
-
+    
+    //Lọc admin
+    Page<Travel> filterStartDate(Date day, Date end, Pageable pageable);
 
 	Page<Travel> getAll(Pageable pageable);
 	
@@ -51,9 +53,18 @@ public interface TravelService {
 
     Page<Travel> getTravelInMonth(int page, int size);
 
+    Page<Travel> getFindAllByTravelActive(int page, int size);
+
     Page<Travel> getFindAllByTravel(int page, int size);
+
+    Page<Travel> getFindAllByTravelExpires(int page, int size);
+
+    Page<Travel> getFindAllByTravelNonActive(int page, int size);
+
     
    void updateTraveladmin(Travel travel) throws Exception;
+
+   void sp_updateEXD2() ;
    
    void deleteTravelAdmin(Integer id) throws Exception;
    
@@ -66,4 +77,6 @@ public interface TravelService {
    Integer countPhuQuocTour();
    
    Integer countHaNoiTour();
+   
+   void updateEX();
 }

@@ -1943,3 +1943,7 @@ body.sidebar-toggled footer.sticky-footer {
   background-color: #3f51b5;
   border-color: #3f51b5;
 }
+
+.description-edit{
+  font-size: 1.2rem;
+}

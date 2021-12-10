@@ -362,7 +362,7 @@
 						<a th:href="@{|/travel/detail/${p.slug}|}">
 							<div class="hovereffect">
 								<img alt="imageportofolio" class="img-responsive w-100"
-									th:src="@{|/assets/img/${p.img}|}">
+									th:src="@{|/photos/travels/${p.id}/${p.img}|}">
 							</div>
 							<div class="gal-home-content travel-box-content">
 								<p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate,
@@ -539,7 +539,7 @@
 						<a th:href="@{|/travel/detail/${p.slug}|}">
 							<div class="hovereffect">
 								<img alt="imageportofolio" class="img-responsive"
-									th:src="@{|/assets/img/${p.img}|}">
+									 th:src="@{|/photos/travels/${p.id}/${p.img}|}">
 							</div>
 							<div class="gal-home-content travel-box-content">
 								<p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate,

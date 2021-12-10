@@ -3,7 +3,9 @@ package com.nicetravel.controller;
 import com.nicetravel.custom.UserServices;
 import com.nicetravel.custom.Utility;
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.Booking;
 import com.nicetravel.service.AccountService;
+import com.nicetravel.service.BookingService;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.print.Book;
 import java.io.UnsupportedEncodingException;
 
 @Controller
@@ -34,6 +37,9 @@ public class SecurityController {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    @Autowired
+    private BookingService bookingService;
 
     @Autowired
     public SecurityController(UserServices userServices, AccountService accountService) {
@@ -56,19 +62,19 @@ public class SecurityController {
 
     @RequestMapping("/login/success")
     public String loginSuccess(Model model) {
-        model.addAttribute("message", "Login success");
+        model.addAttribute("message", "Đăng nhập thành công");
         return "forward:/login";
     }
 
     @RequestMapping("/login/error")
     public String loginError(Model model) {
-        model.addAttribute("message", "Login fail");
+        model.addAttribute("message", "Đăng nhập không thành công");
         return "forward:/login";
     }
 
     @RequestMapping("/unauthorized")
     public String unauthoried(Model model) {
-        model.addAttribute("message", "You're unauthorized");
+        model.addAttribute("message", "Bạn không có quyền");
         return "forward:/login";
     }
 
@@ -76,7 +82,7 @@ public class SecurityController {
 
     @RequestMapping("/logoff/success")
     public String logoffSuccess(Model model) {
-        model.addAttribute("message", "Logout success");
+        model.addAttribute("message", "Đăng xuất thành công");
         return "forward:/login";
     }
 
@@ -101,11 +107,17 @@ public class SecurityController {
 
     @GetMapping("/verify")
     public String verifyUser(@Param("code") String code, Model model) {
-        System.out.println(code);
+        System.out.println("code: " + code);
         if (userServices.verify(code)) {
             model.addAttribute("message", "Xác thực tài khoản thành công");
             return "forward:/login";
-        } else {
+        }
+
+        if(userServices.verifyCancelTour(code)){
+            model.addAttribute("message", "Xác nhận hủy tour thành công");
+            return "forward:/customer/tour-da-dat";
+        }
+        else {
             return "/account/register/verify_fail";
         }
     }

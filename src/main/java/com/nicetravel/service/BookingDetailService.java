@@ -11,6 +11,8 @@ public interface BookingDetailService {
     List<BookingDetail> getAllBookingDetail();
 
     BookingDetail findById(Integer id);
+    
+    BookingDetail findByIdBooking(Integer id);
 
     BookingDetail createBookingDetail(BookingDetail bookingDetail);
 

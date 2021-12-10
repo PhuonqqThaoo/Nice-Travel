@@ -73,6 +73,8 @@ public class BookingServiceImpl implements BookingService {
 		return bookingRepository.save(booking);
 	}
 
+
+
 	@Override
 	public void deleteBooking(Integer id) {
 		bookingRepository.deleteById(id);
@@ -105,7 +107,7 @@ public class BookingServiceImpl implements BookingService {
 
 		// cập nhật số lượng quantity
 		Travel travel = travelRepository.findById(bookingDetail.getTravelId().getId()).get();
-		int qtynew = travel.getQuantityNew() - bookingDetail.getQuantity();
+		int qtynew = travel.getQuantityNew() - bookingDetail.getTotalQuantity();
 		travel.setQuantityNew(qtynew);
 		travelRepository.save(travel);
 
@@ -133,9 +135,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public List<Booking> getAllBookingByAcId(String id) {
-//		return bookingRepository.findBookingById(id);
-		return null;
+	public List<Booking> getAllBookingByAcId(String username) {
+		return bookingRepository.getAllBookingByAcId(username);
 	}
 
 	@Override

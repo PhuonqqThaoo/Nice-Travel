@@ -1,28 +1,39 @@
 package com.nicetravel.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Table(name = "booking")
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Booking implements Serializable {
+
+    public Booking(Integer id, List<BookingDetail> bookingDetails, Date createdDate, String address, String phone, BigDecimal totalPrice, Boolean payBoolean, Boolean isDeleted, String verification_code, Account booking_account_id) {
+        this.id = id;
+        this.bookingDetails = bookingDetails;
+        this.createdDate = createdDate;
+        this.address = address;
+        this.phone = phone;
+        this.totalPrice = totalPrice;
+        this.payBoolean = payBoolean;
+        this.isDeleted = isDeleted;
+        this.verification_code = verification_code;
+        this.booking_account_id = booking_account_id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -34,10 +45,12 @@ public class Booking implements Serializable {
     
     @JsonIgnore
     @OneToMany(mappedBy = "bookingId")
+    @ToString.Exclude
     List<BookingDetail> bookingDetails;
 
     @Column(name = "createdDate", nullable = false)
     @CreationTimestamp // defaut getDate()
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdDate;
 
     @Column(name = "address", length = 225)
@@ -46,6 +59,7 @@ public class Booking implements Serializable {
     @Column(name = "phone", nullable = false, length = 20)
     private String phone;
 
+//    @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,###.###")
     @Column(name = "totalPrice", nullable = false, precision = 12, scale = 3)
     private BigDecimal totalPrice;
 
@@ -63,4 +77,19 @@ public class Booking implements Serializable {
     @JoinColumn(name = "account_id")
     private Account booking_account_id;
 
+    public Booking() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Booking booking = (Booking) o;
+        return id != null && Objects.equals(id, booking.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

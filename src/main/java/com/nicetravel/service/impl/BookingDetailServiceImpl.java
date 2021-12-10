@@ -44,4 +44,9 @@ public class BookingDetailServiceImpl implements BookingDetailService {
         bookingDetailRepository.deleteById(id);
     }
 
+	@Override
+	public BookingDetail findByIdBooking(Integer id) {
+		return bookingDetailRepository.findByIdBooking(id);
+	}
+
 }

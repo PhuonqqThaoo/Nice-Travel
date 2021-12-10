@@ -11,7 +11,7 @@ import java.util.List;
 public interface BookingService {
     List<Booking> getAllBooking();
     
-    List<Booking> getAllBookingByAcId(String id);
+    List<Booking> getAllBookingByAcId(String username);
 
     Booking findByVerificationCode(String code);
 

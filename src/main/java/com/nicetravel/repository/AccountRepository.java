@@ -43,10 +43,34 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     List<Account> findAllByStaff();
 
     @Query(value ="SELECT * FROM Account WHERE is_enable = 0 and role_Id = 2", nativeQuery = true)
+    Page<Account> findAllByStaffPageActive(Pageable page);
+
+    @Query(value ="SELECT * FROM Account WHERE role_Id = 2", nativeQuery = true)
     Page<Account> findAllByStaffPage(Pageable page);
 
+    @Query(value ="SELECT * FROM Account WHERE is_enable = 1 and role_Id = 2", nativeQuery = true)
+    Page<Account> findAllByStaffPageNoActive(Pageable page);
+
     @Query(value ="SELECT * FROM Account WHERE is_enable = 0 and role_Id = 3", nativeQuery = true)
-    Page<Account> findAllByUser(Pageable page);
+    Page<Account> findAllByUserActivate(Pageable page);
+
+    //danh sách khách hàng hôm nay
+    @Query(value ="SELECT * FROM Account where DAY(created_date) = Day(GETDATE()) and role_Id = 3 and Month(created_date) = Month(GETDATE()) and Year(created_date) = Year(GETDATE()) and is_enable = 0", nativeQuery = true)
+    Page<Account> findAllByUserActivateInGetDate(Pageable page);
+
+    //danh sách khách hàng tháng này
+    @Query(value ="SELECT * FROM Account where  role_Id = 3 and Month(created_date) = Month(GETDATE()) and Year(created_date) = Year(GETDATE()) and is_enable = 0", nativeQuery = true)
+    Page<Account> findAllByUserActivateInMonth(Pageable page);
+
+    //danh sách khách hàng năm này
+    @Query(value ="select * from Account where  role_Id = 3 and Year(created_date) = Year(GETDATE()) and is_enable = 0", nativeQuery = true)
+    Page<Account> findAllByUserActivateInYear(Pageable page);
+
+    @Query(value ="SELECT * FROM Account WHERE role_Id = 3", nativeQuery = true)
+    Page<Account> getAllUserAdmin(Pageable page);
+
+    @Query(value ="SELECT * FROM Account WHERE is_enable = 1 and role_Id = 3", nativeQuery = true)
+    Page<Account> findAllByUserNoActivate(Pageable page);
     
 //    List<Account> findByIsEnable (Boolean isDeleted) ;
     @Modifying(clearAutomatically =true)
@@ -77,5 +101,8 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Modifying
     @Query("UPDATE Account u SET u.password = ?1 WHERE u.username = ?2")
     public void changePassword(String newPass, String username);
+
+    @Query("SELECT u FROM  Account u WHERE u.username = ?1")
+    Account getIdByUser(String username);
 
 } 

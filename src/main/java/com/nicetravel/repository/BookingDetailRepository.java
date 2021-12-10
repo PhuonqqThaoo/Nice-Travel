@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BookingDetailRepository extends JpaRepository<BookingDetail, Integer> {
+	// Fix sau
+	@Query("SELECT u FROM BookingDetail u WHERE u.bookingId.id = ?1")
+	BookingDetail findByIdBooking(Integer id);
 }

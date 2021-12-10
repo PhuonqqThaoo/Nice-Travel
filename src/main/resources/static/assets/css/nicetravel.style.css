@@ -296,6 +296,8 @@ a.travel-btn:hover {
     padding: 20 px 0;
 }
 
+
+
 .pay .col-35-right .detail table .total td.t-price {
     font-weight: 700;
     font-size: 22px;
@@ -329,7 +331,47 @@ a.travel-btn:hover {
 
 /* end pay */
 
+/* --------------------------------------- */
+/* payment */
+.payment {
+    width: 100%;
+    min-height: 500px;
+    font-family: 'Mulish', sans-serif;
+}
 
+.payment-container {
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 200px;
+    padding-bottom: 100px;
+}
+.payment .detail table .text-right {
+    text-align: right;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: right;
+    color: #2d4271;
+}
+
+.payment .detail table .total td.t-price {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    text-align: right;
+    color: #fd5056;
+    text-transform: lowercase;
+}
+.payment .detail table .total td {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19px;
+    text-transform: uppercase;
+    color: #2d4271;
+    border-top: 1 px solid #e7e7e7;
+    padding: 20 px 0;
+}
+/* end payment */
 
 /* footer */
 footer {
@@ -360,4 +402,9 @@ footer {
 .footer .col-xs-12 i:hover {
     color: #fd2d34;
 }
+
+.col-xs-5{
+    width: 65%;
+}
 /* end footer */
+

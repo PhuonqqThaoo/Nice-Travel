@@ -3,6 +3,7 @@ package com.nicetravel.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -32,10 +33,23 @@ public class BookingDetail implements Serializable {
     @JoinColumn(name = "travelId")
     private Travel travelId;
 
+//    @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "#,###.###")
     @Column(name = "price", nullable = false, precision = 12, scale = 3)
     private BigDecimal price;
     
-    @Column(name = "quantity")
-    private Integer quantity;
-
+    @Column(name = "totalquantity")
+    private Integer totalQuantity;
+    
+    @Column(name = "qtynl")
+    private Integer qtyNl;
+    
+    @Column(name = "qtyte")
+    private Integer qtyTe;
+    
+    @Column(name = "qtytn")
+    private Integer qtyTn;
+    
+    @Column(name = "qtyeb")
+    private Integer qtyEb;
+    
 }

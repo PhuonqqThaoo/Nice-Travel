@@ -65,7 +65,9 @@ public class HomeController {
 		model.addAttribute("account", account);
 		List<Account> list = accountService.findAll();
 		model.addAttribute("listUser",list);
-		Page<Account> listByUser = accountService.findAllByUser(page-1, SIZE);
+		Page<Account> listByUser = accountService.findAllByUserActivate(page-1, SIZE);
+		String title = "Danh sách khách hàng";
+		model.addAttribute("title",title);
 		model.addAttribute("listUser1", listByUser.getContent());
 		model.addAttribute("totalPage", listByUser.getTotalPages());
 		model.addAttribute("currentPage", page);
@@ -102,7 +104,147 @@ public class HomeController {
 		}
 		return "admin/index";
 	}
-	
+
+	@GetMapping("/admin/findAllByUserActivateInGetDate")
+	public String doGetFindAllByUserActivateInGetDate(Model model,HttpServletRequest request,
+							 @RequestParam(name="page",defaultValue = "1") int page)  throws Exception {
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+		model.addAttribute("account", account);
+		List<Account> list = accountService.findAll();
+		model.addAttribute("listUser",list);
+		Page<Account> listByUser = accountService.findAllByUserActivateInGetDate(page-1, SIZE);
+		String title = "Danh sách khách hàng mới đăng ký ngày hôm nay";
+		model.addAttribute("title",title);
+		model.addAttribute("listUser1", listByUser.getContent());
+		model.addAttribute("totalPage", listByUser.getTotalPages());
+		model.addAttribute("currentPage", page);
+		List<Travel> listFavo = travel.getFavoriteTour();
+		model.addAttribute("favoriteItems", listFavo);
+		System.out.println(listFavo);
+		String username = request.getRemoteUser();
+		System.out.println(username);
+		String day1 = request.getParameter("day");
+		String end1 = request.getParameter("end");
+		model.addAttribute("day",day1);
+		model.addAttribute("end",end1);
+		String[][] chartData;
+		String[][] chartData1;
+		if(ObjectUtils.isEmpty(day1) && ObjectUtils.isEmpty(end1)) {
+			chartData = statsService.getTotalPriceLast6Month();
+			for(int i =0 ; i<6; i++) {
+				System.out.println(chartData[0][i]);
+				System.out.println(chartData[1][i]);
+				System.out.println("");
+			}
+			String text = "Thống kê doanh thu 6 tháng";
+			model.addAttribute("text",text);
+			System.out.println(chartData);
+			model.addAttribute("chartData",chartData);
+		}
+		else {
+			chartData = booking.getTotalPriceFromTo(day1, end1);
+			System.out.println(chartData);
+			String text = "Thống kê doanh thu từ ngày " + day1+" đến ngày "+end1 ;
+			model.addAttribute("text",text);
+			model.addAttribute("chartData",chartData);
+
+		}
+		return "admin/index";
+	}
+
+	@GetMapping("/admin/findAllByUserActivateInMonth")
+	public String doGetFindAllByUserActivateInMonth(Model model,HttpServletRequest request,
+													  @RequestParam(name="page",defaultValue = "1") int page)  throws Exception {
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+		model.addAttribute("account", account);
+		List<Account> list = accountService.findAll();
+		model.addAttribute("listUser",list);
+		Page<Account> listByUser = accountService.findAllByUserActivateInMonth(page-1, SIZE);
+		String title = "Danh sách khách hàng mới đăng ký trong tháng";
+		model.addAttribute("title",title);
+		model.addAttribute("listUser1", listByUser.getContent());
+		model.addAttribute("totalPage", listByUser.getTotalPages());
+		model.addAttribute("currentPage", page);
+		List<Travel> listFavo = travel.getFavoriteTour();
+		model.addAttribute("favoriteItems", listFavo);
+		System.out.println(listFavo);
+		String username = request.getRemoteUser();
+		System.out.println(username);
+		String day1 = request.getParameter("day");
+		String end1 = request.getParameter("end");
+		model.addAttribute("day",day1);
+		model.addAttribute("end",end1);
+		String[][] chartData;
+		String[][] chartData1;
+		if(ObjectUtils.isEmpty(day1) && ObjectUtils.isEmpty(end1)) {
+			chartData = statsService.getTotalPriceLast6Month();
+			for(int i =0 ; i<6; i++) {
+				System.out.println(chartData[0][i]);
+				System.out.println(chartData[1][i]);
+				System.out.println("");
+			}
+			String text = "Thống kê doanh thu 6 tháng";
+			model.addAttribute("text",text);
+			System.out.println(chartData);
+			model.addAttribute("chartData",chartData);
+		}
+		else {
+			chartData = booking.getTotalPriceFromTo(day1, end1);
+			System.out.println(chartData);
+			String text = "Thống kê doanh thu từ ngày " + day1+" đến ngày "+end1 ;
+			model.addAttribute("text",text);
+			model.addAttribute("chartData",chartData);
+
+		}
+		return "admin/index";
+	}
+
+	@GetMapping("/admin/findAllByUserActivateInYear")
+	public String doGetFindAllByUserActivateInYear(Model model,HttpServletRequest request,
+													@RequestParam(name="page",defaultValue = "1") int page)  throws Exception {
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+		model.addAttribute("account", account);
+		List<Account> list = accountService.findAll();
+		model.addAttribute("listUser",list);
+		Page<Account> listByUser = accountService.findAllByUserActivateInYear(page-1, SIZE);
+		String title = "Danh sách khách hàng mới đăng ký trong năm";
+		model.addAttribute("title",title);
+		model.addAttribute("listUser1", listByUser.getContent());
+		model.addAttribute("totalPage", listByUser.getTotalPages());
+		model.addAttribute("currentPage", page);
+		List<Travel> listFavo = travel.getFavoriteTour();
+		model.addAttribute("favoriteItems", listFavo);
+		System.out.println(listFavo);
+		String username = request.getRemoteUser();
+		System.out.println(username);
+		String day1 = request.getParameter("day");
+		String end1 = request.getParameter("end");
+		model.addAttribute("day",day1);
+		model.addAttribute("end",end1);
+		String[][] chartData;
+		String[][] chartData1;
+		if(ObjectUtils.isEmpty(day1) && ObjectUtils.isEmpty(end1)) {
+			chartData = statsService.getTotalPriceLast6Month();
+			for(int i =0 ; i<6; i++) {
+				System.out.println(chartData[0][i]);
+				System.out.println(chartData[1][i]);
+				System.out.println("");
+			}
+			String text = "Thống kê doanh thu 6 tháng";
+			model.addAttribute("text",text);
+			System.out.println(chartData);
+			model.addAttribute("chartData",chartData);
+		}
+		else {
+			chartData = booking.getTotalPriceFromTo(day1, end1);
+			System.out.println(chartData);
+			String text = "Thống kê doanh thu từ ngày " + day1+" đến ngày "+end1 ;
+			model.addAttribute("text",text);
+			model.addAttribute("chartData",chartData);
+
+		}
+		return "admin/index";
+	}
 
 //	@GetMapping("/admin/quan-ly/tour-du-lich")
 //	public String quanLyTour() {

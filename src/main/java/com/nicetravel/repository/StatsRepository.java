@@ -18,4 +18,8 @@ public interface StatsRepository extends JpaRepository<Booking, Integer>{
 	String[][] getTotalPriceFromTo(@Param("from") String month, 
 			@Param("to") String year);
 
+	@Query(value = "{CALL sp_getTotalTravelOneMonth(:month, :year)}", nativeQuery = true)
+	String sp_getTotalTravelOneMonth(@Param("month") String month,
+								 @Param("year") String year);
+
 }

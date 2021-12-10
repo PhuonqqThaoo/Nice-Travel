@@ -41,16 +41,8 @@ public class TourController {
 			@RequestParam("startDate") String sd,
 			@RequestParam("price-min") BigDecimal pmin,
 			@RequestParam("price-max") BigDecimal pmax) {
-		
-		/*
-		 * List<Travel> list = travelService.searchTour(depart.get(), desti.get(),
-		 * sd.get(), pmin.get(), pmax.get());
-		 */
 			
-			
-
 			Pageable pageable = PageRequest.of(p-1, 6);
-
 
 			Page<Travel> list = travelService.searchTour2(depart, desti, sd, pmin, pmax,pageable);
 			model.addAttribute("items", list);

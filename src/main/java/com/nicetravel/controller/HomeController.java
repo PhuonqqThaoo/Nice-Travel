@@ -25,10 +25,4 @@ public class HomeController {
         model.addAttribute("account", account);
         return "forward:/travel/list";
     }
-    @RequestMapping("/trang-chu")
-    public String avatar(Model model, HttpServletRequest request){
-        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
-        model.addAttribute("userRequest", account);
-        return "layout/_header";
-    }
 }

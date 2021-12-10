@@ -44,7 +44,7 @@ public class InformationStaffController {
     public String getInformationAdmin(Model model, HttpServletRequest request) {
         String username = request.getRemoteUser();
         model.addAttribute("account", accountService.findAccountsByUsername(username));
-        return "staff/ca-nhan/InformationStaff";
+        return "/staff/ca-nhan/InformationStaff";
     }
 
     @GetMapping("/edit-information-staff")
@@ -52,15 +52,15 @@ public class InformationStaffController {
         String username = request.getRemoteUser();
         Account userRequest = accountService.findAccountsByUsername(username);
         model.addAttribute("userRequest", userRequest);
-        return "staff/ca-nhan/EditInformationStaff";
+        return "/staff/ca-nhan/EditInformationStaff";
     }
 
     @PostMapping("/edit-information-staff")
     public String update(@Valid @ModelAttribute("userRequest") Account userRequest,
                          BindingResult result,
-                         RedirectAttributes redirect, @RequestParam("img") MultipartFile multipartFile) throws IOException {
+                         RedirectAttributes redirect, @RequestParam("fileImage") MultipartFile multipartFile, HttpServletRequest request) throws IOException {
         String errorMessage = null;
-        ;
+        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
         try {
             // check if userRequest is not valid
             if (result.hasErrors()) {
@@ -69,17 +69,20 @@ public class InformationStaffController {
             } else {
                 String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
                 System.out.println(fileName);
-                userRequest.setImg(fileName);
-                System.out.println("get" + userRequest.getImg());
 
+                if (fileName.equals("") || fileName.length() == 0 || fileName == null){
+                    account.setImg(account.getImg());
+                }
+                else {
+                    account.setImg(fileName);
+                }
+
+                accountService.update(account);
                 accountService.update(userRequest);
 
-                System.out.println(userRequest);
-
-                String uploadDir = "user-photos/" + userRequest.getUsername();
+                String uploadDir = "photos/" + "accounts/"  + userRequest.getUsername();
 
                 FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-//				accountService.update(userRequest);
                 String successMessage = "Tài khoản " + userRequest.getFullname() + " đã được cập nhật";
                 redirect.addFlashAttribute("successMessage", successMessage);
             }
@@ -103,7 +106,7 @@ public class InformationStaffController {
         model.addAttribute("pageTitle", "Change Expired Password");
         model.addAttribute("userRequest", userRequest);
 
-        return "staff/ca-nhan/ChangePassword";
+        return "/staff/ca-nhan/ChangePassword";
     }
 
     @PostMapping("/change-password")

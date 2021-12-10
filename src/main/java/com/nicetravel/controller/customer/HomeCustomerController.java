@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.nicetravel.security.auth.CustomOAuth2User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +25,26 @@ public class HomeCustomerController {
 	TravelLikeService travelLikeService;
 	@Autowired
 	AccountService accountService;
+
+
+
 	
 	@GetMapping("")
-	public String getIndex(Model model, HttpServletRequest request) {
-		String username = request.getRemoteUser();
+	public String getIndex(Model model, HttpServletRequest request, Authentication authentication) {
+
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser()); // remote
+
+		String username = null;
+
+		if (account == null){
+			CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
+			Account accountOauth = accountService.findByEmail(oauth2User.getEmail());
+			username = accountOauth.getUsername();
+		}
+		else {
+			username = account.getUsername();
+		}
+
 		Account accountId = accountService.findAccountsByUsername(username);
 		model.addAttribute("account", accountService.findAccountsByUsername(username));
 		List<TravelLike> items = travelLikeService.getAllTravelLikeByIdAcount(accountId);

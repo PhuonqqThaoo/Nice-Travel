@@ -96,7 +96,6 @@ public class UserExcelExporter {
             createCell(row, columnCount++, String.valueOf(user.getProvider()), style);
             createCell(row, columnCount++, String.valueOf(user.getPasswordChangedTime()), style);
 
-
         }
     }
 
