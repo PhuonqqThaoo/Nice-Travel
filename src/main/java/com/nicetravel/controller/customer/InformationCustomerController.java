@@ -66,18 +66,9 @@ public class InformationCustomerController {
 	
 	@GetMapping("/edit-information-customer")
 	public String getEditInformationCustomer(HttpServletRequest request, Model model, Authentication authentication) {
-		Account account = accountService.findAccountsByUsername(request.getRemoteUser()); // remote
+//		Account account = accountService.findAccountsByUsername(request.getRemoteUser()); // remote
 
-		String username = null;
-
-		if (account == null){
-			CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
-			Account accountOauth = accountService.findByEmail(oauth2User.getEmail());
-			username = accountOauth.getUsername();
-		}
-		else {
-			username = account.getUsername();
-		}
+		String username = userServices.getUserName(request, authentication);
 		Account userRequest = accountService.findAccountsByUsername(username);
 		model.addAttribute("userRequest", userRequest);
 		return "/customer/EditInformationCustomer";
@@ -87,24 +78,12 @@ public class InformationCustomerController {
 	public String update(@Valid @ModelAttribute(name = "userRequest") Account userRequest,
 						 BindingResult result,
 						 RedirectAttributes redirect, @RequestParam("fileImage") MultipartFile multipartFile, HttpServletRequest request, Authentication authentication) {
-		Account account = accountService.findAccountsByUsername(request.getRemoteUser()); // remote
-
-		String username = null;
-
-		if (account == null){
-			CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
-			Account accountOauth = accountService.findByEmail(oauth2User.getEmail());
-			username = accountOauth.getUsername();
-		}
-		else {
-			username = account.getUsername();
-		}
-
+		String username = userServices.getUserName(request, authentication);
 		String errorMessage = null;
 
-		Account account1 = accountService.findAccountsByUsername(username);
-		String password = account1.getPassword();
-		System.out.println("password: " + account1.getPassword());
+		Account account = accountService.findAccountsByUsername(username);
+		String password = account.getPassword();
+		System.out.println("password: " + account.getPassword());
 
 		try {
 			// check if userRequest is not valid
@@ -126,7 +105,7 @@ public class InformationCustomerController {
 				accountService.update(account);
 				accountService.update(userRequest);
 
-				System.out.println("Account update: " + account1);
+				System.out.println("Account update: " + account);
 
 				String uploadDir = "photos/" + "accounts/" + userRequest.getUsername();
 

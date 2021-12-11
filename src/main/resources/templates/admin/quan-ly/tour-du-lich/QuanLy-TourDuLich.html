@@ -460,9 +460,9 @@
                                 </div>
                                 <div class="col-6 right">
                                     <div class="right-image">
-                                        <img th:src="@{/admin/img/logo/logoNiceTravel.png}">
+                                        <img id="thumbnail" th:src="@{${travelRequest.getTravelPhotosImagePath()}}">
                                         <div class="form-group">
-                                            <input type="file" id="inputQuantity">
+                                            <input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg" >
                                         </div>
                                     </div>
                                     <div class="right-button">
@@ -668,6 +668,23 @@
     </script>
     
     <script th:inline="javascript">
+        $(document).ready(function () {
+            $('#fileImage').change(function () {
+                showImageThumbnail(this)
+            })
+        })
+
+        function showImageThumbnail(fileInput) {
+            file = fileInput.files[0];
+            render = new FileReader();
+
+            render.onload = function (e) {
+                $('#thumbnail').attr('src', e.target.result);
+            }
+
+            render.readAsDataURL(file);
+        }
+
     	function editTravel(id) {
     	    console.log(id);
     		var url ='/admin/tour-du-lich/edit?id=' +id;

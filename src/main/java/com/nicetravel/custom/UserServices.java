@@ -6,6 +6,7 @@ import com.nicetravel.entity.Event;
 import com.nicetravel.entity.Provider;
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.repository.RoleRepository;
+import com.nicetravel.security.auth.CustomOAuth2User;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.BookingService;
 import com.nicetravel.service.EventsService;
@@ -13,6 +14,7 @@ import com.nicetravel.service.RoleService;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -248,6 +250,21 @@ public void updateResetPasswordToken(String token, String email) throws Username
             return true;
         }
 
+    }
+
+    public String getUserName(HttpServletRequest request, Authentication authentication) {
+        Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+
+        String username = null;
+
+        if (account == null) {
+            CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
+            Account accountOauth = accountService.findByEmail(oauth2User.getEmail());
+            username = accountOauth.getUsername();
+        } else {
+            username = account.getUsername();
+        }
+        return username;
     }
 
 }
