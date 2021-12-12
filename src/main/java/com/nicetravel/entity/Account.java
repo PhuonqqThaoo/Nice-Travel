@@ -125,7 +125,7 @@ public class Account implements Serializable {
     List<TravelLike> travelLikes;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "travel_account_id")
+    @OneToMany(mappedBy = "travel_account_id",fetch = FetchType.EAGER)
     @ToString.Exclude
     List<Travel> travels;
 

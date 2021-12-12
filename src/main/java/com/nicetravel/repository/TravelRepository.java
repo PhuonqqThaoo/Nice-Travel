@@ -1,5 +1,6 @@
 package com.nicetravel.repository;
 
+import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Total;
 import com.nicetravel.entity.Travel;
 
@@ -7,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.nicetravel.entity.TravelTypes;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -84,11 +86,11 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
    	
 //   	@Query("SELECT u FROM Travel u WHERE u.id =?1")
 //   	Travel findTravelById(Integer id);
-   	@Modifying(clearAutomatically =true)
-    @Query(value="UPDATE Travel SET name = ?1, departure_place = ?2,place = ?3, price = ?4, start_date= ?5, end_date = ?6, quantity= ?7, quantity_new = ?8, hour = ?9, slug = ?10 WHERE id = ?11", nativeQuery = true)
-    void updateTravelAdmin(String name, String departurePlace,String place, BigDecimal price,Date start_date, Date end_date, Integer quantity , Integer quantityNew, Integer hour, String slug ,Integer id);
-    
-   	@Modifying(clearAutomatically =true)
+	@Modifying(clearAutomatically =true)
+	@Query(value="UPDATE Travel SET name = ?1, departure_place = ?2,place = ?3, price = ?4, start_date= ?5, end_date = ?6, quantity= ?7, quantity_new = ?8, hour = ?9, slug = ?10 ,type_id=?11,account_Id =?12 WHERE id = ?13", nativeQuery = true)
+	void updateTravelAdmin(String name, String departurePlace, String place, BigDecimal price, Date start_date, Date end_date, Integer quantity , Integer quantityNew, Integer hour, String slug , TravelTypes typeId, Account account, Integer id);
+
+	@Modifying(clearAutomatically =true)
     @Query(value="UPDATE Travel SET  is_Deleted = 1 WHERE id =?1", nativeQuery = true)
     void deletedTravel(Integer id);
 

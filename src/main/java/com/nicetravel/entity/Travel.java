@@ -104,7 +104,7 @@ public class Travel implements Serializable {
     @Column(name="quantityNew",nullable = false)
     private Integer quantityNew;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "account_Id")
     private Account travel_account_id;
 

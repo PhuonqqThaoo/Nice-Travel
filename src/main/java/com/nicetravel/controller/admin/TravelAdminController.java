@@ -171,7 +171,7 @@ public class TravelAdminController {
 
 	@PostMapping("/edit")
 	public String doPostEdit(@Valid @ModelAttribute("travelRequest") Travel travelRequest, BindingResult result,
-			RedirectAttributes redirect, Model model, @RequestParam("fileImage") MultipartFile multipartFile) {
+			RedirectAttributes redirect, Model model, @RequestParam("fileImage") MultipartFile multipartFile, HttpServletRequest request) {
 		String errorMessage = null;
 
 		Travel travel = travelService.findTravelById(travelRequest.getId());
@@ -191,13 +191,15 @@ public class TravelAdminController {
 					travel.setImg(fileName);
 				}
 
-
+				Account ids = accountService.getIdByUser(request.getRemoteUser());
+				travelRequest.setTravel_account_id(ids);
 				List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
 				model.addAttribute("listTravelType",listTravelType);
 
 				travelService.updateTraveladmin(travel);
 				travelService.updateTraveladmin(travelRequest);
 				travelService.sp_updateEXD2();
+				travelService.updateEX();
 				String uploadDir = "photos/" + "travels/" + travel.getId();
 
 				Path uploadPath = Paths.get(uploadDir);

@@ -191,8 +191,8 @@ public class TravelServiceImpl implements TravelService {
 			travel.setQuantity(travel.getQuantityNew());
 			String slug = GenerateSlug.toSlug(travel.getName());
 			travel.setSlug(slug);
-			travelRepository.updateTravelAdmin(travel.getName(), travel.getDeparturePlace(),travel.getPlace(),travel.getPrice(),travel.getStartDate(),travel.getEndDate(), travel.getQuantity(),travel.getQuantityNew(),travel.getHour(),travel.getSlug(),travel.getId());
-		
+			travelRepository.updateTravelAdmin(travel.getName(), travel.getDeparturePlace(),travel.getPlace(),travel.getPrice(),travel.getStartDate(),travel.getEndDate(), travel.getQuantity(),travel.getQuantityNew(),travel.getHour(),travel.getSlug(), travel.getTypeId(),travel.getTravel_account_id(),travel.getId());
+
 	}
 
 	@Override
