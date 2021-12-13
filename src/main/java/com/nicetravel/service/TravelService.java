@@ -79,4 +79,6 @@ public interface TravelService {
    Integer countHaNoiTour();
    
    void updateEX();
+
+    String[][] getTotalTravelFromTo(String from, String to);
 }

@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/staff")
 public class HomeStaffContrller {
 
 
@@ -45,7 +44,7 @@ public class HomeStaffContrller {
 		this.travelLike = travelLike;
 	}
 
-	@GetMapping("")
+	@RequestMapping("/staff")
 	public String doGetIndex(Model model,HttpServletRequest request,
 							 @RequestParam(name="page",defaultValue = "1") int page)  throws Exception {
 		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
@@ -76,15 +75,15 @@ public class HomeStaffContrller {
 				System.out.println(chartData[1][i]);
 				System.out.println("");
 			}
-			String text = "Thống kê tour 12 tháng";
+			String text = "Thống kê số lượng tour trong 12 tháng";
 			model.addAttribute("text",text);
 			System.out.println(chartData);
 			model.addAttribute("chartData",chartData);
 		}
 		else {
-			chartData = booking.getTotalPriceFromTo(day1, end1);
+			chartData = travel.getTotalTravelFromTo(day1, end1);
 			System.out.println(chartData);
-			String text = "Thống kê doanh thu từ ngày " + day1+" đến ngày "+end1 ;
+			String text = "Thống kê số lượng tour từ ngày " + day1+" đến ngày "+end1 ;
 			model.addAttribute("text",text);
 			model.addAttribute("chartData",chartData);
 
@@ -92,7 +91,7 @@ public class HomeStaffContrller {
 		return "staff/index";
 	}
 
-	@GetMapping("/GetDate")
+	@GetMapping("/staff/GetDate")
 	public String doGetFindAllByUserActivateInGetDate(Model model,HttpServletRequest request,
 													  @RequestParam(name="page",defaultValue = "1") int page)  throws Exception {
 		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
@@ -139,7 +138,7 @@ public class HomeStaffContrller {
 		return "staff/index";
 	}
 
-	@GetMapping("/InMonth")
+	@GetMapping("/staff/InMonth")
 	public String doGetFindAllByUserActivateInMonth(Model model,HttpServletRequest request,
 													@RequestParam(name="page",defaultValue = "1") int page)  throws Exception {
 		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
@@ -186,7 +185,7 @@ public class HomeStaffContrller {
 		return "staff/index";
 	}
 
-	@GetMapping("/InYear")
+	@GetMapping("/staff/InYear")
 	public String doGetFindAllByUserActivateInYear(Model model,HttpServletRequest request,
 												   @RequestParam(name="page",defaultValue = "1") int page)  throws Exception {
 		Account account = accountService.findAccountsByUsername(request.getRemoteUser());

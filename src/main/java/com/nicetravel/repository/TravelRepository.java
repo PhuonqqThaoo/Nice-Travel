@@ -120,9 +120,15 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	@Query(value = "{CALL sp_CountPhuQuocTour()}" , nativeQuery = true)
 	Integer countPhuQuocTour() ;
 
+	//Update ngay het han
+	@Modifying(clearAutomatically = true)
+	@Query(value = "{CALL sp_updateEXD()}" , nativeQuery = true)
+	void updateEX();
 
-		//Update ngay het han
-		@Modifying(clearAutomatically = true)
-		@Query(value = "{CALL sp_updateEXD()}" , nativeQuery = true)
-		 void updateEX();
+	// thống kê số lượng tour
+	@Query(value = "SELECT created_date, count(id)  "
+			+ "					FROM travel "
+			+ "					WHERE created_date between ?1 and ?2 "
+			+ "					group by created_date",nativeQuery = true)
+	String[][] getTotalTravelFromTo(String from, String to);
 }

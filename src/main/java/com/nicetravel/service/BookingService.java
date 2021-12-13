@@ -32,10 +32,14 @@ public interface BookingService {
     Double getRevenueInDay();
     
     Double getRevenue();
+
+    Double getLastRevenue();
     
  // so với tháng trước
  	Double getComparedLastYear();
  	
  	String[][] getTotalPriceFromTo(String from, String to);
+
+
  	
 }
