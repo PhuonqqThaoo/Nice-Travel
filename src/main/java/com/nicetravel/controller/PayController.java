@@ -77,18 +77,17 @@ public class PayController {
 	public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId){
 		try {
 			Payment payment = paymentService.executePayment(paymentId, payerId);
-			System.out.println("id booking " + payment.getTransactions().get(0).getDescription());
-			System.out.println("price " + payment.getTransactions().get(0).getAmount().getTotal());
 			//upadate booking
 			Booking booking = bookingService.findById(Integer.parseInt(payment.getTransactions().get(0).getDescription()));
 			booking.setPayBoolean(true);
 			bookingService.updateBooking(booking);
-			//thiếu lưu vào payment
+			//create payment
 			com.nicetravel.entity.Payment pay = new  com.nicetravel.entity.Payment();
 			pay.setBookingId(booking);
 			pay.setPayTime(new Date());
 			pay.setTotalPrice(booking.getTotalPrice());
 			paymentService.createPayment(pay);
+			
 			if(payment.getState().equals("approved")){
 				return "pay/success";
 			}

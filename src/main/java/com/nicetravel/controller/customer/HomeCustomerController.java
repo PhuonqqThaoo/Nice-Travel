@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.Booking;
 import com.nicetravel.entity.TravelLike;
 import com.nicetravel.service.AccountService;
+import com.nicetravel.service.BookingService;
 import com.nicetravel.service.TravelLikeService;
 
 @Controller
@@ -25,7 +27,8 @@ public class HomeCustomerController {
 	TravelLikeService travelLikeService;
 	@Autowired
 	AccountService accountService;
-
+	@Autowired
+	BookingService bookingService;
 
 
 	
@@ -44,7 +47,8 @@ public class HomeCustomerController {
 		else {
 			username = account.getUsername();
 		}
-
+		List<Booking> booking = bookingService.getAllBookingByAcId(username);
+		model.addAttribute("booking", booking);
 		Account accountId = accountService.findAccountsByUsername(username);
 		model.addAttribute("account", accountService.findAccountsByUsername(username));
 		List<TravelLike> items = travelLikeService.getAllTravelLikeByIdAcount(accountId);
