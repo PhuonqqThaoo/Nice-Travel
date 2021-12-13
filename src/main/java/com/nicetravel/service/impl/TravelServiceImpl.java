@@ -251,6 +251,18 @@ public class TravelServiceImpl implements TravelService {
 	}
 
 	@Override
+	public String[][] getTotalTravelFromTo(String from, String to) {
+		String[][] result1 = travelRepository.getTotalTravelFromTo(from, to);
+		System.out.println(result1.length);
+		String[][] result = new String[2][result1.length];
+		for(int i =0 ; i<result1.length; i++) {
+			result[0][result1.length- 1 - i] = result1[result1.length- 1 - i][0];
+			result[1][result1.length- 1 - i] = result1[result1.length- 1 - i][1];
+		}
+		return result;
+	}
+
+	@Override
 	public Page<Travel> filterStartDate(Date day, Date end, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return travelRepository.filterStartDate(day, end, pageable);

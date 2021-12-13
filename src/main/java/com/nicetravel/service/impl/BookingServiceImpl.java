@@ -96,6 +96,11 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
+	public Double getLastRevenue() {
+		return bookingRepository.getLastRevenue();
+	}
+
+	@Override
 	public Booking createBookingJson(JsonNode bookingData) {
 		ObjectMapper mapper = new ObjectMapper();
 		Booking booking = mapper.convertValue(bookingData, Booking.class);

@@ -210,7 +210,7 @@
                                             <div class="mt-2 mb-0 text-muted text-xs">
                                                 <span class="text-danger mr-2">
                                                     {{revenueComparedLastYear | number:2}}%</span>
-                                                <span>Since yesterday</span>
+                                                <span>So với năm trước</span>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -241,7 +241,7 @@
                                 </div>
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary" th:text="${text}">Thống kê "Tour du lịch"</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary" th:text="${text}">Thống kê "Số lượng tour du lịch"</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -262,21 +262,21 @@
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Tour du lịch</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button"
-                                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            Month <i class="fas fa-chevron-down"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Select Periode</div>
-                                            <a class="dropdown-item" href="#">Today</a>
-                                            <a class="dropdown-item" href="#">Week</a>
-                                            <a class="dropdown-item active" href="#">Month</a>
-                                            <a class="dropdown-item" href="#">This Year</a>
-                                        </div>
-                                    </div>
+<!--                                    <div class="dropdown no-arrow">-->
+<!--                                        <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button"-->
+<!--                                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"-->
+<!--                                            aria-expanded="false">-->
+<!--                                            Month <i class="fas fa-chevron-down"></i>-->
+<!--                                        </a>-->
+<!--                                        <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;fade-in"-->
+<!--                                            aria-labelledby="dropdownMenuLink">-->
+<!--                                            <div class="dropdown-header">Select Periode</div>-->
+<!--                                            <a class="dropdown-item" href="#">Today</a>-->
+<!--                                            <a class="dropdown-item" href="#">Week</a>-->
+<!--                                            <a class="dropdown-item active" href="#">Month</a>-->
+<!--                                            <a class="dropdown-item" href="#">This Year</a>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                 </div>
                                 <div class="scrollbar">
                                     <div class="card-body" ng-repeat="c in items">
@@ -293,8 +293,8 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <a class="m-0 small text-primary card-link" href="#">Xem thêm <i
-                                            class="fas fa-chevron-right"></i></a>
+<!--                                    <a class="m-0 small text-primary card-link" href="#">Xem thêm <i-->
+<!--                                            class="fas fa-chevron-right"></i></a>-->
                                 </div>
                             </div>
                         </div>
@@ -349,8 +349,9 @@
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header">Tùy chọn</div>
+                                            <a class="dropdown-item " href="/staff">Tất cả</a>
                                             <a class="dropdown-item" href="/staff/GetDate">Hôm nay</a>
-                                            <a class="dropdown-item active" href="/staff/InMonth">Tháng này</a>
+                                            <a class="dropdown-item " href="/staff/InMonth">Tháng này</a>
                                             <a class="dropdown-item" href="/staff/InYear">Năm này</a>
                                         </div>
                                     </div>

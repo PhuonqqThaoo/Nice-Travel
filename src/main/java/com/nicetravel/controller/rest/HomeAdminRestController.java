@@ -66,8 +66,8 @@ public class HomeAdminRestController {
 	 // doanh thu so với năm trước
 	@GetMapping("/sinceYesterday")
 	public Double getRevenueSinceYesterday() {
-		double currentMonth = bookingRepository.getRevenue();
-		double lastMonth = bookingRepository.getLastRevenue();
+		double currentMonth = bookingService.getRevenue();
+		double lastMonth = bookingService.getLastRevenue();
 		double result1 = ((currentMonth / lastMonth) * 100) -100;
 		System.out.println(result1);
 		return bookingService.getComparedLastYear();
