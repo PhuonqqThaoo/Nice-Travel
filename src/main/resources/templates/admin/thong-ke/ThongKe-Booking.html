@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- icon thanh địa chỉ -->
     <link rel="shortcut icon" th:href="@{/assets/img/logoNiceIco.ico}">
-    <title>Quản lý | Nice Travel</title>
+    <title>Thống kê Tour đã đặt | Nice Travel</title>
     <link th:href="@{/dashboard/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/dashboard/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/dashboard/css/ruang-admin.min.css}" rel="stylesheet">
@@ -124,7 +124,7 @@
             </li>
             <hr class="sidebar-divider">
             <li class="nav-item">
-                <a class="nav-link collapsed"href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
                     <i class='bx bx-log-out-circle'></i>
                     <span>Đăng xuất</span>
                 </a>
@@ -153,87 +153,75 @@
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Thống kê chuyến du lịch</h1>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="./">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            <li class="breadcrumb-item active" aria-current="page">Chuyến du lịch</li>
                         </ol>
                     </div>
 
                     <div class="row mb-3">
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Doanh thu trong ngày</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{RevenueInDay|number:0}} vnđ
+                        <!-- các thẻ thống kê -->
+                        <div class="col-xl-3">
+                            <div class="mb-4">
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <div class="row align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Chuyến
+                                                            đi được đặt trong tháng</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">5 chuyến đi
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <i class='bx bx-list-ol fa-2x'></i>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-primary"></i>
-                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Earnings (Annual) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
 
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Số lượng tour được đặt trong ngày</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{bookingInDay}}</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span> <a href="#">Chi tiết</a></span>
+                                    <div class="col-xl-12 col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng
+                                                            các chuyến đi được đặt</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">124 chuyến
+                                                            đi</div>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <i class='bx bx-list-ol fa-2x'></i>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                      
-                        <!-- New User Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng số lượng khách hàng</div>
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{totalUser}}</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-danger mr-2">
-                                                    {{totalUserLastMonth | number:2 }}%</span>
-                                                <span>so với tháng trước</span>
+
+                                    <div class="col-xl-12 col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="admin-search-date-1" style="width: 100%;">
+                                                <form th:action="@{/admin}" method="post">
+                                                    <div class="row">
+                                                        <div class="col" style="margin-bottom: 10px;">
+                                                            <input th:value="${day}" name="day" type="date"
+                                                                class="form-control">
+                                                        </div>
+                                                        <div class="col" style="margin-bottom: 10px; width: 100%;">
+                                                            <input th:value="${end}" name="end" type="date"
+                                                                class="form-control">
+                                                        </div>
+                                                        <div class="col" style="width: 100%;">
+                                                            <button class="btn btn-primary"
+                                                                style="height: 43px; width: 100%;"><i
+                                                                    class='bx bx-search-alt'></i> Tìm</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-info"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng doanh thu
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{Revenue|number:0}} vnđ</div>
-                                            <div class="mt-2 mb-0 text-muted text-xs">
-                                                <span class="text-danger mr-2">
-                                                    {{revenueComparedLastYear | number:2}}%</span>
-                                                <span>Since yesterday</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-warning"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -241,26 +229,12 @@
                         </div>
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-9 col-lg-7">
                             <div class="card mb-4">
-                                <div class="admin-search-date-1">
-                                    <form th:action="@{/admin}" method="post">
-                                        <div class="row">
-                                            <div class="col">
-                                                <input th:value="${day}" name="day" type="date" class="form-control">
-                                            </div>
-                                            <div class="col">
-                                                <input th:value="${end}"  name="end" type="date" class="form-control">
-                                            </div>
-                                            <div class="col">
-                                                <button class="btn btn-primary" style="height: auto;min-height: 43px;"><i class='bx bx-search-alt'></i> Tìm</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary" th:text="${text}">Thống kê doanh Thu<br>(Revenue report)<br></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary" th:text="${text}">Thống kê doanh
+                                        Thu<br>(Revenue report)<br></h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -283,154 +257,50 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tour du lịch</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button"
-                                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            Month <i class="fas fa-chevron-down"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Select Periode</div>
-                                            <a class="dropdown-item" href="#">Today</a>
-                                            <a class="dropdown-item" href="#">Week</a>
-                                            <a class="dropdown-item active" href="#">Month</a>
-                                            <a class="dropdown-item" href="#">This Year</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="scrollbar">
-                                    <div class="card-body" ng-repeat="c in items">
-                                        <div class="mb-3">
-                                            <div class="small text-gray-500">{{c.name}}
-                                                <div class="small float-right"><b>{{c.quantity_new}} of {{c.quantity}}  Items</b></div>
-                                            </div>
-                                            <div class="progress" style="height: 12px;">
-                                                <div class="progress-bar bg-warning" role="progressbar" ng-style="{'width': +'{{c.phanTram}}'+'%'}"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <a class="m-0 small text-primary card-link" href="#">Xem thêm <i
-                                            class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Top 3 yêu thích -->
-                        <div class="col-xl-8 col-lg-7 mb-4">
-                            <div class="card">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Chuyến đi yêu thích</h6>
-                                    <a class="m-0 float-right btn btn-danger btn-sm" href="#">Xem thêm <i
-                                            class="fas fa-chevron-right"></i></a>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                            	<th>STT</th>
-                                                <th>Hình</th>
-                                                <th>Tên chuyến đi</th>
-                                                <th>Địa điểm</th>
-                                                <th>Giá</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr th:each="p,i : ${favoriteItems}">
-                                            	<td th:text = "${i.index+1}"></th>
-                                                <td style="width: 17%;">
-                                                    <img th:src="@{|/assets/img/${p.img}|}" style="width: 100%;" alt="">
-                                                </td>
-                                                <td><h5 style="font-weight: 700;" th:utext="${p.name}"></h5></td>
-                                                <td th:text = "${p.departurePlace}"></td>
-                                                <td>[[${#numbers.formatCurrency(p.price)}]]</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="card-footer"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Message From Customer-->
-                        <div class="col-xl-4 col-lg-5 ">
+                        <!-- table booking -->
+                        <div class="col-xl-12">
                             <div class="card mb-4">
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary" th:utext="${title}">Các khách hàng mới đăng ký</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button"
-                                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            Tùy chọn tìm <i class="fas fa-chevron-down"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Tùy chọn</div>
-                                            <a class="dropdown-item" href="/admin/findAllByUserActivateInGetDate">Hôm nay</a>
-                                            <a class="dropdown-item active" href="/admin/findAllByUserActivateInMonth">Tháng này</a>
-                                            <a class="dropdown-item" href="/admin/findAllByUserActivateInYear">Năm này</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="mb-3 table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">STT</th>
-                                                    <th scope="col">Họ tên</th>
-                                                    <th scope="col">Giới tính</th>
-                                                    <th scope="col">Số điện thoại</th>
-                                                </tr>
-                                            </thead>
-                                                <tbody>
-                                                <tr th:each="user,i : ${listUser1}" >
-                                                    <td th:text = "${i.index+1}"></th>
-                                                    <td th:text = "${user.fullname}"></td>
-                                                    <td th:text = "${user.gender ? 'Nam' : 'Nữ'}"></td>
-                                                    <td th:text = "${user.phone}"></td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <nav aria-label="Page navigation example" th:if="${totalPage >1}">
-                                        <ul class="pagination justify-content-center">
-                                            <li class="page-item" th:class="${currentPage == 1} ? 'disabled' : ''">
-                                                <a th:href="@{${currentPage > 1} ? ${'?page=' + (currentPage-1)} :''}" class="page-link" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li th:each="i : ${#numbers.sequence(1,totalPage)}" class="page-item">
-                                                <a class="page-link" th:href="@{'?page='+ ${i} }" th:text="${i}"></a>
-                                            </li>
-                                            <!--                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-                                            <!--                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-                                            <li class="page-item" th:class="${currentPage == totalPage} ? 'disabled' : ''">
-                                                <a th:href="@{${currentPage < totalPage} ? ${'?page=' + (currentPage+1)} : '' }"
-                                                   class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                    <a class="m-0 small text-primary card-link" href="/admin/thong-tin-khach-hang">Xem thêm <i
-                                            class="fas fa-chevron-right"></i></a>
-                                </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">First</th>
+                                            <th scope="col">Last</th>
+                                            <th scope="col">Handle</th>
+                                            <th scope="col">...</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td>
+                                                <a class="btn btn-primary" href="#"><i class='bx bx-search'></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                            <td>
+                                                <a class="btn btn-primary" href="#"><i class='bx bx-search'></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                            <td>
+                                                <a class="btn btn-primary" href="#"><i class='bx bx-search'></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -451,8 +321,8 @@
                                     <p>Bạn có chắc chắn bạn muốn thoát ?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary"
-                                        data-dismiss="modal">Trở lại</button>
+                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Trở
+                                        lại</button>
                                     <a th:href="@{/logoff}" class="btn btn-primary">Đăng xuất</a>
                                 </div>
                             </div>
@@ -466,7 +336,8 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>copyright &copy; <script>
+                        <span>copyright &copy;
+                            <script>
                                 document.write(new Date().getFullYear());
                             </script> - developed by
                             <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
@@ -608,7 +479,7 @@
                     intersect: false,
                     mode: 'index',
                     caretPadding: 10,
-                    
+
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
@@ -619,64 +490,64 @@
             }
         });
     </script>
-    
+
     <script>
         var app = angular.module("admin-app", []);
-        app.controller("admin-ctrl",function($scope,$http){
-        	$scope.items =[];
-            $scope.initialize = function(){
-            	
-            	// load travel đã đặt với ban đầu
-            	$http.get("/admin/TotalSold").then(resp => {
-        			$scope.items = resp.data;
-        			console.log($scope.items)
-        		}).catch(err => {
-        			console.log("erro",err)
-        		})
-            	
+        app.controller("admin-ctrl", function ($scope, $http) {
+            $scope.items = [];
+            $scope.initialize = function () {
+
+                // load travel đã đặt với ban đầu
+                $http.get("/admin/TotalSold").then(resp => {
+                    $scope.items = resp.data;
+                    console.log($scope.items)
+                }).catch(err => {
+                    console.log("erro", err)
+                })
+
                 // load count travel
                 $http.get("/admin/count/travel").then(resp => {
                     $scope.totalTravel = resp.data;
-                    console.log($scope.totalTravel )
+                    console.log($scope.totalTravel)
                 })
                 // }).catch(err => {
                 //     console.log("erro",err)
                 // })
                 $http.get("/admin/count/bookingInDay").then(resp => {
                     $scope.bookingInDay = resp.data;
-                    console.log($scope.bookingInDay )
+                    console.log($scope.bookingInDay)
                 })
-                
+
                 // doanh thu trong ngày
                 $http.get("/admin/total/RevenueInDay").then(resp => {
                     $scope.RevenueInDay = resp.data;
-                    console.log($scope.RevenueInDay )
+                    console.log($scope.RevenueInDay)
                 })
-                
-                 // tổng doanh thu
+
+                // tổng doanh thu
                 $http.get("/admin/total/Revenue").then(resp => {
                     $scope.Revenue = resp.data;
-                    console.log($scope.Revenue )
+                    console.log($scope.Revenue)
                 })
-                
+
                 // tổng khách hàng
                 $http.get("/admin/total/user").then(resp => {
                     $scope.totalUser = resp.data;
-                    
-                    console.log($scope.totalUser )
-                }) 
-                 // khách hàng so với tháng trước 
+
+                    console.log($scope.totalUser)
+                })
+                // khách hàng so với tháng trước 
                 $http.get("/admin/totalUserLastMonth").then(resp => {
                     $scope.totalUserLastMonth = resp.data;
-                    console.log($scope.totalUserLastMonth )
-                }) 
-                
+                    console.log($scope.totalUserLastMonth)
+                })
+
                 // doanh thu so với năm trước
                 // khách hàng so với tháng trước 
                 $http.get("/admin/sinceYesterday").then(resp => {
                     $scope.revenueComparedLastYear = resp.data;
-                    console.log($scope.revenueComparedLastYear )
-                }) 
+                    console.log($scope.revenueComparedLastYear)
+                })
 
             }
 
@@ -684,38 +555,38 @@
 
             $scope.pager = {
                 page: 0,
-                size:5,
-                get items(){
+                size: 5,
+                get items() {
                     var start = this.page * this.size;
                     return $scope.items.slice(start, start + this.size);
                 },
-                get count(){
+                get count() {
                     return Math.ceil(1.0 * $scope.items.length / this.size);
                 },
-                first(){
+                first() {
                     this.page = 0;
                 },
-                prev(){
+                prev() {
                     this.page--;
-                    if(this.page < 0){
+                    if (this.page < 0) {
                         this.last();
                     }
                 },
-                next(){
+                next() {
                     this.page++;
-                    if(this.page >= this.count){
+                    if (this.page >= this.count) {
                         this.first();
                     }
                 },
-                last(){
-                    this.page = this.count -1;
-		        }
-	        }
+                last() {
+                    this.page = this.count - 1;
+                }
+            }
 
-                
+
         });
-    
-    
+
+
     </script>
 </body>
 

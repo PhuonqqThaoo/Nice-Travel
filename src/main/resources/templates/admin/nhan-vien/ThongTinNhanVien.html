@@ -44,37 +44,16 @@
                 Thống kê
             </div>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
-                    aria-expanded="true" aria-controls="collapseBootstrap">
+                <a class="nav-link collapsed" href="/admin/thongke-tourbooking">
                     <i class='bx bxs-dollar-circle'></i>
-                    <span>Doanh thu</span>
+                    <span>Tour đã đặt</span>
                 </a>
-                <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Doanh thu</h6>
-                        <a class="collapse-item" href="alerts.html">Alerts</a>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="dropdowns.html">Dropdowns</a>
-                        <a class="collapse-item" href="modals.html">Modals</a>
-                        <a class="collapse-item" href="popovers.html">Popovers</a>
-                        <a class="collapse-item" href="progress-bar.html">Progress Bars</a>
-                    </div>
-                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable"
-                    aria-expanded="true" aria-controls="collapseTable">
+                <a class="nav-link collapsed" href="/admin/thongke-tourlike">
                     <i class='bx bxs-customize'></i>
-                    <span>Khách hàng</span>
+                    <span>Tour yêu thích</span>
                 </a>
-                <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Khách hàng</h6>
-                        <a class="collapse-item" href="simple-tables.html">Simple Tables</a>
-                        <a class="collapse-item" href="datatables.html">DataTables</a>
-                    </div>
-                </div>
             </li>
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
@@ -91,6 +70,7 @@
                         <h6 class="collapse-header">Quản lý tour du lịch</h6>
                         <a class="collapse-item" href="/admin/tour-du-lich">Danh sách tour</a>
                         <a class="collapse-item" href="/admin/travel-type">Địa điểm du lịch</a>
+                        <a class="collapse-item" href="/admin/lich-trinh">Lịch trình chuyến đi</a>
                     </div>
                 </div>
             </li>
@@ -497,7 +477,7 @@
 
 		function getAll() {
             window.location.assign('/admin/thong-tin-nhan-vien/all')
-<!--            document.getElementById("exampleRadios1").checked = true;-->
+            document.getElementById("exampleRadios1").checked = true;
             document.getElementById("exampleRadios1").setAttribute("checked", "checked")
         };
         function getByUserActive(){

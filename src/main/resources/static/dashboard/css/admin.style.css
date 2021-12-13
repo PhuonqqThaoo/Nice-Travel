@@ -121,3 +121,36 @@
     height: 34px;
     width: 34px;
 }
+
+
+/* --------------------------------------------------------------------- */
+/* Lịch trình chuyến đi */
+.lich-trinh-chuyen-di {
+    height: 650px;
+    overflow: auto;
+}
+
+.lich-trinh-chuyen-di h4 {
+    height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.lich-trinh-chuyen-di .time {
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.lich-trinh-chuyen-di .description {
+    height: 200px;
+    overflow: auto;
+}
