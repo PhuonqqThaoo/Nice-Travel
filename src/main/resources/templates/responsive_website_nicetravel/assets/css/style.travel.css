@@ -1,0 +1,242 @@
+/* ------------------------------ google fonts ------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* ------------------------------ variables css ------------------------------ */
+:root {
+    --header-height: 3rem;
+
+    /* color */
+    --color-jade-dust: #00d2d3;
+    --color-imperial-primer: #222f3e;
+    --color-amour-red: #ee5253;
+    --color-pastel-red: #ff6b6b;
+    --color-body: #fff;
+
+    /* font weight */
+    --body-font: 'Roboto', sans-serif;
+    --biggest-font-size: 2.5rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+    --font-weight-400: 400;
+    --font-weight-500: 500;
+    --font-weigth-700: 700;
+
+    /* margenes bottom */
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-25: 1.25rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+
+    /* z index */
+    --z-tooltip: 10;
+    --z-fixed: 100;
+
+    /* hover overlay */
+    --img-transition: .3s;
+    --img-hidden: hidden;
+    --img-scale: scale(1.1);
+}
+
+@media screen and (min-width: 968px) {
+    :root {
+        --biggest-font-size: 4rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.75rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
+}
+
+/* ------------------------------ reusable css classes ------------------------------ */
+.container1 {
+    margin: 0;
+}
+
+/* ------------------------------ main ------------------------------ */
+/* ------------------------------ travel ------------------------------ */
+.travel {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Bộ lọc thông tin */
+.travel_bo-loc {
+    width: 30%;
+    height: 54rem;
+    padding-top: 1rem;
+    margin: 2rem 0 0 0;
+    overflow: hidden;
+    background-color: rgba(200, 214, 229, .4);
+    display: none;
+}
+
+/* Danh sách chuyến đi */
+.travel_danh-sach-chuyen-di {
+    padding: 2rem;
+    width: 90%;
+}
+
+.travel_danh-sach-chuyen-di .title {
+    border-bottom: 1px solid var(--color-imperial-primer);
+    padding: 1rem 0;
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.travel_danh-sach-chuyen-di .travel-count {
+    padding: .5rem 0;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--color-imperial-primer);
+}
+
+@media screen and (min-width: 590px) {
+
+    /* khung noel */
+    .box-icon-noel .khung-noel {
+        top: -3.1rem;
+        left: -2.4rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    /* khung noel */
+    .box-icon-noel .khung-noel {
+        top: -2.1rem;
+        left: -1.7rem;
+    }
+
+    /* Tour du lịch */
+    .tour-yeu-thich .box {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tour-yeu-thich .box .box-1 {
+        width: 49%;
+        margin-right: 2%;
+    }
+
+    .tour-yeu-thich .box .box-1:nth-child(2n) {
+        margin-right: 0;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    /* icon noel day treo */
+    .icon-noel-daytreo {
+        opacity: .1;
+    }
+
+    /* khung noel */
+    .box-icon-noel .khung-noel {
+        top: -2.3rem;
+        left: -1.7rem;
+    }
+
+    /* Bộ lọc thông tin */
+    .travel_bo-loc {
+        display: initial;
+        padding: 1rem;
+    }
+
+    .bo-loc_title {
+        font-weight: var(--font-weigth-700);
+    }
+
+    .travel_bo-loc .title-1 {
+        margin: 1rem -1rem;
+        padding: 1rem 1rem;
+        background-color: var(--color-amour-red);
+        color: var(--color-body);
+        font-weight: var(--font-weigth-700);
+        font-size: 1rem;
+    }
+
+    .khoang-trang {
+        width: 120%;
+        height: 2rem;
+        background-color: var(--color-body);
+        margin: 2rem -1rem;
+    }
+
+
+    /* Tour du lịch */
+    .tour-yeu-thich .box {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tour-yeu-thich .box .box-1 {
+        width: 49%;
+        margin-right: 2%;
+    }
+
+    .tour-yeu-thich .box .box-1:nth-child(2n) {
+        margin-right: 0;
+    }
+}
+
+@media screen and (min-width: 1360px) {
+
+    /* khung noel */
+    .box-icon-noel .khung-noel {
+        top: -3.2rem;
+        left: -2.4rem;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    /* icon noel day treo */
+    .icon-noel-daytreo {
+        opacity: .4;
+    }
+
+    /* khung noel */
+    .box-icon-noel .khung-noel {
+        top: -1.7rem;
+        left: -1.4rem;
+    }
+
+    .travel {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    /* Bộ lọc thông tin */
+    .travel_bo-loc {
+        margin: 2rem;
+    }
+
+    /* Danh sách chuyến đi */
+    .travel_danh-sach-chuyen-di .title {
+        font-size: 2.6rem;
+        font-weight: var(--font-weigth-700);
+    }
+
+    .tour-yeu-thich .box .box-1 {
+        width: 32%;
+        margin-right: 2%;
+    }
+
+    .tour-yeu-thich .box .box-1:nth-child(2n) {
+        margin-right: 2%;
+    }
+
+    .tour-yeu-thich .box .box-1:nth-child(3n) {
+        margin-right: 0;
+    }
+}

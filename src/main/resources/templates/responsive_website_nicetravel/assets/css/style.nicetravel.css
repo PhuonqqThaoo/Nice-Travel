@@ -1,0 +1,642 @@
+/* ------------------------------ google fonts ------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* ------------------------------ variables css ------------------------------ */
+:root {
+    --header-height: 3rem;
+
+    /* color */
+    --color-jade-dust: #00d2d3;
+    --color-imperial-primer: #222f3e;
+    --color-amour-red: #ee5253;
+    --color-pastel-red: #ff6b6b;
+    --color-body: #fff;
+
+    /* font weight */
+    --body-font: 'Roboto', sans-serif;
+    --biggest-font-size: 2.5rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+    --font-weight-400: 400;
+    --font-weight-500: 500;
+    --font-weigth-700: 700;
+
+    /* margenes bottom */
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-25: 1.25rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+
+    /* z index */
+    --z-tooltip: 10;
+    --z-fixed: 100;
+
+    /* hover overlay */
+    --img-transition: .3s;
+    --img-hidden: hidden;
+    --img-scale: scale(1.1);
+}
+
+@media screen and (min-width: 968px) {
+    :root {
+        --biggest-font-size: 4rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.75rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
+}
+
+/* ------------------------------ base ------------------------------ */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    margin: var(--header-height) 0 0 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--color-body);
+    color: var(--color-imperial-primer);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: var(--color-imperial-primer);
+    font-weight: var(--font-weight-500);
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-imperial-primer);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+input,
+select {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    border-radius: .5rem;
+    margin-top: 7px;
+}
+
+input,
+select {
+    padding: .5rem;
+    border: 1px solid var(--color-imperial-primer);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    height: 2rem;
+}
+
+input {
+    outline: none;
+    width: 100%;
+}
+
+select {
+    width: 100%;
+}
+
+.btn {
+    background-color: var(--color-jade-dust);
+    color: var(--color-body);
+    transition: .25s;
+    padding: .5rem 1rem;
+    border-radius: var(--mb-0-25);
+}
+
+.btn:hover {
+    background-color: var(--color-amour-red);
+    color: var(--color-body);
+}
+
+label {
+    font-weight: var(--font-weight-500);
+}
+
+/* khung noel */
+.box-icon-noel .khung-noel {
+    position: absolute;
+    width: 70%;
+    top: -1.8rem;
+    left: -1.3rem;
+}
+
+.box-icon-noel .icon-noel-gau {
+    position: absolute;
+    width: 20%;
+    bottom: 3rem;
+    transform: rotate(45deg);
+    z-index: -1;
+    opacity: .3;
+}
+
+.box-icon-noel .icon-noel-chuong {
+    position: absolute;
+    width: 40%;
+    bottom: 10rem;
+    left: 7rem;
+    transform: rotate(-20deg);
+    z-index: -1;
+    opacity: .2;
+}
+
+.box-icon-noel .icon-noel-qua {
+    position: absolute;
+    width: 15%;
+    bottom: 3rem;
+    right: 3rem;
+    transform: rotate(-20deg);
+    z-index: -1;
+    opacity: .6;
+}
+
+/* ------------------------------ reusable css classes ------------------------------ */
+.title {
+    font-size: var(--h2-font-size);
+    font-weight: var(--font-weight-500);
+    color: var(--color-imperial-primer);
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: var(--mb-2);
+}
+
+.title p {
+    font-weight: var(--font-weight-400);
+    font-size: var(--smaller-font-size);
+    margin: 5px 0;
+}
+
+.container {
+    margin-left: var(--mb-1);
+    margin-right: var(--mb-1);
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-control {
+    display: block;
+    padding: 1rem;
+}
+
+/* ------------------------------ header ------------------------------ */
+/* icon noel day treo */
+.icon-noel-daytreo {
+    position: fixed;
+    width: 30%;
+    top: 0;
+    left: 0;
+    opacity: .6;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+    background-color: var(--color-amour-red);
+}
+
+/* nav */
+.nav {
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo,
+.nav-toggle {
+    color: var(--color-body);
+}
+
+.nav-logo {
+    font-weight: var(--font-weight-500);
+}
+
+.nav-user {
+    position: absolute;
+    right: 3.5rem;
+}
+
+.nav-user a {
+    color: var(--color-body);
+}
+
+.nav-toggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.nav-menu {
+    position: relative;
+}
+
+@media screen and (max-width: 767px) {
+    .nav-menu {
+        position: fixed;
+        background-color: var(--color-body);
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100%;
+        box-shadow: -1px 0 4px var(--color-pastel-red);
+        padding: 3rem;
+        transition: .4s;
+    }
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+.nav-link {
+    color: var(--color-imperial-primer);
+    font-weight: var(--font-weight-500);
+}
+
+.nav-link:hover {
+    color: var(--color-amour-red);
+}
+
+.nav-close {
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--color-imperial-primer);
+    cursor: pointer;
+}
+
+/* show menu */
+.show-menu {
+    right: 0;
+}
+
+/* ------------------------------ main ------------------------------ */
+/* home */
+.home {
+    margin-bottom: var(--mb-1);
+}
+
+/* search */
+.home .search {
+    background-color: rgba(238, 82, 83, .5);
+    border-radius: .5rem;
+    padding: .5rem;
+}
+
+.search-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+/* features */
+.features {
+    margin-bottom: 3rem;
+}
+
+.features .bg-img-1 {
+    width: 100%;
+    height: 150px;
+    background-image: url(../img/features/img-slide-1.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: var(--mb-2);
+    color: var(--color-body);
+}
+
+.features .bg-img-2 {
+    width: 100%;
+    height: 150px;
+    background-image: url(../img/features/img-slide-2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: var(--mb-2);
+    color: var(--color-body);
+}
+
+.features .bg-img-3 {
+    width: 100%;
+    height: 150px;
+    background-image: url(../img/features/img-slide-3.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: var(--mb-2);
+    color: var(--color-body);
+}
+
+.features .features-box {
+    padding: var(--mb-1);
+}
+
+.features h3 {
+    color: var(--color-body);
+    text-align: center;
+    margin-bottom: var(--mb-0-75);
+}
+
+.features p {
+    display: none;
+}
+
+/* Địa điểm yêu thích */
+.dia-diem-yeu-thich {
+    margin-bottom: 3rem;
+}
+
+.dia-diem-yeu-thich .box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dia-diem-yeu-thich .box .box-1 {
+    width: 50%;
+    padding: 0 var(--mb-0-5);
+    margin-bottom: var(--mb-1);
+}
+
+.dia-diem-yeu-thich .box .box-1 h3 {
+    display: inline-block;
+    margin-top: var(--mb-0-5);
+    margin-bottom: var(--mb-0-5);
+}
+
+.dia-diem-yeu-thich .box .box-1 span {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: var(--font-weigth-700);
+    opacity: .8;
+}
+
+/* Tour du lịch yêu thích */
+.tour-yeu-thich {
+    margin-bottom: 3rem;
+}
+
+.tour-yeu-thich .box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tour-yeu-thich .box .box-1 {
+    width: 100%;
+    position: relative;
+    -webkit-box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    border: 1px solid #dddfe2;
+    border-radius: 15px;
+    margin-bottom: var(--mb-2-5);
+    transition: .6s;
+}
+
+.tour-yeu-thich .box .box-1 .img {
+    border-radius: 15px 15px 0 0;
+}
+
+.tour-yeu-thich .box .box-1:hover {
+    margin-top: -1rem;
+    -webkit-box-shadow: 5px 5px 20px 0 rgb(131 149 167 / 60%);
+}
+
+.tour-yeu-thich .context {
+    padding: var(--mb-1);
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--mb-0-75);
+}
+
+.tour-yeu-thich .context .name {
+    max-width: 100%;
+    min-height: 65px;
+    max-height: 65px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+/* Ý kiến khách hàng */
+.y-kien-khach-hang {
+    margin-bottom: 3rem;
+}
+
+.y-kien-khach-hang .y-kien-khach-hang-box .box-khach-hang {
+    width: 100%;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    border-radius: 1rem;
+    position: relative;
+    padding: var(--mb-2);
+    margin-top: var(--mb-2-5);
+    margin: var(--mb-1);
+}
+
+.y-kien-khach-hang .y-kien-khach-hang-box .box-khach-hang img {
+    position: absolute;
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+    top: -.7rem;
+    left: 2rem;
+}
+
+.y-kien-khach-hang .y-kien-khach-hang-box .box-khach-hang p {
+    margin-top: var(--mb-2-5);
+    margin-bottom: var(--mb-1);
+    height: 8rem;
+    margin-top: 80px;
+}
+
+/* ------------------------------ footer ------------------------------ */
+.footer {
+    width: 100%;
+    padding: var(--mb-2);
+    background-color: var(--color-pastel-red);
+    position: relative;
+
+    z-index: 999;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-box {
+    width: 100%;
+    margin-bottom: var(--mb-2);
+}
+
+.footer-title {
+    color: var(--color-body);
+    font-weight: var(--font-weight-500);
+    margin-bottom: var(--mb-0-75);
+    cursor: default;
+}
+
+.footer-context {
+    margin-left: var(--mb-1-5);
+}
+
+.footer-context-ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-context-ul li {
+    width: 50%;
+}
+
+.footer-context ul {
+    list-style: disc;
+}
+
+.footer-context li {
+    padding: var(--mb-0-25) 0;
+}
+
+.footer-context li a {
+    color: var(--color-body);
+    transition: .3s;
+}
+
+.footer-context li a:hover {
+    color: var(--color-imperial-primer);
+    margin-left: var(--mb-0-5);
+}
+
+.footer-context-ung-dung .box-ung-dung {
+    width: 10rem;
+    color: var(--color-body);
+    float: left;
+}
+
+.footer-box .social {
+    padding: var(--mb-0-5) 0;
+    color: var(--color-body);
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-box .social i {
+    font-size: 1.6rem;
+    transition: .3s;
+}
+
+.footer-box .social i:hover {
+    color: var(--color-jade-dust);
+}
+
+.footer-box .social i:not(:first-child) {
+    margin-left: var(--mb-1);
+}
+
+.footer-context .btn,
+.footer-context p {
+    margin-left: -1.5rem;
+    color: var(--color-body);
+}
+
+.footer-context .btn {
+    width: 10rem;
+    height: 3rem;
+    margin-bottom: var(--mb-0-5);
+}
+
+/* icon noel */
+.footer-icon-noel {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    opacity: .3;
+}
+
+.footer-icon-noel-gau {
+    position: absolute;
+    top: 25rem;
+    z-index: -1;
+    opacity: .3;
+}
+
+.footer-icon-noel-chuong {
+    position: absolute;
+    top: 15rem;
+    right: 5rem;
+    z-index: -1;
+    opacity: .3;
+}
+
+.footer-icon-noel-qua {
+    position: absolute;
+    bottom: 15rem;
+    right: 1rem;
+    z-index: -1;
+    opacity: .3;
+}
+
+/* scroll up */
+.scroll-up {
+    position: fixed;
+    right: 1rem;
+    bottom: -20%;
+    background-color: var(--color-jade-dust);
+    padding: .5rem;
+    display: flex;
+    opacity: .9;
+    z-index: 999;
+    transition: .4s;
+    border-radius: 5px;
+}
+
+.scroll-up:hover {
+    background-color: var(--color-amour-red);
+    opacity: 1;
+}
+
+.scrollup-icon {
+    color: var(--color-body);
+}
+
+/* show scrollup */
+.show-scrollup {
+    bottom: 5rem;
+}

@@ -1,0 +1,390 @@
+:root {
+    --header-height: 3rem;
+
+    /* color */
+    --color-jade-dust: #00d2d3;
+    --color-imperial-primer: #222f3e;
+    --color-amour-red: #ee5253;
+    --color-pastel-red: #ff6b6b;
+    --color-body: #fff;
+
+    /* font weight */
+    --body-font: 'Roboto', sans-serif;
+    --biggest-font-size: 2.5rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+    --font-weight-400: 400;
+    --font-weight-500: 500;
+    --font-weigth-700: 700;
+
+    /* margenes bottom */
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-25: 1.25rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+
+    /* z index */
+    --z-tooltip: 10;
+    --z-fixed: 100;
+
+    /* hover overlay */
+    --img-transition: .3s;
+    --img-hidden: hidden;
+    --img-scale: scale(1.1);
+}
+
+/* ------------------------------ responsive ------------------------------ */
+/* min-width: 414px (ip6/7/8 plus) */
+@media screen and (min-width: 414px) {
+    .container {
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+    }
+
+    .nav-user {
+        right: 5rem;
+    }
+
+    .dia-diem-yeu-thich .box .box-1 span {
+        margin-left: var(--mb-1);
+    }
+}
+
+/* min-width: 768px (iPad) */
+@media screen and (min-width:768px) {
+
+    /* icon noel day treo */
+    .icon-noel-daytreo {
+        width: 20%;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        text-transform: capitalize;
+        margin-bottom: var(--mb-2);
+    }
+
+    .title p {
+        font-size: var(--normal-font-size);
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .nav {
+        height: calc(var(--header-height) + 1.5rem);
+    }
+
+    .nav-link {
+        color: var(--color-body);
+        text-transform: initial;
+    }
+
+    .nav-link:hover {
+        color: var(--color-imperial-primer);
+    }
+
+    .nav-menu {
+        display: flex;
+        column-gap: 1rem;
+    }
+
+    .nav-list {
+        flex-direction: row;
+        column-gap: 2.5rem;
+    }
+
+    .nav-close,
+    .nav-toggle {
+        display: none;
+    }
+
+    .nav-user {
+        right: 2rem;
+        font-size: 1.6rem;
+    }
+
+    .container {
+        margin-left: 6rem;
+        margin-right: 6rem;
+    }
+
+    /* search */
+    .search-flex {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: initial;
+    }
+
+    .search-flex .form-control {
+        width: 50%;
+    }
+
+    /* features */
+    .features .bg-img-1 {
+        width: 100%;
+        height: 400px;
+    }
+
+    .features .bg-img-2 {
+        width: 100%;
+        height: 400px;
+    }
+
+    .features .bg-img-3 {
+        width: 100%;
+        height: 400px;
+    }
+
+    .features span {
+        display: none;
+    }
+
+    .features p {
+        display: contents;
+    }
+
+    .features .features-box {
+        height: 20rem;
+        background-color: rgba(238, 82, 83, .3);
+        margin-top: 3rem;
+        transition: .4s;
+    }
+
+    .features .features-box:hover {
+        margin-top: -1rem;
+    }
+
+    .features-box h3 {
+        font-size: 3rem;
+        cursor: default;
+    }
+
+    .features-box p {
+        font-size: 1.4rem;
+        cursor: default;
+    }
+
+    /* Tour du lịch yêu thích */
+    .tour-yeu-thich .box .box-1 {
+        width: 45%;
+        margin-right: 1.9rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Ý kién khách hàng */
+    .y-kien-khach-hang .y-kien-khach-hang-box .box-khach-hang p {
+        margin-top: 80px;
+        margin-bottom: var(--mb-1);
+        height: 4rem;
+    }
+
+    /* footer */
+    .footer-box {
+        width: 50%;
+        margin-bottom: var(--mb-2);
+    }
+
+    .footer-context-ul li {
+        width: 35%;
+    }
+
+    /* icon noel */
+    .footer-icon-noel {
+        width: 50%;
+    }
+
+    .footer-icon-noel-gau {
+        top: 2rem;
+        left: 7rem;
+    }
+
+    .footer-icon-noel-chuong {
+        display: none;
+    }
+
+    .footer-icon-noel-qua {
+        bottom: 5rem;
+        right: 15rem;
+    }
+
+}
+
+/* min-width: 1024px (PC)*/
+@media screen and (min-width: 1024px) {
+
+    /* icon noel day treo */
+    .icon-noel-daytreo {
+        width: 15%;
+    }
+
+    .container {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .home .search {
+        background-color: rgba(238, 82, 83, .5);
+        border-radius: .5rem;
+        padding: .5rem;
+    }
+
+    .search-flex {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .search-flex .form-control {
+        width: auto;
+    }
+
+    /* features */
+    .features {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .features .bg-img-1 {
+        width: 100%;
+        height: auto;
+    }
+
+    .features .bg-img-2 {
+        width: 100%;
+        height: auto;
+    }
+
+    .features .bg-img-3 {
+        width: 100%;
+        height: auto;
+    }
+
+    .features .features-box {
+        height: auto;
+        background-color: rgba(238, 82, 83, .5);
+        margin-top: 1rem;
+        transition: .4s;
+    }
+
+    .features .features-box:hover {
+        margin-top: -1rem;
+    }
+
+    .features-box h3 {
+        font-size: 1rem;
+        cursor: default;
+    }
+
+    .features-box p {
+        font-size: var(--normal-font-size);
+        cursor: default;
+    }
+
+    /* Địa điểm yêu thích */
+    .dia-diem-yeu-thich .box .box-1 {
+        width: 33%;
+        padding: 0 var(--mb-0-5);
+        margin-bottom: var(--mb-1);
+    }
+
+    /* Tour du lịch yêu thích */
+    .tour-yeu-thich .box {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    /* Ý kiến khách hàng */
+    .y-kien-khach-hang {
+        width: 1000px;
+        margin: 2rem auto;
+    }
+
+    /* footer */
+    .footer {
+        padding-left: 10%;
+    }
+
+    .footer-box {
+        width: 33%;
+        margin-bottom: var(--mb-2);
+    }
+
+    /* icon noel */
+    .footer-icon-noel {
+        width: 20%;
+    }
+}
+
+/* Bổ sung thêm responsive */
+/* (min-width: 1360px) */
+@media screen and (min-width: 1360px) {
+
+    /* icon noel day treo */
+    .icon-noel-daytreo {
+        width: 12%;
+    }
+
+    /* khung noel */
+    .box-icon-noel .khung-noel {
+        top: -2.4rem;
+        left: -1.7rem;
+    }
+
+    /* features */
+    .features {
+        margin: 0;
+        margin-bottom: 100px;
+    }
+
+    /* Địa điểm yêu thích */
+    .dia-diem-yeu-thich {
+        margin-bottom: 100px;
+    }
+
+    /* Tour du lịch yêu thích */
+    .tour-yeu-thich {
+        margin-bottom: 100px;
+    }
+
+    /* Địa điểm yêu thích */
+    .dia-diem-yeu-thich .box .box-1 {
+        width: 24.4%;
+        padding: 0 var(--mb-0-5);
+        margin-bottom: var(--mb-1);
+    }
+
+    /* Ý kiến khách hàng */
+    .y-kien-khach-hang {
+        margin-bottom: 100px;
+    }
+
+    .footer-context-ul li {
+        width: 34%;
+    }
+}
+
+/* and (min-width: 1600px) */
+@media screen and (min-width: 1600px) {
+    .y-kien-khach-hang {
+        width: 1300px;
+    }
+
+    /* khung noel */
+    .box-icon-noel .khung-noel {
+        top: -2.9rem;
+        left: -2.2rem;
+    }
+
+    .search-flex {
+        margin-left: 7rem;
+    }
+}

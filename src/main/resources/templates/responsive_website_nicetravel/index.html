@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang chủ | Nice Travel</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="assets/img/logoNiceIco.ico">
+
+    <!-- remixicon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" href="assets/css/style.nicetravel.css" />
+
+    <!-- slick sdn css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+
+    <!-- css responsive -->
+    <link rel="stylesheet" href="assets/css/style.responsive.css">
+</head>
+
+<body>
+    <!-- icon noel dây treo -->
+    <img src="assets/img/icon-noel/icon-noel-daytreo.png" alt="" class="icon-noel-daytreo">
+
+    <!-- ------------------------------ header ------------------------------ -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav-logo">Nice Travel</a>
+
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#gioi-thieu" class="nav-link">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="travel.html" class="nav-link">Địa điểm du lịch</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#thong-tin" class="nav-link">Thông tin</a>
+                    </li>
+                </ul>
+
+                <!-- icon close -->
+                <i class="ri-close-line nav-close" id="nav-close"></i>
+            </div>
+
+            <!-- icon user -->
+            <div class="nav-user">
+                <a href="#user"><i class="ri-user-3-line"></i></a>
+            </div>
+
+            <!-- icon toggle -->
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="ri-function-line"></i>
+            </div>
+
+
+        </nav>
+    </header>
+
+    <!-- ------------------------------ main ------------------------------ -->
+    <main class="main">
+        <!-- ------------------------------ home ------------------------------ -->
+        <section class="home">
+            <!-- banner -->
+            <div class="home-banner">
+                <img src="assets/img/banner.jpg" alt="">
+            </div>
+
+            <!-- search -->
+            <div class="search container">
+                <form action="" class="search-flex">
+                    <div class="form-control">
+                        <label for="">Điểm đi:</label>
+                        <select class="select">
+                            <option value=" ">Tất cả</option>
+                            <option value="Hồ chí minh">Hồ Chí Minh</option>
+                            <option value="Tân Bình">Tân Bình</option>
+                            <option value="Đà Lạt">Đà Lạt</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                            <option value="Phú Quốc">Phú Quốc</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="">Điểm đến:</label>
+                        <select class="select">
+                            <option value=" ">Tất cả</option>
+                            <option value="Hồ chí minh">Hồ Chí Minh</option>
+                            <option value="Tân Bình">Tân Bình</option>
+                            <option value="Đà Lạt">Đà Lạt</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                            <option value="Phú Quốc">Phú Quốc</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="">Ngày khởi hành</label>
+                        <input type="date">
+                    </div>
+                    <div class="form-control">
+                        <label for="">Giá cao nhất:</label>
+                        <select class="select">
+                            <option value=" ">Tất cả</option>
+                            <option value=" ">2 triệu</option>
+                            <option value=" ">5 triệu</option>
+                            <option value=" ">10 triệu</option>
+                            <option value=" ">15 triệu</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="">Giá thấp nhất:</label>
+                        <select class="select">
+                            <option value=" ">Tất cả</option>
+                            <option value=" ">5 triệu</option>
+                            <option value=" ">10 triệu</option>
+                            <option value=" ">15 triệu</option>
+                            <option value=" ">20 triệu</option>
+                            <option value=" ">25 triệu</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <button type="submit" class="btn" style="margin-top: 1.2rem; height: 2.5rem;">
+                            <i class="ri-search-line"></i> Tìm kiếm
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ------------------------------ features ------------------------------ -->
+        <section class="features container">
+            <div class="bg-img-1">
+                <div class="features-box">
+                    <h3>Đà Nẵng</h3>
+                    <span>cố đô Huế, phố cổ Hội An và thánh địa Mỹ Sơn</span>
+                    <p>Đà Nẵng nằm giữa ba di sản thế giới: cố
+                        đô Huế, phố cổ Hội An và thánh địa Mỹ Sơn. Đà Nẵng còn có nhiều
+                        danh thắng tuyệt đẹp say lòng du khách như Ngũ Hành Sơn, Bà Nà,
+                        bán đảo Sơn Trà, đèo Hải Vân, sông Hàn thơ mộng và cầu quay
+                        Sông Hàn – niềm tự hào của thành phố, và biển Mỹ Khê đẹp nhất
+                        hành tinh.</p>
+                </div>
+            </div>
+
+            <div class="bg-img-2">
+                <div class="features-box">
+                    <h3>Đà Lạt</h3>
+                    <span>Đà Lạt mộng mơ nơi mimosa và ngàn hoa
+                        khoe sắc</span>
+                    <p>Đà Lạt mộng mơ nơi mimosa và ngàn hoa
+                        khoe sắc, từ đồi Robin ngắm Hồ Tuyền Lâm, núi Voi, viếng Thiền
+                        Viện Trúc Lâm, thăm Dinh Bảo Đại, tản bộ dưới những tán thông,
+                        ngắm biệt thự cổ, nhấm nháp ly café ấm áp trong thời tiết se
+                        lạnh. Những chuyến xe ngựa thổ mộ chạy quanh Hồ Xuân Hương cũng
+                        là nét duyên của Đà Lạt.</p>
+                </div>
+            </div>
+
+            <div class="bg-img-3">
+                <div class="features-box">
+                    <h3>Phú Quốc</h3>
+                    <span>Phú Quốc là điểm nghỉ dưỡng, tham quan,
+                        và khám phá sinh thái tuyệt vời</span>
+                    <p>Phú Quốc là điểm nghỉ dưỡng, tham quan,
+                        và khám phá sinh thái tuyệt vời. Mũi Ông Đội, Đá Chào là thế
+                        giới san hô và cá biển sặc sỡ. Bãi Sao cát trắng mịn, dáng
+                        cong, nước xanh ngọc bích. Đặc sản danh tiếng cả nước là tiêu
+                        sọ, nước mắm, rượu sim, ngọc trai. Phú Quốc thực sự là một viên
+                        ngọc quý trên bản đồ Việt Nam.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ------------------------------ địa điểm yêu thích ------------------------------ -->
+        <section class="dia-diem-yeu-thich container">
+            <div class="title">
+                Địa điểm yêu thích
+                <p>Địa điểm được khách hàng yêu thích</p>
+            </div>
+            <div class="box">
+                <div class="box-1">
+                    <img src="https://media.travel.com.vn/destination/dg_211014_ha-noi.jpg" alt="">
+                    <div class="context">
+                        <h3>Hà Nội</h3>
+                        <span>3 tour</span>
+                        <div class="star-content">
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-half-s-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-1">
+                    <img src="https://media.travel.com.vn/destination/dg_200914_Da Lat  (8).jpg" alt="">
+                    <div class="context">
+                        <h3>Đà Lạt</h3>
+                        <span>3 tour</span>
+                        <div class="star-content">
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-half-s-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-1">
+                    <img src="https://media.travel.com.vn/destination/dg_211014_phu-quoc.jpg" alt="">
+                    <div class="context">
+                        <h3>Phú Quốc</h3>
+                        <span>3 tour</span>
+                        <div class="star-content">
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-half-s-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-1">
+                    <img src="assets/img/photo/dalat.jpg" alt="">
+                    <div class="context">
+                        <h3>Sapa</h3>
+                        <span>3 tour</span>
+                        <div class="star-content">
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-half-s-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ------------------------------ tour du lịch yêu thích ------------------------------ -->
+        <section class="tour-yeu-thich container">
+            <div class="title">
+                Tour du lịch yêu thích
+                <p>Những chuyến đi được khách hàng yêu thích</p>
+            </div>
+            <div class="box">
+                <div class="box-1">
+                    <!-- icon noel box -->
+                    <div class="box-icon-noel">
+                        <img src="assets/img/khung-noel.png" alt="" class="khung-noel">
+                        <img src="assets/img/icon-noel/icon-noel-gau.png" alt="" class="icon-noel-gau">
+                        <img src="assets/img/icon-noel/icon-noel-chuong.png" alt="" class="icon-noel-chuong">
+                        <img src="assets/img/icon-noel/icon-noel-qua.png" alt="" class="icon-noel-qua">
+                    </div>
+
+                    <img class="img" src="assets/img/photo/dalat.jpg" alt="">
+                    <div class="context">
+                        <p>7:00 - 01-12-2022 - 1 ngày</p>
+                        <h3 class="name">
+                            <a href="#">Vũng Tàu "Biển Hát " - Nhà Úp Ngược - Bảo Tàng Bà Rịa - 
+                                Bảo Tàng Bà Rịa - Bảo Tàng Bà Rịa - Bảo Tàng Bà Rịa</a>
+                        </h3>
+                        <p>Số chỗ còn nhận: 4</p>
+                        <p>Nơi khởi hành: Đà Nẵng</p>
+                        <p>
+                        <h3 style="color: rgba(238, 82, 83, 1.0);">
+                            2.000.000 ₫ <span style="color: rgba(34, 47, 62,1.0); font-size: 1rem;">/ người</span></h3>
+                        </p>
+                        <div class="btn-box">
+                            <a href="#" class="btn">Đặt ngay</a>
+                            <a href="#" class="btn"><i class="ri-heart-3-fill"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-1">
+                    <!-- icon noel box -->
+                    <div class="box-icon-noel">
+                        <img src="assets/img/khung-noel.png" alt="" class="khung-noel">
+                        <img src="assets/img/icon-noel/icon-noel-gau.png" alt="" class="icon-noel-gau">
+                        <img src="assets/img/icon-noel/icon-noel-chuong.png" alt="" class="icon-noel-chuong">
+                        <img src="assets/img/icon-noel/icon-noel-qua.png" alt="" class="icon-noel-qua">
+                    </div>
+
+                    <img class="img" src="assets/img/photo/dalat.jpg" alt="">
+                    <div class="context">
+                        <p>7:00 - 01-12-2022 - 1 ngày</p>
+                        <h3 class="name"><a href="#">Vũng Tàu "Biển Hát " - Nhà Úp Ngược - Bảo Tàng Bà Rịa - Bảo Tàng Bà Rịa</a></h3>
+                        <p>Số chỗ còn nhận: 4</p>
+                        <p>Nơi khởi hành: Đà Nẵng</p>
+                        <p>
+                        <h3 style="color: rgba(238, 82, 83, 1.0);">
+                            2.000.000 ₫ <span style="color: rgba(34, 47, 62,1.0); font-size: 1rem;">/ người</span></h3>
+                        </p>
+                        <div class="btn-box">
+                            <a href="#" class="btn">Đặt ngay</a>
+                            <a href="#" class="btn"><i class="ri-heart-3-fill"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-1">
+                    <!-- icon noel box -->
+                    <div class="box-icon-noel">
+                        <img src="assets/img/khung-noel.png" alt="" class="khung-noel">
+                        <img src="assets/img/icon-noel/icon-noel-gau.png" alt="" class="icon-noel-gau">
+                        <img src="assets/img/icon-noel/icon-noel-chuong.png" alt="" class="icon-noel-chuong">
+                        <img src="assets/img/icon-noel/icon-noel-qua.png" alt="" class="icon-noel-qua">
+                    </div>
+
+                    <img class="img" src="assets/img/photo/dalat.jpg" alt="">
+                    <div class="context">
+                        <p>7:00 - 01-12-2022 - 1 ngày</p>
+                        <h3 class="name"><a href="#">Vũng Tàu "Biển Hát " - Nhà Úp Ngược - Bảo Tàng Bà Rịa - Bảo Tàng Bà Rịa</a></h3>
+                        <p>Số chỗ còn nhận: 4</p>
+                        <p>Nơi khởi hành: Đà Nẵng</p>
+                        <p>
+                        <h3 style="color: rgba(238, 82, 83, 1.0);">
+                            2.000.000 ₫ <span style="color: rgba(34, 47, 62,1.0); font-size: 1rem;">/ người</span></h3>
+                        </p>
+                        <div class="btn-box">
+                            <a href="#" class="btn">Đặt ngay</a>
+                            <a href="#" class="btn"><i class="ri-heart-3-fill"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ------------------------------ ý kiến khách hàng ------------------------------ -->
+        <section class="y-kien-khach-hang container">
+            <div class="title">
+                Ý kiến khách hàng
+            </div>
+
+            <div class="y-kien-khach-hang-box">
+                <div class="box-khach-hang">
+                    <img src="assets/img/img-user/customer-1.jpg" alt="">
+                    <p>Vietravel đồng hành cùng đoàn chi nhánh cty cp thương mại xnk thủ đức trong hành ...</p>
+                    <h3>Khách hàng Nice Travel</h3>
+                </div>
+
+                <div class="box-khach-hang">
+                    <img src="assets/img/img-user/customer-1.jpg" alt="">
+                    <p>Thư phản hồi của khách hàng lê văn đủ tour phú quốc ngày 17/04/2021</p>
+                    <h3>Khách hàng Nice Travel</h3>
+                </div>
+
+                <div class="box-khach-hang">
+                    <img src="assets/img/img-user/customer-1.jpg" alt="">
+                    <p>Hành trình về miền di sản</p>
+                    <h3>Khách hàng Nice Travel</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ------------------------------ footer ------------------------------ -->
+    <footer class="footer">
+        <!-- icon noel -->
+        <img src="assets/img/icon-noel/icon-noel-footer.png" alt="" class="footer-icon-noel">
+        <img src="assets/img/icon-noel/icon-noel-gau.png" alt="" class="footer-icon-noel-gau">
+        <img src="assets/img/icon-noel/icon-noel-chuong.png" alt="" class="footer-icon-noel-chuong">
+        <img src="assets/img/icon-noel/icon-noel-qua.png" alt="" class="footer-icon-noel-qua">
+
+        <div class="footer-box">
+            <h3 class="footer-title">
+                Du lịch trong nước
+            </h3>
+            <div class="footer-context">
+                <ul class="footer-context-ul">
+                    <li><a href="">Đà Lạt</a></li>
+                    <li><a href="">Hà Nội</a></li>
+                    <li><a href="">Hạ Long</a></li>
+                    <li><a href="">Cố Đô - Huế</a></li>
+                    <li><a href="">Mũi Né</a></li>
+                    <li><a href="">Đà Lạt</a></li>
+                    <li><a href="">Hà Nội</a></li>
+                    <li><a href="">Hạ Long</a></li>
+                    <li><a href="">Cố Đô - Huế</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-box">
+            <h3 class="footer-title">
+                Du lịch ngoài nước
+            </h3>
+            <div class="footer-context">
+                <ul class="footer-context-ul">
+                    <li><a href="">Trung Quốc</a></li>
+                    <li><a href="">Ấn Độ</a></li>
+                    <li><a href="">Malaysia</a></li>
+                    <li><a href="">Singapore</a></li>
+                    <li><a href="">Hà Lan</a></li>
+                    <li><a href="">Trung Quốc</a></li>
+                    <li><a href="">Ấn Độ</a></li>
+                    <li><a href="">Malaysia</a></li>
+                    <li><a href="">Singapore</a></li>
+                    <li><a href="">Hà Lan</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-box">
+            <h3 class="footer-title">
+                Ứng dụng di động
+            </h3>
+            <div class="footer-context-ung-dung">
+                <div class="box-ung-dung">
+                    <p>Android</p>
+                    <img src="https://travel.com.vn/Content/Theme/images/image42.png" alt="">
+                </div>
+                <div class="box-ung-dung">
+                    <p>iOS</p>
+                    <img src="https://travel.com.vn/Content/Theme/images/image42.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-box">
+            <h3 class="footer-title">
+                Liên hệ
+            </h3>
+            <div class="footer-context">
+                <ul>
+                    <li><a href="">Công viên Phần mềm Quang Trung, Quận 12, HCM</a></li>
+                    <li><a href="">(+84) 352 363 014</a></li>
+                </ul>
+            </div>
+            <div class="social">
+                <i class="ri-facebook-circle-fill"></i>
+                <i class="ri-twitter-fill"></i>
+                <i class="ri-instagram-fill"></i>
+                <i class="ri-youtube-fill"></i>
+            </div>
+        </div>
+
+        <div class="footer-box">
+            <h3 class="footer-title">
+                Nice Travel
+            </h3>
+            <div class="footer-context">
+                <button class="btn">1900 0001</button>
+                <p>Từ 8:00 - 20:00 hàng ngày</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ------------------------------ scroll up ------------------------------ -->
+    <a href="#" class="scroll-up" id="scroll-up">
+        <i class="ri-arrow-up-line scrollup-icon"></i>
+    </a>
+
+
+
+    <!-- ------------------------------ js ------------------------------ -->
+    <!-- jquery js -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <!-- slick sdn js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <!-- scroll reveal -->
+    <script src="assets/js/scrollreveal.min.js"></script>
+
+    <!-- main js -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
