@@ -24,6 +24,8 @@ public interface AccountService {
 
     Account findAccountsByUsername(String username);
 
+    Account findAccountByIDCard(String id_Card);
+
     Account findByVerificationCode(String code);
 
     Account findByEmail(String email);

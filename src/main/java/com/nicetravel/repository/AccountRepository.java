@@ -24,6 +24,9 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query("SELECT u FROM Account u WHERE u.username =?1")
     Account findAccountsByUsername(String username);
 
+    @Query("SELECT u FROM Account u WHERE u.id_Card =?1")
+    Account findAccountByIDCard(String id_Card);
+
     @Query("SELECT u FROM Account u WHERE u.username = :username")
     public Account getUserByUsername(@Param("username") String username);
 

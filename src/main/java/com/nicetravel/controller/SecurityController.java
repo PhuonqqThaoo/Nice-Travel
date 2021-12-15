@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -94,9 +95,29 @@ public class SecurityController {
     }
 
     @PostMapping("/process-register")
-    public String processRegister(Account account, HttpServletRequest request)
+    public String processRegister(Model model, @ModelAttribute("account") Account account, HttpServletRequest request)
             throws UnsupportedEncodingException, MessagingException {
-        userServices.register(account, getSiteURL(request));
+
+//        String username = userServices.getUserName(request, authentication);
+//        Account acc = accountService.findAccountsByUsername(username);
+        Account accountsByUsername = accountService.findAccountsByUsername(account.getUsername());
+//        Account accountByEmail = accountService.findByEmail(account.getUsername());
+//        Account accountByID_Card = accountService.findAccountByIDCard(account.getId_Card());
+        System.out.println(account.getUsername());
+        try{
+            if(accountsByUsername != null){
+                model.addAttribute("error", "Tài khoản đã có");
+                return null;
+            }
+            userServices.registerAccount(account.getUsername());
+            userServices.register(account, getSiteURL(request));
+            model.addAttribute("message", "Một liên kết xác thực tài khoản đã gửi đến email của bạn. Vui lòng kiểm tra hộp thư.");
+        }catch (UsernameNotFoundException ex) {
+            model.addAttribute("error", ex.getMessage());
+        } catch (UnsupportedEncodingException | MessagingException e) {
+            model.addAttribute("error", "Đã xảy ra lỗi khi đăng ký tài khoản");
+        }
+
         return "/account/register/register_success";
     }
 
@@ -184,7 +205,7 @@ public class SecurityController {
         model.addAttribute("token", token);
 
         if (account == null) {
-            model.addAttribute("message", "Mã Token không hợp lệ");
+            model.addAttribute("message", "Mã Token không hợp lệ, vui lòng thử lại");
             return "/account/forgot/forgot_password_form";
         }
 
@@ -203,20 +224,16 @@ public class SecurityController {
         Account account = userServices.getByResetPasswordToken(token);
         model.addAttribute("title", "Đặt lại mật khẩu của bạn");
 
-        System.out.println("account by token: " + account);
-
         if (account == null) {
-            model.addAttribute("message", "Mã Token không hợp lệ");
+            model.addAttribute("message", "Mã Token không hợp lệ, vui lòng thử lại.");
             return "/account/forgot/forgot_password_form";
         }
         else{
             userServices.updatePassword(account, password);
-            System.out.println("updated Password: " + account.getPassword() );
-
             model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công.");
 
         }
 
-        return "/account/forgot/forgot_password_form";
+        return "redirect:/login";
     }
 }

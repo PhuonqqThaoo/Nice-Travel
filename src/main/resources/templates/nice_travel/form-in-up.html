@@ -10,6 +10,126 @@
     <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css}">
     <!--    css-->
     <link rel="stylesheet" th:href="@{/assets/css/form-in-up.css}"/>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            color: #333;
+            /*font-size: 62.5%;*/
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .main {
+            background: #f1f1f1;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form {
+            width: 360px;
+            min-height: 100px;
+            padding: 32px 24px;
+            text-align: center;
+            background: #fff;
+            border-radius: 2px;
+            margin: 24px;
+            align-self: center;
+            box-shadow: 0 2px 5px 0 rgba(51, 62, 73, .1);
+        }
+
+        .form .heading {
+            font-size: 2rem;
+        }
+
+        .form .desc {
+            text-align: center;
+            color: #636d77;
+            /*font-size: 1.6rem;*/
+            font-weight: lighter;
+            line-height: 2.4rem;
+            margin-top: 16px;
+            font-weight: 300;
+        }
+
+        .form-group {
+            display: flex;
+            margin-bottom: 16px;
+            flex-direction: column;
+        }
+
+        .form-label,
+        .form-message {
+            text-align: left;
+        }
+
+        .form-label {
+            font-weight: 700;
+            padding-bottom: 6px;
+            line-height: 1.8rem;
+            font-size: 1.4rem;
+        }
+
+        .form-control {
+            height: 100%;
+            padding: 8px 12px;
+            border: 1px solid #b3b3b3;
+            border-radius: 3px;
+            outline: none;
+            font-size: 1.4rem;
+        }
+
+        .input-field:hover {
+            border-color: #1dbfaf;
+        }
+
+        .input-field.invalid .form-control {
+            border-color: #f33a58;
+        }
+
+        .invalid {
+            border: 1px solid red;
+            margin: 15px;
+        }
+
+        .input-field.invalid .form-message {
+            color: #f33a58;
+        }
+
+        .form-message {
+            width: 375px;
+            font-size: 1rem;
+            line-height: 1.6rem;
+            padding: 2px 0 0;
+        }
+
+        .form-submit {
+            outline: none;
+            background-color: #1dbfaf;
+            margin-top: 12px;
+            padding: 12px 16px;
+            font-weight: 600;
+            color: #fff;
+            border: none;
+            width: 100%;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .form-submit:hover {
+            background-color: #1ac7b6;
+        }
+
+        .spacer {
+            margin-top: 36px;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,19 +142,20 @@
                 <h2 class="title">Đăng nhập</h2>
                 <div class="input-field">
                     <i class="bx bxs-user"></i>
-                    <input type="text" name="username" id="username1" placeholder="Username"/>
+                    <input type="text" class="form-control" name="username" id="username1" placeholder="Tên tài khoản"/>
+                    <span class="form-message"></span>
                 </div>
                 <div class="input-field">
                     <i class="bx bxs-lock"></i>
-                    <input type="password" name="password" id="password1" placeholder="Password"/>
+                    <input type="password" class="form-control" name="password" id="password1" placeholder="Mật khẩu"/>
+                    <span class="form-message"></span>
                 </div>
                 <span class="message" th:text="${message}"></span>
-                <span class="form-message"></span>
-                <div class="forgot">
-                    <a class="forgot_password" th:href="@{/forgot_password}">Forgot your password?</a>
+                <div class="forgot" style="padding: 10px 0 0 0">
+                    <a class="forgot_password" th:href="@{/forgot_password}">Quên mật khẩu ?</a>
                 </div>
 
-                <input type="submit" value="Login" id="btnLogin" class="btn solid"/>
+                <input type="submit" value="Đăng nhập" id="btnLogin" class="btn solid"/>
                 <p class="social-text">Hoặc Đăng nhập bằng các nền tảng xã hội</p>
                 <div class="social-media">
                     <a th:href="@{/oauth2/authorization/facebook}" class="social-icon">
@@ -46,39 +167,63 @@
                     <a th:href="@{/oauth2/authorization/google}" class="social-icon">
                         <i class='bx bxl-google'></i>
                     </a>
-                    <a th:href="@{/oauth2/authorization/github}" class="social-icon">
-                        <i class='bx bxl-github'></i>
-                    </a>
+                    <!--                    <a th:href="@{/oauth2/authorization/github}" class="social-icon">-->
+                    <!--                        <i class='bx bxl-github'></i>-->
+                    <!--                    </a>-->
                 </div>
             </form>
 
             <!-- register -->
             <form th:action="@{/process-register}" id="form-1" th:object="${account}" method="post"
                   class="sign-up-form">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h2 class="title">Đăng ký</h2>
+                <div th:if="${error != null}">
+                    <p class="text-danger">[[${error}]]</p>
+                </div>
+                <div th:if="${message != null}">
+                    <p class="text-warning">[[${message}]]</p>
+                </div>
                 <div class="input-field">
                     <i class='bx bxs-envelope'></i>
-                    <input type="email" name="email" id="email" th:field="*{email}" placeholder="Email"/>
+                    <input type="email" class="form-control" name="email" id="email" th:field="*{email}"
+                           placeholder="Email"/>
+                    <span class="form-message"></span>
                 </div>
+
                 <div class="input-field">
                     <i class='bx bxs-user'></i>
-                    <input type="text" name="username" id="username" th:field="*{username}" placeholder="Username"/>
+                    <input type="text" name="username" id="username" th:field="*{username}"
+                           placeholder="Tên tài khoản"/>
+                    <span class="form-message"></span>
                 </div>
+
                 <div class="input-field">
                     <i class='bx bxs-lock'></i>
-                    <input type="password" name="password" id="password" th:field="*{password}" placeholder="Password"/>
+                    <input type="password" name="password" id="password" th:field="*{password}" placeholder="Mật khẩu"/>
+                    <span class="form-message"></span>
                 </div>
-                <div class="input-field">
-                    <i class="bx bxs-lock"></i>
-                    <input type="password" name="password_confirmation" id="password_confirmation"
-                           placeholder="Password Confirmation"/>
-                </div>
+
                 <div class="input-field">
                     <i class='bx bxs-user-pin'></i>
-                    <input type="text" name="fullname" id="fullname" th:field="*{fullname}" placeholder="Full Name"/>
+                    <input type="text" name="fullname" id="fullname" th:field="*{fullname}" placeholder="Họ và tên"/>
+                    <span class="form-message"></span>
                 </div>
-                <span class="message-signup"></span>
-                <input type="submit" class="btn" value="Sign up"/>
+
+                <div class="input-field">
+                    <i class='bx bxs-id-card'></i>
+                    <input type="text" name="id_Card" id="id_Card" th:field="*{id_Card}" placeholder="CMND/CCCD"/>
+                    <span class="form-message"></span>
+                </div>
+
+                <div class="input-field">
+                    <i class='bx bx-phone-call'></i>
+                    <input type="text" name="phone" id="phone" th:field="*{phone}" placeholder="Số điện thoại"/>
+                    <span class="form-message"></span>
+                </div>
+
+
+                <input type="submit" class="btn" value="Đăng ký"/>
                 <p class="social-text">Hoặc Đăng ký với các nền tảng xã hội</p>
                 <div class="social-media">
                     <a th:href="@{/oauth2/authorization/facebook}" class="social-icon">
@@ -90,9 +235,9 @@
                     <a th:href="@{/oauth2/authorization/google}" class="social-icon">
                         <i class='bx bxl-google'></i>
                     </a>
-                    <a th:href="@{/oauth2/authorization/github}" class="social-icon">
-                        <i class='bx bxl-github'></i>
-                    </a>
+                    <!--                    <a th:href="@{/oauth2/authorization/github}" class="social-icon">-->
+                    <!--                        <i class='bx bxl-github'></i>-->
+                    <!--                    </a>-->
                 </div>
             </form>
         </div>
@@ -127,7 +272,7 @@
 </div>
 
 <script>
-    /*==================== login - signin ====================*/
+    /*==================== sign_up - sign_in ====================*/
     const sign_in_btn = document.querySelector("#sign-in-btn");
     const sign_up_btn = document.querySelector("#sign-up-btn");
     const container = document.querySelector(".container");
@@ -145,42 +290,46 @@
         // Mong muốn của chúng ta
         Validator({
             form: '#form-1',
-            formGroupSelector: '.signin-signup',
-            errorSelector: '.message-signup',
+            formGroupSelector: '.input-field',
+            errorSelector: '.form-message',
             rules: [
                 Validator.isRequired("#email", 'Vui lòng nhập email'),
                 Validator.isEmail('#email'),
-                Validator.isRequired('#fullname', 'Vui lòng nhập tên đầy đủ của bạn'),
-                Validator.isFullName("#fullname"),
-                Validator.isRequired("#username", 'Vui lòng nhập username'),
+                Validator.isRequired("#username", 'Vui lòng nhập tên tài khoản'),
                 Validator.isUsername('#username'),
+                Validator.isRequired("#password", 'Vui lòng nhập mật khẩu'),
                 Validator.isPassword("#password"),
-                // Validator.minLength('#password', 6),
-                Validator.isRequired('#password_confirmation'),
-                Validator.isConfirmed('#password_confirmation', function () {
-                    return document.querySelector('#form-1 #password').value;
-                }, 'Mật khẩu nhập lại không chính xác')
+                Validator.isRequired('#fullname', 'Vui lòng nhập họ tên'),
+                Validator.isFullName("#fullname"),
+                Validator.isRequired("#id_Card", 'Vui lòng nhập CMND/CCCD'),
+                Validator.isCardId("#id_Card"),
+                Validator.isRequired("#phone", 'Vui lòng nhập số điện thoại'),
+                Validator.isPhone("#phone")
             ],
             onSubmit: function (data) {
                 // Call API
-                console.log(data);
+                const formRegisterBtn = document.getElementById("form-1");
+                formRegisterBtn.submit();
             }
         });
 
 
         Validator({
             form: '#form-2',
-            formGroupSelector: '.signin-signup',
-            errorSelector: '.message',
+            formGroupSelector: '.input-field',
+            errorSelector: '.form-message',
             rules: [
                 Validator.isRequired('#username1', 'Vui lòng nhập usename'),
-                // Validator.isUsername('#username1', 'Username không hợp lệ'),
                 Validator.isRequired('#password1', 'Vui lòng nhập password'),
+
+                // Validator.isUsername('#username1', 'Username không hợp lệ'),
                 // Validator.minLength('#password1', 6)
             ],
             onSubmit: function (data) {
                 // Call API
                 console.log(data);
+                const formLoginBtn = document.getElementById("form-2");
+                formLoginBtn.submit();
             }
         });
     });
@@ -241,18 +390,17 @@
         if (formElement) {
             // Khi submit form
             formElement.onsubmit = function (e) {
-                // e.preventDefault()
-                console.log(e)
+                e.preventDefault()
                 var isFormValid = true;
 
                 var btnLogin = document.getElementById("btnLogin");
                 // Lặp qua từng rules và validate
                 options.rules.forEach(function (rule) {
                     var inputElement = formElement.querySelector(rule.selector);
-                    console.log(inputElement)
                     var isValid = validate(inputElement, rule);
                     if (!isValid) {
                         isFormValid = false;
+                        console.log(isValid)
                     }
                 });
 
@@ -260,12 +408,8 @@
                     // Trường hợp submit với javascript
                     if (typeof options.onSubmit === 'function') {
                         var enableInputs = formElement.querySelectorAll('[name]');
-                        console.log(enableInputs)
                         var formValues = Array.from(enableInputs).reduce(function (values, input) {
-
-                                    values[input.name] = input.value;
-
-
+                            values[input.name] = input.value;
                             return values;
                         }, {});
                         options.onSubmit(formValues);
@@ -273,7 +417,6 @@
                     // Trường hợp submit với hành vi mặc định
                     else {
                         formElement.submit();
-                        console.log(typeof formElement.submit())
                     }
                 }
             }
@@ -317,7 +460,7 @@
         return {
             selector: selector,
             test: function (value) {
-                return value ? undefined : message || 'Vui lòng nhập trường này'
+                return value ? undefined : message || 'Vui lòng nhập đầy đủ thông tin' || selector.focus();
             }
         };
     }
@@ -335,13 +478,23 @@
         return str;
     }
 
+    Validator.isCardId = function (selector, message) {
+        return {
+            selector: selector,
+            test: function (value) {
+                var ChungMinh = /^[0-9]{12}$/g;
+                return ChungMinh.test(value) ? undefined : message || 'CMND/CCCD không đúng'
+            }
+        }
+    }
+
     Validator.isFullName = function (selector, message) {
 
         return {
             selector: selector,
             test: function (value) {
                 var regexName = /^[a-zA-Z ]{2,}$/g;
-                return regexName.test(removeAscent(value)) ? undefined : message || 'Fullname không hợp lệ';
+                return regexName.test(removeAscent(value)) ? undefined : message || 'Họ tên không hợp lệ';
             }
         }
     }
@@ -366,9 +519,19 @@
             selector: selector,
             test: function (value) {
                 var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-                return regex.test(value) ? undefined : message || 'Trường này phải là email';
+                return regex.test(value) ? undefined : selector.placeholder = 'Email không đúng định dạng';
             }
         };
+    }
+
+    Validator.isPhone = function (selector, message) {
+        return {
+            selector: selector,
+            test: function (value) {
+                var regexPhone = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+                return regexPhone.test(value) ? undefined : message || 'Số điện thoại chưa đúng định dạng'
+            }
+        }
     }
 
     Validator.minLength = function (selector, min, message) {
@@ -389,20 +552,20 @@
         }
     }
 
-    Validator.isPassword = function (selector, message){
+    Validator.isPassword = function (selector, message) {
         return {
             selector: selector,
-            test: function (value){
+            test: function (value) {
                 if (value.length < 6) {
-                    return("Mật khẩu ít quá ngắn");
+                    return ("Mật khẩu ít quá ngắn");
                 } else if (value.length > 50) {
-                    return("Mật khẩu ít quá dài");
+                    return ("Mật khẩu ít quá dài");
                 } else if (value.search(/\d/) == -1) {
-                    return("Mật khẩu phải có ít nhất một số");
+                    return ("Mật khẩu phải có ít nhất một số");
                 } else if (value.search(/[a-zA-Z]/) == -1) {
-                    return("Mật khẩu phải có ít nhất một chữ");
+                    return ("Mật khẩu phải có ít nhất một chữ");
                 } else if (value.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]/) != -1) {
-                    return("Mật khẩu nên có ít nhất một ký tự đặc biệt");
+                    return ("Mật khẩu nên có ít nhất một ký tự đặc biệt");
                 }
                 // return("ok");
                 return checkPwd(value) ? undefined : message;
@@ -412,17 +575,17 @@
 
     function checkPwd(str) {
         if (str.length < 6) {
-            return("too_short");
+            return ("too_short");
         } else if (str.length > 50) {
-            return("too_long");
+            return ("too_long");
         } else if (str.search(/\d/) == -1) {
-            return("no_num");
+            return ("no_num");
         } else if (str.search(/[a-zA-Z]/) == -1) {
-            return("no_letter");
+            return ("no_letter");
         } else if (str.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]/) != -1) {
-            return("bad_char");
+            return ("bad_char");
         }
-        return("ok");
+        return ("ok");
     }
 </script>
 </body>
