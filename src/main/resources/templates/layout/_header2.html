@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:schemaLocation="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
+	  
+  <header class="header" id="header">
+        <nav class="nav container">
+              <a href="index.html" class="nav-logo">Nice Travel</a>
+
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#gioi-thieu" class="nav-link">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                    <div class="dropdown">
+                        <a  href="/travel/tour" class="nav-link">Địa điểm du lịch <i class="fa fa-angle-down"></i></a>
+                        
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#thong-tin" class="nav-link">Thông tin</a>
+                    </li>
+                </ul>
+
+                <!-- icon close -->
+                <i class="ri-close-line nav-close" id="nav-close"></i>
+            </div>
+
+            <!-- icon user -->
+            <div class="nav-user">
+                <th:block th:unless="${#request.remoteUser}">
+							<div class="social-icons-subnav">
+								<a data-toggle="modal" href="/login" data-target=""><span  class="ri-user-3-line"></span>
+									</a>
+							</div>
+				</th:block>
+            </div>
+
+            <!-- icon toggle -->
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="ri-function-line"></i>
+            </div>
+
+
+        </nav>
+    </header>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Nice Travel</title>
+	<meta content="" name="description">
+	<meta content="" name="author">
+	<meta content="" name="keywords">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+	
+	<!-- font awesome CSS -->
+	<link th:href="@{/assets/font-awesome/css/font-awesome.css}" rel="stylesheet">
+	
+	 <!-- remixicon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.nicetravel.css}" />
+
+    <!-- slick sdn css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+
+    <!-- css responsive -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.responsive.css}">
+	
+	<!-- icon thanh địa chỉ -->
+	<link rel="shortcut icon" th:href="@{/assets/img/logoNiceIco.ico}">
+	
+</head>
+
+<body ng-app="booking-app" ng-controller="booking-ctrl">
+  <!-- icon noel dây treo -->
+    <img src="/assets/img/icon-noel/icon-noel-daytreo.png" alt="" class="icon-noel-daytreo">
+	<!-- preloader -->
+    <div class="bg-preloader-white"></div>
+    <div class="preloader-white">
+        <div class="mainpreloader">
+            <span></span>
+        </div>
+    </div>
+    <!-- preloader end -->
+    
+	<div class="content-wrapper">
+		<!-- header start -->
+		<div th:replace="/layout/_header2.html"></div>
+		<!-- header end -->
+		
+		<!-- <main start> -->
+		<div th:replace="${main}"></div>
+		<!-- </main end> -->
+
+		<!-- Footer Section Begin -->
+		<div th:replace="/layout/_footer2.html"></div>
+		<!-- Footer Section End -->
+
+		<!-- ScrolltoTop -->
+		<div id="totop" class="init">
+			<span class="ti-angle-up"></span>
+		</div>
+
+	
+
+	<!-- plugin JS -->
+	 <!-- ------------------------------ js ------------------------------ -->
+    <!-- jquery js -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <!-- slick sdn js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <!-- scroll reveal -->
+    <script src="/assets/js/scrollreveal.min.js"></script>
+
+    <!-- main js -->
+    <script src="/assets/js/main.js"></script>
+    
+    <!-- booking JS -->
+	<script src="/assets/js/booking-app.js"></script>
+	<!-- plugin JS -->
+	<script src="/assets/plugin/pluginson3step.js"></script>
+	<script src="/assets/plugin/bootstrap.min.js"></script>
+	<script src='/assets/plugin/bootstrap-datepicker.min.js'></script>
+	<script src="/assets/plugin/sticky.js"></script>
+	<!-- slider revolution  -->
+	<script src="/assets/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+	<script src="/assets/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	<!-- on3step JS -->
+	<script src="/assets/js/on3step.js"></script>
+	<script src="/assets/js/plugin-set.js"></script>
+	<script src="/assets/js/account/register/checkAgree.js"></script>
+	<script src="/assets/js/error/500.js"></script>
+</body>
+
+</html>

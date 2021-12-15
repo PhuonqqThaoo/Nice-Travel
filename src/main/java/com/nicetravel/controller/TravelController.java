@@ -58,7 +58,7 @@ public class TravelController {
 		
 		travelService.updateEX();
 		
-		return "travel/list";
+		return "travel/list2";
 	}
 
 	@RequestMapping("/detail/{slug}")

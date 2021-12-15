@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index2 :: dynamic(~{::main})}">
+
+<body>
+	  <!-- ------------------------------ main ------------------------------ -->
+    <main class="main">
+        <!-- ------------------------------ home ------------------------------ -->
+        <section class="home">
+            <!-- banner -->
+            <div class="home-banner">
+                <img src="assets/img/banner.jpg" alt="">
+            </div>
+
+            <!-- search -->
+            <div class="search container">
+                <form action="" class="search-flex" th:action="@{/tour/search/p=1}">
+                    <div class="form-control">
+                        <label for="">Điểm đi:</label>
+                        <select class="select" name="departurePlace" id="departurePlace">
+                            <option value=" ">Tất cả</option>
+                            <option value="Hồ chí minh">Hồ Chí Minh</option>
+                            <option value="Tân Bình">Tân Bình</option>
+                            <option value="Đà Lạt">Đà Lạt</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                            <option value="Phú Quốc">Phú Quốc</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="">Điểm đến:</label>
+                        <select class="select" name="destinationPlace" id="destinationPlace">
+                            <option value=" ">Tất cả</option>
+                            <option value="Hồ chí minh">Hồ Chí Minh</option>
+                            <option value="Tân Bình">Tân Bình</option>
+                            <option value="Đà Lạt">Đà Lạt</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                            <option value="Phú Quốc">Phú Quốc</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="">Ngày khởi hành</label>
+                        <input type="date"  name="startDate" id="startDate">
+                    </div>
+                    <div class="form-control">
+                        <label for="">Giá thấp nhất:</label>
+                        <select class="select"  name="price-min" id="price-min" >
+                           <option value="0">Tất cả</option>
+							<option value="2000000">2 triệu</option>
+							<option value="5000000">5 triệu</option>
+							<option value="10000000">10 triệu</option>
+							<option value="15000000">15 triệu</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="">Giá cao nhất:</label>
+                        <select name="price-max" id="price-max" class="select">
+                          <option value="50000000">Tất cả</option>
+							<option value="5000000">5 triệu</option>
+							<option value="10000000">10 triệu</option>
+							<option value="15000000">15 triệu</option>
+							<option value="20000000">20 triệu</option>
+							<option value="25000000">25 triệu</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <button type="submit" value="Search" class="btn" style="margin-top: 1.2rem; height: 2.5rem;">
+                            <i class="ri-search-line"></i> Tìm kiếm
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ------------------------------ features ------------------------------ -->
+        <section class="features container">
+            <div class="bg-img-1">
+                <div class="features-box">
+                    <h3>Đà Nẵng</h3>
+                    <span>cố đô Huế, phố cổ Hội An và thánh địa Mỹ Sơn</span>
+                    <p>Đà Nẵng nằm giữa ba di sản thế giới: cố
+                        đô Huế, phố cổ Hội An và thánh địa Mỹ Sơn. Đà Nẵng còn có nhiều
+                        danh thắng tuyệt đẹp say lòng du khách như Ngũ Hành Sơn, Bà Nà,
+                        bán đảo Sơn Trà, đèo Hải Vân, sông Hàn thơ mộng và cầu quay
+                        Sông Hàn – niềm tự hào của thành phố, và biển Mỹ Khê đẹp nhất
+                        hành tinh.</p>
+                </div>
+            </div>
+
+            <div class="bg-img-2">
+                <div class="features-box">
+                    <h3>Đà Lạt</h3>
+                    <span>Đà Lạt mộng mơ nơi mimosa và ngàn hoa
+                        khoe sắc</span>
+                    <p>Đà Lạt mộng mơ nơi mimosa và ngàn hoa
+                        khoe sắc, từ đồi Robin ngắm Hồ Tuyền Lâm, núi Voi, viếng Thiền
+                        Viện Trúc Lâm, thăm Dinh Bảo Đại, tản bộ dưới những tán thông,
+                        ngắm biệt thự cổ, nhấm nháp ly café ấm áp trong thời tiết se
+                        lạnh. Những chuyến xe ngựa thổ mộ chạy quanh Hồ Xuân Hương cũng
+                        là nét duyên của Đà Lạt.</p>
+                </div>
+            </div>
+
+            <div class="bg-img-3">
+                <div class="features-box">
+                    <h3>Phú Quốc</h3>
+                    <span>Phú Quốc là điểm nghỉ dưỡng, tham quan,
+                        và khám phá sinh thái tuyệt vời</span>
+                    <p>Phú Quốc là điểm nghỉ dưỡng, tham quan,
+                        và khám phá sinh thái tuyệt vời. Mũi Ông Đội, Đá Chào là thế
+                        giới san hô và cá biển sặc sỡ. Bãi Sao cát trắng mịn, dáng
+                        cong, nước xanh ngọc bích. Đặc sản danh tiếng cả nước là tiêu
+                        sọ, nước mắm, rượu sim, ngọc trai. Phú Quốc thực sự là một viên
+                        ngọc quý trên bản đồ Việt Nam.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ------------------------------ địa điểm yêu thích ------------------------------ -->
+        <section class="dia-diem-yeu-thich container">
+            <div class="title">
+                Địa điểm yêu thích
+                <p>Địa điểm được khách hàng yêu thích</p>
+            </div>
+            <div class="box">
+                <div class="box-1">
+                <a  href="/travel/tour?tid=9">
+                    <img src="https://media.travel.com.vn/destination/dg_211014_ha-noi.jpg" alt="">
+                    <div class="context">
+                        <h3>Hà Nội</h3>
+                        <span th:text="${countHaNoi}">3 tour</span>
+                        <div class="star-content">
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-half-s-fill"></i>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="box-1">
+                 <a  href="/travel/tour?tid=4">
+                    <img src="https://media.travel.com.vn/destination/dg_200914_Da Lat  (8).jpg" alt="">
+                    <div class="context">
+                        <h3>Đà Lạt</h3>
+                        <span th:text="${countDaLat}">3 tour</span>
+                        <div class="star-content">
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-half-s-fill"></i>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="box-1">
+                 <a  href="/travel/tour?tid=3">
+                    <img src="https://media.travel.com.vn/destination/dg_211014_phu-quoc.jpg" alt="">
+                    <div class="context">
+                        <h3>Phú Quốc</h3>
+                        <span th:text="${countPhuQuoc}">3 tour</span>
+                        <div class="star-content">
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-half-s-fill"></i>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="box-1">
+                 <a  href="/travel/tour?tid=8">
+                    <img src="assets/img/photo/dalat.jpg" alt="">
+                    <div class="context">
+                        <h3>Đà Nẵng</h3>
+                        <span th:text="${countDaNang}">3 tour</span>
+                        <div class="star-content">
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-s-fill"></i>
+                            <i class="ri-star-half-s-fill"></i>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ------------------------------ tour du lịch yêu thích ------------------------------ -->
+        <section class="tour-yeu-thich container">
+            <div class="title">
+                Tour du lịch yêu thích
+                <p>Những chuyến đi được khách hàng yêu thích</p>
+            </div>
+            <div class="box"  >
+                <div class="box-1" th:each="p: ${favoriteItems}">
+                <a th:href="@{|/travel/detail/${p.slug}|}">
+                    <!-- icon noel box -->
+                    <div class="box-icon-noel">
+                        <img th:src="@{/assets/img/khung-noel.png}" alt="" class="khung-noel">
+                        <img th:src="@{/assets/img/icon-noel/icon-noel-gau.png}" alt="" class="icon-noel-gau">
+                        <img th:src="@{/assets/img/icon-noel/icon-noel-chuong.png}" alt="" class="icon-noel-chuong">
+                        <img th:src="@{/assets/img/icon-noel/icon-noel-qua.png}" alt="" class="icon-noel-qua">
+                    </div>
+
+                    <img class="img" th:src="@{|/photos/travels/${p.id}/${p.img}|}" alt="">
+                    <div class="context">
+                        <p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate,
+									'dd-MM-yyyy')}]] - [[${#dates.format(p.endDate, 'dd')} -
+									${#dates.format(p.startDate, 'dd')}]] ngày</p>
+                        <h3 class="name">
+                           <a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a>
+                        </h3>
+                        <p>Số chỗ còn nhận: [[${p.quantityNew}]]</p>
+                        <p>Nơi khởi hành: [[${p.departurePlace}]]</p>
+                        <p>
+                        <h3 style="color: rgba(238, 82, 83, 1.0);">
+                           [[${#numbers.formatCurrency(p.price)}]] <span style="color: rgba(34, 47, 62,1.0); font-size: 1rem;">/ người</span></h3>
+                        </p>
+                        <div class="btn-box">
+                            <a th:href="@{|/booking/check?tour=${p.slug}|}" class="btn">Đặt ngay</a>
+                            <a href="#" class="btn"><i class="ri-heart-3-fill"></i></a>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+               
+                </div>
+            </div>
+        </section>
+
+        <!-- ------------------------------ ý kiến khách hàng ------------------------------ -->
+        <section class="y-kien-khach-hang container">
+            <div class="title">
+                Ý kiến khách hàng
+            </div>
+
+            <div class="y-kien-khach-hang-box">
+                <div class="box-khach-hang">
+                    <img src="assets/img/img-user/customer-1.jpg" alt="">
+                    <p>Vietravel đồng hành cùng đoàn chi nhánh cty cp thương mại xnk thủ đức trong hành ...</p>
+                    <h3>Khách hàng Nice Travel</h3>
+                </div>
+
+                <div class="box-khach-hang">
+                    <img src="assets/img/img-user/customer-1.jpg" alt="">
+                    <p>Thư phản hồi của khách hàng lê văn đủ tour phú quốc ngày 17/04/2021</p>
+                    <h3>Khách hàng Nice Travel</h3>
+                </div>
+
+                <div class="box-khach-hang">
+                    <img src="assets/img/img-user/customer-1.jpg" alt="">
+                    <p>Hành trình về miền di sản</p>
+                    <h3>Khách hàng Nice Travel</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
