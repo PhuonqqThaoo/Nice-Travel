@@ -218,7 +218,7 @@
                         <p>Nơi khởi hành: [[${p.departurePlace}]]</p>
                         <p>
                         <h3 style="color: rgba(238, 82, 83, 1.0);">
-                           [[${#numbers.formatCurrency(p.price)}]] <span style="color: rgba(34, 47, 62,1.0); font-size: 1rem;">/ người</span></h3>
+                           [[${#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}]] <span style="color: rgba(34, 47, 62,1.0); font-size: 1rem;">/ người</span></h3>
                         </p>
                         <div class="btn-box">
                             <a th:href="@{|/booking/check?tour=${p.slug}|}" class="btn">Đặt ngay</a>
@@ -229,7 +229,6 @@
                 </div>
                
                 </div>
-            </div>
         </section>
 
         <!-- ------------------------------ ý kiến khách hàng ------------------------------ -->

@@ -65,12 +65,11 @@ public class TravelController {
 	public String detail(Model model,@PathVariable("slug") String slug) {
 
 		Travel item = travelService.findTravelBySlug(slug);
-		List<Travel> list = travelService.getAllTravel();
-		model.addAttribute("items", list);
-
+		List<Travel> listFavo = travelService.getFavoriteTour();
+		model.addAttribute("favoriteItems", listFavo);
 		model.addAttribute("item", item);
 
-		return "travel/detail";
+		return "travel/detail2";
 	}
 
 	@RequestMapping("/tour")
