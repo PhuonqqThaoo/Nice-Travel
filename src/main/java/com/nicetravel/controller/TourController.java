@@ -42,7 +42,7 @@ public class TourController {
 			@RequestParam("price-min") BigDecimal pmin,
 			@RequestParam("price-max") BigDecimal pmax) {
 			
-			Pageable pageable = PageRequest.of(p-1, 6);
+			Pageable pageable = PageRequest.of(p-1, 9);
 
 			Page<Travel> list = travelService.searchTour2(depart, desti, sd, pmin, pmax,pageable);
 			model.addAttribute("items", list);
@@ -54,7 +54,7 @@ public class TourController {
 			
 
 			model.addAttribute("currentURL", request.getQueryString().toString());
-		return "travel/search";
+		return "travel/search2";
 
 			
 	}

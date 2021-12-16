@@ -76,7 +76,7 @@ public class TravelController {
 	public String tour(Model model, @RequestParam("tid") Optional<Integer> tid,@RequestParam(name="p", defaultValue ="1") int p) {
 		if (tid.isPresent()) {
 		//	List<Travel> list = travelService.findByTypeId(tid.get());
-			Pageable pageable = PageRequest.of(p-1, 6);
+			Pageable pageable = PageRequest.of(p-1, 9);
 			Page<Travel> list = travelService.findByTypeId(tid.get(),pageable);
 			
 			model.addAttribute("currentURL", request.getQueryString().toString());
@@ -84,11 +84,11 @@ public class TravelController {
 			int n =2;
 			model.addAttribute("n", n);
 		} else {
-			Pageable pageable = PageRequest.of(p-1, 6);
+			Pageable pageable = PageRequest.of(p-1, 9);
 			Page<Travel> list = travelService.getAll(pageable);
 			model.addAttribute("items", list);
 		}
-		return "travel/tour";
+		return "travel/tour2";
 	}
 	@RequestMapping("/like/{id}")
 	public String like(@PathVariable("id") Integer id, HttpServletRequest request) {
