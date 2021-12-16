@@ -1,0 +1,332 @@
+/* ------------------------------ google fonts ------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* ------------------------------ variables css ------------------------------ */
+:root {
+    --header-height: 3rem;
+
+    /* color */
+    --color-jade-dust: #00d2d3;
+    --color-imperial-primer: #222f3e;
+    --color-amour-red: #ee5253;
+    --color-pastel-red: #ff6b6b;
+    --color-body: #fff;
+
+    /* font weight */
+    --body-font: 'Roboto', sans-serif;
+    --biggest-font-size: 2.5rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+    --font-weight-400: 400;
+    --font-weight-500: 500;
+    --font-weigth-700: 700;
+
+    /* margenes bottom */
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-25: 1.25rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+
+    /* z index */
+    --z-tooltip: 10;
+    --z-fixed: 100;
+
+    /* hover overlay */
+    --img-transition: .3s;
+    --img-hidden: hidden;
+    --img-scale: scale(1.1);
+}
+
+@media screen and (min-width: 968px) {
+    :root {
+        --biggest-font-size: 4rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.75rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
+}
+
+/* ------------------------------ base ------------------------------ */
+/* khung noel */
+.box-icon-noel .khung-noel {
+    position: absolute;
+    width: 70%;
+    top: -1.8rem;
+    left: -1.3rem;
+}
+
+.box-icon-noel .icon-noel-gau {
+    position: absolute;
+    width: 20%;
+    bottom: 3rem;
+    transform: rotate(45deg);
+    z-index: -1;
+    opacity: .3;
+}
+
+.box-icon-noel .icon-noel-chuong {
+    position: absolute;
+    width: 40%;
+    bottom: 10rem;
+    left: 7rem;
+    transform: rotate(-20deg);
+    z-index: -1;
+    opacity: .2;
+}
+
+.box-icon-noel .icon-noel-qua {
+    position: absolute;
+    width: 15%;
+    bottom: 3rem;
+    right: 3rem;
+    transform: rotate(-20deg);
+    z-index: -1;
+    opacity: .6;
+}
+
+/* ------------------------------ header ------------------------------ */
+/* icon noel day treo */
+.icon-noel-daytreo {
+    position: fixed;
+    width: 30%;
+    top: 0;
+    left: 0;
+    opacity: .2;
+}
+
+
+
+/* ------------------------------ booking pay ------------------------------ */
+.booking-pay {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* thông tin cá nhân */
+.booking-pay__ca-nhan {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+}
+
+.booking-pay__title {
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-pay__title p {
+    padding: 1rem 0;
+    height: 70px;
+}
+
+.booking-pay__ca-nhan__thong-tin {
+    padding: 3rem 0;
+}
+
+.booking-pay__ca-nhan__thong-tin .form-control {
+    padding: 1rem 0;
+}
+
+
+/* thông tin chuyến đi  */
+.booking-pay__chuyen-di {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem;
+    background-color: rgba(200, 214, 229, .3);
+    border-radius: 1rem;
+}
+
+.booking-pay__chuyen-di__thong-tin {
+    padding: 3rem 0;
+}
+
+.booking-pay__chuyen-di__thong-tin .name {
+    min-height: 70px;
+    max-height: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.booking-pay__chuyen-di .thoi-gian {
+    background-color: var(--color-body);
+    border-radius: var(--mb-0-25);
+    padding: var(--mb-1);
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+}
+
+.booking-pay__chuyen-di .thoi-gian span {
+    font-weight: var(--font-weigth-700);
+}
+
+
+/* thông tin thanh toán */
+.booking-pay__thanh-toan {
+    padding: 0 1rem;
+}
+
+.detail {
+    padding-top: 3rem;
+    padding-bottom: 27px;
+    margin-bottom: 27px;
+    border-bottom: 1px solid #d5d5d5;
+    width: 100%;
+}
+
+.detail table td {
+    padding: 10px 0;
+}
+
+.detail table .total td {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19px;
+    text-transform: uppercase;
+    color: #2d4271;
+    border-top: 1 px solid #e7e7e7;
+    padding: 20px 0;
+}
+
+.detail table .total td.t-price {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    text-align: right;
+    color: #fd5056;
+    text-transform: lowercase;
+}
+
+.detail table .text-right {
+    text-align: right;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: right;
+    color: #2d4271;
+}
+
+.detail .btn-order {
+    background-color: #fd5056;
+    border: none;
+    font-size: 17px;
+    font-weight: 700;
+    height: 50px;
+    transition: .2s;
+}
+
+.detail .btn-order:hover {
+    background-color: #fd2d34;
+}
+
+.btn__trang-chu {
+    display: none;
+}
+
+
+/* responsive */
+@media screen and (min-width:768px) {
+    .booking-pay {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .booking-pay__ca-nhan__thong-tin {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .booking-pay__ca-nhan__thong-tin .form-control {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .booking-pay {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .booking-pay__ca-nhan {
+        width: 50%;
+    }
+
+    .booking-pay__chuyen-di {
+        width: 50%;
+        padding: 0;
+        background: none;
+    }
+
+    .booking-pay__chuyen-di .thoi-gian {
+        background-color: rgba(200, 214, 229, .3);
+    }
+
+    .booking-pay__thanh-toan {
+        width: 50%;
+    }
+
+    .booking-pay__chuyen-di__thong-tin__img-name {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .booking-pay__chuyen-di__thong-tin__img-name .img {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:1360px) {
+
+    .booking-pay {
+        margin-top: 3rem;
+        margin-bottom: 15vh;
+    }
+
+    .booking-pay__ca-nhan {
+        width: 33%;
+    }
+
+    .booking-pay__chuyen-di {
+        width: 33%;
+    }
+
+    .booking-pay__thanh-toan {
+        width: 33%;
+    }
+
+    .booking-pay__chuyen-di__thong-tin__img-name {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width:1660px) {
+
+    .booking-pay__chuyen-di__thong-tin__img-name {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .booking-pay__chuyen-di__thong-tin__img-name .img {
+        width: 100%;
+    }
+}
