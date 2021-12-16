@@ -50,7 +50,9 @@ public class BookingController {
 		else {
 			username = account.getUsername();
 		}
-
+		
+		List<Travel> listFavo = travelService.getFavoriteTour();
+		model.addAttribute("favoriteItems", listFavo);
 
 		System.out.println("user: " + accountService.findAccountsByUsername(username));
 		List<Travel> list = travelService.getAllTravel();
@@ -58,7 +60,7 @@ public class BookingController {
 		model.addAttribute("travel", travelService.findTravelBySlug(slug));
 		model.addAttribute("account", accountService.findAccountsByUsername(username));
 		System.out.println(username.toString());
-		return "booking/check";
+		return "booking/check2";
 	}
 
 }

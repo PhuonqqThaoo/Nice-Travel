@@ -76,6 +76,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public Account findAccountByIDCard(String id_Card) {
+        return accountRepository.findAccountByIDCard(id_Card);
+    }
+
+    @Override
     public Account findByVerificationCode(String code) {
         return accountRepository.findByVerificationCode(code);
     }

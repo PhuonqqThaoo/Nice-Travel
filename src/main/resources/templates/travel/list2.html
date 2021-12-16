@@ -190,46 +190,53 @@
         </section>
 
         <!-- ------------------------------ tour du lịch yêu thích ------------------------------ -->
-        <section class="tour-yeu-thich container">
-            <div class="title">
-                Tour du lịch yêu thích
-                <p>Những chuyến đi được khách hàng yêu thích</p>
-            </div>
-            <div class="box"  >
-                <div class="box-1" th:each="p: ${favoriteItems}">
-                <a th:href="@{|/travel/detail/${p.slug}|}">
-                    <!-- icon noel box -->
-                    <div class="box-icon-noel">
-                        <img th:src="@{/assets/img/khung-noel.png}" alt="" class="khung-noel">
-                        <img th:src="@{/assets/img/icon-noel/icon-noel-gau.png}" alt="" class="icon-noel-gau">
-                        <img th:src="@{/assets/img/icon-noel/icon-noel-chuong.png}" alt="" class="icon-noel-chuong">
-                        <img th:src="@{/assets/img/icon-noel/icon-noel-qua.png}" alt="" class="icon-noel-qua">
-                    </div>
-
-                    <img class="img" th:src="@{|/photos/travels/${p.id}/${p.img}|}" alt="">
-                    <div class="context">
-                        <p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate,
-									'dd-MM-yyyy')}]] - [[${#dates.format(p.endDate, 'dd')} -
-									${#dates.format(p.startDate, 'dd')}]] ngày</p>
-                        <h3 class="name">
-                           <a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}">Hành trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a>
-                        </h3>
-                        <p>Số chỗ còn nhận: [[${p.quantityNew}]]</p>
-                        <p>Nơi khởi hành: [[${p.departurePlace}]]</p>
-                        <p>
-                        <h3 style="color: rgba(238, 82, 83, 1.0);">
-                           [[${#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}]] <span style="color: rgba(34, 47, 62,1.0); font-size: 1rem;">/ người</span></h3>
-                        </p>
-                        <div class="btn-box">
-                            <a th:href="@{|/booking/check?tour=${p.slug}|}" class="btn">Đặt ngay</a>
-                            <a href="#" class="btn"><i class="ri-heart-3-fill"></i></a>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-               
-                </div>
-        </section>
+		<section class="tour-yeu-thich container">
+			<div class="title">
+				Tour du lịch yêu thích
+				<p>Những chuyến đi được khách hàng yêu thích</p>
+			</div>
+			<div class="box">
+				<div class="box-1" th:each="p: ${favoriteItems}">
+					<a th:href="@{|/travel/detail/${p.slug}|}"> <!-- icon noel box -->
+						<div class="box-icon-noel">
+							<img th:src="@{/assets/img/khung-noel.png}" alt=""
+								class="khung-noel"> <img
+								th:src="@{/assets/img/icon-noel/icon-noel-gau.png}" alt=""
+								class="icon-noel-gau"> <img
+								th:src="@{/assets/img/icon-noel/icon-noel-chuong.png}" alt=""
+								class="icon-noel-chuong"> <img
+								th:src="@{/assets/img/icon-noel/icon-noel-qua.png}" alt=""
+								class="icon-noel-qua">
+						</div> <img class="img" th:src="@{|/photos/travels/${p.id}/${p.img}|}"
+						alt="">
+						<div class="context">
+							<p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate,
+								'dd-MM-yyyy')}]] - [[${#dates.format(p.endDate, 'dd')} -
+								${#dates.format(p.startDate, 'dd')}]] ngày</p>
+							<h3 class="name">
+								<a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}">Hành
+									trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a>
+							</h3>
+							<p th:if="${p.quantityNew} > 0">Số chỗ còn nhận: [[${p.quantityNew}]]</p>
+							<p th:if="${p.quantityNew} <= 0">Số chỗ còn nhận: Hết chỗ</p>
+							<p>Nơi khởi hành: [[${p.departurePlace}]]</p>
+							<p>
+							<h3 style="color: rgba(238, 82, 83, 1.0);">
+								[[${#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}]] <span
+									style="color: rgba(34, 47, 62, 1.0); font-size: 1rem;">/
+									người</span>
+							</h3>
+							</p>
+							<div class="btn-box">
+								<a th:href="@{|/booking/check?tour=${p.slug}|}" class="btn" th:if="${p.quantityNew} > 0">Đặt ngay</a>
+								<a class="btn" th:if="${p.quantityNew} <= 0">Hết chỗ</a>
+								<a href="#" class="btn"><i class="ri-heart-3-fill"></i></a>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
 
         <!-- ------------------------------ ý kiến khách hàng ------------------------------ -->
         <section class="y-kien-khach-hang container">

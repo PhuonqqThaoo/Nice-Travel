@@ -64,14 +64,25 @@ public class UserServices {
         return accountService.getAllAccount();
     }
 
+    public void registerAccount(String username) throws UsernameNotFoundException {
+        Account account = accountService.findAccountsByUsername(username);
+        if (account != null) {
+            throw new UsernameNotFoundException("Username đã tồn tại");
+        }
+    }
+
+
     public void register(Account account, String siteURL)
             throws UnsupportedEncodingException, MessagingException {
         String encodedPassword = passwordEncoder.encode(account.getPassword());
         account.setPassword(encodedPassword);
 
         String randomCode = RandomString.make(64);
+        account.setImg("user.png");
         account.setVerificationCode(randomCode);
         account.setIsEnable(false);
+        account.setAddress(null);
+        account.setProvider(null);
 
         accountService.createAccount(account);
 

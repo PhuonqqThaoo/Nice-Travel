@@ -55,6 +55,8 @@ public class TravelStaffController {
 							 @RequestParam(name="page",defaultValue = "1") int page,
 							 @RequestParam(name="pageList",defaultValue = "1") int pageList, HttpServletRequest request) {
 		String username = request.getRemoteUser();
+//		Travel travels = travelService.findTravelById();
+//		model.addAttribute("travel", travels);
 		model.addAttribute("account", accountService.findAccountsByUsername(username));
 		Page<Travel> listByTravelInMonth = travelService.getTravelInMonth(page-1, SIZE);
 		model.addAttribute("listByTravelInMonth", listByTravelInMonth.getContent());
@@ -138,30 +140,41 @@ public class TravelStaffController {
 		return new RedirectView("/staff/tour-du-lich", true);
 	}
 
-	@GetMapping("/delete")
-	public String doGetDeleted(@RequestParam(name = "id", required = true) Integer id, RedirectAttributes redirect) {
-		try {
-			travelService.deleteTravelAdmin(id);
-			String successMessage = "Travel " + id + " was deleted!";
-			redirect.addFlashAttribute("successMessage", successMessage);
-		} catch (Exception e) {
-			e.printStackTrace();
-			redirect.addFlashAttribute("errorMessage", "Cannot delete travel, please try again!");
-		}
-		return "redirect:/staff/tour-du-lich";
-	}
 
 	@PostMapping("/create")
 	public String doPostCreate(@Valid @ModelAttribute("travelRequest") Travel travelRequest, BindingResult result,
-			RedirectAttributes redirect) {
+			RedirectAttributes redirect,  @RequestParam("fileImage") MultipartFile multipartFile, HttpServletRequest request) {
 		String errorMessage = null;
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
 		try {
 			// check if userRequest is not valid
 			if (result.hasErrors()) {
 				errorMessage = "Travel is not valid";
 			} else {
+				String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+				System.out.println(fileName);
+
+				travelRequest.setImg(fileName);
+				travelRequest.setTravel_account_id(account);
 				travelService.saveTravel(travelRequest);
-				String successMessage = "Travel " + travelRequest.getName() + " was created!";
+				String uploadDir = "photos/" + "travels/" + travelRequest.getId();
+				System.out.println("dir: " + uploadDir);
+
+				Path uploadPathTravel = Paths.get(uploadDir);
+
+				if (!Files.exists(uploadPathTravel)) {
+					Files.createDirectories(uploadPathTravel);
+				}
+
+				try (InputStream inputStream = multipartFile.getInputStream()) {
+					Path filePath = uploadPathTravel.resolve(fileName);
+					Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+				} catch (IOException e) {
+					throw new IOException("Could not save upload file: " + fileName);
+				}
+
+				FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+				String successMessage = "Travel " + travelRequest.getName() + " was create";
 				redirect.addFlashAttribute("successMessage", successMessage);
 			}
 		} catch (Exception e) {
@@ -173,6 +186,20 @@ public class TravelStaffController {
 			redirect.addFlashAttribute("errorMessage", errorMessage);
 		}
 
+		return "redirect:/staff/tour-du-lich";
+	}
+
+
+	@GetMapping("/delete")
+	public String doGetDeleted(@RequestParam(name = "id", required = true) Integer id, RedirectAttributes redirect) {
+		try {
+			travelService.deleteTravelAdmin(id);
+			String successMessage = "Travel " + id + " was deleted!";
+			redirect.addFlashAttribute("successMessage", successMessage);
+		} catch (Exception e) {
+			e.printStackTrace();
+			redirect.addFlashAttribute("errorMessage", "Cannot delete travel, please try again!");
+		}
 		return "redirect:/staff/tour-du-lich";
 	}
 }
