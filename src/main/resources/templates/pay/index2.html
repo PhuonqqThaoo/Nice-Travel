@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index2 :: dynamic(~{::head},~{::main})}">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking - Thông tin thanh toán | Nice Travel</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/img/logoNiceIco.ico}">
+
+    <!-- date jquery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+    <!-- remixicon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.nicetravel.css}" />
+
+    <!-- slick sdn css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+
+    <!-- css responsive -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.responsive.css}">
+
+    <link rel="stylesheet" th:href="@{/assets/css/breadcrumb/breadcrumb.css}">
+
+    <link rel="stylesheet" th:href="@{/assets/css/style.booking-pay.css}">
+</head>
+<body>
+	<main>
+		<form method="post" action="/thanh-toan" th:object="${item}">
+		<input type="hidden" th:value="${item.bookingId.id}" name="idBooking">
+        <input type="hidden" th:value="${item.price}" name="price">
+		<ul class="breadcrumb" th:if="${item.bookingId.payBoolean == false}">
+            <li><a href="#">Đặt chuyến đi</a></li>
+            <li><a href="#">Thông tin</a></li>
+            <li>Thanh toán</li>
+        </ul>
+        <ul class="breadcrumb" th:if="${item.bookingId.payBoolean == true}">
+            <li><a href="#">Chuyến đi đã đặt</a></li>
+            <li>Thông tin</li>
+        </ul>
+        <!-- ------------------------------ booking pay ------------------------------ -->
+        <div class="booking-pay">
+            <!-- thông tin cá nhân -->
+            <div class="booking-pay__ca-nhan">
+                <div class="booking-pay__title">
+                    <h2>Thông tin cá nhân</h2>
+                    <p>Là thông tin cần thiết để công ty liên hệ khách hàng.</p>
+                </div>
+                <hr>
+                <div class="booking-pay__ca-nhan__thong-tin">
+                    <div class="form-control">
+                        <label for="">Họ tên:</label>
+                        <p style="padding: .5rem 0;">[[${item.bookingId.booking_account_id.fullname}]]</p>
+                    </div>
+                    <div class="form-control">
+                        <label for="">Email:</label>
+                        <p style="padding: .5rem 0;">[[${item.bookingId.booking_account_id.email}]]</p>
+                    </div>
+                    <div class="form-control">
+                        <label for="">Số điện thoại:</label>
+                        <p style="padding: .5rem 0;">[[${item.bookingId.booking_account_id.phone}]]</p>
+                    </div>
+                    <div class="form-control">
+                        <label for="">CMND/CCCD:</label>
+                        <p style="padding: .5rem 0;">[[${item.bookingId.booking_account_id.id_Card}]]</p>
+                    </div>
+                    <div class="form-control" style="width: 100%;">
+                        <label for="">Địa chỉ:</label>
+                        <p style="padding: .5rem 0;">[[${item.bookingId.booking_account_id.address}]]</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- thông tin chuyến đi -->
+            <div class="booking-pay__chuyen-di">
+                <div class="booking-pay__title">
+                    <h2>Thông tin chuyến đi</h2>
+                    <p>Là thông tin tóm tắt về chuyến đi khách hàng đã đặt.</p>
+                </div>
+                <hr>
+                <div class="booking-pay__chuyen-di__thong-tin">
+                    <div class="booking-pay__chuyen-di__thong-tin__img-name">
+                        <div class="img">
+                            <img th:src="@{|/assets/img/${item.travelId.img}|}" alt="">
+                        </div>
+                        <h3 class="name">
+                            <a href="#">Vũng Tàu "Biển Hát " - Nhà Úp Ngược - Bảo Tàng Bà Rịa -
+                                Bảo Tàng Bà Rịa - Bảo Tàng Bà Rịa - Bảo Tàng Bà Rịa</a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="thoi-gian">
+                    <p>Khởi hành <span>[[${item.travelId.hour}]]:00 [[${#dates.format(item.travelId.startDate, 'dd-MM-yyyy')}]]</span></p>
+                    <p>Thời gian <span>[[${#dates.format(item.travelId.endDate, 'dd')} - ${#dates.format(item.travelId.startDate, 'dd')}]] ngày</span></p>
+                    <p>Nơi khởi hành <span>[[${item.travelId.departurePlace}]]</span></p>
+                    <p>Số chỗ còn nhận <span>[[${item.travelId.quantityNew}]]</span></p>
+                </div>
+            </div>
+
+            <!-- thông tin thanh toán -->
+            <div class="booking-pay__thanh-toan">
+                <div class="booking-pay__title">
+                    <h2>Thông tin thanh toán</h2>
+                    <p>Tóm tắt số tiền và số hàng khách.</p>
+                </div>
+                <hr>
+                <div class="detail">
+                    <table style="width: 100%;">
+                        <tbody>
+                            <tr>
+                                <td>Người lớn</td>
+                                <td class="t-price text-right" id="AdultPrice">[[${item.qtyNl}]] x [[${#numbers.formatDecimal(item.travelId.price * item.qtyNl, 0, 'COMMA', 0, 'POINT')}]]₫</td>
+                            </tr>
+                            <tr>
+                                <td>Trẻ em</td>
+                                <td class="t-price text-right" id="ChildrenPrice">[[${item.qtyTe}]] x [[${#numbers.formatDecimal((item.travelId.price - (item.travelId.price*0.1)) * item.qtyTe, 0, 'COMMA', 0, 'POINT')}]]₫</td>
+                            </tr>
+                            <tr>
+                                <td>Trẻ nhỏ</td>
+                                <td class="t-price text-right" id="SmallChildrenPrice">[[${item.qtyTn}]] x [[${#numbers.formatDecimal((item.travelId.price - (item.travelId.price*0.3)) * item.qtyTn, 0, 'COMMA', 0, 'POINT')}]]₫</td>
+                            </tr>
+                            <tr>
+                                <td>Em bé</td>
+                                <td class="t-price text-right" id="BabyPrice">[[${item.qtyEb}]] x [[${#numbers.formatDecimal((item.travelId.price - (item.travelId.price*0.5)) * item.qtyEb, 0, 'COMMA', 0, 'POINT')}]]₫</td>
+                            </tr>
+                            <tr class="total">
+                                <td>Tổng cộng</td>
+                                <td class="t-price text-right" id="TotalPrice">[[${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')}]] ₫</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-order" style="width:100% " th:if="${item.bookingId.payBoolean == false}">
+                            THANH TOÁN PAYPAL
+                        </button>
+                        <button class="btn btn-order" disabled="disabled" style="width:100% " th:if="${item.bookingId.payBoolean == true}">
+                            ĐÃ THANH TOÁN
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+	</main>
+</body>
+</html>

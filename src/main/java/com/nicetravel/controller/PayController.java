@@ -43,7 +43,7 @@ public class PayController {
 	public String index(@PathVariable("id") Integer id,Model model){
 		BookingDetail detail = bookingDetailService.findByIdBooking(id);
 		model.addAttribute("item", detail);
-		return "pay/index";
+		return "pay/index2";
 	}
 	
 	@PostMapping("/thanh-toan")
@@ -52,7 +52,7 @@ public class PayController {
 		String successUrl = "http://localhost:8081/" + URL_PAYPAL_SUCCESS;
 		try {
 			Payment payment = paymentService.createPayment(
-					price,
+					price / 23000,
 					"USD",
 					"paypal",
 					"sale",
@@ -71,7 +71,7 @@ public class PayController {
 	}
 	@GetMapping(URL_PAYPAL_CANCEL)
 	public String cancelPay(){
-		return "pay/cancel";
+		return "pay/cancel2";
 	}
 	@GetMapping(URL_PAYPAL_SUCCESS)
 	public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId){
@@ -89,7 +89,7 @@ public class PayController {
 			paymentService.createPayment(pay);
 			
 			if(payment.getState().equals("approved")){
-				return "pay/success";
+				return "pay/success2";
 			}
 		} catch (PayPalRESTException e) {
 			log.error(e.getMessage());
