@@ -10,6 +10,9 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="assets/img/logoNiceIco.ico">
 
+    <!-- date jquery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
     <!-- remixicon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
@@ -117,7 +120,7 @@
                     </div>
                     <div class="form-control">
                         <label for="">Ngày khởi hành</label>
-                        <input type="date">
+                        <input type="text" id="datepicker" placeholder="dd/mm/yyyy">
                     </div>
                     <div class="form-control">
                         <label for="">Giá cao nhất:</label>
@@ -672,6 +675,7 @@
     <!-- jquery js -->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
     <!-- slick sdn js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
@@ -681,6 +685,14 @@
 
     <!-- main js -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat: 'dd/mm/yy'
+            });
+        });
+    </script>
 
 </body>
 
