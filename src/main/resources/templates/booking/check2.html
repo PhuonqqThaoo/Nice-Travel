@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index2 :: dynamic(~{::main})}" lang="en">
+
+<body>
+    <main class="main">
+        <ul class="breadcrumb">
+            <li><a href="#">Nhập thông tin</a></li>
+            <li>Thanh toán</li>
+        </ul>
+        <!-- ------------------------------ booking ------------------------------ -->
+        <section class="booking">
+            <!-- booking header -->
+            <div class="booking-header">
+                <!-- img -->
+                <div class="booking-header__img">
+                    <img th:src="@{|/assets/img/${travel.img}|}" alt="">
+                </div>
+
+                <!-- name - thông tin chung -->
+                <div class="booking-header__name-thong-tin">
+                    <!-- <h4><i class="ri-file-4-line"></i> Mã đơn hàng: 1</h4> -->
+                    <h3 class="name">[[${travel.name}]]</h3>
+
+                    <div class="thoi-gian">
+							<p>Khởi hành <span th:text="${travel.hour}"></span><span>:00</span> <span th:text="${#dates.format(travel.startDate, 'dd/MM/yyyy')}"></span></p>
+							<p>
+								Thời gian <span>[[${#dates.format(travel.endDate, 'dd')} - ${#dates.format(travel.startDate, 'dd')}]] ngày</span>
+							</p>
+							<p>
+								Nơi khởi hành <span th:text="${departurePlace}"></span>
+							</p>
+							<p>
+								Số chỗ còn nhận <span th:text="${travel.quantityNew}"></span>
+							</p>
+						</div>
+                </div>
+            </div>
+
+            <!-- thông tin đặt tour -->
+            <div class="booking-infor">
+                <!-- thông tin khách hàng -->
+                <div class="booking-infor__customer">
+                    <div class="title">Thông tin cá nhân</div>
+                    <form action="">
+                        <div class="form-control">
+                            <label for="">Họ tên:</label>
+                            <input type="text" id="fullname" th:value="${account.fullname}">
+                            <div id="accountId" style="display: none">[[${account.id}]]</div>
+                        </div>
+                        <div class="form-control">
+                            <label for="">Email:</label>
+                            <input type="email" id="email" th:value="${account.email}">
+                        </div>
+                        <div class="form-control">
+                            <label for="">Số điện thoại:</label>
+                            <input type="text" id="phone" th:value="${account.phone}">
+                        </div>
+                        <div class="form-control">
+                            <label for="">Địa chỉ:</label>
+                            <input type="text" id="address" th:value="${account.address}">
+                        </div>
+                    </form>
+
+                    <div class="title">Hành khách</div>
+                    <div class="hang-khach">
+                        <div class="change">
+                            <div class="change-title">
+                                <h4>Người lớn</h4>
+                                <p>&gt; 12 tuổi</p>
+                            </div>
+                            <div class="change-number">
+                                <span class="minus btn-click"><i class="ri-indeterminate-circle-line" id="adultMinus" ng-click="adultMinus()"></i></span>
+                                <span class="number" id="adult">1</span>
+                                <span class="plus btn-click"><i class="ri-add-circle-line" id="adultPlus" ng-click="adultPlus()"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="change">
+                            <div class="change-title">
+                                <h4>Trẻ em</h4>
+                                <p>Từ 5 - 11 tuổi</p>
+                            </div>
+                            <div class="change-number">
+                                <span class="minus btn-click"><i class="ri-indeterminate-circle-line" id="childrenMinus" ng-click="childrenMinus()"></i></span>
+                                <span class="number" id="children">0</span>
+                                <span class="plus btn-click"><i class="ri-add-circle-line" id="childrenPlus" ng-click="childrenPlus()"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="change">
+                            <div class="change-title">
+                                <h4>Trẻ nhỏ</h4>
+                                <p>Từ 2 - 4 tuổi</p>
+                            </div>
+                            <div class="change-number">
+                                <span class="minus btn-click"><i class="ri-indeterminate-circle-line" id="smallchildrenMinus" ng-click="smallchildrenMinus()"></i></span>
+                                <span class="number" id="smallchildren">0</span>
+                                <span class="plus btn-click"><i class="ri-add-circle-line" id="smallchildrenPlus" ng-click="smallchildrenPlus()"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="change">
+                            <div class="change-title">
+                                <h4>Em bé</h4>
+                                <p>Từ 0 - 2 tuổi</p>
+                            </div>
+                            <div class="change-number">
+                                <span class="minus btn-click"><i class="ri-indeterminate-circle-line"
+                                        id="babyMinus" ng-click="babyMinus()"></i></span>
+                                <span class="number" id="baby">0</span>
+                                <span class="plus btn-click"><i class="ri-add-circle-line" id="babyPlus" ng-click="babyPlus()"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ------------------------------ lưu ý covid 19 ------------------------------ -->
+                    <section class="travel-details__luu-y">
+                        <h3 class="title">Phòng dịch covid 19</h3>
+                        <ul>
+                            <li>Việc điều chỉnh yêu cầu xét nghiệm covid và mũi tiêm có thể sẽ thay đổi theo quy định
+                                hiện hành của
+                                Cơ quan Quản lý Nhà nước có thẩm quyền. Vui lòng liên hệ nhân viên tư vấn để biết thêm
+                                chi tiết.
+                            </li>
+                            <li>Trong trường hợp trong đoàn có phát sinh ca nghi nhiễm/nhiễm covid 19, khách hàng (bao
+                                gồm cả các
+                                trường hợp được xác định là F1) có trách nhiệm phối hợp với Vietravel và chính quyền địa
+                                phương để
+                                thực hiện các biện pháp cách ly/ điều trị theo quy định.</li>
+                            <li>Các chi phí phát sinh trong quá trình cách ly điều trị, bao gồm nhưng không giới hạn các
+                                chi phí xét
+                                nghiệm, cách ly y tế, vận chuyển, lưu trú, bữa ăn, điều trị, chi phí cá nhân khác… sẽ
+                                không nằm
+                                trong chi phí tour, dịch vụ và khách hàng tự chịu trách nhiệm chi trả.</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <!-- tổng tiền -->
+                <div class="booking-infor__money">
+                    <div class="title">
+                        <h4>Tóm tắt đặt chỗ</h4>
+                    </div>
+                    <div class="lich-trinh-time">
+                        <h5><i class="ri-timer-line"></i> Ngày khởi hành</h5>
+                        <p>[[${travel.hour}]]:00 - [[${#dates.format(travel.startDate, 'dd-MM-yyyy')}]]</p>
+                    </div>
+                    <div class="lich-trinh-time">
+                        <h5><i class="ri-timer-line"></i> Ngày kết thúc</h5>
+                        <p>[[${travel.hour}]]:00 - [[${#dates.format(travel.endDate, 'dd-MM-yyyy')}]]</p>
+                    </div>
+                    <div class="strikethrough"></div>
+                    <h5 style="font-weight: 700;">Nơi đến</h5>
+                    <div class="noi-den">
+                        <img th:src="@{|/assets/img/${travel.img}|}" alt="">
+                        <div id="travelId" style="display: none">[[${travel.id}]]</div>
+                    	<div id="qtynew" style="display: none">[[${travel.quantityNew}]]</div>
+                        <div class="noi-den__name">
+                            <div>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                            </div>
+                            <h3 class="name">[[${travel.name}]]</h3>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <table style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <th class="l1" style="text-align: left;">Hành khách</th>
+                                    <th class="l2 text-right">
+                                        <p class="add-more">
+                                            <p>{{load.qtyAdult}} người lớn<br>{{load.qtyChildren}} trẻ em<br>{{load.qtySmallchildren}} trẻ nhỏ<br>{{load.qtyBaby}} em bé</p>
+                                        </p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>Người lớn</td>
+                                    <td class="t-price text-right" id="AdultPrice">{{load.qtyAdult}} x {{[[${travel.price}]] * load.qtyAdult | number}}₫</td>
+                                </tr>
+                                <tr>
+                                    <td>Trẻ em</td>
+                                    <td class="t-price text-right" id="ChildrenPrice">{{load.qtyChildren}} x {{(([[${travel.price}]] - ([[${travel.price}]] * 0.1)) * load.qtyChildren)  | number}}₫</td>
+                                </tr>
+                                <tr>
+                                    <td>Trẻ nhỏ</td>
+                                    <td class="t-price text-right" id="SmallChildrenPrice">{{load.qtySmallchildren}} x {{(([[${travel.price}]] - ([[${travel.price}]] * 0.3)) * load.qtySmallchildren) | number}}₫</td>
+                                </tr>
+                                <tr>
+                                    <td>Em bé</td>
+                                    <td class="t-price text-right" id="BabyPrice">{{load.qtyBaby}} x {{(([[${travel.price}]] - ([[${travel.price}]] * 0.5)) * load.qtyBaby) | number}}₫</td>
+                                </tr>
+                                <tr class="total">
+                                    <td>Tổng cộng</td>
+                                    <td class="t-price text-right" id="TotalPrice">{{([[${travel.price}]] * load.qtyAdult) + (([[${travel.price}]] - ([[${travel.price}]] * 0.1)) * load.qtyChildren) + (([[${travel.price}]] - ([[${travel.price}]] * 0.3)) * load.qtySmallchildren) + (([[${travel.price}]] - ([[${travel.price}]] * 0.5)) * load.qtyBaby) | number}}₫</td>
+                                    <div id="total" style="display: none">{{([[${travel.price}]] * load.qtyAdult) + (([[${travel.price}]] - ([[${travel.price}]] * 0.1)) * load.qtyChildren) + (([[${travel.price}]] - ([[${travel.price}]] * 0.3)) * load.qtySmallchildren) + (([[${travel.price}]] - ([[${travel.price}]] * 0.5)) * load.qtyBaby)}}</div>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <button class="btn btn-primary btn-order" style="width:100%" ng-click="booking.purchaser()">
+                                ĐẶT NGAY
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ------------------------------ tour du lịch yêu thích ------------------------------ -->
+		<section class="tour-yeu-thich container">
+			<div class="title">
+				Tour du lịch yêu thích
+				<p>Những chuyến đi được khách hàng yêu thích</p>
+			</div>
+			<div class="box">
+				<div class="box-1" th:each="p: ${favoriteItems}">
+					<a th:href="@{|/travel/detail/${p.slug}|}"> <!-- icon noel box -->
+						<div class="box-icon-noel">
+							<img th:src="@{/assets/img/khung-noel.png}" alt=""
+								class="khung-noel"> <img
+								th:src="@{/assets/img/icon-noel/icon-noel-gau.png}" alt=""
+								class="icon-noel-gau"> <img
+								th:src="@{/assets/img/icon-noel/icon-noel-chuong.png}" alt=""
+								class="icon-noel-chuong"> <img
+								th:src="@{/assets/img/icon-noel/icon-noel-qua.png}" alt=""
+								class="icon-noel-qua">
+						</div> <img class="img" th:src="@{|/photos/travels/${p.id}/${p.img}|}"
+						alt="">
+						<div class="context">
+							<p>[[${p.hour}]]:00 - [[${#dates.format(p.startDate,
+								'dd-MM-yyyy')}]] - [[${#dates.format(p.endDate, 'dd')} -
+								${#dates.format(p.startDate, 'dd')}]] ngày</p>
+							<h3 class="name">
+								<a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}">Hành
+									trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a>
+							</h3>
+							<p th:if="${p.quantityNew} > 0">Số chỗ còn nhận: [[${p.quantityNew}]]</p>
+							<p th:if="${p.quantityNew} <= 0">Số chỗ còn nhận: Hết chỗ</p>
+							<p>Nơi khởi hành: [[${p.departurePlace}]]</p>
+							<p>
+							<h3 style="color: rgba(238, 82, 83, 1.0);">
+								[[${#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}]] <span
+									style="color: rgba(34, 47, 62, 1.0); font-size: 1rem;">/
+									người</span>
+							</h3>
+							</p>
+							<div class="btn-box">
+								<a th:href="@{|/booking/check?tour=${p.slug}|}" class="btn" th:if="${p.quantityNew} > 0">Đặt ngay</a>
+								<a class="btn" th:if="${p.quantityNew} <= 0">Hết chỗ</a>
+								<a href="#" class="btn"><i class="ri-heart-3-fill"></i></a>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

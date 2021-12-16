@@ -31,8 +31,9 @@
 							<span>/ người</span>
 						</h2>
 						<div class="btn__thanh-toan">
-							<a href="" class="btn">Đặt ngay</a> <a href="" class="btn">Liên
-								hệ tư vấn</a>
+							<a th:href="@{|/booking/check?tour=*{slug}|}" class="btn" th:if="*{quantityNew} > 0">Đặt ngay</a>
+							<a disabled="disabled" class="btn" th:if="*{quantityNew} <= 0" >Hết chỗ</a>  
+							<a href="" class="btn">Liên hệ tư vấn</a>
 						</div>
 					</div>
 				</div>
@@ -40,7 +41,7 @@
 				<div class="travel-details-header-box-3-4">
 					<!-- img -->
 					<div class="travel-details-header-box-3">
-						<img src="assets/img/photo/dalat.jpg" alt="">
+						<img th:src="@{|/assets/img/*{img}|}" alt="">
 					</div>
 
 					<!-- thời gian - miêu tả -->
@@ -58,13 +59,9 @@
 							thú v.v…</p>
 
 						<div class="thoi-gian">
+							<p>Khởi hành <span th:text="*{hour}"></span><span>:00</span> <span th:text="*{#dates.format(startDate, 'dd/MM/yyyy')}"></span></p>
 							<p>
-								Khởi hành <span th:text="*{hour}"></span><span>:00</span> <span
-									th:text="*{#dates.format(startDate, 'dd/MM/yyyy')}"></span>
-							</p>
-							<p>
-								Thời gian <span>[[*{#dates.format(endDate, 'dd')} -
-									*{#dates.format(startDate, 'dd')}]] ngày</span>
+								Thời gian <span>[[*{#dates.format(endDate, 'dd')} - *{#dates.format(startDate, 'dd')}]] ngày</span>
 							</p>
 							<p>
 								Nơi khởi hành <span th:text="*{departurePlace}"></span>
@@ -154,7 +151,8 @@
 								<a th:href="@{|/travel/detail/${p.slug}|}" th:utext="${p.name}">Hành
 									trình xanh Cần Giờ - Vàm Sát (Nhóm 8 khách)</a>
 							</h3>
-							<p>Số chỗ còn nhận: [[${p.quantityNew}]]</p>
+							<p th:if="${p.quantityNew} > 0">Số chỗ còn nhận: [[${p.quantityNew}]]</p>
+							<p th:if="${p.quantityNew} <= 0">Số chỗ còn nhận: Hết chỗ</p>
 							<p>Nơi khởi hành: [[${p.departurePlace}]]</p>
 							<p>
 							<h3 style="color: rgba(238, 82, 83, 1.0);">
@@ -164,8 +162,9 @@
 							</h3>
 							</p>
 							<div class="btn-box">
-								<a th:href="@{|/booking/check?tour=${p.slug}|}" class="btn">Đặt
-									ngay</a> <a href="#" class="btn"><i class="ri-heart-3-fill"></i></a>
+								<a th:href="@{|/booking/check?tour=${p.slug}|}" class="btn" th:if="${p.quantityNew} > 0">Đặt ngay</a>
+								<a class="btn" th:if="${p.quantityNew} <= 0">Hết chỗ</a>
+								<a href="#" class="btn"><i class="ri-heart-3-fill"></i></a>
 							</div>
 						</div>
 					</a>
