@@ -82,6 +82,18 @@
     display: none;
 }
 
+.travel_bo-loc .card ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+    padding: 0 1rem;
+}
+.travel_bo-loc .card ul li {
+    width: 50%;
+    font-weight: var(--font-weight-500);
+}
+
 /* Danh sách chuyến đi */
 .travel_danh-sach-chuyen-di {
     padding: 2rem;
@@ -152,6 +164,8 @@
         display: initial;
         padding: 1rem;
     }
+
+
 
     .bo-loc_title {
         font-weight: var(--font-weigth-700);
