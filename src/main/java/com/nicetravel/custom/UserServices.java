@@ -212,6 +212,7 @@ public void updateResetPasswordToken(String token, String email) throws Username
         String subject = "Xác nhận hủy tour đã đặt";
         String content = "Thân chào <b>[[name]]</b>,<br>"
                 + "Bạn có chắc muốn hủy tour đã chọn:<br>"
+                + "<h4>[[TourName]]</h4>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">XÁC NHẬN</a></h3>"
                 + "Bỏ qua email nếu bạn không muốn hủy<br>"
                 + "Cảm ơn bạn,<br>"
@@ -225,6 +226,7 @@ public void updateResetPasswordToken(String token, String email) throws Username
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", booking.getBooking_account_id().getUsername());
+//        content = content.replace("[[TourName]]", booking.
         String verifyURL = siteURL + "/verify?code=" + booking.getVerification_code();
 
         content = content.replace("[[URL]]", verifyURL);

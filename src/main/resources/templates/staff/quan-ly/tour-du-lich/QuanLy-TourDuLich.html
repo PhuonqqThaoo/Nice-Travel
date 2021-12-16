@@ -162,7 +162,7 @@
                                             <tr th:each="p,i : ${listByTravelInMonth}">
                                                 <td th:text = "${i.index+1}"></th>
                                                 <td style="width: 17%;">
-                                                    <img th:src="@{${travelRequest.getTravelPhotosImagePath()}}" style="width: 100%;" alt="">
+                                                    <img th:src="@{${p.getTravelPhotosImagePath()}}" style="width: 100%;" alt="">
                                                 </td>
                                                 <td><h5 style="font-weight: 700;" th:utext="${p.name}"></h5></td>
                                                 <td th:text = "${p.departurePlace}"></td>

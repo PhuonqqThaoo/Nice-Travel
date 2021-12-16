@@ -84,7 +84,7 @@ public class ManageTourCustomerController {
     public String cancelTour(@PathVariable("id") Integer id, Model model) {
         Booking booking = bookingService.findById(id);
         model.addAttribute("booking", booking);
-        model.addAttribute("message", "Bạn có chắc muốn hủy tour");
+        model.addAttribute("message", "Bạn có chắc muốn hủy tour ?");
         model.addAttribute("events", new Event());
         return "/customer/CancelTour";
     }

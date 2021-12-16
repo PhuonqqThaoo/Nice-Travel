@@ -98,6 +98,8 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	// danh sách tour trong tháng
 	@Query(value="select * from Travel where Month(created_date) = MONTH(GetDate()) and YEAR(created_date) = Year(GetDate()) and is_deleted = 0 and expiration_date =0", nativeQuery = true)
 	Page<Travel> getTravelInMonth(Pageable page);
+
+
    	
    	// lấy tổng số tour đà lạt
 	@Query(value = "{CALL sp_CountDaLatTour()}" , nativeQuery = true)

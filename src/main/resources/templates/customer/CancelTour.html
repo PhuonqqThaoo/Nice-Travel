@@ -1,66 +1,159 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Cancel Tour</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-#40b16aggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-<h1>Cancel Tour</h1>
+<body style="background-color: #40b16a">
 
-<form th:action="@{/customer/process-cancel-tour}" onsubmit="return validateForm()" name="formCancel" id="form-cancel"  th:object="${booking}"  method="post">
-    <label>
-        <input type="text" th:field="*{id}" readonly placeholder="id">
-    </label>
-    <label>
-        <input type="text" th:field="*{address}" readonly placeholder="địa chỉ"/>
-    </label>
-    <label>
-        <input type="text" th:field="*{createdDate}" readonly placeholder="ngày tạo"/>
-    </label>
-    <label>
-        <input type="text" th:field="*{isDeleted}" readonly placeholder="is delete"/>
-    </label>
-    <label>
-        <input type="text" th:field="*{phone}" readonly placeholder="phone"/>
-    </label>
-    <label>
-        <input type="text" th:field="*{totalPrice}" readonly placeholder="total price"/>
-    </label>
-    <label>
-        <input type="text" th:field="*{booking_account_id}" readonly placeholder="account id"/>
-    </label>
-    <label>
-        <input type="text" th:field="*{verification_code}" readonly placeholder="Verify code"/>
-    </label>
-    <div class="cancel-tour">
-        <form th:object="${events}" method="post">
-            <label>
-                <input type="text" id="title" name="title" th:field="*{title}" placeholder="Lý do hủy">
-            </label>
-            <label>
-                <input type="text" id="description" name="description" th:field="*{description}" placeholder="Mô tả lý do"/>
-            </label>
+<!--<form th:action="@{/customer/process-cancel-tour}" onsubmit="return validateForm()" name="formCancel" id="form-cancel"  th:object="${booking}"  method="post">-->
+<!--    <label>-->
+<!--        <input type="text" th:field="*{id}" readonly placeholder="id">-->
+<!--    </label>-->
+<!--    <label>-->
+<!--        <input type="text" th:field="*{address}" readonly placeholder="địa chỉ"/>-->
+<!--    </label>-->
+<!--    <label>-->
+<!--        <input type="text" th:field="*{createdDate}" readonly placeholder="ngày tạo"/>-->
+<!--    </label>-->
+<!--    <label>-->
+<!--        <input type="text" th:field="*{isDeleted}" readonly placeholder="is delete"/>-->
+<!--    </label>-->
+<!--    <label>-->
+<!--        <input type="text" th:field="*{phone}" readonly placeholder="phone"/>-->
+<!--    </label>-->
+<!--    <label>-->
+<!--        <input type="text" th:field="*{totalPrice}" readonly placeholder="total price"/>-->
+<!--    </label>-->
+<!--    <label>-->
+<!--        <input type="text" th:field="*{booking_account_id}" readonly placeholder="account id"/>-->
+<!--    </label>-->
+<!--    <label>-->
+<!--        <input type="text" th:field="*{verification_code}" readonly placeholder="Verify code"/>-->
+<!--    </label>-->
+<!--    <div class="cancel-tour">-->
+<!--        <form th:object="${events}" method="post">-->
+<!--            <label>-->
+<!--                <input type="text" id="title" name="title" th:field="*{title}" placeholder="Lý do hủy">-->
+<!--            </label>-->
+<!--            <label>-->
+<!--                <input type="text" id="description" name="description" th:field="*{description}" placeholder="Mô tả lý do"/>-->
+<!--            </label>-->
 
-            <span class="message" id="msg" th:text="${message}"></span>
+<!--            <span class="message" id="msg" th:text="${message}"></span>-->
 
-            <button type="submit" value="Gửi">Gửi</button>
+<!--            <button type="submit" value="Gửi">Gửi</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</form>-->
+<div class="container">
+    <div class="logo-cancel" style="text-align: center;">
+        <img src="http://localhost:8081/assets/img/logoNiceTravel.png" class="img-fluid" alt="Responsive image">
+    </div>
+    <div class="col-12 mt-lg-5">
+<!--        <h1>Hủy Tour Đã Đặt</h1>-->
+        <form th:action="@{/customer/process-cancel-tour}" onsubmit="return validateForm()" name="formCancel"
+              id="form-cancel" th:object="${booking}" method="post">
+            <input type="hidden" th:field="*{booking_account_id}" readonly placeholder="account id"/>
+            <input type="hidden" class="form-control" id="totalPrice"
+                   th:field="*{totalPrice}" readonly placeholder="Tổng tiền">
+            <div class="col d-flex justify-content-center">
+                <div class="col-8">
+                    <h3>Thông tin tour</h3>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">ID</label>
+                            <input type="email" class="form-control" id="inputEmail4" th:field="*{id}" readonly
+                                   placeholder="ID">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputCreatedDate">Ngày tạo</label>
+                            <input type="date" class="form-control" id="inputCreatedDate" th:field="*{createdDate}"
+                                   readonly placeholder="Ngày tạo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Địa chỉ</label>
+                        <input type="text" class="form-control" id="inputAddress" th:field="*{address}" readonly
+                               placeholder="Địa chỉ">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputPhone">Số điện thoại</label>
+                            <input type="text" class="form-control" id="inputPhone" th:field="*{phone}" readonly
+                                   placeholder="Số điện thoại">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputNguoiDat">Người đặt</label>
+                            <input type="text" class="form-control" id="inputNguoiDat"
+                                   th:field="*{booking_account_id.fullname}" readonly placeholder="Người đặt">
+                        </div>
+                        <div class="form-group col-md-4" style="font-weight: 600; text-align: center; ">
+                            <label>Tổng tiền</label>
+                            <!--                <input type="text" class="form-control" id="inputTotalPrice" th:field="*" readonly placeholder="Tổng tiền">-->
+                            <!--                [[${#numbers.formatCurrency(booking.totalPrice)}]]-->
+                            <div style=" font-size: 1.2rem">
+                                <span th:text="${#numbers.formatDecimal(booking.totalPrice, 0, 'COMMA', 0, 'POINT')}"></span>
+                                VNĐ
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h3>Chi tiết lý do</h3>
+                    <form th:object="${events}" method="post">
+                        <div class="form-group">
+                            <label for="title">Lý do hủy tour</label>
+                            <input type="text" id="title" name="title" th:field="*{title}" class="form-control"
+                                   placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Chi tiết lý do</label>
+                            <textarea class="form-control" type="text" id="description" name="description"
+                                      th:field="*{description}" rows="4"></textarea>
+                        </div>
+                        <div style="width: 100%" class="message" id="msg" th:text="${message}"></div>
+                        <button style="margin-top: 15px;
+    float: right;
+    max-width: 150px;" type="submit" class="btn btn-primary">Gửi đi
+                        </button>
+                    </form>
+                </div>
+            </div>
         </form>
     </div>
-</form>
 
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 <script>
-    function validateForm(){
+    function validateForm() {
         var title = document.formCancel.title.value;
         var description = document.formCancel.description.value;
         var message = document.getElementById("msg");
+        const inputTitle = document.getElementById("title");
+        const inputDescription = document.getElementById("description");
 
-        if (title==null || title==""){
+        if (title == null || title == "") {
             message.innerText = "Không được để trống tiêu đề";
+            inputTitle.focus();
             return false;
-        }else if(description==null || description==""){
+        } else if (description == null || description == "") {
             message.innerText = "Không được để trống miêu tả";
+            inputDescription.focus();
             return false;
-        }else {
+        } else {
             // message.innerText = "";
             return true;
         }
