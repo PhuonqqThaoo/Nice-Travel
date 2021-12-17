@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Travel;
 import com.nicetravel.entity.TravelLike;
+import com.nicetravel.security.auth.CustomOAuth2User;
 import com.nicetravel.service.AccountService;
 import com.nicetravel.service.TravelLikeService;
 import com.nicetravel.service.TravelService;
@@ -28,11 +30,13 @@ public class TravelController {
 
 	@Autowired
 	TravelService travelService;
+	
 	@Autowired
-
 	HttpServletRequest request;
-
+	
+	@Autowired
 	AccountService 	accountService;
+	
 	@Autowired
 	TravelLikeService travelLikeService;
 
@@ -91,13 +95,24 @@ public class TravelController {
 		return "travel/tour2";
 	}
 	@RequestMapping("/like/{id}")
-	public String like(@PathVariable("id") Integer id, HttpServletRequest request) {
-		String username = request.getRemoteUser();
-		Account account = accountService.findAccountsByUsername(username);
+	public String like(@PathVariable("id") Integer id, Authentication authentication, HttpServletRequest request) {
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser()); // remote
+
+		String username = null;
+
+		if (account == null){
+			CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
+			Account accountOauth = accountService.findByEmail(oauth2User.getEmail());
+			username = accountOauth.getUsername();
+		}
+		else {
+			username = account.getUsername();
+		}
+		account = accountService.findAccountsByUsername(username);
 		Travel travel = travelService.findTravelById(id);
 		
 		TravelLike like = new TravelLike();
-//		like.setAccountIdFk(account);
+		like.setTravel_like_account_id(account);
 		like.setTravelId(travel);
 		travelLikeService.createTravelLike(like);
 		

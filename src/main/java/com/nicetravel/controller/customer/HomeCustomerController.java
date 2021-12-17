@@ -47,6 +47,7 @@ public class HomeCustomerController {
 		else {
 			username = account.getUsername();
 		}
+		
 		List<Booking> booking = bookingService.getAllBookingByAcId(username);
 		model.addAttribute("booking", booking);
 		Account accountId = accountService.findAccountsByUsername(username);

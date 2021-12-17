@@ -34,8 +34,7 @@ public class TravelLikeServiceImpl implements TravelLikeService {
 
 	@Override
 	public List<TravelLike> getAllTravelLikeByIdAcount(Account account_Id) {
-//		return travelLikeRepository.getAllTravelLikeByIdAcount(account_Id);
-		return null;
+		return travelLikeRepository.getAllTravelLikeByIdAcount(account_Id);
 	}
 
 

@@ -277,7 +277,7 @@
 							<div class="btn-box">
 								<a th:href="@{|/booking/check?tour=${p.slug}|}" class="btn" th:if="${p.quantityNew} > 0">Đặt ngay</a>
 								<a class="btn" th:if="${p.quantityNew} <= 0">Hết chỗ</a>
-								<a href="#" class="btn"><i class="ri-heart-3-fill"></i></a>
+								<a th:href="@{|/travel/like/${p.id}|}" class="btn"><i class="ri-heart-3-fill"></i></a>
 							</div>
 						</div>
 					</a>
