@@ -81,4 +81,6 @@ public interface TravelService {
    void updateEX();
 
     String[][] getTotalTravelFromTo(String from, String to);
+
+    Travel getTravelByBookingId(Integer id);
 }

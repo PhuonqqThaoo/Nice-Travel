@@ -1,16 +1,10 @@
 package com.nicetravel.custom;
 
-import com.nicetravel.entity.Account;
-import com.nicetravel.entity.Booking;
-import com.nicetravel.entity.Event;
-import com.nicetravel.entity.Provider;
+import com.nicetravel.entity.*;
 import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.repository.RoleRepository;
 import com.nicetravel.security.auth.CustomOAuth2User;
-import com.nicetravel.service.AccountService;
-import com.nicetravel.service.BookingService;
-import com.nicetravel.service.EventsService;
-import com.nicetravel.service.RoleService;
+import com.nicetravel.service.*;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -26,8 +20,10 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @Transactional
@@ -56,6 +52,9 @@ public class UserServices {
 
     @Autowired
     private EventsService eventsService;
+
+    @Autowired
+    private TravelService travelService;
 
     @Autowired
     HttpServletRequest request;
@@ -206,17 +205,23 @@ public void updateResetPasswordToken(String token, String email) throws Username
 
     private void senMailCancelTour(Booking booking, String siteURL) throws MessagingException, UnsupportedEncodingException{
 
+        System.out.println("booking id: " + booking.getId());
+        Travel travel = travelService.getTravelByBookingId(booking.getId());
+        System.out.println(travel.getName());
+
         String toAddress = booking.getBooking_account_id().getEmail();;
         String fromAddress = "nicetravelcompany@gmail.com";
         String senderName = "Nice Travel Company";
         String subject = "Xác nhận hủy tour đã đặt";
         String content = "Thân chào <b>[[name]]</b>,<br>"
                 + "Bạn có chắc muốn hủy tour đã chọn:<br>"
-                + "<h4>[[TourName]]</h4>"
+                + "<h4><a href=\"[[TourURL]]\" target=\"_self\">[[TourName]]</a></h4>"
+                + "<span style='font-weight: 600'>Tổng tiền: </span><span style='color: red; font-weight: 600'>[[TotalPrice]] đ</span>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">XÁC NHẬN</a></h3>"
-                + "Bỏ qua email nếu bạn không muốn hủy<br>"
+                + "Bỏ qua email nếu bạn không muốn hủy<br><br>"
                 + "Cảm ơn bạn,<br>"
-                + "Nice Travel.";
+                + "Nice Travel.<br>"
+                + "<a href='http://localhost:8081'><img style='width: 96px, height: 55px' src='https://i.ibb.co/WWy4pYJ/146d642b171ce142b80d.jpg' /></a>";
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -225,8 +230,21 @@ public void updateResetPasswordToken(String token, String email) throws Username
         helper.setTo(toAddress);
         helper.setSubject(subject);
 
-        content = content.replace("[[name]]", booking.getBooking_account_id().getUsername());
-//        content = content.replace("[[TourName]]", booking.
+        String imgURL = siteURL + "/photos/travels/" + travel.getId() + "/" + travel.getImg();
+        System.out.println(imgURL);
+        content = content.replace("[[TourImg]]", imgURL);
+
+        content = content.replace("[[name]]", booking.getBooking_account_id().getFullname());
+
+        content = content.replace("[[TourName]]", travel.getName());
+
+        NumberFormat vn = NumberFormat.getInstance(new Locale("vi", "VI"));
+
+        content = content.replace("[[TotalPrice]]", vn.format(booking.getTotalPrice()));
+
+        String detailURL = siteURL + "/detail-booking/" + booking.getId();
+        content = content.replace("[[TourURL]]", detailURL);
+
         String verifyURL = siteURL + "/verify?code=" + booking.getVerification_code();
 
         content = content.replace("[[URL]]", verifyURL);

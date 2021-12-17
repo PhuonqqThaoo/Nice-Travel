@@ -263,6 +263,11 @@ public class TravelServiceImpl implements TravelService {
 	}
 
 	@Override
+	public Travel getTravelByBookingId(Integer id) {
+		return travelRepository.getTravelByBookingId(id);
+	}
+
+	@Override
 	public Page<Travel> filterStartDate(Date day, Date end, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return travelRepository.filterStartDate(day, end, pageable);

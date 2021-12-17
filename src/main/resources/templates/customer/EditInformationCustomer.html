@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -23,64 +22,65 @@
 </head>
 
 <body id="page-top">
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/customer"
-                style="background-color: #10ac84;">
-                <div class="sidebar-brand-icon">
-                    <img th:src="@{/dashboard/img/logo/logoNice.png}">
-                </div>
-                <div class="sidebar-brand-text mx-3">Nice Travel</div>
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/customer"
+           style="background-color: #10ac84;">
+            <div class="sidebar-brand-icon">
+                <img th:src="@{/dashboard/img/logo/logoNice.png}">
+            </div>
+            <div class="sidebar-brand-text mx-3">Nice Travel</div>
+        </a>
+        <hr class="sidebar-divider my-0">
+        <li class="nav-item">
+            <a class="nav-link" href="/customer">
+                <i class='bx bxs-home'></i>
+                <span>Trang chủ</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Quản lý
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
+               aria-expanded="true" aria-controls="collapseForm">
+                <i class='bx bxs-plane-alt'></i>
+                <span>Tour du lịch</span>
             </a>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item">
-                <a class="nav-link" href="/customer">
-                    <i class='bx bxs-home'></i>
-                    <span>Trang chủ</span></a>
-            </li>
-            <hr class="sidebar-divider">
-            <div class="sidebar-heading">
-                Quản lý
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
-                    aria-expanded="true" aria-controls="collapseForm">
-                    <i class='bx bxs-plane-alt'></i>
-                    <span>Tour du lịch</span>
-                </a>
-                <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/customer/tour-da-dat">Tour đã đặt</a>
-                    </div>
+            <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/customer/tour-da-dat">Tour đã đặt</a>
                 </div>
-            </li>
-
-            <hr class="sidebar-divider">
-            <div class="sidebar-heading">
-                Thông tin khách hàng
             </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/customer/information-customer">
-                    <i class='bx bxs-user-rectangle'></i>
-                    <span>Thông tin cá nhân</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/customer/edit-information-customer">
-                    <i class='bx bx-edit'></i>
-                    <span>Chỉnh sửa thông tin</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/customer/change-password" th:attr="onclick='editUser(\''+ ${#request.remoteUser} +'\')'">
+        </li>
+
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Thông tin khách hàng
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/customer/information-customer">
+                <i class='bx bxs-user-rectangle'></i>
+                <span>Thông tin cá nhân</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/customer/edit-information-customer">
+                <i class='bx bx-edit'></i>
+                <span>Chỉnh sửa thông tin</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/customer/change-password"
+               th:attr="onclick='editUser(\''+ ${#request.remoteUser} +'\')'">
                 <i class='bx bxs-lock-alt'></i>
                 <span>Đổi mật khẩu</span>
             </a>
         </li>
         <hr class="sidebar-divider">
         <li class="nav-item">
-            <a class="nav-link collapsed"href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+            <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
                 <i class='bx bx-log-out-circle'></i>
                 <span>Đăng xuất</span>
             </a>
@@ -99,7 +99,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle">
                             <img class="img-profile rounded-circle" th:src="@{${userRequest.getPhotosImagePath()}}"
-                                style="max-width: 60px">
+                                 style="max-width: 60px">
                             <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
                         </a>
                     </li>
@@ -123,7 +123,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-primary"
-                                    data-dismiss="modal">Trở lại</button>
+                                    data-dismiss="modal">Trở lại
+                            </button>
                             <a th:href="@{/logoff}" class="btn btn-primary">Đăng xuất</a>
                         </div>
                     </div>
@@ -143,10 +144,12 @@
                     <!-- edit information -->
                     <div class="row box box-border">
                         <form th:action="@{/customer/edit-information-customer}" th:object="${userRequest}" id="form"
-                              method="POST" enctype="multipart/form-data" style="width: 100%; border-radius: 10px; padding: 20px">
+                              method="POST" enctype="multipart/form-data"
+                              style="width: 100%; border-radius: 10px; padding: 20px">
                             <div class="row box">
                                 <div class="col-6">
-                                    <h4 class="title-edit" style="font-weight: 600;">Tài khoản khách hàng: <span th:text="*{username}"></span></h4>
+                                    <h4 class="title-edit" style="font-weight: 600;">Tài khoản khách hàng: <span
+                                            th:text="*{username}"></span></h4>
                                     <p style="font-size: 1.2rem" class="description-edit">
                                         Thông tin cá nhân và các tùy chọn giúp quản lý thông tin đó. Bạn có thể tùy
                                         chỉnh
@@ -158,7 +161,8 @@
                                 <div class="col-6">
                                     <div class="avatar_account">
                                         <img id="thumbnail" th:src="@{${userRequest.getPhotosImagePath()}}"
-                                             alt="avatar-account" style="width: 150px; height: 150px; border-radius: 50%">
+                                             alt="avatar-account"
+                                             style="width: 150px; height: 150px; border-radius: 50%">
                                     </div>
                                     <input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg"
                                            class="form-control">
@@ -260,7 +264,7 @@
 
         <!-- Modal Logout -->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+             aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -274,7 +278,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Trở
-                            lại</button>
+                            lại
+                        </button>
                         <a href="/logoff" class="btn btn-primary">Đăng xuất</a>
                     </div>
                 </div>
@@ -309,7 +314,7 @@
             $("input#username").prop('readonly', true); // tô xám
             $("#submitUpdate").prop('disabled', false);
         })
-    };
+    }
 
     function cacelBtn() {
         $('#username').val('');
@@ -320,13 +325,13 @@
         $('#address').val('');
         $('#form:input').prop('readonly', true);
         $('#submitUpdate').prop('disabled', true);
-    };
+    }
 
 
     function updateUser() {
 
         $('#form').submit();
-    };
+    }
 
 </script>
 
@@ -380,13 +385,13 @@
     }
 
     /*<![CDATA[*/
-    var totalPriceLast6Months = /*[[${chartData}]]*/ 'default';
+    const totalPriceLast6Months = /*[[${chartData}]]*/ 'default';
     /*]]>*/
-    var arrayLabels = totalPriceLast6Months[0];
-    var arrayData = totalPriceLast6Months[1];
+    const arrayLabels = totalPriceLast6Months[0];
+    const arrayData = totalPriceLast6Months[1];
     // Area Chart Example
-    var ctx = document.getElementById("myAreaChart");
-    var myLineChart = new Chart(ctx, {
+    const ctx = document.getElementById("myAreaChart");
+    const myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: arrayLabels,
