@@ -194,9 +194,9 @@
                                 các hồ sơ của mình.
                             </p>
                         </div>
-                        <div class="col-6">
-                            <img src="https://www.gstatic.com/identity/boq/accountsettingsmobile/profile_scene_visible_360x128_18500c161aac04e9279fbb234b7de818.png"
-                                 alt="">
+                        <div class="col-6" style="text-align: center">
+                            <img th:src="@{${account.getPhotosImagePath()}}"
+                                 alt="" style="width: 200px; height: 200px; border-radius: 50%;">
                         </div>
                     </div>
 

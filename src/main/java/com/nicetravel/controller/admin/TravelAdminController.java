@@ -240,7 +240,7 @@ public class TravelAdminController {
 	}
 
 	@GetMapping("/delete")
-	public String doGetDeleted(@RequestParam(name = "id", required = true) Integer id, RedirectAttributes redirect) {
+	public String doGetDeleted(@RequestParam(name = "id", required = true) Integer id, RedirectAttributes redirect, @RequestParam("fileImage") MultipartFile multipartFile, HttpServletRequest request) {
 		try {
 			travelService.deleteTravelAdmin(id);
 			String successMessage = "Travel " + id + " was deleted!";
@@ -256,29 +256,25 @@ public class TravelAdminController {
 	public String doPostCreate(@Valid @ModelAttribute("travelRequest") Travel travelRequest, BindingResult result,
 			RedirectAttributes redirect, HttpServletRequest request, @RequestParam("fileImage") MultipartFile multipartFile) {
 		String errorMessage = null;
-		Travel travel = travelService.findTravelById(travelRequest.getId());
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
 		try {
 			// check if userRequest is not valid
-			if(travel != null){
-				return errorMessage = "Travel tồn tại";
-			}
-			else if (result.hasErrors()) {
+//			if(travel != null){
+//				return errorMessage = "Travel tồn tại";
+//			}
+			 if (result.hasErrors()) {
 				errorMessage = "Travel không hợp lệ";
 			}
 			else {
+
 				String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-				if (fileName.equals("") || fileName.length() == 0 || fileName == null){
-					System.out.println("accountImg: " + travel.getImg());
-					travel.setImg(travel.getImg());
-				}
-				else {
-					travel.setImg(fileName);
-				}
-				travelRequest.setTravel_account_id(accountService.getAccountById(travel.getId()));
-				travelService.saveTravel(travel);
+				System.out.println(fileName);
+
+				travelRequest.setImg(fileName);
+				travelRequest.setTravel_account_id(account);
 				travelService.saveTravel(travelRequest);
 
-				String uploadDir = "photos/" + "travels/" + travel.getId();
+				String uploadDir = "photos/" + "travels/" + travelRequest.getId();
 
 				Path uploadPath = Paths.get(uploadDir);
 

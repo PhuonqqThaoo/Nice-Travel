@@ -253,9 +253,9 @@
                                         <tbody>
                                             <tr th:each="p,i : ${listByTravelInMonth}">
                                                 <td th:text="${i.index+1}">
-                                                    </th>
+                                                    </td>
                                                 <td style="width: 17%;">
-                                                    <img th:src="@{|/assets/img/${p.img}|}" style="width: 100%;" alt="">
+                                                    <img th:src="@{${p.getTravelPhotosImagePath()}}" style="width: 100%;" alt="">
                                                 </td>
                                                 <td>
                                                     <h5 style="font-weight: 700;" th:utext="${p.name}"></h5>
@@ -382,7 +382,7 @@
 
                     <div class="row mb-3">
                         <div class="chinh-sua-tour w-90 card">
-                            <form th:object="${travelRequest}" id="form" method="POST" class="row col-12">
+                            <form th:object="${travelRequest}" enctype="multipart/form-data" id="form" method="POST" class="row col-12">
                                 <div class="col-6 left">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
@@ -446,10 +446,9 @@
                                 </div>
                                 <div class="col-6 right">
                                     <div class="right-image">
-                                        <img id="thumbnail" th:src="@{${travelRequest.getTravelPhotosImagePath()}}">
+                                        <img id="thumbnail" th:src="@{${travelRequest.getTravelPhotosImagePath()}}"  class="form-control" alt="travel-photo">
                                         <div class="form-group">
-                                            <input type="file" name="fileImage" id="fileImage"
-                                                accept="image/png, image/jpeg">
+                                            <input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg">
                                         </div>
                                     </div>
                                     <div class="right-button">
