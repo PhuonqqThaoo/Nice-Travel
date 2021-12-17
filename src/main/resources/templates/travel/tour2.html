@@ -45,7 +45,7 @@
                     <h3 class="title-1">Địa điểm du lịch</h3>
                     <div class="card">
                         <ul>
-                        <li><a href="/travel/tour">Tất cả</a></li>
+                            <li><a href="/travel/tour">Tất cả</a></li>
                             <li th:each="c:${types}"><a th:href="@{|/travel/tour?tid=${c.id}|}">
 										[[${c.type}]]</a></li>
                         </ul>

@@ -74,12 +74,36 @@
 /* Bộ lọc thông tin */
 .travel_bo-loc {
     width: 30%;
-    height: 54rem;
+    height: auto;
     padding-top: 1rem;
     margin: 2rem 0 0 0;
     overflow: hidden;
     background-color: rgba(200, 214, 229, .4);
     display: none;
+}
+
+.travel_bo-loc .card ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.travel_bo-loc .card ul li {
+    width: 50%;
+    height: auto;
+    padding: 1rem 1rem;
+    border-radius: .5rem;
+    border: 1px solid var(--color-body);
+    transition: .4s;
+    font-weight: var(--font-weight-500);
+}
+
+.travel_bo-loc .card ul li:hover {
+    background-color: var(--color-amour-red);
+}
+
+.travel_bo-loc .card ul li:hover > a {
+    color: var(--color-body);
 }
 
 /* Danh sách chuyến đi */
@@ -207,7 +231,7 @@
 
     /* khung noel */
     .box-icon-noel .khung-noel {
-        top: -1.7rem;
+        top: -2.1rem;
         left: -1.4rem;
     }
 
