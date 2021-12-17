@@ -119,8 +119,10 @@
             <!-- Danh sách chuyến đi -->
             <div class="travel_danh-sach-chuyen-di" th:object="${item}">
                 <h1 class="title">Tour du lịch</h1>
-                <p class="travel-count" style="text-align: center; font-weight: bold">Chúng tôi tìm thấy <span style="color: red;font-weight: 1000;">[[${items.totalElements}]]</span> chuyến đi</p>
-
+                <p th:if="${items.totalPages}>0" class="travel-count" style="text-align: center; font-weight: bold">Chúng tôi tìm thấy <span style="color: red;font-weight: 1000;">[[${items.totalElements}]]</span> chuyến đi</p>
+					<div th:unless="${items.totalPages}>0">
+					<h4 style="text-align: center"><span style="color: red;font-weight: bold; font-size: 20pt;">Không tìm thấy chuyến đi nào</span></h4>
+					</div>
                 <!-- ------------------------------ tour du lịch ------------------------------ -->
                 <section class="tour-yeu-thich container1">
                     <div class="box">
@@ -162,13 +164,17 @@
 
                 <!-- pagination -->
                 <div class="pagination-center">
-                    <div class="pagination">
+                    <div class="pagination" th:if="${items.totalPages}>0">
                        <a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p=1' : '?p=1'}">&laquo;</a>
 			<span th:each="i: ${#numbers.sequence(1,items.totalPages)}">
 		  		<a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p='+${i} : '?p='+${i}}">[[${i}]]</a>
 		 	 </span>
 		  	<a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p='+${items.totalPages} : '?p='+${items.totalPages}}">&raquo;</a>
                     </div>
+                    <a th:unless="${items.totalPages}>0" href="/travel/tour">  <button class="btn">
+							Xem tất cả các tour
+						</button>
+						</a>
                 </div>
             </div>
         </section>
