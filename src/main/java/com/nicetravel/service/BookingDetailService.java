@@ -7,8 +7,11 @@ import com.nicetravel.entity.BookingDetail;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 public interface BookingDetailService {
-    List<BookingDetail> getAllBookingDetail();
+    Page<BookingDetail> getAllBookingDetail(int page, int size);
 
     BookingDetail findById(Integer id);
     

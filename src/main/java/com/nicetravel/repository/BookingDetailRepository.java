@@ -15,4 +15,7 @@ public interface BookingDetailRepository extends JpaRepository<BookingDetail, In
 	// Fix sau
 	@Query("SELECT u FROM BookingDetail u WHERE u.bookingId.id = ?1")
 	BookingDetail findByIdBooking(Integer id);
+	
+	
+		
 }

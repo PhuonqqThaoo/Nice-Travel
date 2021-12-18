@@ -3,6 +3,9 @@ package com.nicetravel.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.nicetravel.entity.BookingDetail;
@@ -19,10 +22,7 @@ public class BookingDetailServiceImpl implements BookingDetailService {
         this.bookingDetailRepository = bookingDetailRepository;
     }
 
-    @Override
-    public List<BookingDetail> getAllBookingDetail() {
-        return bookingDetailRepository.findAll();
-    }
+  
 
     @Override
     public BookingDetail findById(Integer id) {
@@ -48,5 +48,18 @@ public class BookingDetailServiceImpl implements BookingDetailService {
 	public BookingDetail findByIdBooking(Integer id) {
 		return bookingDetailRepository.findByIdBooking(id);
 	}
+
+
+
+	@Override
+	public Page<BookingDetail> getAllBookingDetail(int page, int size) {
+		// TODO Auto-generated method stub
+		return bookingDetailRepository.findAll(PageRequest.of(page, size));
+	}
+
+
+
+
+
 
 }

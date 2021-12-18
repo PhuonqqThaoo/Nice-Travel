@@ -273,6 +273,18 @@ public class TravelServiceImpl implements TravelService {
 		return travelRepository.filterStartDate(day, end, pageable);
 	}
 
+	@Override
+	public Integer countTourInMonth() {
+		// TODO Auto-generated method stub
+		return travelRepository.countTourInMonth();
+	}
+
+	@Override
+	public Integer sp_GetTourDaDat() {
+		// TODO Auto-generated method stub
+		return travelRepository.countTourDaDat();
+	}
+
 
 
 

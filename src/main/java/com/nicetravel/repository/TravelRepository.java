@@ -137,4 +137,13 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 			+ "					WHERE created_date between ?1 and ?2 "
 			+ "					group by created_date",nativeQuery = true)
 	String[][] getTotalTravelFromTo(String from, String to);
+	
+	
+	//Thống kê admin
+	@Query(value = "{CALL sp_GetTourInMonth()}" , nativeQuery = true)
+	Integer countTourInMonth() ;
+	
+	@Query(value = "{CALL sp_GetTourDaDat()}" , nativeQuery = true)
+	Integer countTourDaDat() ;
+	
 }

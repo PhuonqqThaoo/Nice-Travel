@@ -83,4 +83,8 @@ public interface TravelService {
     String[][] getTotalTravelFromTo(String from, String to);
 
     Travel getTravelByBookingId(Integer id);
+    
+    Integer countTourInMonth();
+    
+    Integer sp_GetTourDaDat();
 }

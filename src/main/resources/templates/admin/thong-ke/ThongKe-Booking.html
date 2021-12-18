@@ -172,7 +172,7 @@
                                                     <div class="col mr-2">
                                                         <div class="text-xs font-weight-bold text-uppercase mb-1">Chuyến
                                                             đi được đặt trong tháng</div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">5 chuyến đi
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">[[${tourInMonth}]] chuyến đi
                                                         </div>
                                                     </div>
                                                     <div class="col-auto">
@@ -190,7 +190,7 @@
                                                     <div class="col mr-2">
                                                         <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng
                                                             các chuyến đi được đặt</div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">124 chuyến
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">[[${tourDaDat}]] chuyến
                                                             đi</div>
                                                     </div>
                                                     <div class="col-auto">
@@ -264,44 +264,56 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
-                                            <th scope="col">...</th>
+                                            <th scope="col">Mã đặt tour</th>
+                                            <th scope="col">Tên chuyến đi</th>
+                                            <th scope="col">Ngày đặt</th>
+                                            <th scope="col">Số lượng</th>
+                                            <th scope="col">Giá</th>
+                                            <!--  <th scope="col">Người đặt</th> -->
+                                            <th scope="col">Trạng thái</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>
-                                                <a class="btn btn-primary" href="#"><i class='bx bx-search'></i></a>
+                                        <tr th:each="p : ${inforTour}">
+                                            <th scope="row" th:text="${p.bookingId.id}"></th>
+                                            <td th:text="${p.travelId.name}">Mark</td>
+                                            <td th:text="${#dates.format(new java.util.Date(p.bookingId.createdDate), 'dd-MM-yyyy')}">Otto</td>
+                                            <td th:text="${p.totalQuantity}">>@mdo</td>
+                                            <td th:text="${#numbers.formatCurrency(p.bookingId.totalPrice)}">>@mdo</td>
+                                            <!-- <td  th:text="${p.bookingId.booking_account_id.username}"></td> -->
+                                            <td style="color: #00CC33; font-weight: bold" th:if="${p.bookingId.payBoolean}" th:text="${p.bookingId.payBoolean} ? 'Đã thanh toán' : 'Chưa thanh toán' ">
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>
-                                                <a class="btn btn-primary" href="#"><i class='bx bx-search'></i></a>
+                                             <td style="color: #FF3333; font-weight: bold" th:unless="${p.bookingId.payBoolean}" th:text="${p.bookingId.payBoolean} ? 'Đã thanh toán' : 'Chưa thanh toán' ">
                                             </td>
+                                     
                                         </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>
-                                                <a class="btn btn-primary" href="#"><i class='bx bx-search'></i></a>
-                                            </td>
-                                        </tr>
+                                       
                                     </tbody>
                                 </table>
                             </div>
+                              <nav aria-label="Page navigation example" th:if="${totalPage >1}">
+                                <ul class="pagination justify-content-center">
+                                    <li  th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
+                                        <a th:href="@{${currentPage > 1} ? ${'?page=' + (currentPage-1)} :''}"
+                                            class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">Previous</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li th:each="i : ${#numbers.sequence(1,totalPage)}" th:class="${currentPage == i} ? 'page-item active' : 'page-item'">
+                                        <a class="page-link" th:href="@{'?page='+ ${i} }" th:text="${i}"></a>
+                                    </li>
+                                   
+                                    <li th:class="${currentPage == totalPage} ? 'page-item disabled' : 'page-item'">
+                                        <a th:href="@{${currentPage < totalPage} ? ${'?page=' + (currentPage+1)}  : '' }"
+                                            class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">Next</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                     <!--Row-->
