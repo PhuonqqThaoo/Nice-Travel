@@ -32,10 +32,21 @@
             <!-- icon user -->
             <div class="nav-user">
                 <th:block th:unless="${#request.remoteUser}">
-							<div class="social-icons-subnav">
-								<a data-toggle="modal" href="/login" data-target=""><span  class="ri-user-3-line"></span>
-									</a>
-							</div>
+                    <a href="/login">
+                        <i class="ri-user-3-line"></i>
+                    </a>
+				</th:block>
+
+                <th:block th:if="${#request.remoteUser}">
+                    <a th:if="${#request.isUserInRole('ADMIN')}" th:href="@{/admin/information-admin}">
+                        <i class="ri-user-settings-fill"></i>
+                    </a>
+                    <a th:if="${#request.isUserInRole('STAFF')}" th:href="@{/staff/information-staff}">
+                        <i class="ri-user-settings-fill"></i>
+                    </a>
+                    <a th:if="${#request.isUserInRole('USER')}" th:href="@{/customer/information-customer}">
+                        <i class="ri-user-settings-fill"></i>
+                    </a>
 				</th:block>
             </div>
 
