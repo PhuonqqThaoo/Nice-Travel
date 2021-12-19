@@ -115,7 +115,7 @@ public class TravelController {
 		like.setTravel_like_account_id(account);
 		like.setTravelId(travel);
 		travelLikeService.createTravelLike(like);
-		
-		return "redirect:/";
+
+		return "forward:/travel/tour";
 	}
 }
