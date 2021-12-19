@@ -5,13 +5,14 @@ import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Booking;
 import com.nicetravel.entity.BookingDetail;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface BookingDetailService {
-    Page<BookingDetail> getAllBookingDetail(int page, int size);
+    Page<BookingDetail> getAllBookingDetail(String start,String end,int page, int size);
 
     BookingDetail findById(Integer id);
     
@@ -23,4 +24,5 @@ public interface BookingDetailService {
 
     void deleteBookingDetail(Integer id);
     
+
 }

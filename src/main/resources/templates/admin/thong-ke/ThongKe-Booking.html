@@ -204,20 +204,17 @@
                                     <div class="col-xl-12 col-md-6 mb-4">
                                         <div class="card h-100">
                                             <div class="admin-search-date-1" style="width: 100%;">
-                                                <form th:action="@{/admin}" method="post">
+                                                <form th:action="@{/admin/thongke-tourbooking}">
                                                     <div class="row">
                                                         <div class="col" style="margin-bottom: 10px;">
-                                                            <input th:value="${day}" name="day" type="date"
-                                                                class="form-control">
+                                                            <input name="start" id="start" type="date" class="form-control" required="required">
                                                         </div>
                                                         <div class="col" style="margin-bottom: 10px; width: 100%;">
-                                                            <input th:value="${end}" name="end" type="date"
-                                                                class="form-control">
+                                                            <input name="end" id="end" type="date" class="form-control" required="required">
                                                         </div>
                                                         <div class="col" style="width: 100%;">
-                                                            <button class="btn btn-primary"
-                                                                style="height: 43px; width: 100%;"><i
-                                                                    class='bx bx-search-alt'></i> Tìm</button>
+                                                            <button class="btn btn-primary" style="height: 43px; width: 100%;">
+                                                            <i class='bx bx-search-alt'></i> Tìm</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -302,9 +299,8 @@
                                         </a>
                                     </li>
                                     <li th:each="i : ${#numbers.sequence(1,totalPage)}" th:class="${currentPage == i} ? 'page-item active' : 'page-item'">
-                                        <a class="page-link" th:href="@{'?page='+ ${i} }" th:text="${i}"></a>
+                                        <a class="page-link" th:href="@{'?page='+ ${i}}" th:text="${i}"></a>
                                     </li>
-                                   
                                     <li th:class="${currentPage == totalPage} ? 'page-item disabled' : 'page-item'">
                                         <a th:href="@{${currentPage < totalPage} ? ${'?page=' + (currentPage+1)}  : '' }"
                                             class="page-link" href="#" aria-label="Next">
@@ -352,7 +348,7 @@
                             <script>
                                 document.write(new Date().getFullYear());
                             </script> - developed by
-                            <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
+                            <b><a href="" target="_blank">NiceTravel Team</a></b>
                         </span>
                     </div>
                 </div>

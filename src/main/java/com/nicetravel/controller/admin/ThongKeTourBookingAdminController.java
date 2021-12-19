@@ -1,5 +1,6 @@
 package com.nicetravel.controller.admin;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,10 +36,9 @@ public class ThongKeTourBookingAdminController {
 	
 	@Autowired
 	BookingDetailService bookingDetailService;
-
 	
 	@RequestMapping("/thongke-tourbooking")
-	public String getThongKeTourBooking(HttpServletRequest request, Model model,
+	public String getThongKeTourBooking(HttpServletRequest request, Model model,String start, String end,
 			 @RequestParam(name="page",defaultValue = "1") int page) {
 		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
 		model.addAttribute("account", account);
@@ -49,8 +49,9 @@ public class ThongKeTourBookingAdminController {
 		Integer tourDaDat = travelService.sp_GetTourDaDat();
 		model.addAttribute("tourDaDat", tourDaDat);
 		
-		Page<BookingDetail> Infor = bookingDetailService.getAllBookingDetail(page-1,SIZE);
+		Page<BookingDetail> Infor = bookingDetailService.getAllBookingDetail(start, end, page-1,SIZE);
 		model.addAttribute("inforTour", Infor);
+		
 		
 		model.addAttribute("totalPage", Infor.getTotalPages());
 		model.addAttribute("currentPage", page);

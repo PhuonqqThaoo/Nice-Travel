@@ -1,5 +1,6 @@
 package com.nicetravel.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import com.nicetravel.entity.BookingDetail;
 import com.nicetravel.repository.BookingDetailRepository;
@@ -52,8 +54,11 @@ public class BookingDetailServiceImpl implements BookingDetailService {
 
 
 	@Override
-	public Page<BookingDetail> getAllBookingDetail(int page, int size) {
+	public Page<BookingDetail> getAllBookingDetail(String start, String end,int page, int size) {
 		// TODO Auto-generated method stub
+		if(!ObjectUtils.isEmpty(start)) {
+			return bookingDetailRepository.searchWithDate(start, end, PageRequest.of(page, size));
+		}
 		return bookingDetailRepository.findAll(PageRequest.of(page, size));
 	}
 
