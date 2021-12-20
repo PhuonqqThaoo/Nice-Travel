@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index2 :: dynamic(~{::head},~{::main})}" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,49 +7,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>403 | Nice Travel</title>
 
-    <!-- bootstrap 4 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/img/logoNiceIco.ico}">
 
-    <!-- boxicon -->
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- date jquery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+    <!-- remixicon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.nicetravel.css}" />
+
+    <!-- slick sdn css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+
+    <!-- css responsive -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.responsive.css}">
 
     <!-- css customer -->
     <link rel="stylesheet" href="/assets/css/error.style.css">
 
+
 </head>
 
-<body class="error-403">
-    <div class="error-box-403" style="margin-top: 90px">
-        <div class="icon-bao-ve-403">
-            <img src="/assets/img/error/iconNguoiBaoVe403.png" alt="">
+<body>
+    <main style="position: relative;
+    margin-top: 190px;
+    margin-bottom: 175px;
+    padding: 170px;">
+        <div class="error-403">
+            <div class="error-box-403" style="margin-top: 90px">
+                <div class="icon-bao-ve-403">
+                    <img src="/assets/img/error/iconNguoiBaoVe403.png" alt="">
+                </div>
+                <div class="error-403-context">
+                    <h1>Bạn không có quyền truy cập!</h1>
+                </div>
+<!--                <div class="icon-arrow-403">-->
+<!--                    <img src="/assets/img/error/arrow403.png" alt="">-->
+<!--                </div>-->
+                <div id="backHome" style="margin-top: 40px" class="error-message-403"></div>
+            </div>
         </div>
-        <div class="error-403-context">
-            <h1>Bạn không có quyền truy cập!</h1>
-        </div>
-        <div class="icon-arrow-403">
-            <img src="/assets/img/error/arrow403.png" alt="">
-        </div>
-        <div id="backHome" class="error-message-403"></div>
-    </div>
+        <script>
+            function Redirect() {
+                window.location = "/";
+            }
 
-    <script>
-        function Redirect() {
-            window.location = "/";
-        }
-        function timeOut(){
-            var i = 11
-            var backHome = document.getElementById("backHome");
+            function timeOut() {
+                var i = 11
+                var backHome = document.getElementById("backHome");
 
-            setInterval(() =>{
-                i--;
-                backHome.innerHTML = "Bạn sẽ được tự động quay lại trang chủ sau " + i + " giây.";
-            },1000);
-        }
-        timeOut();
-        setTimeout('Redirect()', 10000);
-    </script>
+                setInterval(() => {
+                    i--;
+                    backHome.innerHTML = "Bạn sẽ được tự động quay lại trang chủ sau " + i + " giây.";
+                }, 1000);
+            }
+
+            timeOut();
+            setTimeout('Redirect()', 10000);
+        </script>
+    </main>
+
 </body>
 
 </html>

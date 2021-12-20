@@ -46,6 +46,7 @@ public class ThongKeTourLikeAdminController {
 		Page<TravelLike> favoriteTour = travelLikeService.getAll(page -1, SIZE);
 		//Page<TravelLike> favoriteTour = travelLikeService.getFavotiteTour(page -1, SIZE);
 		model.addAttribute("favoriteTour", favoriteTour);
+		model.addAttribute("tourLike", favoriteTour.getContent());
 		
 		//List<Travel> listFavo = travel.getFavoriteTour();
 		//model.addAttribute("favoriteItems", listFavo);

@@ -11,7 +11,8 @@ Website Nice_Travel
 
 - lịch trình chuyến đi
 - validate form chỉnh sửa, tạo account
-- sửa forgot password
+
+[//]: # (- sửa forgot password)
 
 [//]: # (- update mật khẩu tài khoản bên admin)
 

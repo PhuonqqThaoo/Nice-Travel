@@ -262,7 +262,7 @@
                                                 </td>
                                                 <!-- <td th:text="${p.travelId.departurePlace}"></td> -->
                                                 <td style="width: 17% ;">
-                                                    <img th:src="@{|/assets/img/${p.travelId.img}|}" style="width: 80%;" alt="">
+                                                    <img th:src="@{|/photos/travels/${p.travelId.id}/${p.travelId.img}|}" style="width: 80%;" alt="">
                                                 </td>
                                                 <td>[[${#numbers.formatCurrency(p.travelId.price)}]]</td>
                                                 <td th:text="${p.travel_like_account_id.fullname}"></td>
