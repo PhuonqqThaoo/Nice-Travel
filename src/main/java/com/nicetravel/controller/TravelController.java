@@ -95,7 +95,7 @@ public class TravelController {
 		return "travel/tour2";
 	}
 	@RequestMapping("/like/{id}")
-	public void like(@PathVariable("id") Integer id, Authentication authentication, HttpServletRequest request) {
+	public String like(@PathVariable("id") Integer id, Authentication authentication, HttpServletRequest request) {
 		Account account = accountService.findAccountsByUsername(request.getRemoteUser()); // remote
 
 		String username = null;
@@ -114,6 +114,8 @@ public class TravelController {
 		TravelLike like = new TravelLike();
 		like.setTravel_like_account_id(account);
 		like.setTravelId(travel);
-		travelLikeService.createTravelLike(like); 
+		travelLikeService.createTravelLike(like);
+
+		return "forward:/travel/tour";
 	}
 }
