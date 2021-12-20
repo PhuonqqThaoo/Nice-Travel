@@ -192,9 +192,9 @@ Validator.isPassword = function (selector, message) {
         selector: selector,
         test: function (value) {
             if (value.length < 6) {
-                return ("Mật khẩu ít quá ngắn");
+                return ("Mật khẩu quá ngắn");
             } else if (value.length > 50) {
-                return ("Mật khẩu ít quá dài");
+                return ("Mật khẩu quá dài");
             } else if (value.search(/\d/) == -1) {
                 return ("Mật khẩu phải có ít nhất một số");
             } else if (value.search(/[a-zA-Z]/) == -1) {

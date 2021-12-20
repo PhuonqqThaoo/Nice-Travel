@@ -94,6 +94,12 @@ public class Account implements Serializable {
         }else if(img.equals("") || img.equals("user.png")){
             return "/dashboard/img/user.png";
         }
+        else if(provider == null || provider.equals(Provider.DATABASE) || provider.equals(Provider.FACEBOOK)){
+            return "/photos/accounts/" + username + "/" + img;
+        }
+        else if(provider.equals(Provider.GOOGLE)){
+            return img;
+        }
 
         return "/photos/accounts/" + username + "/" + img;
     }

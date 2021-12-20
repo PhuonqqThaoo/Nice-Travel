@@ -41,6 +41,10 @@ public class UserController {
 
     private final BCryptPasswordEncoder passwordEncoder;
 
+    public BCryptPasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 
     @Autowired
     public UserController(AccountService accountService, UserServices service, BCryptPasswordEncoder passwordEncoder) {
@@ -50,13 +54,14 @@ public class UserController {
     }
 
     private static final int SIZE = 4;
+
     @GetMapping("")
     public String doGetIndex(Model model, HttpServletRequest request,
-                             @RequestParam(name="page",defaultValue = "1") int page) {
+                             @RequestParam(name = "page", defaultValue = "1") int page) {
         Account account = accountService.findAccountsByUsername(request.getRemoteUser());
 //        List<Account> account1 = accountService.getAllAccount();
         model.addAttribute("account", account);
-        Page<Account> list = accountService.findAllByUserActivate(page-1, SIZE);
+        Page<Account> list = accountService.findAllByUserActivate(page - 1, SIZE);
         model.addAttribute("listUser", list.getContent());
         model.addAttribute("totalPage", list.getTotalPages());
         model.addAttribute("currentPage", page);
@@ -67,10 +72,10 @@ public class UserController {
 
     @GetMapping("/all")
     public String getAllUser(Model model, HttpServletRequest request,
-                             @RequestParam(name="page",defaultValue = "1") int page){
+                             @RequestParam(name = "page", defaultValue = "1") int page) {
         Account account = accountService.findAccountsByUsername(request.getRemoteUser());
         model.addAttribute("account", account);
-        Page<Account> list = accountService.getAllUser(page-1, SIZE);
+        Page<Account> list = accountService.getAllUser(page - 1, SIZE);
         model.addAttribute("listUser", list.getContent());
         model.addAttribute("totalPage", list.getTotalPages());
         model.addAttribute("currentPage", page);
@@ -81,10 +86,10 @@ public class UserController {
 
     @GetMapping("/noActive")
     public String getAllUserNoActive(Model model, HttpServletRequest request,
-                             @RequestParam(name="page",defaultValue = "1") int page){
+                                     @RequestParam(name = "page", defaultValue = "1") int page) {
         Account account = accountService.findAccountsByUsername(request.getRemoteUser());
         model.addAttribute("account", account);
-        Page<Account> list = accountService.findAllByUserNoActivate(page-1, SIZE);
+        Page<Account> list = accountService.findAllByUserNoActivate(page - 1, SIZE);
         model.addAttribute("listUser", list.getContent());
         model.addAttribute("totalPage", list.getTotalPages());
         model.addAttribute("currentPage", page);
@@ -107,7 +112,7 @@ public class UserController {
                              RedirectAttributes redirect) {
         String errorMessage = null;
         Account account = accountService.findAccountsByUsername(userRequest.getUsername());
-
+        String newPassword = userRequest.getPassword();
         try {
             // check if userRequest is not valid
             if (result.hasErrors()) {
@@ -115,26 +120,26 @@ public class UserController {
                 errorMessage = "Người dùng không hợp lệ";
                 redirect.addFlashAttribute("errorMessage", errorMessage);
             } else {
-
-                if(!passwordEncoder.matches(account.getPassword(), userRequest.getPassword())){
+                if ((!passwordEncoder.matches(account.getPassword(), userRequest.getPassword())) && newPassword.length() > 0) {
                     account.setPasswordChangedTime(new Date());
-                }else {
+                    userRequest.setPassword(getPasswordEncoder().encode(newPassword));
+                } else {
                     account.setPasswordChangedTime(account.getPasswordChangedTime());
+                    userRequest.setPassword(account.getPassword());
                 }
-                    userRequest.setImg(account.getImg());
-                    userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-                    userRequest.setPasswordChangedTime(new Date());
-                    userRequest.setTravels(userRequest.getTravels());
-                    accountService.update(userRequest);
-                    String successMessage = "Người dùng " + userRequest.getFullname() + " đã cập nhật thành công";
-                    redirect.addFlashAttribute("successMessage", successMessage);
+                userRequest.setImg(account.getImg());
+                userRequest.setPasswordChangedTime(new Date());
+                userRequest.setTravels(userRequest.getTravels());
+                accountService.update(userRequest);
+                String successMessage = "Người dùng " + userRequest.getFullname() + " đã cập nhật thành công";
+                redirect.addFlashAttribute("successMessage", successMessage);
             }
         } catch (Exception e) {
             e.printStackTrace();
             errorMessage = "Không thể cập nhật người dùng " + userRequest.getFullname() + ", vui long thử lại sau!";
         }
 
-        if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
+        if (!ObjectUtils.isEmpty(errorMessage)) {
             redirect.addFlashAttribute("errorMessage", errorMessage);
         }
         return "redirect:/admin/thong-tin-khach-hang";
@@ -193,7 +198,7 @@ public class UserController {
         String headerValue = "attachment; filename=users_" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List<Account> listUsers =accountService.findAll();
+        List<Account> listUsers = accountService.findAll();
 
         UserExcelExporter excelExporter = new UserExcelExporter(listUsers);
 

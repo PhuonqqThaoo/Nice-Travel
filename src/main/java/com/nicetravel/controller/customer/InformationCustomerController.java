@@ -185,15 +185,15 @@ public class InformationCustomerController {
 		model.addAttribute("pageTitle", "Thay đổi mật khẩu đã hết hạn");
 
 		if (oldPassword.equals(newPassword)) {
-			model.addAttribute("message", "Mật khẩu mới của bạn phải khác mật khẩu cũ.");
+			ra.addFlashAttribute("message", "Mật khẩu mới của bạn phải khác mật khẩu cũ.");
 			System.out.println("Mật khẩu mới của bạn phải khác mật khẩu cũ.");
-			return "redirect:/admin/change-password";
+			return "redirect:/customer/change-password";
 		}
 
 		if (!passwordEncoder.matches(oldPassword, acc.getPassword())) {
-			model.addAttribute("message", "Mật khẩu cũ của bạn không chính xác.");
+			ra.addFlashAttribute("message", "Mật khẩu cũ của bạn không chính xác.");
 			System.out.println("Mật khẩu cũ của bạn không chính xác.");
-			return "redirect:/admin/change-password";
+			return "redirect:/customer/change-password";
 
 		} else {
 			userServices.changePassword(acc, passwordEncoder.encode(newPassword));

@@ -640,3 +640,13 @@ header {
 .show-scrollup {
     bottom: 5rem;
 }
+
+/**/
+.user-name{
+    display: flex;
+    align-items: center;
+}
+
+.ri-user-settings-fill{
+    margin-right: 8px;
+}

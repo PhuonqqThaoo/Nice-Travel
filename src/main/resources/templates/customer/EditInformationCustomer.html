@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5 " lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -97,10 +99,10 @@
                 </button>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle">
+                        <a class="nav-link dropdown-toggle" sec:authorize="isAuthenticated()">
                             <img class="img-profile rounded-circle" th:src="@{${userRequest.getPhotosImagePath()}}"
                                  style="max-width: 60px">
-                            <span class="ml-2 d-none d-lg-inline text-white small">[[${#request.remoteUser}]]</span>
+                            <span class="ml-2 d-none d-lg-inline text-white small" sec:authentication="name">Username></span>
                         </a>
                     </li>
                 </ul>

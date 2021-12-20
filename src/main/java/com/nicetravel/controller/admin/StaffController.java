@@ -44,6 +44,10 @@ public class StaffController {
 
 	private static final int SIZE = 4;
 
+	public BCryptPasswordEncoder getPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 	@Autowired
 	public StaffController(AccountService accountService, UserServices service, BCryptPasswordEncoder passwordEncoder) {
 		this.accountService = accountService;
@@ -106,20 +110,20 @@ public class StaffController {
 							 RedirectAttributes redirect) {
 		String errorMessage = null;
 		Account account = accountService.findAccountsByUsername(userRequest.getUsername());
-
+		String newPassword = userRequest.getPassword();
 		try {
 			// check if userRequest is not valid
 			if (result.hasErrors()) {
 				errorMessage ="Người dùng không hợp lệ";
 			}else {
-				if(!passwordEncoder.matches(account.getPassword(), userRequest.getPassword())){
+				if ((!passwordEncoder.matches(account.getPassword(), userRequest.getPassword())) && newPassword.length() > 0) {
 					account.setPasswordChangedTime(new Date());
-				}else {
+					userRequest.setPassword(getPasswordEncoder().encode(newPassword));
+				} else {
 					account.setPasswordChangedTime(account.getPasswordChangedTime());
+					userRequest.setPassword(account.getPassword());
 				}
 				userRequest.setImg(account.getImg());
-				userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-				userRequest.setPasswordChangedTime(new Date());
 				userRequest.setTravels(userRequest.getTravels());
 				accountService.update(userRequest);
 				String successMessage = "Người dùng " + userRequest.getFullname() + " đã cập nhật thành công";
