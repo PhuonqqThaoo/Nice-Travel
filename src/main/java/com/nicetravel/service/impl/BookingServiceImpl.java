@@ -6,10 +6,12 @@ import com.nicetravel.entity.Account;
 import com.nicetravel.entity.Booking;
 import com.nicetravel.entity.BookingDetail;
 import com.nicetravel.entity.Travel;
+import com.nicetravel.repository.AccountRepository;
 import com.nicetravel.repository.BookingDetailRepository;
 import com.nicetravel.repository.BookingRepository;
 import com.nicetravel.repository.StatsRepository;
 import com.nicetravel.repository.TravelRepository;
+import com.nicetravel.service.AccountService;
 import com.nicetravel.service.BookingService;
 
 import org.hibernate.type.descriptor.java.BigDecimalTypeDescriptor;
@@ -26,6 +28,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Optional;
 
 @Service
 public class BookingServiceImpl implements BookingService {
@@ -40,6 +43,9 @@ public class BookingServiceImpl implements BookingService {
 
 	@Autowired
 	TravelRepository travelRepository;
+	
+	@Autowired
+	AccountRepository accountRepository;
 
 	@Autowired
 	public BookingServiceImpl(BookingRepository bookingRepository) {
@@ -115,7 +121,14 @@ public class BookingServiceImpl implements BookingService {
 		int qtynew = travel.getQuantityNew() - bookingDetail.getTotalQuantity();
 		travel.setQuantityNew(qtynew);
 		travelRepository.save(travel);
-
+		
+		//Update account
+		
+		Account account = accountRepository.findById(booking.getBooking_account_id().getId()).get();
+		account.setPhone(booking.getPhone());
+		account.setAddress(booking.getAddress());
+		accountRepository.save(account);
+		
 		return booking;
 	}
 
