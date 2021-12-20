@@ -88,7 +88,7 @@
                             <img th:src="@{|/assets/img/${item.travelId.img}|}" alt="">
                         </div>
                         <h3 class="name">
-                            <a href="#">[[${item.travelId.name}]]</a>
+                            <a th:href="@{|/travel/detail/${item.travelId.slug}|}">[[${item.travelId.name}]]</a>
                         </h3>
                     </div>
                 </div>
