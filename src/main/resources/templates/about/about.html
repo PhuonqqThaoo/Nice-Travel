@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index2 :: dynamic(~{::head},~{::main})}">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giới thiệu| Nice Travel</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/img/logoNiceIco.ico}">
+
+    <!-- remixicon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.nicetravel.css}" />
+
+    <!-- slick sdn css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+
+    <!-- css responsive -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.responsive.css}">
+
+    <link rel="stylesheet" th:href="@{/assets/css/about.css}">
+</head>
+<body>
+	<main th:object="${item}" class="main">
+		<img src="assets/img/about/bradcam3.png" alt="">
+        <section class="about">
+            <div class="about__box-1">
+                <div class="title">Câu chuyện của chúng ta</div>
+                <p>Tư vấn thể hiện sự thành công trong việc nhận ra công ty đang đi sai hướng. Lần duy nhất công ty thất
+                    bại là khi không còn khả năng quay vòng vốn nữa. Chúng tôi giúp các công ty xoay trục sang các hướng
+                    có lợi hơn, nơi họ có thể mở rộng và phát triển. Điều không thể tránh khỏi là các công ty sẽ mắc
+                    phải một vài sai lầm; chúng tôi giúp họ sửa chữa những sai lầm này.</p>
+                <p>Tư vấn thể hiện sự thành công trong việc nhận ra công ty đang đi sai hướng. Lần duy nhất công ty thất
+                    bại là khi không còn khả năng quay vòng vốn nữa. Chúng tôi giúp các công ty xoay trục sang các hướng
+                    có lợi hơn, nơi họ có thể mở rộng và phát triển. Điều không thể tránh khỏi là các công ty sẽ mắc
+                    phải một vài sai lầm; chúng tôi giúp họ sửa chữa những sai lầm này.</p>
+                <div class="img">
+                    <div class="img-1">
+                        <img src="/assets/img/about/1.png" alt="">
+                    </div>
+                    <div class="img-2">
+                        <img src="/assets/img/about/2.png" alt="">
+                    </div>
+                </div>
+                <div class="about__box-1__number">
+                    <div class="number-box">
+                        <h1>378</h1>
+                        <p>Chuyến tham quan đã thành công</p>
+                    </div>
+                    <div class="number-box">
+                        <h1>40</h1>
+                        <p>Sắp xếp tour du lịch hàng năm</p>
+                    </div>
+                    <div class="number-box">
+                        <h1>1127</h1>
+                        <p>Khách hàng vui vẻ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about__box-2">
+                <div class="img">
+                    <img src="/assets/img/about/video.png" alt="">
+                </div>
+                <div class="about__box-2__icon">
+                    <div class="icon-box">
+                        <i class="ri-sailboat-line"></i>
+                        <h3>Hành trình thoải mái</h3>
+                        <p>Một sự thanh thản tuyệt vời đã chiếm hữu toàn bộ tâm hồn tôi.</p>
+                    </div>
+
+                    <div class="icon-box">
+                        <i class="ri-showers-fill"></i>
+                        <h3>Khách sạn sang trọng</h3>
+                        <p>Một sự thanh thản tuyệt vời đã chiếm hữu toàn bộ tâm hồn tôi.</p>
+                    </div>
+
+                    <div class="icon-box">
+                        <i class="ri-earth-fill"></i>
+                        <h3>Hướng dẫn viên du lịch</h3>
+                        <p>Một sự thanh thản tuyệt vời đã chiếm hữu toàn bộ tâm hồn tôi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about__box-3">
+                <div class="title">Các chuyến đi gần đây</div>
+                <div class="about__box-3__travel">
+                    <div class="travel-box">
+                        <img src="/assets/img/about/trip/1.png" alt="">
+                        <h4>Tháng 9 năm 2021</h4>
+                        <h3>Được đo lường tốt nhất trong số những người bạn mới</h3>
+                    </div>
+
+                    <div class="travel-box">
+                        <img src="/assets/img/about/trip/2.png" alt="">
+                        <h4>Tháng 10 năm 2021</h4>
+                        <h3>Được đo lường tốt nhất trong số những người bạn mới</h3>
+                    </div>
+
+                    <div class="travel-box">
+                        <img src="/assets/img/about/trip/3.png" alt="">
+                        <h4>Tháng 11 năm 2021</h4>
+                        <h3>Được đo lường tốt nhất trong số những người bạn mới</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+	</main>
+</body>
+</html>
