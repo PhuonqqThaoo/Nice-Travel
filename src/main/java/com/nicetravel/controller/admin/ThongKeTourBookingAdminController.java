@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Size;
 
+import com.nicetravel.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,10 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nicetravel.entity.Account;
 import com.nicetravel.entity.BookingDetail;
-import com.nicetravel.service.AccountService;
-import com.nicetravel.service.BookingDetailService;
-import com.nicetravel.service.BookingService;
-import com.nicetravel.service.TravelService;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,7 +33,10 @@ public class ThongKeTourBookingAdminController {
 	
 	@Autowired
 	BookingDetailService bookingDetailService;
-	
+
+	@Autowired
+	StatsService statsService;
+
 	@RequestMapping("/thongke-tourbooking")
 	public String getThongKeTourBooking(HttpServletRequest request, Model model,String start, String end,
 			 @RequestParam(name="page",defaultValue = "1") int page) {
@@ -55,8 +55,19 @@ public class ThongKeTourBookingAdminController {
 		
 		model.addAttribute("totalPage", Infor.getTotalPages());
 		model.addAttribute("currentPage", page);
-		
-		
+
+		String[][] chartData;
+		chartData = statsService.sp_getTotalBookingOneMonth();
+		for(int i = 0 ; i<12; i++) {
+			System.out.println(chartData[0][i]);
+			System.out.println(chartData[1][i]);
+			System.out.println("");
+		}
+		String text = "Thống kê số lượng tour đã đặt trong 12 tháng";
+		model.addAttribute("text",text);
+		System.out.println(chartData);
+		model.addAttribute("chartData",chartData);
+
 		return "admin/thong-ke/ThongKe-Booking";
 	}
 }

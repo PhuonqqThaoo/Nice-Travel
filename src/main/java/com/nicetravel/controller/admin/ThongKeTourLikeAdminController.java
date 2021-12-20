@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.nicetravel.service.StatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,10 @@ public class ThongKeTourLikeAdminController {
 	private final AccountService accountService;
 	@Autowired
 	TravelLikeService travelLikeService;
-	
+
+	@Autowired
+	StatsService statsService;
+
 	@Autowired
 	public ThongKeTourLikeAdminController(AccountService accountService) {
 		this.accountService = accountService;
@@ -49,7 +53,14 @@ public class ThongKeTourLikeAdminController {
 		model.addAttribute("totalTour", travelLikeService.countTourLike());
 		model.addAttribute("totalPage", favoriteTour.getTotalPages());
 		model.addAttribute("currentPage", page);
-		
+
+		String[][] chartData;
+		chartData = statsService.sp_GetTotalTravelLike();
+		String text = "Thống kê số lượng yêu thích của các tour";
+		model.addAttribute("text",text);
+		System.out.println(chartData);
+		model.addAttribute("chartData",chartData);
+
 		return "admin/thong-ke/ThongKe-LikeTravel";
 	}
 }
