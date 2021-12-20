@@ -25,7 +25,7 @@ import com.nicetravel.service.TravelService;
 @RequestMapping("/admin")
 
 public class ThongKeTourBookingAdminController {
-	private static final int SIZE = 4;
+	private static final int SIZE = 8;
 	private final AccountService accountService;
 	@Autowired
 	public ThongKeTourBookingAdminController(AccountService accountService) {

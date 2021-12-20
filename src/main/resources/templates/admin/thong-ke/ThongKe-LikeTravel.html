@@ -202,7 +202,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xl-12 col-md-6 mb-4">
+                                    <!-- <div class="col-xl-12 col-md-6 mb-4">
                                         <div class="card h-100">
                                             <div class="admin-search-date-1" style="width: 100%;">
                                                 <form th:action="@{/admin}" method="post">
@@ -224,7 +224,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -234,15 +234,14 @@
                             <div class="card">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Chuyến đi yêu thích</h6>
-                                    <a class="m-0 float-right btn btn-danger btn-sm" href="#">Xem thêm <i
-                                            class="fas fa-chevron-right"></i></a>
+                                    <h6 class="m-0 font-weight-bold text-primary">TOP 3 chuyến đi yêu thích nhiều nhất</h6>
+                                   <!--  <a class="m-0 float-right btn btn-danger btn-sm" href="#">Xem thêm <i
+                                            class="fas fa-chevron-right"></i></a> -->
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>STT</th>
                                                 <th>Hình</th>
                                                 <th>Tên chuyến đi</th>
                                                 <th>Địa điểm</th>
@@ -250,18 +249,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="p,i : ${favoriteItems}">
-                                                <td th:text="${i.index+1}">
-                                                    </th>
-                                                <td style="width: 17%;">
-                                                    <img th:src="@{|/assets/img/${p.img}|}" style="width: 100%;" alt="">
+                                             <tr th:each="p : ${favoriteTour}">
+                                               
+                                                  
+                                                 <td style="width: 17%;">
+                                                    <img th:src="@{|/assets/img/${p.travelId.img}|}" style="width: 100%;" alt="">
                                                 </td>
+                                                <td th:text="${p.travelId.id}"></td>
                                                 <td>
-                                                    <h5 style="font-weight: 700;" th:utext="${p.name}"></h5>
+                                                    <h5 style="font-weight: 700;" th:utext="${p.travelId.name}"></h5>
                                                 </td>
-                                                <td th:text="${p.departurePlace}"></td>
-                                                <td>[[${#numbers.formatCurrency(p.price)}]]</td>
+                                                <td th:text="${p.travelId.departurePlace}"></td>
+                                                <td>[[${#numbers.formatCurrency(p.travelId.price)}]]</td>
                                             </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

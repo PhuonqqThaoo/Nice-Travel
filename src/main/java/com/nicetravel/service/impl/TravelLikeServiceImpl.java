@@ -3,6 +3,8 @@ package com.nicetravel.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.nicetravel.entity.Account;
@@ -35,6 +37,18 @@ public class TravelLikeServiceImpl implements TravelLikeService {
 	@Override
 	public List<TravelLike> getAllTravelLikeByIdAcount(Account account_Id) {
 		return travelLikeRepository.getAllTravelLikeByIdAcount(account_Id);
+	}
+
+	@Override
+	public Page<TravelLike> getFavotiteTour(int page, int size) {
+		// TODO Auto-generated method stub
+		return travelLikeRepository.getFavoriteTour(PageRequest.of(page, size));
+	}
+
+	@Override
+	public Page<TravelLike> getAll(int page, int size) {
+		// TODO Auto-generated method stub
+		return travelLikeRepository.findAll(PageRequest.of(page, size));
 	}
 
 
