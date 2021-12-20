@@ -87,4 +87,6 @@ public interface TravelService {
     Integer countTourInMonth();
     
     Integer sp_GetTourDaDat();
+
+    List<Travel> findAllTravelAdmin();
 }

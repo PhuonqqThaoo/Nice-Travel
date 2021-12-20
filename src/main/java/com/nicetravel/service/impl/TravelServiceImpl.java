@@ -285,13 +285,10 @@ public class TravelServiceImpl implements TravelService {
 		return travelRepository.countTourDaDat();
 	}
 
+	@Override
+	public List<Travel> findAllTravelAdmin() {
+		return travelRepository.findAllTravelAdmin();
+	}
 
 
-
-
-
-	
-
-	
-	
 }

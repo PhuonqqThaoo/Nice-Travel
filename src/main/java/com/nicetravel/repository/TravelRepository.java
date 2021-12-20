@@ -145,5 +145,8 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 	
 	@Query(value = "{CALL sp_GetTourDaDat()}" , nativeQuery = true)
 	Integer countTourDaDat() ;
+
+	@Query(value ="SELECT * From travel where is_deleted = 0",nativeQuery = true)
+	List<Travel> findAllTravelAdmin();
 	
 }

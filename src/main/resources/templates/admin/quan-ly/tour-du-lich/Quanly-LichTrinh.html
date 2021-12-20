@@ -152,6 +152,15 @@
 
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
+                    <div id="divThongBao">
+                        <div id="thongBao" style="display: none;" role="alert" align="center">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <span id="errorMessage" th:text="${errorMessage}"></span>
+                            <span id="successMessage" th:text="${successMessage}"></span>
+                        </div>
+                    </div>
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Quản lý lịch trình chuyến đi</h1>
                         <ol class="breadcrumb">
@@ -162,210 +171,29 @@
 
                     <!-- Row lich trình-->
                     <div class="row mb-3 lich-trinh-chuyen-di">
-                        <div class="col-xl-3">
+                        <div class="col-xl-3" th:each="item : ${listTravelDetail}">
                             <div class="card mb-4" style="padding: 2rem;">
-                                <h4>Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên
-                                    chuyến đi (travel_id)</h4>
+                                <h4 th:text="${item.travelId.getName()}"></h4>
                                 <p>
-                                <h5>Thời gian:</h5>
-                                <div class="time">
-                                    Ngày 1 - TP.HỒ CHÍ MINH - BẢO LỘC - THÁC ĐAM B’RI - ĐÀ LẠT (Ăn sáng,
-                                    trưa, tối,Ăn sáng,
-                                    trưa, tối)
+                                <h5>Thời gian: </h5>
+                                <div  th:text="${item.time}" class="time">
+<!--                                    Ngày 1 - TP.HỒ CHÍ MINH - BẢO LỘC - THÁC ĐAM B’RI - ĐÀ LẠT (Ăn sáng,-->
+<!--                                    trưa, tối,Ăn sáng,-->
+<!--                                    trưa, tối)-->
                                 </div>
                                 </p>
                                 <p>
                                 <h5>Miêu tả:</h5>
-                                <div class="description">
-                                    Quý khách tập trung tại Công ty Vietravel (190 Pasteur, Phường Võ Thị Sáu, Quận 3,
-                                    TP.Hồ Chí Minh) khởi hành đi Đà Lạt. Quý khách ăn sáng trên cung đường đi. Đến Bảo
-                                    Lộc đoàn tham quan: Thác Đam B’ri: được coi là ngọn thác lớn nhất vùng đất Lâm Đồng
-                                    với chiều cao 60 m tạo thành 2 dòng chảy cao thấp rất hùng vĩ. Khu du lịch thác Đamb
-                                    ri còn là một quần thể du lịch bao gồm khu vui chơi, hồ, thác và rừng nguyên sinh
-                                    rộng hàng trăm hecta với khí hậu trong mát của rừng nguyên sinh Nam Tây Nguyên. Sau
-                                    khi dùng bữa trưa, đoàn tiếp tục hành trình đến với thành phố ngàn hoa. Buổi tối,
-                                    Quý khách tự do dạo chợ đêm Đà Lạt hay thưởng thức bánh tráng nướng và ly sữa đậu
-                                    nành nóng trong tiết trời se lành. Nghỉ đêm tại Đà Lạt.
-                                </div>
-                                </p>
-                                <button type="button" class="btn btn-primary">Cập nhật</button>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3">
-                            <div class="card mb-4" style="padding: 2rem;">
-                                <h4>Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên
-                                    chuyến đi (travel_id)</h4>
-                                <p>
-                                <h5>Thời gian:</h5>
-                                <div class="time">
-                                    Ngày 1 - TP.HỒ CHÍ MINH - BẢO LỘC - THÁC ĐAM B’RI - ĐÀ LẠT (Ăn sáng,
-                                    trưa, tối,Ăn sáng,
-                                    trưa, tối)
-                                </div>
-                                </p>
-                                <p>
-                                <h5>Miêu tả:</h5>
-                                <div class="description">
-                                    Quý khách tập trung tại Công ty Vietravel (190 Pasteur, Phường Võ Thị Sáu, Quận 3,
-                                    TP.Hồ Chí Minh) khởi hành đi Đà Lạt. Quý khách ăn sáng trên cung đường đi. Đến Bảo
-                                    Lộc đoàn tham quan: Thác Đam B’ri: được coi là ngọn thác lớn nhất vùng đất Lâm Đồng
-                                    với chiều cao 60 m tạo thành 2 dòng chảy cao thấp rất hùng vĩ. Khu du lịch thác Đamb
-                                    ri còn là một quần thể du lịch bao gồm khu vui chơi, hồ, thác và rừng nguyên sinh
-                                    rộng hàng trăm hecta với khí hậu trong mát của rừng nguyên sinh Nam Tây Nguyên. Sau
-                                    khi dùng bữa trưa, đoàn tiếp tục hành trình đến với thành phố ngàn hoa. Buổi tối,
-                                    Quý khách tự do dạo chợ đêm Đà Lạt hay thưởng thức bánh tráng nướng và ly sữa đậu
-                                    nành nóng trong tiết trời se lành. Nghỉ đêm tại Đà Lạt.
-                                </div>
-                                </p>
-                                <button type="button" class="btn btn-primary">Cập nhật</button>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3">
-                            <div class="card mb-4" style="padding: 2rem;">
-                                <h4>Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên
-                                    chuyến đi (travel_id)</h4>
-                                <p>
-                                <h5>Thời gian:</h5>
-                                <div class="time">
-                                    Ngày 1 - TP.HỒ CHÍ MINH - BẢO LỘC - THÁC ĐAM B’RI - ĐÀ LẠT (Ăn sáng,
-                                    trưa, tối,Ăn sáng,
-                                    trưa, tối)
-                                </div>
-                                </p>
-                                <p>
-                                <h5>Miêu tả:</h5>
-                                <div class="description">
-                                    Quý khách tập trung tại Công ty Vietravel (190 Pasteur, Phường Võ Thị Sáu, Quận 3,
-                                    TP.Hồ Chí Minh) khởi hành đi Đà Lạt. Quý khách ăn sáng trên cung đường đi. Đến Bảo
-                                    Lộc đoàn tham quan: Thác Đam B’ri: được coi là ngọn thác lớn nhất vùng đất Lâm Đồng
-                                    với chiều cao 60 m tạo thành 2 dòng chảy cao thấp rất hùng vĩ. Khu du lịch thác Đamb
-                                    ri còn là một quần thể du lịch bao gồm khu vui chơi, hồ, thác và rừng nguyên sinh
-                                    rộng hàng trăm hecta với khí hậu trong mát của rừng nguyên sinh Nam Tây Nguyên. Sau
-                                    khi dùng bữa trưa, đoàn tiếp tục hành trình đến với thành phố ngàn hoa. Buổi tối,
-                                    Quý khách tự do dạo chợ đêm Đà Lạt hay thưởng thức bánh tráng nướng và ly sữa đậu
-                                    nành nóng trong tiết trời se lành. Nghỉ đêm tại Đà Lạt.
-                                </div>
-                                </p>
-                                <button type="button" class="btn btn-primary">Cập nhật</button>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3">
-                            <div class="card mb-4" style="padding: 2rem;">
-                                <h4>Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên
-                                    chuyến đi (travel_id)</h4>
-                                <p>
-                                <h5>Thời gian:</h5>
-                                <div class="time">
-                                    Ngày 1 - TP.HỒ CHÍ MINH - BẢO LỘC - THÁC ĐAM B’RI - ĐÀ LẠT (Ăn sáng,
-                                    trưa, tối,Ăn sáng,
-                                    trưa, tối)
-                                </div>
-                                </p>
-                                <p>
-                                <h5>Miêu tả:</h5>
-                                <div class="description">
-                                    Quý khách tập trung tại Công ty Vietravel (190 Pasteur, Phường Võ Thị Sáu, Quận 3,
-                                    TP.Hồ Chí Minh) khởi hành đi Đà Lạt. Quý khách ăn sáng trên cung đường đi. Đến Bảo
-                                    Lộc đoàn tham quan: Thác Đam B’ri: được coi là ngọn thác lớn nhất vùng đất Lâm Đồng
-                                    với chiều cao 60 m tạo thành 2 dòng chảy cao thấp rất hùng vĩ. Khu du lịch thác Đamb
-                                    ri còn là một quần thể du lịch bao gồm khu vui chơi, hồ, thác và rừng nguyên sinh
-                                    rộng hàng trăm hecta với khí hậu trong mát của rừng nguyên sinh Nam Tây Nguyên. Sau
-                                    khi dùng bữa trưa, đoàn tiếp tục hành trình đến với thành phố ngàn hoa. Buổi tối,
-                                    Quý khách tự do dạo chợ đêm Đà Lạt hay thưởng thức bánh tráng nướng và ly sữa đậu
-                                    nành nóng trong tiết trời se lành. Nghỉ đêm tại Đà Lạt.
-                                </div>
-                                </p>
-                                <button type="button" class="btn btn-primary">Cập nhật</button>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3">
-                            <div class="card mb-4" style="padding: 2rem;">
-                                <h4>Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên
-                                    chuyến đi (travel_id)</h4>
-                                <p>
-                                <h5>Thời gian:</h5>
-                                <div class="time">
-                                    Ngày 1 - TP.HỒ CHÍ MINH - BẢO LỘC - THÁC ĐAM B’RI - ĐÀ LẠT (Ăn sáng,
-                                    trưa, tối,Ăn sáng,
-                                    trưa, tối)
-                                </div>
-                                </p>
-                                <p>
-                                <h5>Miêu tả:</h5>
-                                <div class="description">
-                                    Quý khách tập trung tại Công ty Vietravel (190 Pasteur, Phường Võ Thị Sáu, Quận 3,
-                                    TP.Hồ Chí Minh) khởi hành đi Đà Lạt. Quý khách ăn sáng trên cung đường đi. Đến Bảo
-                                    Lộc đoàn tham quan: Thác Đam B’ri: được coi là ngọn thác lớn nhất vùng đất Lâm Đồng
-                                    với chiều cao 60 m tạo thành 2 dòng chảy cao thấp rất hùng vĩ. Khu du lịch thác Đamb
-                                    ri còn là một quần thể du lịch bao gồm khu vui chơi, hồ, thác và rừng nguyên sinh
-                                    rộng hàng trăm hecta với khí hậu trong mát của rừng nguyên sinh Nam Tây Nguyên. Sau
-                                    khi dùng bữa trưa, đoàn tiếp tục hành trình đến với thành phố ngàn hoa. Buổi tối,
-                                    Quý khách tự do dạo chợ đêm Đà Lạt hay thưởng thức bánh tráng nướng và ly sữa đậu
-                                    nành nóng trong tiết trời se lành. Nghỉ đêm tại Đà Lạt.
-                                </div>
-                                </p>
-                                <button type="button" class="btn btn-primary">Cập nhật</button>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3">
-                            <div class="card mb-4" style="padding: 2rem;">
-                                <h4>Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên
-                                    chuyến đi (travel_id)</h4>
-                                <p>
-                                <h5>Thời gian:</h5>
-                                <div class="time">
-                                    Ngày 1 - TP.HỒ CHÍ MINH - BẢO LỘC - THÁC ĐAM B’RI - ĐÀ LẠT (Ăn sáng,
-                                    trưa, tối,Ăn sáng,
-                                    trưa, tối)
-                                </div>
-                                </p>
-                                <p>
-                                <h5>Miêu tả:</h5>
-                                <div class="description">
-                                    Quý khách tập trung tại Công ty Vietravel (190 Pasteur, Phường Võ Thị Sáu, Quận 3,
-                                    TP.Hồ Chí Minh) khởi hành đi Đà Lạt. Quý khách ăn sáng trên cung đường đi. Đến Bảo
-                                    Lộc đoàn tham quan: Thác Đam B’ri: được coi là ngọn thác lớn nhất vùng đất Lâm Đồng
-                                    với chiều cao 60 m tạo thành 2 dòng chảy cao thấp rất hùng vĩ. Khu du lịch thác Đamb
-                                    ri còn là một quần thể du lịch bao gồm khu vui chơi, hồ, thác và rừng nguyên sinh
-                                    rộng hàng trăm hecta với khí hậu trong mát của rừng nguyên sinh Nam Tây Nguyên. Sau
-                                    khi dùng bữa trưa, đoàn tiếp tục hành trình đến với thành phố ngàn hoa. Buổi tối,
-                                    Quý khách tự do dạo chợ đêm Đà Lạt hay thưởng thức bánh tráng nướng và ly sữa đậu
-                                    nành nóng trong tiết trời se lành. Nghỉ đêm tại Đà Lạt.
-                                </div>
-                                </p>
-                                <button type="button" class="btn btn-primary">Cập nhật</button>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3">
-                            <div class="card mb-4" style="padding: 2rem;">
-                                <h4>Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên chuyến đi (travel_id) Tên
-                                    chuyến đi (travel_id)</h4>
-                                <p>
-                                <h5>Thời gian:</h5>
-                                <div class="time">
-                                    Ngày 1 - TP.HỒ CHÍ MINH - BẢO LỘC - THÁC ĐAM B’RI - ĐÀ LẠT (Ăn sáng,
-                                    trưa, tối,Ăn sáng,
-                                    trưa, tối)
-                                </div>
-                                </p>
-                                <p>
-                                <h5>Miêu tả:</h5>
-                                <div class="description">
-                                    Quý khách tập trung tại Công ty Vietravel (190 Pasteur, Phường Võ Thị Sáu, Quận 3,
-                                    TP.Hồ Chí Minh) khởi hành đi Đà Lạt. Quý khách ăn sáng trên cung đường đi. Đến Bảo
-                                    Lộc đoàn tham quan: Thác Đam B’ri: được coi là ngọn thác lớn nhất vùng đất Lâm Đồng
-                                    với chiều cao 60 m tạo thành 2 dòng chảy cao thấp rất hùng vĩ. Khu du lịch thác Đamb
-                                    ri còn là một quần thể du lịch bao gồm khu vui chơi, hồ, thác và rừng nguyên sinh
-                                    rộng hàng trăm hecta với khí hậu trong mát của rừng nguyên sinh Nam Tây Nguyên. Sau
-                                    khi dùng bữa trưa, đoàn tiếp tục hành trình đến với thành phố ngàn hoa. Buổi tối,
-                                    Quý khách tự do dạo chợ đêm Đà Lạt hay thưởng thức bánh tráng nướng và ly sữa đậu
-                                    nành nóng trong tiết trời se lành. Nghỉ đêm tại Đà Lạt.
+                                <div  class="description" th:text="${item.description}">
+<!--                                    Quý khách tập trung tại Công ty Vietravel (190 Pasteur, Phường Võ Thị Sáu, Quận 3,-->
+<!--                                    TP.Hồ Chí Minh) khởi hành đi Đà Lạt. Quý khách ăn sáng trên cung đường đi. Đến Bảo-->
+<!--                                    Lộc đoàn tham quan: Thác Đam B’ri: được coi là ngọn thác lớn nhất vùng đất Lâm Đồng-->
+<!--                                    với chiều cao 60 m tạo thành 2 dòng chảy cao thấp rất hùng vĩ. Khu du lịch thác Đamb-->
+<!--                                    ri còn là một quần thể du lịch bao gồm khu vui chơi, hồ, thác và rừng nguyên sinh-->
+<!--                                    rộng hàng trăm hecta với khí hậu trong mát của rừng nguyên sinh Nam Tây Nguyên. Sau-->
+<!--                                    khi dùng bữa trưa, đoàn tiếp tục hành trình đến với thành phố ngàn hoa. Buổi tối,-->
+<!--                                    Quý khách tự do dạo chợ đêm Đà Lạt hay thưởng thức bánh tráng nướng và ly sữa đậu-->
+<!--                                    nành nóng trong tiết trời se lành. Nghỉ đêm tại Đà Lạt.-->
                                 </div>
                                 </p>
                                 <button type="button" class="btn btn-primary">Cập nhật</button>
@@ -377,42 +205,43 @@
                     <div class="row mb-3">
                         <div class="col-xl-12">
                             <div class="card mb-4" style="padding: 3rem;">
-                                <form>
+                                <form th:action="@{/admin/lich-trinh}" th:object="${travelDetailRequest}" id="form" method="POST">
                                     <div class="form-group">
                                         <label>Thời gian di chuyển</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                        <textarea th:field="*{time}" class="form-control" id="exampleFormControlTextarea1"
                                             rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Chi tiết lịch trình</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea2"
+                                        <textarea th:field="*{description}" class="form-control" id="exampleFormControlTextarea2"
                                             rows="3"></textarea>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputState">Tên chuyến đi</label>
-                                            <select id="inputState" class="form-control">
-                                                <option selected>Choose...</option>
-                                                <option>...</option>
+                                            <select id="inputState" class="form-control" th:field="*{travelId}">
+<!--                                                <option selected>Choose...</option>-->
+                                                <option th:each="item : ${listTravelName}" th:value="${item.id}"
+                                                        th:utext="${item.name}" ></option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputState">Trang thái</label>
-                                            <div class="form-control">
+                                            <div class="form-control" th:field="*{isDeleted}">
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio1" value="option1">
+                                                    <input class="form-check-input" checked type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio1" value="true">
                                                     <label class="form-check-label" for="inlineRadio1">Hoạt động</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio2" value="option2">
+                                                        id="inlineRadio2" value="false">
                                                     <label class="form-check-label" for="inlineRadio2">Ngưng hoạt động</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Thêm</button>
+                                    <button type="submit" id="submitCreate" class="btn btn-primary">Thêm</button>
                                     <button type="submit" class="btn btn-primary">Cập nhật</button>
                                     <button type="submit" class="btn btn-primary">Reset</button>
                                 </form>
@@ -475,6 +304,102 @@
     <script th:src="@{/dashboard/js/ruang-admin.min.js}"></script>
     <script th:src="@{/dashboard/vendor/chart.js/Chart.min.js}"></script>
     <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
+
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            $('#fileImage').change(function () {
+                showImageThumbnail(this)
+            })
+        })
+
+        function showImageThumbnail(fileInput) {
+            file = fileInput.files[0];
+            render = new FileReader();
+
+            render.onload = function (e) {
+                $('#thumbnail').attr('src', e.target.result);
+            }
+
+            render.readAsDataURL(file);
+        }
+
+        function editTravel(id) {
+            console.log(id);
+            var url = '/admin/lich-trinh/edit?id=' + id;
+            console.log(url);
+            var a = $('#travel_type').val();
+            console.log("Type" + a);
+            $.get(url).done(function (fragment) {
+                $("#form").replaceWith(fragment);
+                $("#form").prop('action', '/admin/tour-du-lich/edit');
+                var imgUrl = $('#hiddenImgUrl').val();
+                //     			$('#userImgUpload').prop('src','/admin/img/'+imgUrl);
+                $('html,body').animate({
+                    scrollTop: $("#form").offset().top
+                }, 1000);
+                $("#form :input").prop('readonly', false); // cho phép sửa
+                $("input#username").prop('readonly', true); // tô xám
+                $("#submitUpdate").prop('disabled', false);
+            })
+        };
+
+        $("#createBtn").click(function () {
+            $('html,body').animate({
+                scrollTop: $("#form").offset().top
+            }, 1000);
+            $("#form :input").prop('readonly', false);
+            $("#form").prop('action', '/admin/lich-trinh');
+            $("#submitCreate").prop('disabled', false);
+        });
+
+        function getAll() {
+            window.location.assign('/admin/tour-du-lich/all')
+            document.getElementById("exampleRadios1").setAttribute("checked", "checked")
+        };
+        function getAllTravelActive() {
+            window.location.assign('/admin/tour-du-lich')
+            document.getElementById("exampleRadios2").checked = true;
+        };
+
+        function getAllTravelNoActive() {
+            window.location.assign('/admin/tour-du-lich/nonActive')
+            document.getElementById("exampleRadios3").checked = true;
+        };
+
+        function getAllTravelExpires() {
+            window.location.assign('/admin/tour-du-lich/expires')
+            document.getElementById("exampleRadios4").checked = true;
+        };
+
+        function cacelBtn() {
+            $('#name').val('');
+            $('#email').val('');
+            $('#fullname').val('');
+            $('#password').val('');
+            $('#confirmPass').val('');
+            $('#phone').val('');
+            $('#id_Card').val('');
+            $('#address').val('');
+            $('#form:input').prop('readonly', true);
+            $('#submitUpdate').prop('disabled', true);
+            $('#submitCreate').prop('disabled', true);
+        };
+
+
+        function updateTravel() {
+            $('#form').submit();
+
+        };
+        function createTravelDetail() {
+            $('#form').submit();
+
+        }
+
+    </script>
+
+
+
+
     <script th:inline="javascript">
         // Set new default font family and font color to mimic Bootstrap's default styling
         Chart.defaults.global.defaultFontFamily = 'Nunito',
@@ -701,6 +626,31 @@
 
         });
 
+
+    </script>
+
+    <script >
+        $(document).ready(function () {
+            var err = $('#errorMessage').text();
+            var success = $('#successMessage').text();
+            if (err.length > 0) {
+                $('#thongBao').addClass("alert alert-danger");
+                $('#thongBao').css("display","block");
+                setTimeout(function(){
+                    $('#thongBao').fadeOut("slow");
+                },4000);
+                return;
+            }
+            if (success.length > 0) {
+                $('#thongBao').addClass("alert alert-success");
+                $('#thongBao').css("display","block");
+                setTimeout(function(){
+                    $('#thongBao').fadeOut("slow");
+                },2000);
+                return;
+
+            }
+        });
 
     </script>
 </body>
