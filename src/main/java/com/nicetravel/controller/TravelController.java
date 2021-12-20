@@ -114,8 +114,6 @@ public class TravelController {
 		TravelLike like = new TravelLike();
 		like.setTravel_like_account_id(account);
 		like.setTravelId(travel);
-		travelLikeService.createTravelLike(like);
-		
-		
+		travelLikeService.createTravelLike(like); 
 	}
 }
