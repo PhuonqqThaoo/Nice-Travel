@@ -21,5 +21,5 @@ public interface TravelLikeService {
 	
 	Page<TravelLike> getAll(int page,int size);
 
-
+	Integer countTourLike();
 }

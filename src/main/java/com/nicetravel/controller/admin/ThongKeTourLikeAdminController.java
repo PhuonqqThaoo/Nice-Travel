@@ -22,7 +22,7 @@ import com.nicetravel.service.TravelService;
 @Controller
 @RequestMapping("/admin")
 public class ThongKeTourLikeAdminController {
-	private static final int SIZE = 10;
+	private static final int SIZE = 3;
 	private final AccountService accountService;
 	@Autowired
 	TravelLikeService travelLikeService;
@@ -43,9 +43,10 @@ public class ThongKeTourLikeAdminController {
 		//Page<TravelLike> favoriteTour = travelLikeService.getFavotiteTour(page -1, SIZE);
 		model.addAttribute("favoriteTour", favoriteTour);
 		
-		List<Travel> listFavo = travel.getFavoriteTour();
-		model.addAttribute("favoriteItems", listFavo);
+		//List<Travel> listFavo = travel.getFavoriteTour();
+		//model.addAttribute("favoriteItems", listFavo);
 		
+		model.addAttribute("totalTour", travelLikeService.countTourLike());
 		model.addAttribute("totalPage", favoriteTour.getTotalPages());
 		model.addAttribute("currentPage", page);
 		

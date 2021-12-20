@@ -51,6 +51,12 @@ public class TravelLikeServiceImpl implements TravelLikeService {
 		return travelLikeRepository.findAll(PageRequest.of(page, size));
 	}
 
+	@Override
+	public Integer countTourLike() {
+		// TODO Auto-generated method stub
+		return travelLikeRepository.countTotalTour();
+	}
+
 
 
 }

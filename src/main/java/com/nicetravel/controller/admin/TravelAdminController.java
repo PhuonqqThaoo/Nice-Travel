@@ -76,7 +76,7 @@ public class TravelAdminController {
 		System.out.println(list.getTotalPages());
 		model.addAttribute("list", list.getContent());
 		model.addAttribute("totalPage2", list.getTotalPages());
-		model.addAttribute("currentPage", page);
+		model.addAttribute("currentPage", pageList);
 		List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
 		model.addAttribute("listTravelType",listTravelType);
 		model.addAttribute("travelRequest", new Travel());

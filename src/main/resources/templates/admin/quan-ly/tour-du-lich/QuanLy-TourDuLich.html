@@ -267,18 +267,18 @@
                                     </table>
                                     <nav aria-label="Page navigation example" th:if="${totalPage >1}">
                                         <ul class="pagination justify-content-center">
-                                            <li class="page-item" th:class="${currentPageLike == 1} ? 'disabled' : ''">
+                                            <li th:class="${currentPageLike == 1} ? 'page-item disabled' : 'page-item'">
                                                 <a th:href="@{${currentPageLike > 1} ? ${'?page=' + (currentPageLike-1)} :''}"
                                                     class="page-link" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                     <span class="sr-only">Previous</span>
                                                 </a>
                                             </li>
-                                            <li th:each="i : ${#numbers.sequence(1,totalPage)}" class="page-item">
+                                            <li th:each="i : ${#numbers.sequence(1,totalPage)}" th:class="${currentPageLike == i} ? 'page-item active' : 'page-item'">
                                                 <a class="page-link" th:href="@{'?page='+ ${i} }" th:text="${i}"></a>
                                             </li>
-                                            <li class="page-item"
-                                                th:class="${currentPageLike == totalPage} ? 'disabled' : ''">
+                                            <li
+                                                th:class="${currentPageLike == totalPage} ? 'page-item disabled' : 'page-item'">
                                                 <a th:href="@{${currentPageLike < totalPage} ? ${'?page=' + (currentPageLike+1)} : '' }"
                                                     class="page-link" href="#" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
@@ -356,19 +356,17 @@
 
                             <nav aria-label="Page navigation example" th:if="${totalPage2 >1}">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item" th:class="${currentPage == 1} ? 'disabled' : ''">
+                                    <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
                                         <a th:href="@{${currentPage > 1} ? ${'?pageList=' + (currentPage-1)} :''}"
                                             class="page-link" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li th:each="i : ${#numbers.sequence(1,totalPage2)}" class="page-item">
+                                    <li th:each="i : ${#numbers.sequence(1,totalPage2)}" th:class="${currentPage == i} ? 'page-item active' : 'page-item'" >
                                         <a class="page-link" th:href="@{'?pageList='+ ${i} }" th:text="${i}"></a>
                                     </li>
-                                    <!--                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-                                    <!--                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-                                    <li class="page-item" th:class="${currentPage == totalPage2} ? 'disabled' : ''">
+                                    <li th:class="${currentPage == totalPage2} ? 'page-item disabled' : 'page-item'">
                                         <a th:href="@{${currentPage < totalPage2} ? ${'?pageList=' + (currentPage+1)}  : '' }"
                                             class="page-link" href="#" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>

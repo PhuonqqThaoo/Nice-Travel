@@ -164,7 +164,7 @@
 
                 <!-- pagination -->
                 <div class="pagination-center">
-                    <div class="pagination" th:if="${items.totalPages}>0">
+                    <div class="pagination" th:if="${items.totalPages}>1">
                        <a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p=1' : '?p=1'}">&laquo;</a>
 			<span th:each="i: ${#numbers.sequence(1,items.totalPages)}">
 		  		<a th:href="@{${n > 1} ? '?' + ${currentURL} +'&p='+${i} : '?p='+${i}}">[[${i}]]</a>

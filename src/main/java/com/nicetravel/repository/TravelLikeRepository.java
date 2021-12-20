@@ -23,5 +23,7 @@ public interface TravelLikeRepository extends JpaRepository<TravelLike, Integer>
 
 	@Query("SELECT  distinct u.travelId, u.travel_like_account_id, u.id FROM TravelLike u ")
 	Page<TravelLike> getFavoriteTour(Pageable pageable);
-
+	
+	@Query("SELECT COUNT(u) FROM TravelLike u")
+	Integer countTotalTour();
 }
