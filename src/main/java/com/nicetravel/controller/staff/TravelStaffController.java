@@ -2,19 +2,23 @@ package com.nicetravel.controller.staff;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.nicetravel.controller.admin.FileUploadUtil;
 import com.nicetravel.entity.Account;
+import com.nicetravel.entity.TravelDetail;
 import com.nicetravel.entity.TravelTypes;
 import com.nicetravel.service.AccountService;
+import com.nicetravel.service.TravelDetailService;
 import com.nicetravel.service.TravelTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -41,6 +45,9 @@ public class TravelStaffController {
 
 	@Autowired
 	private TravelService travelService;
+
+	@Autowired
+	private TravelDetailService travelDetailService;
 
 	private static final int SIZE = 4;
 
@@ -96,22 +103,28 @@ public class TravelStaffController {
 			} else {
 				String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 				System.out.println(fileName);
-				if (fileName.equals("") || fileName.length() == 0 || fileName == null){
+				if (fileName.length() == 0){
 					System.out.println("accountImg: " + travel.getImg());
-					travel.setImg(travel.getImg());
+					travelRequest.setImg(travel.getImg());
 				}
 				else {
-					travel.setImg(fileName);
+					travelRequest.setImg(fileName);
 				}
 
 				List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
 				model.addAttribute("listTravelType",listTravelType);
-				travelService.updateTraveladmin(travel);
+//				travelService.updateTraveladmin(travel);
 				travelService.updateTraveladmin(travelRequest);
 
-				String uploadDir = "photos/" + "travels/" + travelRequest.getId();
-				System.out.println("dir: " + uploadDir);
+				String uploadDir;
 
+				if(fileName.length() == 0){
+					uploadDir = "photos/" + "travels/" + travelRequest.getId() + travel.getImg();
+				}
+				else {
+					uploadDir = "photos/" + "travels/" + travelRequest.getId();
+				}
+				System.out.println("dir: " + uploadDir);
 				Path uploadPathTravel = Paths.get(uploadDir);
 
 				if (!Files.exists(uploadPathTravel)) {
@@ -122,16 +135,17 @@ public class TravelStaffController {
 					Path filePath = uploadPathTravel.resolve(fileName);
 					Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
 				} catch (IOException e) {
+					System.out.println(e.toString());
 					throw new IOException("Could not save upload file: " + fileName);
 				}
 
 				FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-				String successMessage = "Travel " + travelRequest.getName() + " was update";
+				String successMessage = "Tour " + travelRequest.getName() + " cập nhật thành công";
 				redirect.addFlashAttribute("successMessage", successMessage);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			errorMessage = "Cannot update travel" + travelRequest.getName() + ", please try again!";
+			errorMessage = "Không thể cập nhật tour" + travelRequest.getName() + ", vui lòng thử lại!";
 		}
 
 		if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
@@ -201,5 +215,87 @@ public class TravelStaffController {
 			redirect.addFlashAttribute("errorMessage", "Cannot delete travel, please try again!");
 		}
 		return "redirect:/staff/tour-du-lich";
+	}
+
+//	lich trinh
+
+	@RequestMapping("/lich-trinh")
+	public String getThongKeTourBooking(HttpServletRequest request, Model model) {
+		Account account = accountService.findAccountsByUsername(request.getRemoteUser());
+		model.addAttribute("account", account);
+		List<TravelDetail> travelDetailList = travelDetailService.getAllTravelDetail();
+		model.addAttribute("listTravelDetail", travelDetailList);
+		List<Travel> listTravelName = travelService.findAllTravelAdmin();
+		model.addAttribute("listTravelName", listTravelName);
+		model.addAttribute("travelDetailRequest", new TravelDetail());
+		return "staff/quan-ly/tour-du-lich/Quanly-LichTrinh";
+	}
+
+	@PostMapping("/lich-trinh")
+	public String createLichTrinh(@Valid @ModelAttribute("travelDetailRequest") TravelDetail travelDetail, BindingResult result, RedirectAttributes redirect)  throws UnsupportedEncodingException, MessagingException {
+		String errorMessage = null;
+		try{
+			if(result.hasErrors()){
+				errorMessage = "Đã xảy ra lỗi khi hủy tour, xin thử lại!";
+			}
+			else {
+				travelDetailService.createTravelDetail(travelDetail);
+//                model.addAttribute("successMessage", "Vui lòng kiểm tra email để xác nhận hủy tour");
+				String successMessage = "Tạo lịch trình thành công.";
+				redirect.addFlashAttribute("successMessage", successMessage);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			errorMessage = "Không thể cập nhật trạng thái cho lịch trình, xin thử lại!";
+		}
+
+		if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
+			redirect.addFlashAttribute("errorMessage", errorMessage);
+		}
+
+		return "redirect:/staff/lich-trinh";
+	}
+
+
+	@GetMapping("/lich-trinh/edit")
+	public String doGetEditTravelDetail(@RequestParam("id") Integer id, Model model) {
+		TravelDetail travelDetailRequest = travelDetailService.findById(id);
+		List<TravelDetail> listTravelDeTail = travelDetailService.getAllTravelDetail();
+		List<Travel> listTravelName = travelService.findAllTravelAdmin();
+		model.addAttribute("listTravelName", listTravelName);
+		model.addAttribute("listTravelDeTail",listTravelDeTail);
+		model.addAttribute("travelDetailRequest", travelDetailRequest);
+		return "staff/quan-ly/tour-du-lich/Quanly-LichTrinh::#form";
+	}
+
+	@PostMapping("/lich-trinh/edit")
+	public String doPostEdit(@Valid @ModelAttribute("travelDetailRequest") TravelDetail travelDetailRequest, BindingResult result,
+							 RedirectAttributes redirect) {
+		String errorMessage = null;
+
+		try {
+			// check if userRequest is not valid
+			if (result.hasErrors()) {
+				errorMessage = "Lịch trình không hợp lệ";
+			} else {
+
+				travelDetailRequest.setTime(travelDetailRequest.getTime());
+				travelDetailRequest.setDescription(travelDetailRequest.getDescription());
+				travelDetailRequest.setTravelId(travelDetailRequest.getTravelId());
+				travelDetailRequest.setIsDeleted(travelDetailRequest.getIsDeleted());
+				travelDetailService.updateTravelDetail(travelDetailRequest);
+				String successMessage = "Lịch trình " + travelDetailRequest.getId() + " đã được cập nhật";
+				redirect.addFlashAttribute("successMessage", successMessage);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			errorMessage = "Không thể cập nhật lịch trình có mã " + travelDetailRequest.getId() + ", Vui lòng thử lại!";
+		}
+
+		if (!ObjectUtils.isEmpty(errorMessage)) { // khong null
+			redirect.addFlashAttribute("errorMessage", errorMessage);
+		}
+		return "redirect:/staff/lich-trinh";
 	}
 }

@@ -88,8 +88,8 @@ public interface TravelRepository extends JpaRepository<Travel, Integer> {
 //   	@Query("SELECT u FROM Travel u WHERE u.id =?1")
 //   	Travel findTravelById(Integer id);
 	@Modifying(clearAutomatically =true)
-	@Query(value="UPDATE Travel SET name = ?1, departure_place = ?2,place = ?3, price = ?4, start_date= ?5, end_date = ?6, quantity= ?7, quantity_new = ?8, hour = ?9, slug = ?10 ,type_id=?11,account_Id =?12 WHERE id = ?13", nativeQuery = true)
-	void updateTravelAdmin(String name, String departurePlace, String place, BigDecimal price, Date start_date, Date end_date, Integer quantity , Integer quantityNew, Integer hour, String slug , TravelTypes typeId, Account account, Integer id);
+	@Query(value="UPDATE Travel SET name = ?1, departure_place = ?2,place = ?3, price = ?4, start_date= ?5, end_date = ?6, quantity= ?7, quantity_new = ?8, hour = ?9, slug = ?10 ,type_id=?11,account_Id =?12, img = ?13 WHERE id = ?14", nativeQuery = true)
+	void updateTravelAdmin(String name, String departurePlace, String place, BigDecimal price, Date start_date, Date end_date, Integer quantity , Integer quantityNew, Integer hour, String slug , TravelTypes typeId, Account account, String img, Integer id);
 
 	@Modifying(clearAutomatically =true)
     @Query(value="UPDATE Travel SET  is_Deleted = 1 WHERE id =?1", nativeQuery = true)

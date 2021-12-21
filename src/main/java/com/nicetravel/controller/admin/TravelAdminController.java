@@ -183,12 +183,12 @@ public class TravelAdminController {
 				errorMessage = "Travel is not valid";
 			} else {
 				String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-				if (fileName.equals("") || fileName.length() == 0 || fileName == null){
+				if (fileName.equals("") || fileName.length() == 0){
 					System.out.println("accountImg: " + travel.getImg());
-					travel.setImg(travel.getImg());
+					travelRequest.setImg(travel.getImg());
 				}
 				else {
-					travel.setImg(fileName);
+					travelRequest.setImg(fileName);
 				}
 
 				Account ids = accountService.getIdByUser(request.getRemoteUser());
@@ -196,13 +196,21 @@ public class TravelAdminController {
 				List<TravelTypes> listTravelType = travelTypeService.findAllAdmin();
 				model.addAttribute("listTravelType",listTravelType);
 
-				travelService.updateTraveladmin(travel);
+//				travelService.updateTraveladmin(travel);
 				travelService.updateTraveladmin(travelRequest);
 				travelService.sp_updateEXD2();
 				travelService.updateEX();
-				String uploadDir = "photos/" + "travels/" + travel.getId();
+				String uploadDir;
 
+				if(fileName.length() == 0){
+					uploadDir = "photos/" + "travels/" + travelRequest.getId() + travel.getImg();
+				}
+				else {
+					uploadDir = "photos/" + "travels/" + travelRequest.getId();
+				}
+				System.out.println("dir: " + uploadDir);
 				Path uploadPath = Paths.get(uploadDir);
+
 
 				if (!Files.exists(uploadPath)) {
 					Files.createDirectories(uploadPath);

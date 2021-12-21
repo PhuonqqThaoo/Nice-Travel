@@ -21,6 +21,8 @@
 
     <!-- css customize -->
     <link th:href="@{/dashboard/css/admin.style.css}" rel="stylesheet">
+
+    <script th:src="@{/dashboard/js/validation.js}"></script>
 </head>
 
 <body id="page-top">
@@ -338,7 +340,7 @@
                                             <td th:text="${list.quantityNew}"></td>
                                             <td th:text="${list.hour}"></td>
                                             <td th:text="${list.typeId.type}"></td>
-                                            <td th:text="${list.travel_account_id.fullname}"></td>
+                                            <td th:text="${list.travel_account_id.username}"></td>
                                             <td align="center">
                                                 <button th:attr="onclick='editTravel(\''+${list.id}+'\')'"
                                                     class="btn btn-success" style="width: 40px">
@@ -382,6 +384,8 @@
                         <div class="chinh-sua-tour w-90 card">
                             <form th:object="${travelRequest}" enctype="multipart/form-data" id="form" method="POST" class="row col-12">
                                 <div class="col-6 left">
+                                    <input th:field="*{id}" id="id" readonly="true" type="hidden"
+                                    class="form-control" hidden>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputName">Tên tour</label>
@@ -518,6 +522,9 @@
     <script th:src="@{/dashboard/js/ruang-admin.min.js}"></script>
     <script th:src="@{/dashboard/vendor/chart.js/Chart.min.js}"></script>
     <!--   <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>   -->
+
+
+
     <script th:inline="javascript">
         // Set new default font family and font color to mimic Bootstrap's default styling
         Chart.defaults.global.defaultFontFamily = 'Nunito',

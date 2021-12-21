@@ -73,7 +73,7 @@ public class Travel implements Serializable {
             return "/dashboard/img/logo/logoNiceTravel.png";
         }
 
-        System.out.println("/photos/travels/" + id + img);
+        System.out.println("/photos/travels/" + id + "/" + img);
 
         return "/photos/travels/" + id + "/" + img;
     }
