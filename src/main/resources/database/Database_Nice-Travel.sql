@@ -18,7 +18,7 @@ go
 
 create table Account(
 	id				int				primary key identity,
-	username		varchar(20)		not null unique,
+	username		varchar(50)		not null unique,
 	fullname		nvarchar(225)	null,
 	[password]		varchar(255)	not null,
 	email			varchar(100)	not null unique,
@@ -28,10 +28,11 @@ create table Account(
 	img				varchar(225)	null,
 	id_card			varchar(50)		null unique,
 	role_Id			int				foreign key references roles(id) default 3,
-	created_date	datetime		not null default getdate(),
-	verification_code varchar(64)   ,
+	created_date	date			not null default getdate(),
+	verification_code varchar(64)   null,
 	is_enable		bit				not null default 0,
-	provider		varchar(15)		null
+	provider		varchar(15)		,
+	password_changed_time date	
 )
 go
 
@@ -64,14 +65,16 @@ create table travel(
 	place			nvarchar(225)	not null,
 	price			decimal(12,3)	not null,
 	img				varchar(225)	null,
-	created_date	datetime		not null default getdate(),
-	[start_date]	datetime		not null,
-	end_date		datetime		not null,
+	created_date	date		not null default getdate(),
+	[start_date]	date		not null,
+	end_date		date		not null,
 	quantity		int				not null,
 	[hour]			int				not null,
 	slug			varchar(255)	not null,
 	is_deleted		bit				not null default 0,
-	quantity_new    int             not null default 0
+	quantity_new    int             not null default 0,
+	account_Id		int 			foreign key references Account(id)  ,
+	expiration_date bit				not null default 0
 )
 go
 
@@ -81,6 +84,13 @@ create table travel_detail(
 	[description]	nvarchar(max)	null,
 	travel_Id		int				foreign key references travel(id),
 	is_deleted		bit				not null default 0
+)
+go
+
+create table travel_like(
+	id				int				primary key identity,
+	account_id		int 			foreign key references Account(id),
+	travel_Id		int 			foreign key references travel(id)
 )
 go
 
@@ -102,13 +112,14 @@ go
 
 create table booking(
 	id				int 			primary key identity,
-	account_Id		int 			foreign key references Account(id),
-	created_date	datetime		not null default getdate(),
+	account_id		int 			foreign key references Account(id),
+	created_date	date		not null default getdate(),
 	[address]		nvarchar(225)	null,
 	phone			varchar(20)		not null,
 	total_price		decimal(12,3)	not null,
 	pay_boolean		bit				not null default 0,
-	is_deleted		bit				not null default 0
+	is_deleted		bit				not null default 0,
+	verification_code varchar(64)   null
 )
 go
 
@@ -117,17 +128,31 @@ create table booking_detail(
 	booking_Id		int 			foreign key references booking(id),
 	travel_Id		int 			foreign key references travel(id),
 	price			decimal(12,3)	not null,
-	quantity		int				not null
+	qtyNL			int,
+	qtyTE			int,
+	qtyTN			int,
+	qtyEB			int,
+	totalquantity   int				not null
 )
 go
 
 create table payment(
 	id				int 			primary key identity,
 	booking_Id 		int 			foreign key references booking(id),
-	pay_time 		datetime		not null,
+	pay_time 		date		not null,
 	total_price		decimal(12,3)	not null,
 )
 GO
+
+create table events(
+	id				int				primary key identity,
+	booking_Id		int				foreign key references booking(id),
+	account_id		int				foreign key references Account(id),
+	title			nvarchar(200)	 null,
+	description		nvarchar(500)	 null,
+	create_date		date			not null,
+	is_delete		bit				not null default 0
+)
 
 -- Insert Roles
 SET IDENTITY_INSERT [dbo].[roles] ON
@@ -140,20 +165,19 @@ GO
 
 -- Insert Account
 SET IDENTITY_INSERT [dbo].[Account] ON
-INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (1, 'admin','Nguyen Admin', '$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'nice_travel@gmail.com',1,N'123 Hòa Bình','0987463739','user.png','2155098989', 1, '2021-10-09', 0)
+INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (1, 'admin','Nguyen Admin', '$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'nice_travel@gmail.com',1,N'123 Hòa Bình','0987463739','user.png','2155098989', 1, '2021-11-09', 0)
 INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (2, 'staff','Staff', '$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'staff@gmail.com',0,N'123 Hòa Bình','0987463739','user.png','2155098945', 2, '2021-10-09', 0)
 INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (3, 'user', 'User','$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'user@gmail.com',0,N'123 Hòa Bình','0987463739','user.png','234589874', 3, '2021-10-09', 0)
 INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (4, 'tuanpc',N'Phạm Công Tuấn', '$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'tuanpc@gmail.com',0,N'123 Hòa Bình','0987463739','user.png','215589766', 1, '2021-10-09', 0)
 INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (5, 'thaonpt',N'Nguyễn Thị Phương Thảo', '$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'thaontp@gmail.com',1,N'123 Hòa Bình','0987463739','user.png','215508066', 1, '2021-10-09', 0)
-INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (6, 'nhatta', N'Trần Anh Nhật','$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'nhatta@gmail.com',0,N'123 Hòa Bình','0987463739','user.png','2155098689', 1, '2021-10-09', 0)
-INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (7, 'danhp',N'Huỳnh Phước Dân' ,'$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'danhp@gmail.com',0,N'123 Hòa Bình','0987463739','user.png','2155298989', 1, '2021-10-09', 0)
-INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (8, 'thangvv',N'Võ Văn Thắng', '$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'thangvv@gmail.com',0,N'123 Hòa Bình','0987463739','user.png','2154098989', 1, '2021-10-09', 0)
+INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (6, 'nhatta', N'Trần Anh Nhật','$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'nhatta@gmail.com',0,N'123 Hòa Bình','0987463739','user.png','2155098689', 3, '2021-10-09', 0)
+INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (7, 'danhp',N'Huỳnh Phước Dân' ,'$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'danhp@gmail.com',0,N'123 Hòa Bình','0987463739','user.png','2155298989', 3, '2021-11-09', 0)
+INSERT INTO Account (id, username, fullname, password, email, gender, address, phone, img, id_card, role_Id,created_date, is_enable) VALUES (8, 'thangvv',N'Võ Văn Thắng', '$2a$12$yB4oIy./c3WAWa8a9C1Z6.RVdpzGGawwWK34hGnNRUN8iTR.sL8ZG', 'thangvv@gmail.com',0,N'123 Hòa Bình','0987463739','user.png','2154098989', 3, '2021-11-09', 0)
 
 
 SET IDENTITY_INSERT [dbo].[Account] OFF
 GO
 
--- Insert AccountDetail
 
 
 
@@ -178,92 +202,92 @@ GO
 
 -- Insert travel
 SET IDENTITY_INSERT [dbo].[travel] ON
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (1, N'Phan Thiết - Lâu Đài Rượu Vang - Bàu Trắng - Bảo Tàng Làng Chài Xưa', 7, N'TP. Hồ Chí Minh',
-	N'TP. Hồ Chí Minh', 13960000, 'phan-thiet-ld-bt.png', '2021-10-09', '2021-10-10', '2021-10-15', 4, 10, 'phan-thiet-10-10', 0,4)
+	N'TP. Hồ Chí Minh', 13960000, 'phan-thiet-ld-bt.png', '2021-10-09', '2022-01-01', '2022-01-05', 4, 10, 'phan-thiet-10-10', 0,4,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (2, N'Đà Lạt - Kim Ngân Hills - Quê Garden', 4, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 18760000,
-	'dalat.jpg', '2021-10-09', '2021-10-10', '2021-10-15', 10, 10, 'da-lat-tour', 0,10)
+	'dalat.jpg', '2021-10-09', '2021-12-25', '2021-12-30', 10, 10, 'da-lat-kim-ngan', 0,10,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (3, N'Vũng Tàu "Biển Hát " - Nhà Úp Ngược - Bảo Tàng Bà Rịa', 2, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 16740000,
-	'vungtau.jpg', '2021-10-09', '2021-10-10', '2021-10-15', 10, 10, 'vung-tau-tour', 0,10)
+	'vungtau.jpg', '2021-10-09', '2021-12-24', '2021-12-29', 10, 10, 'vung-tau-bao-tang', 0,10,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (4, N'Miền Tây - Tiền Giang - Cần Thơ - Sóc Trăng - Bạc Liêu - Cà Mau - Đất Mũi', 5, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 3990000,
-	'cantho.jpg', '2021-10-09', '2021-12-02', '2021-12-06', 10, 10, 'can-tho-tour',0, 10)
+	'cantho.jpg', '2021-10-09', '2021-12-23', '2021-12-27', 10, 10, 'can-tho-tien-giang',0, 10,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (5, N'Phú Yên - Quy Nhơn', 6, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 5190000,
-	'phuyen.jpg', '2021-10-09', '2021-12-09', '2021-12-12', 10, 10, 'phu-yen-tour',0, 9)
+	'phuyen.jpg', '2021-10-09', '2021-12-23', '2021-12-26', 10, 10, 'phu-yen-quy-nhon',0, 9,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (6, N'Long An - Khám Phá Con Đường Xuyên Rừng Tràm Tân Lập', 12, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 7160000,
-	'long-an.jpg', '2021-11-25', '2021-11-25', '2021-11-26', 20, 10, 'long-an-tour',0, 7)
+	'long-an.jpg', '2021-11-25', '2021-12-25', '2021-12-26', 20, 10, 'long-an-tan-lap',0, 7,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (7, N'Buôn Ma Thuột - Thác Dray Nur - KDL Sinh Thái KoTam - Bảo Tàng Thế Giới Cà Phê', 13, N'TP. Hồ Chí Minh', N'TP. HCM', 2390000,
-	'buon-ma-thuot.jpg', '2021-11-26', '2021-11-26', '2021-11-29', 15, 10, 'bmt-tour',0, 2)
+	'buon-ma-thuot.jpg', '2021-11-26', '2021-12-26', '2021-12-29', 15, 10, 'bmt-bao-tang-ca-phe',0, 2,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (8, N'Sapa - Hàm Rồng - Fansipan - Cát Cát - Secret Garden - thiên đường sống ảo giữa lòng phố núi', 14, N'Hà Nội', N'Hà Nội', 3290000,
-	'sa-pa.jpg', '2021-11-25', '2021-11-26', '2021-11-29', 20, 8, 'sa-pa-tour',0, 4)
+	'sa-pa.jpg', '2021-11-25', '2021-12-26', '2021-12-29', 20, 8, 'sa-pa-ham-rong-fansipan',0, 4,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (22, N'Đà Nẵng - Sơn Trà - Hội An - Suối khoáng nóng Thần Tài - Rừng dừa bảy mẫu - Đà Nẵng ', 8, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 3990000,
-	'da-nang.jpg', '2021-11-25', '2021-12-10', '2021-12-13', 15, 3, 'da-nang-tour',0, 9)
+	'da-nang.jpg', '2021-11-25', '2021-12-25', '2021-12-28', 15, 3, 'da-nang-son-tra-hoi-an-tour',0, 9,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (9, N'Huế - La Vang - Động Phong Nha & Động Thiên Đường - Bà Nà - Cầu Vàng - Hội An - Đà Nẵng',11, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 6590000,
-	'hue.jpg', '2021-11-29', '2021-12-08', '2021-12-13', 15, 5, 'hue-tour',0, 9)
+	'hue.jpg', '2021-11-29', '2022-01-01', '2022-01-05', 15, 5, 'hue-la-vang-tour',0, 9,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (11, N'Tham quan Safari World & Thỏa Thích Vui Chơi Tại Vinwonder - Trải nghiệm dịch vụ Nghỉ dưỡng VinHoliday Phú Quốc',3, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 7090000,
-	'phu-quoc2.jpg', '2021-12-10', '2021-12-10', '2021-12-13', 10, 19, 'phu-quoc-tour',0, 6)
+	'phu-quoc2.jpg', '2021-12-10', '2022-01-10', '2022-01-13', 10, 19, 'phu-quoc-vinholiday',0, 6,3,0)
 
 	
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (12, N'Khám Phá Trải Nghiệm Vinpearl Nam Hội An ',10, N'Đà Nẵng', N'Đà Nẵng', 2000000,
-	'quang-nam.jpg', '2021-11-25', '2021-12-01', '2021-12-02', 10, 7, 'quang-nam-tour',0, 4)
+	'quang-nam.jpg', '2021-11-25', '2022-12-01', '2022-12-02', 10, 7, 'vinpearl-hoi-an',0, 4,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (13, N'Hà Nội - Bái Đính - Tràng An - Hạ Long - Yên Tử',9, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 8390000,
-	'ha-noi.jpg', '2021-11-25', '2021-12-04', '2021-12-08', 10, 5, 'ha-noi-tour',0, 7)
+	'ha-noi.jpg', '2021-11-25', '2022-12-04', '2022-12-08', 10, 5, 'ha-noi-bai-dinh-trang-an-tour',0, 7,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (14, N'Hà Nội - Sapa - Hạ Long - Bái Đính - Tràng An - Tuyệt tình cốc',9, N'Quy Nhơn', N'Bình Định', 8680000,
-	'ha-noi-sa-pa.jpg', '2021-11-25', '2021-12-28', '2021-12-30', 10, 11, 'ha-noi-tour',0, 8)
+	'ha-noi-sa-pa.jpg', '2021-11-25', '2022-12-28', '2022-12-30', 10, 11, 'ha-noi-sa-pa-ha-long-tour',0, 8,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (15, N'Đà Lạt - Du lịch canh nông kết hợp Trải nghiệm gia đình “Run with kids”',4, N'Đà Lạt', N'Đà Lạt', 3590000,
-	'da-lat-gia-dinh.jpg', '2021-11-25', '2021-12-05', '2021-12-08', 10, 17, 'da-lat-tour',0, 8)
+	'da-lat-gia-dinh.jpg', '2021-11-25', '2022-12-05', '2022-12-08', 10, 17, 'trai-nghjem-da-lat',0, 8,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (16, N'Đà Lạt - Que Garden - Thác Datanla - Khu Du Lịch Kim Ngân Hills - Cà Phê Mê Linh',4, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 2990000,
-	'da-lat-tourcity.jpg', '2021-11-25', '2021-12-04', '2021-12-08', 10, 17, 'da-lat-tour',0, 7)
+	'da-lat-tourcity.jpg', '2021-11-25', '2022-12-04', '2022-12-08', 10, 17, 'da-lat-thac-datanla',0, 7,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (17, N'Phan Thiết - Mũi Né - Bàu Trắng ',7, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 3590000,
-	'phan-thiet-mui-ne.jpg', '2021-11-25', '2021-12-26', '2021-12-29', 10, 12, 'phan-thiet-tour',0, 9)
+	'phan-thiet-mui-ne.jpg', '2021-11-25', '2021-12-26', '2021-12-29', 10, 12, 'phan-thiet-bau-trang-tour',0, 9,3,0)
 
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (18, N'Long Xuyên – Vũng Tàu – Bến Du Thuyền Marina – Tượng Chúa Kito',2, N'Long Xuyên', N'An Giang', 1890000,
-	'long-xuyen-vung-tau.jpg', '2021-11-25', '2021-11-27', '2021-12-29', 15, 12, 'vung-tau-tour',0, 9)
+	'long-xuyen-vung-tau.jpg', '2021-11-25', '2021-11-27', '2021-12-29', 15, 12, 'long-xuyen-vung-tau-tour',0, 9,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (19, N'Buôn Ma Thuột - Hồ Lắk - Buôn Kôtam - Bảo Tàng Thế Giới Cà Phê',13, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 3590000,
-	'bmt-ca-phe.jpg', '2021-11-25', '2021-12-02', '2021-12-06', 10, 14, 'bmt-tour',0, 9)
+	'bmt-ca-phe.jpg', '2021-11-25', '2021-12-02', '2021-12-06', 10, 14, 'bmt-ho-lak-tour',0, 9,3,0)
 
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (20, N'Củ Chi(TP. Hồ Chí Minh) - Nông Trang Xanh - Địa Đạo vùng Đất Thép',1, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 699000,
-	'cu-chi.jpg', '2021-11-25', '2021-11-28', '2021-11-29', 10, 14, 'hcm-tour',0, 9)
+	'cu-chi.jpg', '2021-11-25', '2021-11-28', '2021-11-29', 10, 14, 'hcm-cu-chi-tour',0, 9,3,0)
 
 	
-INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new)
+INSERT INTO travel (id, [name], type_id,departure_place, place, price, img, created_date, [start_date], end_date, quantity, [hour], slug, is_deleted,quantity_new,account_Id,expiration_date)
 	VALUES (21, N'Hành trình xanh Cần Giờ (Tàu cao tốc) - Khám phá KDL Sinh thái Dần Xây - Vàm Sát [TP. Hồ Chí Minh]',1, N'TP. Hồ Chí Minh', N'TP. Hồ Chí Minh', 1790000,
-	'tau-hcm.jpeg', '2021-11-25', '2021-12-12', '2021-12-13', 10, 9, 'hcm-tour',0, 9)
+	'tau-hcm.jpeg', '2021-11-25', '2021-12-12', '2021-12-13', 10, 9, 'hcm-can-gio-tour',0, 9,3,0)
 SET IDENTITY_INSERT [dbo].[travel] OFF
 
 --INSERT travelDetail
@@ -735,6 +759,7 @@ Tàu về đến Bến Bạch Đằng. Chia tay quý khách và kết thúc chư
 SET IDENTITY_INSERT [dbo].[travel_detail] OFF
 GO
 
+
 -- INSERT ageType
 SET IDENTITY_INSERT [dbo].[age_type] ON
 INSERT INTO age_type (id, description, is_deleted) VALUES (1, N'Người lớn', 0)
@@ -752,30 +777,30 @@ GO
 
 -- INSERT booking
 SET IDENTITY_INSERT [dbo].[booking] ON
-INSERT INTO booking (id, account_Id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
-	VALUES (1, 1, '2021-10-09', 'TP.HCM', '0394008704', 13960000, 1, 0)
+INSERT INTO booking (id, account_id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
+	VALUES (1, 1, '2020-10-01', 'TP.HCM', '0394008704', 13960000, 1, 0)
 
-INSERT INTO booking (id, account_Id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
+INSERT INTO booking (id, account_id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
 	VALUES (2, 3, '2021-11-20', 'TP.HCM', '00354389483', 12500000, 1, 0)
 
-INSERT INTO booking (id, account_Id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
-	VALUES (3, 6, '2021-11-19', 'TP.HCM', '04234332432', 8900000, 1, 0)
+INSERT INTO booking (id, account_id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
+	VALUES (3, 6, '2020-11-19', 'TP.HCM', '04234332432', 8900000, 1, 0)
 
 
-INSERT INTO booking (id, account_Id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
-	VALUES (4, 8, '2021-11-19', 'TP.HCM', '0434034535', 5000000, 1, 0)
+INSERT INTO booking (id, account_id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
+	VALUES (4, 8, '2021-12-09', 'TP.HCM', '0434034535', 5000000, 1, 0)
 
-INSERT INTO booking (id, account_Id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
-	VALUES (5, 7, '2021-11-10', 'Long An', '0896453413', 2250000, 0, 0)
+INSERT INTO booking (id, account_id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
+	VALUES (5, 7, '2021-12-05', 'Long An', '0896453413', 2250000, 0, 0)
 
-INSERT INTO booking (id, account_Id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
-	VALUES (6, 7, '2021-10-30', 'Long An', '0896453413', 5590000, 1, 0)
+INSERT INTO booking (id, account_id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
+	VALUES (6, 7, '2020-10-30', 'Long An', '0896453413', 5590000, 1, 0)
 
-INSERT INTO booking (id, account_Id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
-	VALUES (7, 5, '2021-10-15', 'TP.HCM', '0324034355', 1250000, 0, 0)
+INSERT INTO booking (id, account_id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
+	VALUES (7, 5, '2021-9-01', 'TP.HCM', '0324034355', 1250000, 0, 0)
 
 
-INSERT INTO booking (id, account_Id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
+INSERT INTO booking (id, account_id, created_date, [address], phone, total_price, pay_boolean, is_deleted)
 	VALUES (8, 5, '2021-11-02', 'TP.HCM', '0324034355', 9950000, 0, 0)
 
 SET IDENTITY_INSERT [dbo].[booking] OFF
@@ -783,21 +808,21 @@ GO
 
 -- INSERT bookingDetail
 SET IDENTITY_INSERT [dbo].[booking_detail] ON
-INSERT INTO booking_detail (id, booking_Id, travel_Id, price,quantity) VALUES (1, 1, 1, 13960000,2)
+INSERT INTO booking_detail (id, booking_Id, travel_Id, price,qtyNL,qtyTE,totalquantity) VALUES (1, 1, 1, 13960000,1,1,2)
 
-INSERT INTO booking_detail (id, booking_Id, travel_Id, price,quantity) VALUES (2, 2, 11, 12500000,1)
+INSERT INTO booking_detail (id, booking_Id, travel_Id, price,qtyNL,totalquantity) VALUES (2, 2, 11, 12500000,1,1)
 
-INSERT INTO booking_detail (id, booking_Id, travel_Id, price,quantity) VALUES (3, 3, 18, 8900000,1)
+INSERT INTO booking_detail (id, booking_Id, travel_Id, price,qtyNL,totalquantity) VALUES (3, 3, 18, 8900000,1,1)
 
-INSERT INTO booking_detail (id, booking_Id, travel_Id, price,quantity) VALUES (4, 4, 7, 5000000,1)
+INSERT INTO booking_detail (id, booking_Id, travel_Id, price,qtyNL,totalquantity) VALUES (4, 4, 7, 5000000,1,1)
 
-INSERT INTO booking_detail (id, booking_Id, travel_Id, price,quantity) VALUES (5, 8, 6, 9950000,1)
+INSERT INTO booking_detail (id, booking_Id, travel_Id, price,qtyNL,totalquantity) VALUES (5, 8, 6, 9950000,1,1)
 
-INSERT INTO booking_detail (id, booking_Id, travel_Id, price,quantity) VALUES (6, 7, 5, 1250000,1)
+INSERT INTO booking_detail (id, booking_Id, travel_Id, price,qtyNL,totalquantity) VALUES (6, 7, 5, 1250000,1,1)
 
-INSERT INTO booking_detail (id, booking_Id, travel_Id, price,quantity) VALUES (7, 5, 11, 2250000,1)
+INSERT INTO booking_detail (id, booking_Id, travel_Id, price,qtyNL,totalquantity) VALUES (7, 5, 11, 2250000,1,1)
 
-INSERT INTO booking_detail (id, booking_Id, travel_Id, price,quantity) VALUES (8, 6, 11, 5590000,1)
+INSERT INTO booking_detail (id, booking_Id, travel_Id, price,qtyNL,totalquantity) VALUES (8, 6, 11, 5590000,1,1)
 
 SET IDENTITY_INSERT [dbo].[booking_detail] OFF
 GO
@@ -808,7 +833,7 @@ INSERT INTO payment (id, booking_Id, pay_time, total_price) VALUES (1, 1, '2021-
 
 INSERT INTO payment (id, booking_Id, pay_time, total_price) VALUES (2, 2, '2021-11-20 10:00:00', 12500000)
 
-INSERT INTO payment (id, booking_Id, pay_time, total_price) VALUES (3, 4, '2021-11-19 10:00:00', 5000000)
+INSERT INTO payment (id, booking_Id, pay_time, total_price) VALUES (3, 4, '2021-12-19 10:00:00', 5000000)
 
 INSERT INTO payment (id, booking_Id, pay_time, total_price) VALUES (4, 3, '2021-11-19 10:00:00', 8900000)
 
@@ -816,6 +841,22 @@ INSERT INTO payment (id, booking_Id, pay_time, total_price) VALUES (5, 6, '2021-
 
 SET IDENTITY_INSERT [dbo].[payment] OFF
 GO
+
+-- INSERT like
+SET IDENTITY_INSERT [dbo].[travel_like] ON
+INSERT INTO travel_like (id, account_id, travel_Id) VALUES (1,6,12)
+INSERT INTO travel_like (id, account_id, travel_Id) VALUES (2,7,12)
+INSERT INTO travel_like (id, account_id, travel_Id) VALUES (3,4,9)
+INSERT INTO travel_like (id, account_id, travel_Id) VALUES (4,5,12)
+INSERT INTO travel_like (id, account_id, travel_Id) VALUES (5,6,9)
+INSERT INTO travel_like (id, account_id, travel_Id) VALUES (6,6,3)
+INSERT INTO travel_like (id, account_id, travel_Id) VALUES (7,4,3)
+INSERT INTO travel_like (id, account_id, travel_Id) VALUES (8,5,1)
+INSERT INTO travel_like (id, account_id, travel_Id) VALUES (9,5,12)
+INSERT INTO travel_like (id, account_id, travel_Id) VALUES (10,8,3)
+SET IDENTITY_INSERT [dbo].[travel_like] OFF
+GO
+
 
 CREATE PROC sp_getTotalPriceOneMonth
 (
@@ -899,4 +940,129 @@ AS BEGIN
 END	
 GO
 
+CREATE PROC sp_getTourFavorite
+AS BEGIN
+select top 3  t.created_date,t.departure_place,t.end_date,t.hour,t.id,t.img,t.is_deleted,t.name,
+			t.place,t.price,t.price,t.quantity,t.quantity_new,t.slug,t.start_date,t.type_id, t.account_Id, t.expiration_date 
+FROM travel t JOIN travel_like  tl ON t.id = tl.travel_Id
+WHERE t.is_deleted = 0 and t.expiration_date = 0
+GROUP BY  t.created_date,t.departure_place,t.end_date,t.hour,t.id,t.img,t.is_deleted,t.name,
+		t.place,t.price,t.price,t.quantity,t.quantity_new,t.slug,t.start_date,t.type_id,t.account_Id, t.expiration_date
+ORDER BY COUNT(tl.travel_Id) DESC
 
+END
+GO
+
+
+
+CREATE PROC sp_CountDaLatTour
+AS BEGIN
+	select count(tt.id) AS 'Tổng số tour'
+	from travel t inner join travel_types tt on  t.type_id = tt.id 
+	where tt.type like N'%Đà Lạt%'  and t.expiration_date = 0 and t.is_deleted = 0
+END
+GO
+
+CREATE PROC sp_CountHaNoiTour
+AS BEGIN
+	select count(tt.id) AS 'Tổng số tour'
+	from travel t inner join travel_types tt on  t.type_id = tt.id 
+	where tt.type like N'%Hà Nội%'  and t.expiration_date = 0 and t.is_deleted = 0
+END
+GO
+
+CREATE PROC sp_CountDaNangTour
+AS BEGIN
+	select count(tt.id) AS 'Tổng số tour'
+	from travel t inner join travel_types tt on  t.type_id = tt.id 
+	where tt.type like N'%Đà Nẵng%'  and t.expiration_date = 0 and t.is_deleted = 0
+END
+GO
+
+CREATE PROC sp_CountPhuQuocTour
+AS BEGIN
+	select count(tt.id) AS 'Tổng số tour'
+	from travel t inner join travel_types tt on  t.type_id = tt.id 
+	where tt.type like N'%Phú Quốc%'  and t.expiration_date = 0 and t.is_deleted = 0
+END
+GO
+
+CREATE PROC sp_updateEXD
+AS BEGIN
+	update travel 
+	set  expiration_date = 1 
+		where start_date < GETDATE() +1
+END
+GO
+
+CREATE PROC sp_updateEXD2
+AS BEGIN
+	update travel 
+	set  expiration_date = 0 
+		where start_date > GETDATE() +1
+END
+go
+
+CREATE PROC sp_getTotalTravelOneMonth
+(
+	@month varchar(2),
+	@year varchar(4)
+)
+AS BEGIN 
+	DECLARE @result varchar(20)
+	SET @result = (SELECT count(id) AS 'total'
+					FROM travel o1 
+					WHERE MONTH(o1.created_date) = @month AND YEAR(o1.created_date) = @year)
+	IF @result IS NULL BEGIN SET @result = '0' END
+	SELECT @result
+END
+go
+
+CREATE PROC sp_getTotalBookingOneMonth
+(
+	@month varchar(2),
+	@year varchar(4)
+)
+AS BEGIN 
+	DECLARE @result varchar(20)
+	SET @result = (SELECT count(id) AS 'total'
+					FROM booking o1 
+					WHERE MONTH(o1.created_date) = @month AND YEAR(o1.created_date) = @year)
+	IF @result IS NULL BEGIN SET @result = '0' END
+	SELECT @result
+END
+go
+
+
+CREATE PROC sp_upGetTravelByBookingId(@id int)
+AS BEGIN
+	
+select * from travel inner join booking_detail as bkd on travel.id = bkd.travel_Id inner join booking as bk on bkd.booking_Id = bk.id where bk.id = @id
+
+END
+go
+
+--THONG KE TOUR DA DAT ADMIN
+CREATE PROC sp_GetTourInMonth
+	AS BEGIN
+		SELECT count(*) AS 'Tong' FROM booking
+			WHERE MONTH(created_date) = MONTH(GETDATE())
+	END
+
+GO
+--TAT CA TOUR DA DAT
+CREATE PROC sp_GetTourDaDat
+	AS BEGIN
+		SELECT count(*) AS 'Total' FROM booking
+	END
+
+GO
+
+CREATE PROC sp_GetTotalTravelLike
+	AS BEGIN
+		SELECT  name, count(travel_like.id) 
+					FROM travel_like , travel
+					where  travel_like.travel_Id = travel.id
+					group by name
+	END
+GO
